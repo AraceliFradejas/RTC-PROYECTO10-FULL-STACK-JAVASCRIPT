@@ -1,5 +1,5 @@
 {
-  "name": "lumina-madrid",
+  "name": "kelsets-talks",
   "private": true,
   "version": "1.0.0",
   "scripts": {
@@ -12,4 +12,3 @@
     "concurrently": "^9.2.1"
   }
 }
-

@@ -28,13 +28,13 @@ export const AuthPage = () => {
     setLoading(true); setErrors({});
     try {
       await (mode === 'login' ? login({ email: values.email, password: values.password }) : register(values));
-      notify(mode === 'login' ? 'Qué alegría verte de nuevo.' : 'Tu cuenta está lista. ¡Bienvenida a Lúmina!');
+      notify(mode === 'login' ? 'Vuelves al terreno de juego.' : 'Tu cuenta está lista. Bienvenida a KelseTS.');
       navigate(location.state?.from || '/events');
     } catch (error) { setErrors({ form: error.message }); notify(error.message, 'error'); }
     finally { setLoading(false); }
   };
-  return <section className="auth-page"><div className="auth-visual"><p className="kicker">Tu ciudad, otra mirada</p><blockquote>“Las mejores ideas empiezan cuando alguien dice: ¿te vienes?”</blockquote></div><div className="auth-panel">
-    <div className="auth-box"><p className="kicker">{mode === 'login' ? 'Bienvenida de vuelta' : 'Empieza aquí'}</p><h1>{mode === 'login' ? 'Entra en Lúmina' : 'Crea tu cuenta'}</h1><p>{mode === 'login' ? 'Tu próxima experiencia te está esperando.' : 'Regístrate y entrarás directamente, sin pasos de más.'}</p>
+  return <section className="auth-page"><div className="auth-visual"><p className="kicker">Mindset in motion</p><blockquote>El resultado no cambia de golpe. Cambia decisión a decisión.</blockquote></div><div className="auth-panel">
+    <div className="auth-box"><p className="kicker">{mode === 'login' ? 'De vuelta al equipo' : 'Tu primera jugada'}</p><h1>{mode === 'login' ? 'Entra en KelseTS' : 'Crea tu cuenta'}</h1><p>{mode === 'login' ? 'Tu próxima experiencia te está esperando.' : 'Regístrate y entrarás directamente, sin pasos de más.'}</p>
       <div className="auth-tabs"><button className={mode === 'login' ? 'active' : ''} onClick={() => { setMode('login'); setErrors({}); }}>Iniciar sesión</button><button className={mode === 'register' ? 'active' : ''} onClick={() => { setMode('register'); setErrors({}); }}>Crear cuenta</button></div>
       <form onSubmit={submit} noValidate>
         {errors.form && <div className="form-alert" role="alert">{errors.form}</div>}
@@ -46,4 +46,3 @@ export const AuthPage = () => {
     </div>
   </div></section>;
 };
-

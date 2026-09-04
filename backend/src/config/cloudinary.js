@@ -18,4 +18,3 @@ export const uploadBuffer = (buffer, folder) =>
 export const deleteImage = async (publicId) => {
   if (publicId) await cloudinary.uploader.destroy(publicId);
 };
-

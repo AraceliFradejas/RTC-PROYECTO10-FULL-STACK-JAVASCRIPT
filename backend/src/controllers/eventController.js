@@ -44,7 +44,7 @@ export const createEvent = async (req, res) => {
   let poster = '';
   let posterPublicId = '';
   if (req.file) {
-    const uploaded = await uploadBuffer(req.file.buffer, 'lumina/events');
+    const uploaded = await uploadBuffer(req.file.buffer, 'kelsets-talks/events');
     poster = uploaded.secure_url;
     posterPublicId = uploaded.public_id;
   }
@@ -60,7 +60,7 @@ export const updateEvent = async (req, res) => {
     if (req.body[key] !== undefined) event[key] = req.body[key];
   });
   if (req.file) {
-    const uploaded = await uploadBuffer(req.file.buffer, 'lumina/events');
+    const uploaded = await uploadBuffer(req.file.buffer, 'kelsets-talks/events');
     await deleteImage(event.posterPublicId);
     event.poster = uploaded.secure_url;
     event.posterPublicId = uploaded.public_id;
@@ -90,4 +90,3 @@ export const toggleAttendance = async (req, res) => {
   const updated = await Event.findById(event.id).populate('attendees', 'name avatar');
   res.json({ success: true, data: updated, message: attends ? 'Tu asistencia se ha cancelado.' : '¡Tu plaza está confirmada!' });
 };
-

@@ -1,27 +1,33 @@
-# Lúmina Madrid · Gestor de eventos
+# KelseTS Talks
 
-Aplicación full stack para descubrir, crear y gestionar encuentros culturales y creativos en Madrid. Las personas registradas pueden publicar eventos, confirmar su asistencia y conocer a la comunidad que participará en cada experiencia.
+> **Move the next inch. Change the whole game.**
 
-> Proyecto 10 del módulo **Backend to Frontend Web Design**.
+KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y desarrollo profesional. **KelseTS Talks** es su plataforma de charlas motivacionales y experiencias de aprendizaje para speakers, líderes, profesionales y equipos.
+
+Este repositorio contiene la plataforma full stack con la que KelseTS publica su agenda, gestiona asistentes y permite que nuevos organizadores creen experiencias.
+
+## La empresa
+
+KelseTS traslada al mundo profesional valores del deporte de equipo:
+
+- Resiliencia cuando el marcador va en contra.
+- Liderazgo que ayuda a avanzar bajo presión.
+- Confianza construida entrenamiento a entrenamiento.
+- Talento individual al servicio de un objetivo común.
+- Acción concreta frente a la motivación pasajera.
+
+Su narrativa toma como punto de partida el espíritu del discurso del entrenador Tony D'Amato en la película *Any Given Sunday*: el progreso se gana en distancias pequeñas y se consigue en equipo. La aplicación utiliza una identidad y mensajes propios; no reproduce el guion de la película.
 
 ## Funcionalidades
 
 - Registro con inicio de sesión automático y login mediante JWT.
-- Catálogo público con búsqueda, categorías y tres criterios de ordenación.
-- Detalle de evento, aforo y listado de asistentes.
-- Creación protegida de eventos y subida de carteles a Cloudinary.
+- Catálogo de talks con búsqueda, categorías y criterios de ordenación.
+- Ficha completa de cada experiencia, aforo y listado de asistentes.
+- Creación protegida de eventos con subida de carteles.
 - Confirmación o cancelación de asistencia en un solo paso.
-- Perfil preparado para avatar y permisos de creadora o administradora.
-- Estados de carga, error, éxito y contenido vacío accesibles.
-
-## Objetivos
-
-- Construir una API REST con Express y MongoDB.
-- Implementar autenticación segura mediante JWT y contraseñas cifradas.
-- Relacionar usuarios y eventos mediante confirmaciones de asistencia.
-- Permitir la subida de avatares y carteles.
-- Crear una interfaz accesible, responsive y con feedback constante.
-- Mantener una arquitectura modular y reutilizable en frontend y backend.
+- Gestión de avatar y permisos de creadora o administradora.
+- Estados accesibles de carga, error, éxito y contenido vacío.
+- Diseño responsive alineado con la identidad visual de KelseTS.
 
 ## Tecnologías
 
@@ -29,10 +35,6 @@ Aplicación full stack para descubrir, crear y gestionar encuentros culturales y
 **Backend:** Node.js, Express, Mongoose, JSON Web Token, Bcrypt, Multer, Cloudinary y CORS.  
 **Base de datos:** MongoDB Atlas.  
 **Despliegue:** Vercel.
-
-## Autora
-
-**Araceli Fradejas Muñoz**
 
 ## Instalación local
 
@@ -48,16 +50,18 @@ cp frontend/.env.example frontend/.env
 npm run dev
 ```
 
-La web estará disponible en `http://localhost:5173` y la API en `http://localhost:3000`.
+La web estará en `http://localhost:5173` y la API en `http://localhost:3000`.
 
 ## Variables de entorno
 
 | Aplicación | Variable | Uso |
 | --- | --- | --- |
 | Backend | `MONGODB_URI` | Conexión con MongoDB Atlas |
-| Backend | `JWT_SECRET` | Firma de los tokens de sesión |
-| Backend | `FRONTEND_URL` | Orígenes CORS, separados por comas |
-| Backend | `CLOUDINARY_*` | Credenciales para carteles y avatares |
+| Backend | `JWT_SECRET` | Firma de tokens de sesión |
+| Backend | `FRONTEND_URL` | Orígenes CORS separados por comas |
+| Backend | `CLOUDINARY_CLOUD_NAME` | Espacio Cloudinary |
+| Backend | `CLOUDINARY_API_KEY` | Identificador de la API de imágenes |
+| Backend | `CLOUDINARY_API_SECRET` | Secreto de la API de imágenes |
 | Frontend | `VITE_API_URL` | URL pública de la API terminada en `/api` |
 
 ## Scripts
@@ -65,7 +69,7 @@ La web estará disponible en `http://localhost:5173` y la API en `http://localho
 ```bash
 npm run dev      # frontend y backend en paralelo
 npm test         # pruebas de ambos proyectos
-npm run build    # compilación de producción del frontend
+npm run build    # build de producción del frontend
 ```
 
 ## API
@@ -81,36 +85,24 @@ npm run build    # compilación de producción del frontend
 | `PATCH/DELETE` | `/api/events/:id` | Creadora/admin | Editar o eliminar evento |
 | `POST` | `/api/events/:id/attendance` | Privado | Alternar asistencia |
 
+## Autora
+
+**Araceli Fradejas Muñoz**
+
 ---
 
-# Lúmina Madrid · Event manager
+# KelseTS Talks · English
 
-A full-stack application to discover, create and manage cultural and creative gatherings in Madrid. Registered users can publish events, confirm attendance and meet the community joining each experience.
+> **Move the next inch. Change the whole game.**
 
-> Project 10 from the **Backend to Frontend Web Design** module.
+KelseTS is a fictional company connecting sport, culture, technology and professional development. **KelseTS Talks** is its platform for motivational talks and sport-inspired learning experiences.
 
-## Features
+KelseTS translates resilience, leadership, preparation, teamwork and purposeful action into workplace experiences. Its programme **The Next Inch** is inspired by the team-first, incremental-progress spirit of coach Tony D'Amato's speech in *Any Given Sunday*, using entirely original brand language.
 
-JWT authentication with automatic login after sign-up, public searchable event catalogue, detailed attendee lists, protected event creation, Cloudinary image uploads and one-step attendance management. Every asynchronous journey includes loading, success, empty and error feedback.
+The repository includes a React SPA and an Express/MongoDB REST API. Users can sign up, log in, discover talks, publish events, upload artwork and manage attendance. Every asynchronous journey provides clear feedback.
 
-## Goals
-
-- Build a REST API with Express and MongoDB.
-- Implement secure authentication using JWT and hashed passwords.
-- Connect users and events through attendance confirmations.
-- Support avatar and event poster uploads.
-- Create an accessible, responsive interface with continuous feedback.
-- Keep both frontend and backend modular and reusable.
-
-## Stack
-
-**Frontend:** React, React Router, Vite, Vitest and CSS.  
-**Backend:** Node.js, Express, Mongoose, JSON Web Token, Bcrypt, Multer, Cloudinary and CORS.  
-**Database:** MongoDB Atlas.  
-**Deployment:** Vercel.
+Technical architecture, product decisions, accessibility and deployment are documented in [`MEMORIA.md`](./MEMORIA.md).
 
 ## Author
 
 **Araceli Fradejas Muñoz**
-
-For local setup, environment variables, scripts and the complete endpoint reference, see the Spanish sections above. The architecture and product decisions are documented in [`MEMORIA.md`](./MEMORIA.md).

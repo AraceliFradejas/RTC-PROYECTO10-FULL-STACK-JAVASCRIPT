@@ -8,7 +8,7 @@ const eventSchema = new mongoose.Schema(
     description: { type: String, required: true, trim: true, minlength: 20, maxlength: 1200 },
     category: {
       type: String,
-      enum: ['Arte', 'Música', 'Diseño', 'Tecnología', 'Gastronomía', 'Bienestar', 'Otros'],
+      enum: ['Liderazgo', 'Resiliencia', 'Equipo', 'Rendimiento', 'Innovación', 'Bienestar', 'Otros'],
       default: 'Otros',
     },
     poster: { type: String, default: '' },
@@ -21,4 +21,3 @@ const eventSchema = new mongoose.Schema(
 );
 
 export const Event = mongoose.model('Event', eventSchema);
-

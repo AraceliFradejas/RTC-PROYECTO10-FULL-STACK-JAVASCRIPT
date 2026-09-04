@@ -1,88 +1,94 @@
-# Memoria del proyecto · Lúmina Madrid
+# Memoria del proyecto · KelseTS Talks
 
-## 1. Introducción
+## 1. Resumen ejecutivo
 
-Lúmina Madrid nace como una plataforma para reunir en un mismo espacio eventos culturales, talleres y encuentros creativos. El proyecto resuelve la gestión de dos colecciones relacionadas —usuarios y eventos— y prioriza una experiencia clara antes, durante y después de cada acción.
+KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y formación. KelseTS Talks es su línea de charlas motivacionales y experiencias de desarrollo profesional inspiradas en el deporte. La plataforma permite publicar, descubrir y gestionar eventos, además de relacionar usuarios y asistentes.
 
-## 2. Alcance
+La propuesta amplía el universo empresarial iniciado en los proyectos KelseTS y KelseTS Business School. Esta nueva línea se centra en liderazgo, resiliencia, rendimiento y trabajo en equipo.
 
-La primera versión incluirá:
+## 2. Identidad de empresa
 
-- Registro e inicio de sesión con acceso inmediato tras el alta.
+**Propósito:** ayudar a personas y organizaciones a transformar la inspiración en una siguiente acción concreta.
+
+**Posicionamiento:** KelseTS Talks no es una agenda genérica ni una consultora tradicional. Produce encuentros que utilizan historias y aprendizajes del deporte para abordar desafíos profesionales.
+
+**Programa insignia:** *The Next Inch — Move the next inch. Change the whole game.*
+
+La inspiración conceptual nace de la arenga de Tony D'Amato, personaje interpretado por Al Pacino en *Any Given Sunday* (Oliver Stone, 1999). De ella se extraen tres temas generales: progreso incremental, responsabilidad personal y esfuerzo colectivo. No se utiliza texto literal del guion ni material visual de la película.
+
+## 3. Público y experiencias
+
+La plataforma se dirige a profesionales, responsables de equipos, departamentos de personas, comunidades empresariales y speakers. La agenda agrupa los encuentros en Liderazgo, Resiliencia, Equipo, Rendimiento, Innovación, Bienestar y Otros.
+
+Cada experiencia explica su propuesta, fecha, ubicación, aforo, persona organizadora y asistentes confirmados.
+
+## 4. Alcance funcional
+
+- Registro e inicio de sesión con acceso inmediato después del alta.
 - Perfil de usuario con avatar.
-- Catálogo de eventos ordenable y filtrable.
-- Detalle del evento y listado de asistentes.
-- Creación y edición de eventos con cartel.
+- Agenda pública ordenable y filtrable.
+- Detalle del talk y listado de asistentes.
+- Creación y edición segura de eventos con cartel.
 - Confirmación y cancelación de asistencia.
-- Estados de carga, vacíos, confirmaciones y errores accesibles.
+- Estados de carga, vacío, confirmación y error.
 
-## 3. Arquitectura implementada
+## 5. Arquitectura
 
-El repositorio se organiza como un monorepo con dos aplicaciones independientes:
+El monorepo contiene dos aplicaciones independientes:
 
-- `backend`: API REST por capas (configuración, modelos, controladores, rutas, middlewares y utilidades).
-- `frontend`: SPA organizada por funcionalidades, componentes compartidos, contextos, servicios y vistas.
+- `backend`: API REST organizada en configuración, modelos, controladores, rutas, middlewares y utilidades.
+- `frontend`: SPA organizada mediante componentes compartidos, contextos, hooks, servicios y páginas.
 
-Las peticiones del frontend pasan por `apiRequest`, un único cliente HTTP que resuelve serialización, autorización y errores. La API responde siempre con `{ success, data }` o `{ success, error }`. Los controladores asíncronos comparten un wrapper para delegar cualquier excepción al middleware central.
+Todas las peticiones pasan por `apiRequest`, que centraliza serialización, autorización y errores. La API devuelve `{ success, data }` o `{ success, error }`. Los controladores asíncronos comparten una utilidad para delegar excepciones al middleware central.
 
-## 4. Modelo de datos
+## 6. Modelo de datos
 
-### Usuario
+**Usuario:** nombre, email único, contraseña cifrada, avatar, rol y referencias a eventos confirmados.
 
-Nombre, correo electrónico único, contraseña cifrada, avatar, rol y eventos a los que asistirá.
+**Evento:** título, fecha, ubicación, descripción, categoría, cartel, aforo, persona creadora y asistentes referenciados.
 
-### Evento
+La asistencia utiliza `$addToSet` y `$pull` para evitar duplicados y mantener sincronizadas ambas colecciones. Al eliminar un evento también se limpian sus referencias en los usuarios.
 
-Título, fecha, ubicación, descripción, categoría, cartel, aforo, persona creadora y lista de asistentes referenciada por identificadores de usuario.
+## 7. Seguridad y archivos
 
-La acción de asistencia usa `$addToSet` y `$pull` para evitar duplicados y actualiza las dos colecciones. La eliminación de un evento limpia también las referencias de sus asistentes.
+- Bcrypt cifra contraseñas con factor de coste 12.
+- Los JWT caducan a los siete días.
+- Las rutas privadas verifican presencia y validez del token.
+- La edición y eliminación comprueban propiedad o rol administrador.
+- Multer limita imágenes a 5 MB y acepta JPG, PNG o WebP.
+- Cloudinary almacena carteles y avatares fuera del entorno serverless.
 
-## 5. Experiencia y diseño
+## 8. UX, UI y accesibilidad
 
-La identidad visual combinará una base editorial cálida con acentos luminosos. La interfaz explicará cada estado mediante texto y recursos visuales, sin depender solo del color. La navegación será responsive y operable con teclado.
+La dirección visual utiliza el lenguaje de una marca deportiva contemporánea: contraste alto, rojo enérgico, tonos oscuros, tipografía contundente y referencias abstractas al terreno de juego. Evita escudos, equipos y recursos protegidos.
 
-## 6. Seguridad y calidad
+La navegación es responsive y operable mediante teclado. Incluye enlace para saltar al contenido, etiquetas visibles, foco perceptible, avisos `aria-live` y respeto por `prefers-reduced-motion`. Cada operación asíncrona comunica inmediatamente su estado.
 
-- Contraseñas cifradas antes de persistirlas.
-- Tokens con expiración y rutas privadas protegidas.
-- Validación y normalización de entradas.
-- Restricción del tipo y tamaño de archivos.
-- Autorización por propiedad para modificar eventos.
-- Pruebas automatizadas de los recorridos críticos.
+## 9. Pruebas y calidad
 
-Las contraseñas se cifran con un factor de coste 12 y nunca se devuelven por defecto. Los tokens caducan a los siete días. Multer limita cada imagen a 5 MB y admite únicamente JPG, PNG o WebP. La edición y eliminación comparan la propiedad del evento, salvo para el rol administrador.
-
-## 7. Interfaz y accesibilidad
-
-La SPA utiliza HTML semántico, enlace para saltar al contenido, etiquetas visibles, avisos con `aria-live`, mensajes asociados a cada campo y foco perceptible. Respeta `prefers-reduced-motion` y adapta navegación, tarjetas, formularios y detalles a móvil. Los procesos asíncronos bloquean el control correspondiente y explican qué está ocurriendo.
-
-## 8. Puesta en marcha y despliegue
-
-Cada aplicación incluye su propio `.env.example` y configuración de Vercel. En producción se deben crear dos proyectos con directorios raíz `backend` y `frontend`. Tras desplegar el backend, su URL se asigna a `VITE_API_URL`; la URL definitiva del frontend se añade a `FRONTEND_URL`.
-
-Comprobaciones locales:
+Los tests comprueban errores, firma y caducidad de tokens, serialización del cliente HTTP, autorización y respuestas fallidas.
 
 ```bash
 npm test
 npm run build
 ```
 
-## 9. Decisiones y mejoras futuras
+## 10. Despliegue
 
-Se eligió una única acción idempotente para alternar asistencia porque reduce pasos y evita controladores duplicados. Cloudinary permite que los archivos sobrevivan a entornos serverless. Como siguientes mejoras quedan la edición visual de eventos, recuperación de contraseña, paginación para agendas extensas y pruebas de integración conectadas a una base de datos efímera.
+Frontend y backend incluyen `.env.example` y configuración de Vercel. Se crearán dos proyectos con directorios raíz `frontend` y `backend`. Tras desplegar la API, su dirección se asignará a `VITE_API_URL`; el dominio de la web se añadirá a `FRONTEND_URL`. También son necesarias una base MongoDB Atlas, un secreto JWT y credenciales de Cloudinary.
 
-## 10. Evolución del documento
+## 11. Próximas mejoras
 
-Esta memoria se actualizará durante el desarrollo con la implementación final, decisiones, pruebas, accesibilidad, variables de entorno y proceso de despliegue.
+Perfiles públicos de speakers, eventos privados para empresas, recuperación de contraseña, agenda por ciudades, valoraciones posteriores y pruebas de integración con una base efímera.
 
 ---
 
-# Project report · Lúmina Madrid
+# Project report · KelseTS Talks
 
-## Overview
+KelseTS is a fictional company connecting sport, culture, technology and learning. KelseTS Talks is its motivational events platform for speakers, professionals and teams, with experiences about leadership, resilience, performance, innovation and wellbeing.
 
-Lúmina Madrid is a platform for cultural events, workshops and creative gatherings. It manages two related collections—users and events—while prioritising clear feedback throughout every user journey.
+The product combines a React SPA with an Express/MongoDB REST API. It supports JWT authentication, automatic login after registration, protected event creation, Cloudinary uploads, reusable requests and two-way attendance relationships.
 
-The repository will contain an Express and MongoDB REST API plus a React single-page application. Authentication, uploads, attendance management, reusable requests, consistent error handling and accessible loading states are part of the core scope.
+The brand draws on the broad themes of incremental progress and collective effort found in the coach's speech from *Any Given Sunday*. All copy, visual identity and product content are original.
 
-This report is a living document. It will be expanded with final architecture, implementation decisions, tests, accessibility notes, environment variables and deployment instructions as development progresses.
+**Author: Araceli Fradejas Muñoz**

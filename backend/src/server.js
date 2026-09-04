@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 connectDatabase()
   .then(() => {
-    if (process.env.VERCEL !== '1') app.listen(port, () => console.log(`Lúmina API en http://localhost:${port}`));
+    if (process.env.VERCEL !== '1') app.listen(port, () => console.log(`KelseTS Talks API en http://localhost:${port}`));
   })
   .catch((error) => {
     console.error(`No se pudo conectar con MongoDB: ${error.message}`);

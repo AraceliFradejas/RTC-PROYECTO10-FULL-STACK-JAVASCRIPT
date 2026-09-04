@@ -1,5 +1,5 @@
 {
-  "name": "lumina-madrid-api",
+  "name": "kelsets-talks-api",
   "version": "1.0.0",
   "type": "module",
   "main": "src/server.js",
@@ -23,4 +23,3 @@
   },
   "engines": { "node": ">=20" }
 }
-

@@ -36,11 +36,10 @@ export const getMe = async (req, res) => res.json({ success: true, data: publicU
 export const updateMe = async (req, res) => {
   if (req.body.name) req.user.name = req.body.name;
   if (req.file) {
-    const uploaded = await uploadBuffer(req.file.buffer, 'lumina/avatars');
+    const uploaded = await uploadBuffer(req.file.buffer, 'kelsets-talks/avatars');
     req.user.avatar = uploaded.secure_url;
     req.user.avatarPublicId = uploaded.public_id;
   }
   await req.user.save();
   res.json({ success: true, data: publicUser(req.user) });
 };
-

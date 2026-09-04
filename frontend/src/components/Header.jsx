@@ -14,9 +14,9 @@ export const Header = () => {
       <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Abrir navegación">{open ? <X /> : <Menu />}</button>
       <nav className={open ? 'nav nav--open' : 'nav'} aria-label="Navegación principal">
         <NavLink to="/events" onClick={close}>Explorar</NavLink>
-        <NavLink to="/about" onClick={close}>La idea</NavLink>
+        <NavLink to="/about" onClick={close}>La empresa</NavLink>
         {user ? <>
-          <Link className="button button--dark button--small" to="/events/new" onClick={close}><CalendarPlus /> Crear evento</Link>
+          <Link className="button button--dark button--small" to="/events/new" onClick={close}><CalendarPlus /> Proponer talk</Link>
           <span className="nav__user"><UserRound /> Hola, {user.name.split(' ')[0]}</span>
           <button className="icon-button" onClick={() => { logout(); close(); }} aria-label="Cerrar sesión"><LogOut /></button>
         </> : <Link className="button button--dark button--small" to="/auth" onClick={close}>Entrar</Link>}
@@ -24,4 +24,3 @@ export const Header = () => {
     </div>
   </header>;
 };
-

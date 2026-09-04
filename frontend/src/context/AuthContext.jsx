@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { apiRequest } from '../services/api.js';
 
 const AuthContext = createContext(null);
-const STORAGE_KEY = 'lumina_session';
+const STORAGE_KEY = 'kelsets_talks_session';
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem(STORAGE_KEY));
@@ -36,4 +36,3 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
-

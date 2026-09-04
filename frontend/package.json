@@ -1,5 +1,5 @@
 {
-  "name": "lumina-madrid-web",
+  "name": "kelsets-talks-web",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -21,4 +21,3 @@
     "vitest": "^3.2.4"
   }
 }
-
