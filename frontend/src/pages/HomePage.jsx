@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { EmptyState } from '../components/EmptyState.jsx';
 import { EventCard } from '../components/EventCard.jsx';
 import { Loader } from '../components/Loader.jsx';
+import { Ecosystem } from '../components/Ecosystem.jsx';
 import { useEvents } from '../hooks/useEvents.js';
 
 export const HomePage = () => {
@@ -19,5 +20,6 @@ export const HomePage = () => {
       {loading ? <Loader label="Buscando las próximas experiencias…" /> : error ? <EmptyState title="No podemos cargar la agenda" message={error} /> : events.length ? <div className="card-grid">{events.slice(0, 3).map((event, index) => <EventCard key={event._id} event={event} index={index} />)}</div> : <EmptyState />}
     </section>
     <section className="manifesto"><div className="shell manifesto__grid"><p className="kicker">Nuestra filosofía</p><h2>No necesitas ver todo el campo.<br />Solo conquistar el próximo paso.</h2><div className="manifesto__points"><p><Compass /> Dirección cuando el marcador se complica.</p><p><Heart /> Equipo cuando el talento individual no basta.</p><p><Sparkles /> Acción para convertir intención en resultados.</p></div></div></section>
+    <Ecosystem />
   </>;
 };

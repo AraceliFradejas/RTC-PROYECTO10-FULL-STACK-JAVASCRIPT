@@ -60,11 +60,19 @@ La asistencia utiliza `$addToSet` y `$pull` para evitar duplicados y mantener si
 
 ## 8. UX, UI y accesibilidad
 
-La dirección visual utiliza el lenguaje de una marca deportiva contemporánea: contraste alto, rojo enérgico, tonos oscuros, tipografía contundente y referencias abstractas al terreno de juego. Evita escudos, equipos y recursos protegidos.
+La dirección visual continúa el lenguaje de las webs anteriores de KelseTS: rojo `#DC2626`, dorado `#F59E0B`, negro `#1A1A1A`, blanco y lavanda `#9563FF` como acento cultural. Utiliza tipografía contundente y referencias abstractas al terreno de juego, evitando escudos, equipaciones y recursos protegidos.
 
 La navegación es responsive y operable mediante teclado. Incluye enlace para saltar al contenido, etiquetas visibles, foco perceptible, avisos `aria-live` y respeto por `prefers-reduced-motion`. Cada operación asíncrona comunica inmediatamente su estado.
 
-## 9. Pruebas y calidad
+## 9. Ecosistema KelseTS
+
+KelseTS Talks se relaciona desde la página de inicio, la presentación corporativa y el footer con tres proyectos activos: KelseTS Lifestyle, como expresión motivacional y cultural; KelseTS Store, como tienda de zapatillas; y KelseTS Business School, como espacio de formación en IA y liderazgo. Los enlaces externos se identifican como tales y se abren de forma segura.
+
+## 10. Aviso legal
+
+La web muestra un disclaimer bilingüe completo y un resumen permanente en el footer. Declara el carácter ficticio, educativo y de portfolio del proyecto, así como la ausencia de afiliación o respaldo por parte de Taylor Swift, Travis Kelce, Kansas City Chiefs, NFL o entidades relacionadas. La inspiración cultural y deportiva no se presenta como colaboración comercial.
+
+## 11. Pruebas y calidad
 
 Los tests comprueban errores, firma y caducidad de tokens, serialización del cliente HTTP, autorización y respuestas fallidas.
 
@@ -73,11 +81,11 @@ npm test
 npm run build
 ```
 
-## 10. Despliegue
+## 12. Despliegue
 
 Frontend y backend incluyen `.env.example` y configuración de Vercel. Se crearán dos proyectos con directorios raíz `frontend` y `backend`. Tras desplegar la API, su dirección se asignará a `VITE_API_URL`; el dominio de la web se añadirá a `FRONTEND_URL`. También son necesarias una base MongoDB Atlas, un secreto JWT y credenciales de Cloudinary.
 
-## 11. Próximas mejoras
+## 13. Próximas mejoras
 
 Perfiles públicos de speakers, eventos privados para empresas, recuperación de contraseña, agenda por ciudades, valoraciones posteriores y pruebas de integración con una base efímera.
 

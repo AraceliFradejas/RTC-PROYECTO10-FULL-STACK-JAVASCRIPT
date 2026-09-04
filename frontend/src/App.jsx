@@ -7,6 +7,7 @@ import { EventDetailPage } from './pages/EventDetailPage.jsx';
 import { EventFormPage } from './pages/EventFormPage.jsx';
 import { EventsPage } from './pages/EventsPage.jsx';
 import { HomePage } from './pages/HomePage.jsx';
+import { LegalPage } from './pages/LegalPage.jsx';
 import { NotFoundPage } from './pages/NotFoundPage.jsx';
 
 export const App = () => <Routes>
@@ -17,6 +18,7 @@ export const App = () => <Routes>
     <Route path="events/new" element={<ProtectedRoute><EventFormPage /></ProtectedRoute>} />
     <Route path="auth" element={<AuthPage />} />
     <Route path="about" element={<AboutPage />} />
+    <Route path="legal" element={<LegalPage />} />
     <Route path="*" element={<NotFoundPage />} />
   </Route>
 </Routes>;
