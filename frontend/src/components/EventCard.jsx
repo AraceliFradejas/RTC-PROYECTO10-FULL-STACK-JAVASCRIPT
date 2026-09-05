@@ -6,7 +6,7 @@ export const formatDate = (date) => new Intl.DateTimeFormat('es-ES', { day: 'num
 
 export const EventCard = ({ event, index = 0 }) => <article className="event-card">
   <Link className={`event-card__visual event-card__visual--${fallbackGradients[index % fallbackGradients.length]}`} to={`/events/${event._id}`} tabIndex="-1">
-    {event.poster ? <img src={event.poster} alt="" /> : <span aria-hidden="true">{event.category?.slice(0, 1)}</span>}
+    {event.poster ? <img src={event.poster} alt={`Cartel de ${event.title}`} loading="lazy" /> : <span aria-hidden="true">{event.category?.slice(0, 1)}</span>}
     <span className="tag">{event.category}</span>
   </Link>
   <div className="event-card__body">
@@ -16,4 +16,3 @@ export const EventCard = ({ event, index = 0 }) => <article className="event-car
     <div className="event-card__footer"><span><Users /> {event.attendees?.length || 0} asistentes</span><Link to={`/events/${event._id}`} aria-label={`Ver ${event.title}`}><ArrowUpRight /></Link></div>
   </div>
 </article>;
-

@@ -62,6 +62,7 @@ La web estará en `http://localhost:5173` y la API en `http://localhost:3000`.
 | Backend | `CLOUDINARY_CLOUD_NAME` | Espacio Cloudinary |
 | Backend | `CLOUDINARY_API_KEY` | Identificador de la API de imágenes |
 | Backend | `CLOUDINARY_API_SECRET` | Secreto de la API de imágenes |
+| Backend | `SEED_PASSWORD` | Contraseña de la cuenta organizadora de demostración |
 | Frontend | `VITE_API_URL` | URL pública de la API terminada en `/api` |
 
 ## Scripts
@@ -70,7 +71,10 @@ La web estará en `http://localhost:5173` y la API en `http://localhost:3000`.
 npm run dev      # frontend y backend en paralelo
 npm test         # pruebas de ambos proyectos
 npm run build    # build de producción del frontend
+npm run seed --prefix backend # cargar la agenda de demostración
 ```
+
+Para cargar las ocho experiencias iniciales, configura `MONGODB_URI` y una contraseña de al menos ocho caracteres en `SEED_PASSWORD`. El proceso puede repetirse sin duplicar los eventos.
 
 ## API
 
@@ -101,6 +105,8 @@ npm run build    # build de producción del frontend
 ## Aviso legal
 
 KelseTS es una marca ficticia creada por Araceli Fradejas Muñoz con fines exclusivamente educativos, académicos y de portfolio. Este proyecto se inspira creativamente en la cultura pop, la música y el deporte, pero no está afiliado, patrocinado, autorizado ni respaldado por Taylor Swift, Travis Kelce, los Kansas City Chiefs, la National Football League, sus representantes ni ninguna entidad relacionada. Los eventos, productos, speakers, testimonios y servicios mostrados son ficticios.
+
+Los recursos visuales son creaciones originales para este proyecto. Se han seleccionado escenas y equipaciones genéricas, sin emplear fotografías oficiales, escudos de equipos ni imágenes promocionales de celebridades.
 
 ## Autora
 
