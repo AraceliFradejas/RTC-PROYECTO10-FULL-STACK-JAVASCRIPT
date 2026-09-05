@@ -18,7 +18,18 @@ export const EventDetailPage = () => {
     if (!user) return navigate('/auth', { state: { from: `/events/${id}` } });
     setActionLoading(true); try { const response = await apiRequest(`/events/${id}/attendance`, { method: 'POST', token }); setEvent({ ...event, attendees: response.data.attendees }); notify(response.message); } catch (err) { notify(err.message, 'error'); } finally { setActionLoading(false); }
   };
-  const share = async () => { try { await navigator.share?.({ title: event.title, url: location.href }) || navigator.clipboard.writeText(location.href); notify('Enlace copiado para compartir.'); } catch { /* El usuario canceló */ } };
+  const share = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: event.title, url: location.href });
+      } else {
+        await navigator.clipboard.writeText(location.href);
+        notify('Enlace copiado para compartir.');
+      }
+    } catch (shareError) {
+      if (shareError.name !== 'AbortError') notify('No hemos podido compartir el enlace.', 'error');
+    }
+  };
   return <article className="detail-page">
     <div className="shell"><Link className="back-link" to="/events"><ArrowLeft /> Volver a la agenda</Link></div>
     <div className="shell detail-hero"><div className={`detail-visual ${event.poster ? '' : 'detail-visual--empty'}`}>{event.poster ? <img src={event.poster} alt={`Cartel de ${event.title}`} /> : <span>{event.category}</span>}</div><div className="detail-summary"><span className="tag">{event.category}</span><h1>{event.title}</h1><p className="detail-meta"><CalendarDays /> <span>{formatDate(event.date)} · {new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit' }).format(new Date(event.date))}</span></p><p className="detail-meta"><MapPin /> <span>{event.location}</span></p><p className="detail-meta"><Users /> <span>{event.attendees.length} de {event.capacity} plazas confirmadas</span></p><div className="detail-actions"><button className={attending ? 'button button--confirmed' : 'button button--accent'} onClick={toggle} disabled={actionLoading}>{actionLoading ? <><span className="mini-spinner" /> Actualizando…</> : attending ? <><Check /> Plaza confirmada</> : 'Confirmar asistencia'}</button><button className="icon-button icon-button--border" onClick={share} aria-label="Compartir evento"><Share2 /></button></div>{attending && <p className="confirmation-note">Ya estás en la lista. Puedes cancelar pulsando de nuevo.</p>}</div></div>

@@ -55,6 +55,8 @@ La asistencia utiliza `$addToSet` y `$pull` para evitar duplicados y mantener si
 - Los JWT caducan a los siete días.
 - Las rutas privadas verifican presencia y validez del token.
 - La edición y eliminación comprueban propiedad o rol administrador.
+- La creación utiliza una lista blanca de campos para impedir la inyección de asistentes, autoría o metadatos de archivos.
+- La reserva de la última plaza se realiza mediante una actualización atómica para evitar superar el aforo.
 - Multer limita imágenes a 5 MB y acepta JPG, PNG o WebP.
 - Cloudinary almacena carteles y avatares fuera del entorno serverless.
 
@@ -74,7 +76,7 @@ La web muestra un disclaimer bilingüe completo y un resumen permanente en el fo
 
 ## 11. Pruebas y calidad
 
-Los tests comprueban errores, firma y caducidad de tokens, serialización del cliente HTTP, autorización y respuestas fallidas.
+Los tests comprueban errores, firma y caducidad de tokens, serialización del cliente HTTP, autorización, respuestas fallidas y filtrado de campos editables.
 
 ```bash
 npm test

@@ -8,6 +8,12 @@ const assertId = (id) => {
   if (!mongoose.isValidObjectId(id)) throw new AppError('El identificador del evento no es válido.', 400);
 };
 
+const editableFields = ['title', 'date', 'location', 'description', 'category', 'capacity'];
+export const eventPayload = (body) => editableFields.reduce((result, field) => {
+  if (body[field] !== undefined) result[field] = body[field];
+  return result;
+}, {});
+
 const getOwnedEvent = async (id, user) => {
   assertId(id);
   const event = await Event.findById(id).select('+posterPublicId');
@@ -24,10 +30,11 @@ export const listEvents = async (req, res) => {
     { title: { $regex: search, $options: 'i' } },
     { location: { $regex: search, $options: 'i' } },
   ];
-  const sortOptions = { soonest: { date: 1 }, newest: { createdAt: -1 }, popular: { attendees: -1 } };
+  const sortOptions = { soonest: { date: 1 }, newest: { createdAt: -1 } };
   const events = await Event.find(query)
     .sort(sortOptions[sort] || sortOptions.soonest)
     .populate('creator', 'name avatar');
+  if (sort === 'popular') events.sort((first, second) => second.attendees.length - first.attendees.length);
   res.json({ success: true, data: events, meta: { total: events.length } });
 };
 
@@ -48,15 +55,14 @@ export const createEvent = async (req, res) => {
     poster = uploaded.secure_url;
     posterPublicId = uploaded.public_id;
   }
-  const event = await Event.create({ ...req.body, poster, posterPublicId, creator: req.user.id });
+  const event = await Event.create({ ...eventPayload(req.body), poster, posterPublicId, creator: req.user.id });
   await event.populate('creator', 'name avatar');
   res.status(201).json({ success: true, data: event });
 };
 
 export const updateEvent = async (req, res) => {
   const event = await getOwnedEvent(req.params.id, req.user);
-  const allowed = ['title', 'date', 'location', 'description', 'category', 'capacity'];
-  allowed.forEach((key) => {
+  editableFields.forEach((key) => {
     if (req.body[key] !== undefined) event[key] = req.body[key];
   });
   if (req.file) {
@@ -82,11 +88,21 @@ export const toggleAttendance = async (req, res) => {
   const event = await Event.findById(req.params.id);
   if (!event) throw new AppError('No hemos encontrado ese evento.', 404);
   const attends = event.attendees.some((id) => id.equals(req.user._id));
-  if (!attends && event.attendees.length >= event.capacity) throw new AppError('El evento ya está completo.', 409);
 
-  const eventOperation = attends ? { $pull: { attendees: req.user.id } } : { $addToSet: { attendees: req.user.id } };
-  const userOperation = attends ? { $pull: { attendingEvents: event.id } } : { $addToSet: { attendingEvents: event.id } };
-  await Promise.all([Event.updateOne({ _id: event.id }, eventOperation), User.updateOne({ _id: req.user.id }, userOperation)]);
+  if (attends) {
+    await Promise.all([
+      Event.updateOne({ _id: event.id }, { $pull: { attendees: req.user.id } }),
+      User.updateOne({ _id: req.user.id }, { $pull: { attendingEvents: event.id } }),
+    ]);
+  } else {
+    const result = await Event.updateOne(
+      { _id: event.id, attendees: { $ne: req.user._id }, $expr: { $lt: [{ $size: '$attendees' }, '$capacity'] } },
+      { $addToSet: { attendees: req.user.id } }
+    );
+    if (!result.modifiedCount) throw new AppError('El evento ya está completo.', 409);
+    await User.updateOne({ _id: req.user.id }, { $addToSet: { attendingEvents: event.id } });
+  }
+
   const updated = await Event.findById(event.id).populate('attendees', 'name avatar');
   res.json({ success: true, data: updated, message: attends ? 'Tu asistencia se ha cancelado.' : '¡Tu plaza está confirmada!' });
 };
