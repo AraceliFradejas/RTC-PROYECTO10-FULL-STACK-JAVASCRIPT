@@ -6,6 +6,12 @@ export const heroSlides = [
     title: 'Cada avance cuenta',
   },
   {
+    src: '/images/brand/hero-next-inch-ceo-clean.jpg',
+    alt: 'Líderes y deportistas conversando junto a una pista de atletismo',
+    eyebrow: 'From sport to business',
+    title: 'Liderar también es escuchar',
+  },
+  {
     src: '/images/hero-carousel/hero-basketball.webp',
     alt: 'Equipo diverso de baloncesto compartiendo una jugada en una cancha urbana',
     eyebrow: 'Shared purpose',
@@ -28,6 +34,12 @@ export const heroSlides = [
     alt: 'Jugadoras de fútbol americano compitiendo sobre el terreno de juego',
     eyebrow: 'Own the play',
     title: 'Decide la siguiente jugada',
+  },
+  {
+    src: '/images/hero-carousel/hero-shared-future-clean.jpg',
+    alt: 'Grupo diverso de deportistas avanzando unido al salir de un estadio',
+    eyebrow: 'Shared future',
+    title: 'Llegamos más lejos en equipo',
   },
 ];
 

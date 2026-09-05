@@ -60,7 +60,7 @@ La asistencia utiliza `$addToSet` y `$pull` para evitar duplicados y mantener si
 
 ## 8. UX, UI y accesibilidad
 
-La dirección visual continúa el lenguaje de las webs anteriores de KelseTS: rojo `#DC2626`, dorado `#F59E0B`, negro `#1A1A1A`, blanco y lavanda `#9563FF` como acento cultural. Utiliza tipografía contundente y una colección visual propia formada por escenas deportivas, ocho carteles y cuatro retratos ficticios. La selección evita fotografías oficiales, celebridades y escudos reconocibles.
+La dirección visual continúa el lenguaje de las webs anteriores de KelseTS: rojo `#DC2626`, dorado `#F59E0B`, negro `#1A1A1A`, blanco y lavanda `#9563FF` como acento cultural. Utiliza tipografía contundente y una colección visual propia formada por escenas deportivas, ocho carteles y cuatro retratos ficticios. Los recursos publicados se han revisado y retocado para eliminar logotipos, emblemas de equipos y marcas reconocibles.
 
 El carrusel es deliberadamente manual e incluye controles, contador y selectores para que el contenido nunca se mueva sin intervención. La navegación es responsive y operable mediante teclado. Incluye enlace para saltar al contenido, textos alternativos, etiquetas visibles, foco perceptible, avisos `aria-live` y respeto por `prefers-reduced-motion`. Cada operación asíncrona comunica inmediatamente su estado.
 
