@@ -11,15 +11,22 @@ export class ApiError extends Error {
 export const apiRequest = async (path, options = {}) => {
   const { method = 'GET', body, token, signal } = options;
   const isFormData = body instanceof FormData;
-  const response = await fetch(`${API_URL}${path}`, {
-    method,
-    signal,
-    headers: {
-      ...(!isFormData && body ? { 'Content-Type': 'application/json' } : {}),
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    body: body ? (isFormData ? body : JSON.stringify(body)) : undefined,
-  });
+  let response;
+  try {
+    response = await fetch(`${API_URL}${path}`, {
+      method,
+      signal,
+      headers: {
+        ...(!isFormData && body ? { 'Content-Type': 'application/json' } : {}),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: body ? (isFormData ? body : JSON.stringify(body)) : undefined,
+    });
+
+  } catch (error) {
+    if (error.name === 'AbortError') throw error;
+    throw new ApiError('No podemos conectar con el servidor. Inténtalo de nuevo más tarde.', 0);
+  }
 
   if (response.status === 204) return null;
   const payload = await response.json().catch(() => ({}));

@@ -1,0 +1,142 @@
+[
+  {
+    "_id": "preview-event-leadership",
+    "title": "The Next Inch: Leadership",
+    "date": "2027-02-18T18:00:00.000Z",
+    "location": "Madrid · Espacio KelseTS",
+    "category": "Liderazgo",
+    "poster": "/images/events/event-leadership.webp",
+    "description": "Alison Patrick convierte la presión del último cuarto en una conversación práctica sobre decisiones, responsabilidad y liderazgo compartido. Saldrás con una jugada concreta para activar con tu equipo.",
+    "capacity": 180,
+    "createdAt": "2026-09-01T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "alison-patrick"
+  },
+  {
+    "_id": "preview-event-comeback",
+    "title": "The Comeback Mindset",
+    "date": "2027-03-11T18:30:00.000Z",
+    "location": "Barcelona · Impact Hub",
+    "category": "Resiliencia",
+    "poster": "/images/events/event-comeback.webp",
+    "description": "Travis Wood explora cómo volver después de un tropiezo sin ignorar lo aprendido. Una experiencia sobre recuperación, constancia y el valor de avanzar paso a paso.",
+    "capacity": 140,
+    "createdAt": "2026-09-02T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "travis-wood"
+  },
+  {
+    "_id": "preview-event-teamwork",
+    "title": "One Team, One Play",
+    "date": "2027-04-08T17:30:00.000Z",
+    "location": "Valencia · La Marina",
+    "category": "Equipo",
+    "poster": "/images/events/event-teamwork.webp",
+    "description": "Jude Becks propone dinámicas para transformar un grupo de talento individual en un equipo que comparte contexto, confianza y una dirección clara.",
+    "capacity": 200,
+    "createdAt": "2026-09-03T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "jude-becks"
+  },
+  {
+    "_id": "preview-event-pressure",
+    "title": "Perform Under Pressure",
+    "date": "2027-05-20T18:00:00.000Z",
+    "location": "Bilbao · BAT Tower",
+    "category": "Rendimiento",
+    "poster": "/images/events/event-pressure.webp",
+    "description": "Una sesión para reconocer el ruido, recuperar el foco y actuar cuando el margen es pequeño. Herramientas del entrenamiento deportivo aplicadas al trabajo diario.",
+    "capacity": 120,
+    "createdAt": "2026-09-04T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    }
+  },
+  {
+    "_id": "preview-event-last-quarter",
+    "title": "The Last Quarter",
+    "date": "2027-06-17T18:30:00.000Z",
+    "location": "Sevilla · Cartuja Center",
+    "category": "Rendimiento",
+    "poster": "/images/events/event-last-quarter.webp",
+    "description": "Cuando el tiempo aprieta, cada decisión importa. Esta experiencia trabaja prioridades, comunicación y energía colectiva para cerrar proyectos exigentes.",
+    "capacity": 240,
+    "createdAt": "2026-09-05T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    }
+  },
+  {
+    "_id": "preview-event-trust",
+    "title": "Trust Is the Strategy",
+    "date": "2027-09-16T18:00:00.000Z",
+    "location": "Málaga · Muelle Uno",
+    "category": "Equipo",
+    "poster": "/images/events/event-trust.webp",
+    "description": "La confianza no es una consigna: se entrena en cada interacción. Un talk sobre seguridad, conversaciones difíciles y coordinación real.",
+    "capacity": 160,
+    "createdAt": "2026-09-06T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    }
+  },
+  {
+    "_id": "preview-event-innovation",
+    "title": "Innovate the Playbook",
+    "date": "2027-10-21T17:30:00.000Z",
+    "location": "Madrid · KelseTS Business School",
+    "category": "Innovación",
+    "poster": "/images/events/event-innovation.webp",
+    "description": "Anna Nasser conecta estrategia deportiva e innovación para ayudar a los equipos a cuestionar su plan sin perder su propósito.",
+    "capacity": 150,
+    "createdAt": "2026-09-07T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "anna-nasser"
+  },
+  {
+    "_id": "preview-event-resilience",
+    "title": "Resilience Is a Team Sport",
+    "date": "2027-11-18T18:30:00.000Z",
+    "location": "A Coruña · Palexco",
+    "category": "Resiliencia",
+    "poster": "/images/events/event-resilience.webp",
+    "description": "Una experiencia que desmonta el mito de la resiliencia solitaria y muestra cómo pedir ayuda, repartir el esfuerzo y volver al terreno de juego.",
+    "capacity": 190,
+    "createdAt": "2026-09-08T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    }
+  }
+]

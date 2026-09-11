@@ -24,3 +24,17 @@ describe('apiRequest', () => {
   });
 });
 
+
+describe('errores de conexión traducibles', () => {
+  it('normaliza los mensajes del navegador cuando no hay conexión', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('Failed to fetch')));
+    await expect(apiRequest('/events')).rejects.toEqual(expect.objectContaining({
+      message: 'No podemos conectar con el servidor. Inténtalo de nuevo más tarde.', status: 0,
+    }));
+  });
+  it('conserva AbortError para evitar avisos al abandonar una página', async () => {
+    const abort = new DOMException('Aborted', 'AbortError');
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(abort));
+    await expect(apiRequest('/events')).rejects.toBe(abort);
+  });
+});

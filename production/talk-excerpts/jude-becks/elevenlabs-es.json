@@ -1,0 +1,17 @@
+{
+  "voice_id": "UEKYgullGqaF0keqT8Bu",
+  "request": {
+    "text": "El primer día como capitán pensé que mi trabajo consistía en tener todas las respuestas. Hablé mucho. Corregí cada detalle. Y conseguí algo curioso: que mis compañeros dejaran de hablar.\n\nTeníamos talento, pero cada uno interpretaba de una forma distinta qué significaba ayudar. Para uno era resolverlo todo solo. Para otro, no discutir nunca. Para otro, esperar instrucciones. Podíamos vestir la misma camiseta y jugar partidos diferentes.\n\nUn día cambiamos la reunión. En lugar de preguntar quién había fallado, preguntamos qué necesitaba cada persona de los demás para hacer bien su trabajo. Las respuestas fueron pequeñas y muy concretas: avísame antes de cambiar la jugada; dime si no llegas; corrígeme sin dejarme en evidencia.\n\nConvertimos esas peticiones en tres acuerdos. Avisar cuando una tarea estuviera en riesgo. Confirmar quién recogía el siguiente pase. Y reservar unos minutos para revisar lo ocurrido, incluso después de ganar.\n\nNo desaparecieron los errores. Lo que cambió fue nuestra manera de responder. Pedir ayuda dejó de parecer una debilidad, porque todos sabíamos qué hacer cuando alguien la pedía.\n\nPiensa en tu equipo. Cuando decís compromiso, calidad o confianza, ¿estáis describiendo la misma conducta? Elegid una de esas palabras y completad juntos esta frase: mañana se notará en que nosotros... Y escribid una acción que cualquiera pueda observar.\n\nLa cultura de un equipo empieza ahí: en lo que hacemos cuando nadie nos está aplaudiendo.",
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.15,
+      "use_speaker_boost": true,
+      "speed": 0.9
+    }
+  },
+  "duration": 109.818776,
+  "character_cost": "808",
+  "status": "generated"
+}

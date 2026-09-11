@@ -1,0 +1,102 @@
+[
+  {
+    "sourceTitle": "The Next Inch: Leadership",
+    "sourceDescription": "Alison Patrick convierte la presión del último cuarto en una conversación práctica sobre decisiones, responsabilidad y liderazgo compartido. Saldrás con una jugada concreta para activar con tu equipo.",
+    "es": {
+      "title": "The Next Inch: liderazgo",
+      "description": "Alison Patrick convierte la presión del último cuarto en una conversación práctica sobre decisiones, responsabilidad y liderazgo compartido. Saldrás con una jugada concreta para activar con tu equipo."
+    },
+    "en": {
+      "title": "The Next Inch: Leadership",
+      "description": "Alison Patrick turns the pressure of the final quarter into a practical conversation about decisions, responsibility and shared leadership. You’ll leave with a concrete play to put into action with your team."
+    },
+    "speakerId": "alison-patrick"
+  },
+  {
+    "sourceTitle": "The Comeback Mindset",
+    "sourceDescription": "Travis Wood explora cómo volver después de un tropiezo sin ignorar lo aprendido. Una experiencia sobre recuperación, constancia y el valor de avanzar paso a paso.",
+    "es": {
+      "title": "La mentalidad de la remontada",
+      "description": "Travis Wood explora cómo volver después de un tropiezo sin ignorar lo aprendido. Una experiencia sobre recuperación, constancia y el valor de avanzar paso a paso."
+    },
+    "en": {
+      "title": "The Comeback Mindset",
+      "description": "Travis Wood explores how to come back after a setback without forgetting what you have learned. An experience about recovery, consistency and the value of moving forward one step at a time."
+    },
+    "speakerId": "travis-wood"
+  },
+  {
+    "sourceTitle": "One Team, One Play",
+    "sourceDescription": "Jude Becks propone dinámicas para transformar un grupo de talento individual en un equipo que comparte contexto, confianza y una dirección clara.",
+    "es": {
+      "title": "Un equipo, una jugada",
+      "description": "Jude Becks propone dinámicas para transformar un grupo de talento individual en un equipo que comparte contexto, confianza y una dirección clara."
+    },
+    "en": {
+      "title": "One Team, One Play",
+      "description": "Jude Becks offers activities to turn a group of talented individuals into a team with shared context, trust and a clear direction."
+    },
+    "speakerId": "jude-becks"
+  },
+  {
+    "sourceTitle": "Perform Under Pressure",
+    "sourceDescription": "Una sesión para reconocer el ruido, recuperar el foco y actuar cuando el margen es pequeño. Herramientas del entrenamiento deportivo aplicadas al trabajo diario.",
+    "es": {
+      "title": "Rendir bajo presión",
+      "description": "Una sesión para reconocer el ruido, recuperar el foco y actuar cuando el margen es pequeño. Herramientas del entrenamiento deportivo aplicadas al trabajo diario."
+    },
+    "en": {
+      "title": "Perform Under Pressure",
+      "description": "A session on recognising distractions, regaining focus and taking action when the margin is small. Tools from sports training applied to everyday work."
+    }
+  },
+  {
+    "sourceTitle": "The Last Quarter",
+    "sourceDescription": "Cuando el tiempo aprieta, cada decisión importa. Esta experiencia trabaja prioridades, comunicación y energía colectiva para cerrar proyectos exigentes.",
+    "es": {
+      "title": "El último cuarto",
+      "description": "Cuando el tiempo aprieta, cada decisión importa. Esta experiencia trabaja prioridades, comunicación y energía colectiva para cerrar proyectos exigentes."
+    },
+    "en": {
+      "title": "The Last Quarter",
+      "description": "When time is running out, every decision matters. This experience explores priorities, communication and collective energy to bring demanding projects over the line."
+    }
+  },
+  {
+    "sourceTitle": "Trust Is the Strategy",
+    "sourceDescription": "La confianza no es una consigna: se entrena en cada interacción. Un talk sobre seguridad, conversaciones difíciles y coordinación real.",
+    "es": {
+      "title": "La confianza es la estrategia",
+      "description": "La confianza no es una consigna: se entrena en cada interacción. Una charla sobre seguridad, conversaciones difíciles y coordinación real."
+    },
+    "en": {
+      "title": "Trust Is the Strategy",
+      "description": "Trust is more than a slogan: it is built through every interaction. A talk about psychological safety, difficult conversations and effective coordination."
+    }
+  },
+  {
+    "sourceTitle": "Innovate the Playbook",
+    "sourceDescription": "Anna Nasser conecta estrategia deportiva e innovación para ayudar a los equipos a cuestionar su plan sin perder su propósito.",
+    "es": {
+      "title": "Innovar el plan de juego",
+      "description": "Anna Nasser conecta estrategia deportiva e innovación para ayudar a los equipos a cuestionar su plan sin perder su propósito."
+    },
+    "en": {
+      "title": "Innovate the Playbook",
+      "description": "Anna Nasser connects sports strategy and innovation to help teams question their plans without losing sight of their purpose."
+    },
+    "speakerId": "anna-nasser"
+  },
+  {
+    "sourceTitle": "Resilience Is a Team Sport",
+    "sourceDescription": "Una experiencia que desmonta el mito de la resiliencia solitaria y muestra cómo pedir ayuda, repartir el esfuerzo y volver al terreno de juego.",
+    "es": {
+      "title": "La resiliencia es un deporte de equipo",
+      "description": "Una experiencia que desmonta el mito de la resiliencia solitaria y muestra cómo pedir ayuda, repartir el esfuerzo y volver al terreno de juego."
+    },
+    "en": {
+      "title": "Resilience Is a Team Sport",
+      "description": "An experience that challenges the myth of solitary resilience and shows how to ask for help, share the effort and get back in the game."
+    }
+  }
+]

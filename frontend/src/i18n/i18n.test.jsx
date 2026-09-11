@@ -1,0 +1,162 @@
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { MemoryRouter } from 'react-router-dom';
+import { LanguageProvider } from '../context/LanguageContext.jsx';
+import { AuthProvider } from '../context/AuthContext.jsx';
+import { ToastProvider } from '../context/ToastContext.jsx';
+import { App } from '../App.jsx';
+import { EventFormPage } from '../pages/EventFormPage.jsx';
+import { EmptyState } from '../components/EmptyState.jsx';
+import { formatEventDate, languageStorageKey, readLanguage, translate } from './translate.js';
+import { localizeEvent } from './events.js';
+import catalogue from './events.json';
+import { speakers, getEventSpeaker } from '../data/speakers.js';
+import { SpeakerInvitation } from '../components/SpeakerInvitation.jsx';
+import { EventSpeaker } from '../components/EventSpeaker.jsx';
+import previewEvents from '../data/previewEvents.json';
+
+vi.mock('../hooks/useEvents.js', () => ({
+  useEvents: () => ({ events: [{ _id: 'demo', speakerId: 'alison-patrick', title: 'The Next Inch: Leadership', category: 'Liderazgo', date: '2027-02-18T18:00:00Z', location: 'Madrid', attendees: [], capacity: 30 }], loading: false, error: '' }),
+}));
+afterEach(() => vi.unstubAllGlobals());
+const render = (language, route = '/', child = <App />) => {
+  vi.stubGlobal('localStorage', { getItem: key => key === languageStorageKey ? language : null });
+  return renderToStaticMarkup(<LanguageProvider><MemoryRouter initialEntries={[route]}><ToastProvider><AuthProvider>{child}</AuthProvider></ToastProvider></MemoryRouter></LanguageProvider>);
+};
+
+describe('complete language versions', () => {
+  it('renders the home, carousel, speakers, events and footer in English', () => {
+    const html = render('en');
+    for (const text of ['Inch by inch.', 'Together.', 'Every inch counts', 'High-performance leadership', 'Upcoming experiences', '0 attendees', 'Legal notice', 'The Next Inch: Leadership']) expect(html).toContain(text);
+    for (const text of ['Centímetro a centímetro.', 'Liderazgo de alto rendimiento', 'Próximas experiencias', 'Aviso legal']) expect(html).not.toContain(text);
+    expect(html).toContain('aria-label="English" aria-pressed="true"');
+  });
+  it('renders Spanish without the old English headings and slogan', () => {
+    const html = render('es');
+    for (const text of ['Centímetro a centímetro.', 'La siguiente jugada', 'Avanza un centímetro. Cambia el partido.', 'The Next Inch: liderazgo', 'Ponentes y experiencias ficticias']) expect(html).toContain(text);
+    for (const text of ['Move the next inch.', 'The next play', 'One brand · Different plays', 'Descubre sus talks']) expect(html).not.toContain(text);
+  });
+  it.each([
+    ['/about', 'From the locker room to the workplace', 'Del vestuario a la empresa'],
+    ['/events', 'Coming up soon', 'Más próximos'],
+    ['/auth', 'Password', 'Contraseña'],
+    ['/legal', 'solely for educational', 'con fines exclusivamente educativos'],
+    ['/missing', 'Back to home', 'Volver al inicio'],
+  ])('localizes the %s route', (route, en, es) => {
+    expect(render('en', route)).toContain(en);
+    expect(render('en', route)).not.toContain(es);
+    expect(render('es', route)).toContain(es);
+    expect(render('es', route)).not.toContain(en);
+  });
+  it('translates event form labels while keeping API category values stable', () => {
+    const html = render('en', '/', <EventFormPage />);
+    expect(html).toContain('Event title');
+    expect(html).toContain('value="Liderazgo" selected="">Leadership</option>');
+    expect(html).toContain('Upload a poster');
+    expect(html).not.toContain('Publicar evento');
+  });
+  it('localizes defaults and connection failures', () => {
+    expect(render('en', '/', <EmptyState />)).toContain('No events here yet');
+    expect(render('en', '/', <EmptyState message="No podemos conectar con el servidor. Inténtalo de nuevo más tarde." />)).toContain('We can’t connect to the server.');
+    expect(translate('en', 'Escribe al menos 2 caracteres.')).toBe('Enter at least 2 characters.');
+    expect(translate('es', 'Enter at least 2 characters.')).toBe('Escribe al menos 2 caracteres.');
+  });
+  it('uses saved supported preferences and survives blocked or invalid storage', () => {
+    vi.stubGlobal('localStorage', { getItem: () => 'en' });
+    expect(readLanguage()).toBe('en');
+    vi.stubGlobal('localStorage', { getItem: () => 'fr' });
+    expect(readLanguage()).toBe('es');
+    vi.stubGlobal('localStorage', { getItem: () => { throw new Error('blocked'); } });
+    expect(readLanguage()).toBe('es');
+  });
+  it('formats dates and interpolates translated counts', () => {
+    expect(formatEventDate('2027-04-08T12:00:00Z', 'en')).toContain('Apr');
+    expect(formatEventDate('2027-04-08T12:00:00Z', 'es')).toContain('abr');
+    expect(translate('en', '{count} de {capacity} plazas confirmadas', { count: 1, capacity: 30 })).toBe('1 of 30 places confirmed');
+  });
+  it('translates all eight editorial events without overwriting organiser content', () => {
+    for (const item of catalogue) {
+      const event = { title: item.sourceTitle, description: item.sourceDescription };
+      expect(localizeEvent(event, 'en').description).toBe(item.en.description);
+      expect(localizeEvent(event, 'es').title).toBe(item.es.title);
+      expect(localizeEvent({ ...event, description: 'My own description' }, 'en').description).toBe('My own description');
+    }
+    const custom = { title: 'A new event', description: 'Written by the organiser' };
+    expect(localizeEvent(custom, 'es')).toEqual(custom);
+  });
+});
+
+
+describe('speaker profiles and event relationships', () => {
+  it.each(speakers)('renders $name in both languages with the correct portrait and biography', speaker => {
+    const en = render('en', `/speakers/${speaker.id}`);
+    const es = render('es', `/speakers/${speaker.id}`);
+    expect(en).toContain(speaker.name);
+    expect(en).toContain(speaker.image);
+    expect(en).toContain(speaker.en.lead);
+    expect(en).not.toContain(speaker.es.lead);
+    expect(es).toContain(speaker.es.lead);
+    expect(es).not.toContain(speaker.en.lead);
+    expect(en).toContain('Fictional biography');
+    expect(es).toContain('Biografía ficticia');
+  });
+  it('links the directory cards and the assigned event to the same biography', () => {
+    const directory = render('en', '/speakers');
+    for (const speaker of speakers) expect(directory).toContain(`href="/speakers/${speaker.id}"`);
+    const event = previewEvents.find(event => event.speakerId === 'alison-patrick');
+    const card = render('en', '/', <EventSpeaker event={event} />);
+    expect(card).toContain('Alison Patrick');
+    expect(card).toContain('href="/speakers/alison-patrick"');
+    expect(card).toContain('Read biography');
+    expect(render('en', '/speakers/alison-patrick')).toContain('href="/events/demo"');
+  });
+  it('keeps unassigned talks pending and does not infer a speaker from their category', () => {
+    const unassigned = previewEvents.filter(event => !event.speakerId);
+    expect(unassigned).toHaveLength(4);
+    for (const event of unassigned) {
+      expect(getEventSpeaker(event)).toBeUndefined();
+      expect(render('en', '/', <EventSpeaker event={event} />)).toContain('Speaker to be announced');
+    }
+    expect(getEventSpeaker({ title: 'A new event', category: 'Liderazgo' })).toBeUndefined();
+  });
+  it('recognises unchanged editorial API records without overwriting explicit speaker assignments', () => {
+    const entry = catalogue.find(item => item.speakerId === 'alison-patrick');
+    const event = { title: entry.sourceTitle, description: entry.sourceDescription };
+    expect(getEventSpeaker(event).id).toBe('alison-patrick');
+    expect(getEventSpeaker({ ...event, description: 'A different event' })).toBeUndefined();
+    expect(getEventSpeaker({ ...event, speakerId: 'unknown' })).toBeUndefined();
+  });
+  it('provides a translated recovery link for missing profiles', () => {
+    expect(render('es', '/speakers/missing')).toContain('No encontramos este perfil');
+    expect(render('en', '/speakers/missing')).toContain('href="/speakers"');
+  });
+});
+
+
+describe('faculty appointments and video invitations', () => {
+  it('shows the executive appointment and faculty roles in both languages', () => {
+    expect(render('es', '/speakers/alison-patrick')).toContain('Miembro del Comité de Dirección del grupo KelseTS');
+    expect(render('en', '/speakers/alison-patrick')).toContain('Member of the KelseTS Group Executive Committee');
+    for (const speaker of speakers) {
+      expect(render('es', `/speakers/${speaker.id}`)).toContain(speaker.es.facultyTitle);
+      expect(render('en', `/speakers/${speaker.id}`)).toContain(speaker.en.facultyTitle);
+    }
+  });
+  it('shows the invitation as text until a video exists in the selected language', () => {
+    const speaker = speakers[0];
+    const html = render('es', '/', <SpeakerInvitation speaker={speaker} media={{}} />);
+    expect(html).toContain(speaker.es.invitation);
+    expect(html).not.toContain('<video');
+    const english = render('en', '/', <SpeakerInvitation speaker={speaker} media={{ 'alison-patrick': { es: { src: '/test-es.mp4' } } }} />);
+    expect(english).toContain(speaker.en.invitation);
+    expect(english).not.toContain('/test-es.mp4');
+  });
+  it('provides playback controls, captions and a transcript without autoplay', () => {
+    const html = render('en', '/', <SpeakerInvitation speaker={speakers[0]} media={{ 'alison-patrick': { en: { src: '/test-en.mp4', captions: '/test-en.vtt' } } }} />);
+    expect(html).toContain('<video');
+    expect(html).toContain('controls=""');
+    expect(html).toContain('srcLang="en"');
+    expect(html).toContain('Read transcript');
+    expect(html.toLowerCase()).not.toContain('autoplay');
+  });
+});

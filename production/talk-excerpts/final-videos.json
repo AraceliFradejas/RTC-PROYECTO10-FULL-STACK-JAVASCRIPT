@@ -1,0 +1,196 @@
+[
+  {
+    "speaker": "alison-patrick",
+    "name": "Alison Patrick",
+    "language": "es",
+    "title": "Cuando el partido se complica",
+    "duration": 128.799,
+    "video": "alison-patrick/alison-patrick-talk-es-final-v2.mp4",
+    "captions": "alison-patrick/alison-patrick-talk-es-final-v2.vtt",
+    "poster": "alison-patrick/alison-patrick-talk-es-final-v2-poster.jpg",
+    "qa": {
+      "duration": 128.799,
+      "decode_ok": true,
+      "peak": "-6.7 dB",
+      "mean": "-27.1 dB",
+      "caption_similarity": 1.0,
+      "file": "alison-patrick-talk-es-final-v2.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true
+    }
+  },
+  {
+    "speaker": "alison-patrick",
+    "name": "Alison Patrick",
+    "language": "en",
+    "title": "When the game gets tough",
+    "duration": 116.353,
+    "video": "alison-patrick/alison-patrick-talk-en-final-v2.mp4",
+    "captions": "alison-patrick/alison-patrick-talk-en-final-v2.vtt",
+    "poster": "alison-patrick/alison-patrick-talk-en-final-v2-poster.jpg",
+    "qa": {
+      "duration": 116.353,
+      "decode_ok": true,
+      "peak": "-8.7 dB",
+      "mean": "-29.0 dB",
+      "caption_similarity": 0.9983,
+      "file": "alison-patrick-talk-en-final-v2.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true,
+      "caption_corrections": {
+        "inquiry": "enquiry",
+        "traveled": "travelled"
+      },
+      "caption_reviewed": true,
+      "caption_similarity_after_review": 1
+    }
+  },
+  {
+    "speaker": "jude-becks",
+    "name": "Jude Becks",
+    "language": "es",
+    "title": "El talento no basta",
+    "duration": 109.759,
+    "video": "jude-becks/jude-becks-talk-es-final-v1.mp4",
+    "captions": "jude-becks/jude-becks-talk-es-final-v1.vtt",
+    "poster": "jude-becks/jude-becks-talk-es-final-v1-poster.jpg",
+    "qa": {
+      "duration": 109.759,
+      "decode_ok": true,
+      "peak": "-7.8 dB",
+      "mean": "-27.8 dB",
+      "caption_similarity": 1.0,
+      "file": "jude-becks-talk-es-final-v1.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true
+    }
+  },
+  {
+    "speaker": "jude-becks",
+    "name": "Jude Becks",
+    "language": "en",
+    "title": "Talent is not enough",
+    "duration": 100.982,
+    "video": "jude-becks/jude-becks-talk-en-final-v1.mp4",
+    "captions": "jude-becks/jude-becks-talk-en-final-v1.vtt",
+    "poster": "jude-becks/jude-becks-talk-en-final-v1-poster.jpg",
+    "qa": {
+      "duration": 100.982,
+      "decode_ok": true,
+      "peak": "-9.8 dB",
+      "mean": "-30.2 dB",
+      "caption_similarity": 0.9982,
+      "file": "jude-becks-talk-en-final-v1.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true,
+      "caption_corrections": {
+        "behavior": "behaviour"
+      },
+      "caption_reviewed": true,
+      "caption_removed_nonverbal_cue": "shh",
+      "caption_similarity_after_review": 1
+    }
+  },
+  {
+    "speaker": "anna-nasser",
+    "name": "Anna Nasser",
+    "language": "es",
+    "title": "Antes de pedirle una respuesta a la IA",
+    "duration": 109.712,
+    "video": "anna-nasser/anna-nasser-talk-es-final-v1.mp4",
+    "captions": "anna-nasser/anna-nasser-talk-es-final-v1.vtt",
+    "poster": "anna-nasser/anna-nasser-talk-es-final-v1-poster.jpg",
+    "qa": {
+      "duration": 109.712,
+      "decode_ok": true,
+      "peak": "-5.7 dB",
+      "mean": "-25.0 dB",
+      "caption_similarity": 1.0,
+      "file": "anna-nasser-talk-es-final-v1.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true
+    }
+  },
+  {
+    "speaker": "anna-nasser",
+    "name": "Anna Nasser",
+    "language": "en",
+    "title": "Before asking AI for an answer",
+    "duration": 84.6349,
+    "video": "anna-nasser/anna-nasser-talk-en-final-v1.mp4",
+    "captions": "anna-nasser/anna-nasser-talk-en-final-v1.vtt",
+    "poster": "anna-nasser/anna-nasser-talk-en-final-v1-poster.jpg",
+    "qa": {
+      "duration": 84.6349,
+      "decode_ok": true,
+      "peak": "-5.8 dB",
+      "mean": "-25.9 dB",
+      "caption_similarity": 0.9987,
+      "file": "anna-nasser-talk-en-final-v1.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true,
+      "caption_corrections": {
+        "request to handle first": "requests to handle first",
+        "recognize": "recognise"
+      },
+      "caption_reviewed": true,
+      "caption_similarity_after_review": 1
+    }
+  },
+  {
+    "speaker": "travis-wood",
+    "name": "Travis Wood",
+    "language": "es",
+    "title": "La siguiente jugada",
+    "duration": 120.394,
+    "video": "travis-wood/travis-wood-talk-es-final-v1.mp4",
+    "captions": "travis-wood/travis-wood-talk-es-final-v1.vtt",
+    "poster": "travis-wood/travis-wood-talk-es-final-v1-poster.jpg",
+    "qa": {
+      "duration": 120.394,
+      "decode_ok": true,
+      "peak": "-6.4 dB",
+      "mean": "-26.2 dB",
+      "caption_similarity": 1.0,
+      "file": "travis-wood-talk-es-final-v1.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true
+    }
+  },
+  {
+    "speaker": "travis-wood",
+    "name": "Travis Wood",
+    "language": "en",
+    "title": "The next play",
+    "duration": 113.149,
+    "video": "travis-wood/travis-wood-talk-en-final-v1.mp4",
+    "captions": "travis-wood/travis-wood-talk-en-final-v1.vtt",
+    "poster": "travis-wood/travis-wood-talk-en-final-v1-poster.jpg",
+    "qa": {
+      "duration": 113.149,
+      "decode_ok": true,
+      "peak": "-7.8 dB",
+      "mean": "-30.0 dB",
+      "caption_similarity": 0.9953,
+      "file": "travis-wood-talk-en-final-v1.mp4",
+      "resolution": "1920x1080",
+      "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+      "fictional_label": true,
+      "caption_corrections": {
+        "practicing": "practising",
+        "practice differently": "practise differently",
+        "organizations": "organisations",
+        "try the sorter.": "try this order:"
+      },
+      "caption_reviewed": true,
+      "caption_similarity_after_review": 1
+    }
+  }
+]

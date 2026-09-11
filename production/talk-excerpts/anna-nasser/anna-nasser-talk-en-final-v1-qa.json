@@ -1,0 +1,17 @@
+{
+  "duration": 84.6349,
+  "decode_ok": true,
+  "peak": "-5.8 dB",
+  "mean": "-25.9 dB",
+  "caption_similarity": 0.9987,
+  "file": "anna-nasser-talk-en-final-v1.mp4",
+  "resolution": "1920x1080",
+  "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+  "fictional_label": true,
+  "caption_corrections": {
+    "request to handle first": "requests to handle first",
+    "recognize": "recognise"
+  },
+  "caption_reviewed": true,
+  "caption_similarity_after_review": 1
+}

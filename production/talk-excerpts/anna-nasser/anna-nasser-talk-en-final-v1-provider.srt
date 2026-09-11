@@ -1,0 +1,195 @@
+1
+00:00:00,080 --> 00:00:01,740
+At one of our workshops, a team arrived
+
+2
+00:00:01,780 --> 00:00:03,640
+with a clear proposal: we want
+
+3
+00:00:03,740 --> 00:00:05,440
+artificial intelligence to tell us which
+
+4
+00:00:05,500 --> 00:00:06,720
+request to handle first.
+
+5
+00:00:07,260 --> 00:00:09,440
+The demonstration was fast, tidy, and
+
+6
+00:00:09,540 --> 00:00:10,380
+quite convincing.
+
+7
+00:00:11,220 --> 00:00:13,000
+Before trying it, I asked a question:
+
+8
+00:00:13,420 --> 00:00:14,220
+what does first mean?
+
+9
+00:00:14,780 --> 00:00:15,600
+The most urgent?
+
+10
+00:00:16,020 --> 00:00:16,760
+The easiest?
+
+11
+00:00:17,320 --> 00:00:18,800
+The one that has been waiting longest?
+
+12
+00:00:19,600 --> 00:00:21,000
+Within minutes, we had three different
+
+13
+00:00:21,080 --> 00:00:21,700
+criteria.
+
+14
+00:00:22,120 --> 00:00:23,260
+The tool could not resolve a
+
+15
+00:00:23,320 --> 00:00:24,360
+disagreement we had not yet
+
+16
+00:00:24,420 --> 00:00:25,000
+acknowledged.
+
+17
+00:00:25,720 --> 00:00:27,160
+We worked with fictional cases and
+
+18
+00:00:27,240 --> 00:00:28,720
+agreed on the decision we wanted to
+
+19
+00:00:28,760 --> 00:00:29,380
+support.
+
+20
+00:00:29,980 --> 00:00:31,780
+Then we examined the information we
+
+21
+00:00:31,820 --> 00:00:33,000
+needed and what was missing.
+
+22
+00:00:33,640 --> 00:00:35,260
+A short request is not always simple.
+
+23
+00:00:35,840 --> 00:00:37,380
+Someone who writes more does not always
+
+24
+00:00:37,420 --> 00:00:38,080
+need more help.
+
+25
+00:00:38,720 --> 00:00:40,340
+Only then did we compare the system's
+
+26
+00:00:40,360 --> 00:00:42,140
+suggestion with a review by someone who
+
+27
+00:00:42,200 --> 00:00:43,300
+understood the service.
+
+28
+00:00:44,080 --> 00:00:45,600
+When they disagreed, we did not
+
+29
+00:00:45,660 --> 00:00:47,440
+automatically choose either answer.
+
+30
+00:00:48,140 --> 00:00:49,320
+We looked for the reason behind the
+
+31
+00:00:49,360 --> 00:00:49,900
+difference.
+
+32
+00:00:50,600 --> 00:00:52,140
+That exercise taught us more than a
+
+33
+00:00:52,180 --> 00:00:53,400
+screen full of results.
+
+34
+00:00:54,040 --> 00:00:56,340
+It helped us uncover assumptions, refine
+
+35
+00:00:56,380 --> 00:00:58,760
+our criteria, and decide when a person
+
+36
+00:00:58,800 --> 00:00:59,980
+needed to review a case.
+
+37
+00:01:01,080 --> 00:01:02,500
+Before your next experiment with
+
+38
+00:01:02,560 --> 00:01:03,960
+artificial intelligence, write down
+
+39
+00:01:04,000 --> 00:01:06,240
+three things: which decision you want to
+
+40
+00:01:06,280 --> 00:01:08,200
+improve, what information would be
+
+41
+00:01:08,240 --> 00:01:10,540
+sufficient, and how you would recognize
+
+42
+00:01:10,600 --> 00:01:11,380
+a wrong result.
+
+43
+00:01:12,220 --> 00:01:14,140
+If you cannot explain those yet, start
+
+44
+00:01:14,180 --> 00:01:14,440
+there.
+
+45
+00:01:15,180 --> 00:01:17,140
+The speed of an answer can impress us.
+
+46
+00:01:17,760 --> 00:01:19,400
+Its value lies in explaining why it
+
+47
+00:01:19,420 --> 00:01:22,160
+deserves our trust, when it does not,
+
+48
+00:01:22,240 --> 00:01:24,000
+and who takes responsibility for acting
+
+49
+00:01:24,040 --> 00:01:24,400
+on it.

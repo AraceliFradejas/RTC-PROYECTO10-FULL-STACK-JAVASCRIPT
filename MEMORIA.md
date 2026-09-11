@@ -66,6 +66,17 @@ La dirección visual continúa el lenguaje de las webs anteriores de KelseTS: ro
 
 El carrusel es deliberadamente manual e incluye controles, contador y selectores para que el contenido nunca se mueva sin intervención. La navegación es responsive y operable mediante teclado. Incluye enlace para saltar al contenido, textos alternativos, etiquetas visibles, foco perceptible, avisos `aria-live` y respeto por `prefers-reduced-motion`. Cada operación asíncrona comunica inmediatamente su estado.
 
+### Referencias creativas de los ponentes
+
+Por decisión editorial, las biografías ficticias toman temas generales de cuatro referencias públicas. Los episodios narrados, proyectos, entornos y aprendizajes de los personajes son creaciones originales; no describen la vida de esas personas ni una relación con KelseTS. Los perfiles públicos mantienen su identificación como ficción y las versiones española e inglesa cuentan la misma historia.
+
+| Personaje | Referencia consultada | Eje de inspiración |
+| --- | --- | --- |
+| Alison Patrick | [Patricia Ayuela · Línea Directa](https://www.lineadirectaaseguradora.com/documents/1712153/1897558/NP%2BL%C3%8DNEA%2BDIRECTA%2BASEGURADORA%2B-%2BNombramiento%2BNuevo%2BCEO_DEF.pdf/feda6d34-7dbb-ed03-bb35-61810dda65f1?t=1645120415956) | Gestión, conocimiento operativo y transformación digital. |
+| Jude Becks | [David Beckham · Biografía oficial](https://www.davidbeckham.com/about) | Fútbol, adaptación a distintos equipos y una segunda etapa más allá de la competición. |
+| Anna Nasser | [Álex Rayón · Universidad de Deusto](https://www.deusto.es/es/inicio/vive/actualidad/noticias/alex-rayon-ha-participado-como-experto-en-la-comision-de-asuntos-economicos-y-transformacion-digital-del-senado/noticia) | Formación, datos, inteligencia artificial y transformación. |
+| Travis Wood | [Travis Kelce · 87 & Running](https://87running.org/about/) | Deporte de equipo y oportunidades para jóvenes en la comunidad. |
+
 ## 9. Ecosistema KelseTS
 
 KelseTS Talks se relaciona desde la página de inicio, la presentación corporativa y el footer con tres proyectos activos: KelseTS Lifestyle, como expresión motivacional y cultural; KelseTS Store, como tienda de zapatillas; y KelseTS Business School, como espacio de formación en IA y liderazgo. Los enlaces externos se identifican como tales y se abren de forma segura.
@@ -91,7 +102,7 @@ La orden `npm run seed --prefix backend` carga de forma idempotente las ocho exp
 
 ## 13. Próximas mejoras
 
-Perfiles públicos de speakers, eventos privados para empresas, recuperación de contraseña, agenda por ciudades, valoraciones posteriores y pruebas de integración con una base efímera.
+Persistencia de la relación entre ponentes y eventos en la API, eventos privados para empresas, recuperación de contraseña, agenda por ciudades, valoraciones posteriores y pruebas de integración con una base efímera.
 
 ---
 

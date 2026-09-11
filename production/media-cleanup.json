@@ -1,0 +1,385 @@
+{
+  "reason": "User requested removal of test versions; approved masters retained",
+  "removed": [
+    {
+      "file": "production/speaker-videos/alison-patrick/elevenlabs-en-preview-01.json",
+      "bytes": 486
+    },
+    {
+      "file": "production/speaker-videos/alison-patrick/elevenlabs-es-preview-02.json",
+      "bytes": 509
+    },
+    {
+      "file": "production/speaker-videos/alison-patrick/elevenlabs-es-preview.json",
+      "bytes": 509
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/elevenlabs-en-preview-01.json",
+      "bytes": 548
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/elevenlabs-en-preview-02.json",
+      "bytes": 548
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/elevenlabs-en-preview-03.json",
+      "bytes": 548
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/elevenlabs-es-preview-01.json",
+      "bytes": 568
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/elevenlabs-es-preview-02.json",
+      "bytes": 568
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/elevenlabs-es-preview-03.json",
+      "bytes": 568
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/heygen-en-elevenlabs.json",
+      "bytes": 512
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/heygen-es-elevenlabs.json",
+      "bytes": 512
+    },
+    {
+      "file": "production/speaker-videos/anna-nasser/heygen-image.json",
+      "bytes": 48
+    },
+    {
+      "file": "production/speaker-videos/jude-becks/elevenlabs-en-preview-01.json",
+      "bytes": 534
+    },
+    {
+      "file": "production/speaker-videos/jude-becks/elevenlabs-es-preview-01.json",
+      "bytes": 560
+    },
+    {
+      "file": "production/speaker-videos/jude-becks/heygen-en-elevenlabs.json",
+      "bytes": 510
+    },
+    {
+      "file": "production/speaker-videos/jude-becks/heygen-es-elevenlabs.json",
+      "bytes": 510
+    },
+    {
+      "file": "production/speaker-videos/jude-becks/heygen-image.json",
+      "bytes": 48
+    },
+    {
+      "file": "production/speaker-videos/jude-becks/jude-becks-es-front-v2.mp4",
+      "bytes": 7672274
+    },
+    {
+      "file": "production/speaker-videos/jude-becks/jude-becks-es-front-v2.srt",
+      "bytes": 310
+    },
+    {
+      "file": "production/speaker-videos/travis-wood/elevenlabs-en-preview-01.json",
+      "bytes": 557
+    },
+    {
+      "file": "production/speaker-videos/travis-wood/elevenlabs-es-preview-01.json",
+      "bytes": 550
+    },
+    {
+      "file": "production/speaker-videos/travis-wood/heygen-en-elevenlabs.json",
+      "bytes": 512
+    },
+    {
+      "file": "production/speaker-videos/travis-wood/heygen-es-elevenlabs.json",
+      "bytes": 512
+    },
+    {
+      "file": "production/speaker-videos/travis-wood/heygen-image.json",
+      "bytes": 48
+    },
+    {
+      "file": "production/speaker-videos-kit.zip",
+      "bytes": 270534
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-school-auditorium-2025-v1.png",
+      "bytes": 1611490
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-school-circular-v6.png",
+      "bytes": 1831325
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-school-circular-v7.png",
+      "bytes": 1782987
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-school-lectern-v3.png",
+      "bytes": 1598177
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-school-lectern-v4.png",
+      "bytes": 1618316
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-school-lectern-v5.png",
+      "bytes": 1547020
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-school-stage-v2.png",
+      "bytes": 1777389
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-en-raw.mp4",
+      "bytes": 63615424
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-en.mp4",
+      "bytes": 30403011
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-en.srt",
+      "bytes": 2802
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-en.vtt",
+      "bytes": 2810
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v6-hall.mp4",
+      "bytes": 5020238
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v6-raw.mp4",
+      "bytes": 5472423
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v6.mp3",
+      "bytes": 255416
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v6.mp4",
+      "bytes": 5007156
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v6.srt",
+      "bytes": 432
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v6.vtt",
+      "bytes": 440
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v7-hall.mp4",
+      "bytes": 4985123
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v7-raw.mp4",
+      "bytes": 5377677
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v7.mp3",
+      "bytes": 255416
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v7.mp4",
+      "bytes": 4972041
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v7.srt",
+      "bytes": 432
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v7.vtt",
+      "bytes": 440
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v8-hall.mp4",
+      "bytes": 4736875
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v8-raw.mp4",
+      "bytes": 5067048
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v8.mp4",
+      "bytes": 4723793
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v8.srt",
+      "bytes": 432
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-circular-pilot-v8.vtt",
+      "bytes": 440
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-closeup-pilot-v9-hall.mp4",
+      "bytes": 7885177
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-closeup-pilot-v9-raw.mp4",
+      "bytes": 7919042
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-closeup-pilot-v9.mp4",
+      "bytes": 7872095
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-closeup-pilot-v9.srt",
+      "bytes": 432
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-closeup-pilot-v9.vtt",
+      "bytes": 440
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-raw.mp4",
+      "bytes": 79088469
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-stage-pilot-v2-raw.mp4",
+      "bytes": 7956054
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-stage-pilot-v2.mp3",
+      "bytes": 255416
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-stage-pilot-v2.mp4",
+      "bytes": 8339402
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-stage-pilot-v2.srt",
+      "bytes": 465
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es-stage-pilot-v2.vtt",
+      "bytes": 473
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es.mp4",
+      "bytes": 38488684
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es.srt",
+      "bytes": 2905
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/alison-talk-es.vtt",
+      "bytes": 2913
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/circular-pilot-disclosure.txt",
+      "bytes": 37
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/hall-mix-v1.json",
+      "bytes": 647
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/hall-mix-v7.json",
+      "bytes": 316
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/hall-mix-v8.json",
+      "bytes": 316
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/hall-mix-v9.json",
+      "bytes": 314
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-avatar-circular-v6.json",
+      "bytes": 101
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-avatar-circular-v7.json",
+      "bytes": 101
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-avatar-stage-v2.json",
+      "bytes": 101
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-es-circular-pilot-v6.json",
+      "bytes": 1169
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-es-circular-pilot-v7.json",
+      "bytes": 1425
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-es-circular-pilot-v8.json",
+      "bytes": 1383
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-es-closeup-pilot-v9.json",
+      "bytes": 1324
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/heygen-es-stage-pilot-v2.json",
+      "bytes": 1070
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/school-auditorium-prompt.txt",
+      "bytes": 2270
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/school-circular-v6-prompt.txt",
+      "bytes": 2690
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/school-circular-v7-prompt.txt",
+      "bytes": 281
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/school-lectern-v3-prompt.txt",
+      "bytes": 1745
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/school-lectern-v4-prompt.txt",
+      "bytes": 2352
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/school-lectern-v5-prompt.txt",
+      "bytes": 2079
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/school-stage-v2-prompt.txt",
+      "bytes": 2214
+    },
+    {
+      "file": "production/talk-excerpts/alison-patrick/stage-pilot-disclosure.txt",
+      "bytes": 37
+    }
+  ],
+  "final_cleanup_removed": [
+    "production/talk-excerpts/alison-patrick/heygen-en.json",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1-qa.json",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1-provider.srt",
+    "production/talk-excerpts/alison-patrick/heygen-es-talk-final-v1.json",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1-frames.jpg",
+    "production/talk-excerpts/alison-patrick/alison-talk-en-audio.mp3",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-es-final-v1.vtt",
+    "production/talk-excerpts/alison-patrick/en-speech.txt",
+    "production/talk-excerpts/alison-patrick/elevenlabs-es.json",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1.mp4",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-es-final-v1.srt",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-es-final-v1-frames.jpg",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-es-final-v2-raw.mp4",
+    "production/talk-excerpts/alison-patrick/heygen-es.json",
+    "production/talk-excerpts/alison-patrick/heygen-en-talk-final-v1.json",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-es-final-v1-qa.json",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-es-final-v1-poster.jpg",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1.srt",
+    "production/talk-excerpts/alison-patrick/es-speech.txt",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-es-final-v1.mp4",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1.vtt",
+    "production/talk-excerpts/alison-patrick/elevenlabs-en.json",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v2-raw.mp4",
+    "production/talk-excerpts/alison-patrick/alison-talk-es-audio.mp3",
+    "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1-poster.jpg"
+  ],
+  "canonical_media": "frontend/public/videos/"
+}

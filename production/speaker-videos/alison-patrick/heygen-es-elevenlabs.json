@@ -1,0 +1,23 @@
+{
+  "videoId": "e276924efe5c39fcb29d613bf0125117",
+  "status": "completed",
+  "balanceBefore": 4.2,
+  "audioFile": "alison-es-elevenlabs-preview-02.mp3",
+  "request": {
+    "type": "avatar",
+    "avatar_id": "71b3edc40a1db0b7375a3367892f2f28",
+    "audio_asset_id": "8d638fc56aef46c28ae25e25ef5fe0b4",
+    "title": "Alison Patrick ES — voz ElevenLabs aprobada",
+    "resolution": "1080p",
+    "aspect_ratio": "auto",
+    "engine": {
+      "type": "avatar_iv"
+    },
+    "motion_prompt": "Steady camera. Subtle natural head movements and restrained hand gestures. Warm confident eye contact. Preserve identity, glasses, clothes and setting. Finish with a relaxed smile. No cuts.",
+    "caption": {
+      "file_format": "srt"
+    }
+  },
+  "duration": 8.98429,
+  "balanceAfter": 3.88
+}

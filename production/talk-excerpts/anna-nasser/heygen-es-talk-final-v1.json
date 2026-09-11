@@ -1,0 +1,20 @@
+{
+  "videoId": "bbf364bed2848e32612f41a05c57d1e5",
+  "request": {
+    "type": "avatar",
+    "avatar_id": "f9ec5297eb94459a44fd0188880ad9e3",
+    "audio_asset_id": "f0d5dd743bf24adf843d581a0422ff71",
+    "title": "anna-nasser ES — fictional talk final v1",
+    "resolution": "1080p",
+    "aspect_ratio": "16:9",
+    "engine": {
+      "type": "avatar_iv"
+    },
+    "motion_prompt": "The foreground speaker delivers a thoughtful lecture directly toward the camera, calm and confident. Maintain steady forward eye contact and almost motionless head. No looking sideways, turning, tilting or nodding. Preserve exact face, eye shape, iris color, eye spacing, glasses if present, age and skin texture. Small natural lip and jaw movements for speech, occasional gentle natural blink. No exaggerated facial expressions or wide smile. Shoulders stay steady; hands out of frame. Locked camera, no zoom, pan or cuts. Audience stays seated and silent, no lip sync on background people. Preserve circular auditorium, screen diagram and clothing.",
+    "caption": {
+      "file_format": "srt"
+    }
+  },
+  "status": "completed",
+  "duration": 109.712
+}

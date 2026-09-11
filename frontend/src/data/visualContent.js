@@ -42,10 +42,3 @@ export const heroSlides = [
     title: 'Llegamos más lejos en equipo',
   },
 ];
-
-export const speakers = [
-  { name: 'Laura Vega', role: 'Liderazgo de alto rendimiento', image: '/images/speakers/speaker-laura-vega.webp' },
-  { name: 'Marcus Reed', role: 'Cultura y equipos', image: '/images/speakers/speaker-marcus-reed.webp' },
-  { name: 'Amina Nasser', role: 'Innovación con propósito', image: '/images/speakers/speaker-amina-nasser.webp' },
-  { name: 'Daniel Roca', role: 'Resiliencia y cambio', image: '/images/speakers/speaker-daniel-roca.webp' },
-];

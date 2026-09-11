@@ -1,0 +1,20 @@
+{
+  "videoId": "cccb0aa18f50a12228a1f63c3f85d9b1",
+  "request": {
+    "type": "avatar",
+    "avatar_id": "dbb267a53e5867a3c72beffc2ae97157",
+    "audio_asset_id": "7b65ce95bcb54ea282f8f1277a2854cc",
+    "title": "jude-becks EN — fictional talk final v1",
+    "resolution": "1080p",
+    "aspect_ratio": "16:9",
+    "engine": {
+      "type": "avatar_iv"
+    },
+    "motion_prompt": "The foreground speaker delivers a thoughtful lecture directly toward the camera, calm and confident. Maintain steady forward eye contact and almost motionless head. No looking sideways, turning, tilting or nodding. Preserve exact face, eye shape, iris color, eye spacing, glasses if present, age and skin texture. Small natural lip and jaw movements for speech, occasional gentle natural blink. No exaggerated facial expressions or wide smile. Shoulders stay steady; hands out of frame. Locked camera, no zoom, pan or cuts. Audience stays seated and silent, no lip sync on background people. Preserve circular auditorium, screen diagram and clothing.",
+    "caption": {
+      "file_format": "srt"
+    }
+  },
+  "status": "completed",
+  "duration": 100.982
+}

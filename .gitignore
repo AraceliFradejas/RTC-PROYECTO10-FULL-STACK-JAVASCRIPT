@@ -1,6 +1,9 @@
 node_modules/
 .env
 .env.local
+.env heygen
+.env.elevenlabs.local
+.env.elevenlabs
 dist/
 coverage/
 uploads/

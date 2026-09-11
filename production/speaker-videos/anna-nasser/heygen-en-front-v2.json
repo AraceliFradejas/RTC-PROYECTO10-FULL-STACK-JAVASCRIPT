@@ -1,0 +1,21 @@
+{
+  "videoId": "26b07cfc8f7b60968739a34afc56892e",
+  "avatarId": "c21220cc10fb669ede5d0376e86a5fb0",
+  "request": {
+    "type": "avatar",
+    "avatar_id": "c21220cc10fb669ede5d0376e86a5fb0",
+    "audio_asset_id": "1e684dbcf4ff400abc213f8c569958e7",
+    "title": "anna-nasser EN — frontal v2",
+    "resolution": "1080p",
+    "aspect_ratio": "auto",
+    "engine": {
+      "type": "avatar_iv"
+    },
+    "motion_prompt": "Look directly into the camera lens throughout the entire speech. Keep head facing forward. Natural blinking, subtle head motion, restrained natural hand gestures close to waist, warm confident expression. Static eye-level camera. No looking to the side, no turning head, no camera movement. Preserve identity and clothes. Finish with a relaxed smile.",
+    "caption": {
+      "file_format": "srt"
+    }
+  },
+  "status": "completed",
+  "duration": 9.03072
+}

@@ -23,11 +23,13 @@ Su narrativa toma como punto de partida el espíritu del discurso del entrenador
 - Registro con inicio de sesión automático y login mediante JWT.
 - Catálogo de talks con búsqueda, categorías y criterios de ordenación.
 - Ficha completa de cada experiencia, aforo y listado de asistentes.
+- Directorio de ponentes y biografías bilingües enlazadas desde las charlas asignadas.
 - Creación protegida de eventos con subida de carteles.
 - Confirmación o cancelación de asistencia en un solo paso.
 - Gestión de avatar y permisos de creadora o administradora.
 - Estados accesibles de carga, error, éxito y contenido vacío.
 - Diseño responsive alineado con la identidad visual de KelseTS.
+- Versiones completas de la interfaz en español e inglés con selector ES/EN y preferencia guardada.
 
 ## Tecnologías
 
@@ -75,6 +77,28 @@ npm run seed --prefix backend # cargar la agenda de demostración
 ```
 
 Para cargar las ocho experiencias iniciales, configura `MONGODB_URI` y una contraseña de al menos ocho caracteres en `SEED_PASSWORD`. El proceso puede repetirse sin duplicar los eventos.
+
+## Ponentes
+
+Los cuatro perfiles ficticios se definen en `frontend/src/data/speakers.js`, con biografías en español e inglés y rutas `/speakers/:slug`. Las asignaciones editoriales confirmadas son Alison Patrick (liderazgo), Jude Becks (equipo), Anna Nasser (innovación) y Travis Wood (remontada). Las otras cuatro experiencias muestran «Ponente por confirmar».
+
+La vista previa enlaza eventos mediante `speakerId`. Mientras se prepara su persistencia en el backend, los registros editoriales de la API se reconocen por su título y descripción originales; no se asignan ponentes automáticamente por categoría ni se confunden con la persona organizadora.
+
+### Equipo docente e invitaciones
+
+Alison Patrick forma parte del Comité de Dirección del grupo y es profesora titular de Innovación Empresarial en KelseTS School. Jude enseña Liderazgo e Innovación de Equipos; Anna, Inteligencia Artificial y Estrategia del Dato; y Travis, Resiliencia y Cambio Organizacional. Son cargos del universo ficticio del proyecto.
+
+Los retratos, guiones ES/EN e indicaciones para los vídeos están en `production/speaker-videos/`. La usuaria generará las piezas en Kling AI. La web muestra la invitación escrita mientras no exista un MP4 registrado para el idioma elegido en `frontend/src/data/speakerVideos.json`. El reproductor utiliza controles, transcripción y subtítulos cuando están disponibles, sin reproducción automática.
+
+## Revisión visual sin backend
+
+Para revisar la agenda y sus ocho fichas en local, crea `frontend/.env.local` con `VITE_PREVIEW_MODE=true` y ejecuta `npm run dev --prefix frontend`. La agenda de muestra permite buscar en el idioma elegido, filtrar categorías y ordenar eventos. No confirma reservas ni escribe datos. Solo se activa durante el desarrollo; la compilación de producción utiliza siempre la API. Para conectar el backend, elimina esta opción o cámbiala a `false`.
+
+## Idiomas
+
+El selector ES/EN cambia el idioma sin recargar la página ni borrar los formularios. Español es el idioma inicial; la selección se guarda en el navegador cuando su almacenamiento está disponible. También se actualizan el atributo `lang`, la descripción de la página, las fechas, los textos accesibles y los avisos.
+
+Los textos están centralizados en `frontend/src/i18n/messages.json`. Las ocho experiencias editoriales tienen versiones en `frontend/src/i18n/events.json`. Los nombres propios se conservan. El contenido nuevo escrito por organizadores se muestra en su idioma original, salvo que el registro aporte `translations.es` o `translations.en`; la edición y persistencia de esas traducciones se abordará con el backend.
 
 ## API
 
@@ -141,3 +165,9 @@ KelseTS is a fictional brand created by Araceli Fradejas Muñoz solely for educa
 ## Author
 
 **Araceli Fradejas Muñoz**
+
+### Vídeos de ponentes y charlas
+
+Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. Los 16 vídeos ES/EN se sirven desde `frontend/public/videos/`, con reproducción manual, subtítulos y transcripciones. El idioma sigue el selector global de la web.
+
+Los catálogos son `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakerTalks.json`. Los guiones y las fuentes aprobadas se conservan en `production/`; las versiones de prueba se han retirado. El vídeo público de Alison usa la charla ampliada.

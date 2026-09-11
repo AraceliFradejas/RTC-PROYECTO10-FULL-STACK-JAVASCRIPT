@@ -1,0 +1,11 @@
+{
+  "duration": 128.799,
+  "decode_ok": true,
+  "peak": "-6.7 dB",
+  "mean": "-27.1 dB",
+  "caption_similarity": 1.0,
+  "file": "alison-patrick-talk-es-final-v2.mp4",
+  "resolution": "1920x1080",
+  "mix": "hall-mix-v1 style, ambience -39 LUFS target, restrained early reflections",
+  "fictional_label": true
+}
