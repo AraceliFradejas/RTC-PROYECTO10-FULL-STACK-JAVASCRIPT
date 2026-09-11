@@ -6,6 +6,30 @@ KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y desa
 
 Este repositorio contiene la plataforma full stack con la que KelseTS publica su agenda, gestiona asistentes y permite que nuevos organizadores creen experiencias.
 
+## Para retomar mañana
+
+**Estado al cierre:** frontend bilingüe ES/EN terminado para revisión visual; 16 vídeos definitivos integrados (8 invitaciones y 8 fragmentos de charla) en las biografías y en los eventos con ponente asignado. Alison tiene la charla ampliada: **2:09 ES / 1:56 EN**. Las pruebas y versiones sustituidas se han eliminado del proyecto.
+
+**Validación:** build correcto, 34 tests de frontend y 4 de backend pasando. La integración y limpieza están subidas a `main` en el commit `3c8e3d3`. La conexión real y el despliegue de MongoDB Atlas/Cloudinary quedan pendientes de la siguiente sesión; no confundir la agenda de muestra con datos persistidos.
+
+**Abrir la revisión local:**
+
+```bash
+npm run dev --prefix frontend -- --host 127.0.0.1
+```
+
+Mantener `VITE_PREVIEW_MODE=true` en `frontend/.env.local` para revisar sin backend. Abrir [ponentes](http://127.0.0.1:5173/speakers), [Alison](http://127.0.0.1:5173/speakers/alison-patrick) o [su evento](http://127.0.0.1:5173/events/preview-event-leadership). Cada reproductor permite elegir charla o invitación; el selector global cambia vídeo y transcripción a ES/EN. Los vídeos no arrancan automáticamente.
+
+**Siguiente sesión:**
+
+1. Revisar el resultado insertado en biografías y eventos, en móvil y en ambos idiomas. El público del fondo permanece estático; esta limitación fue aceptada. Vigilar los pequeños cambios de ojos/gafas de Alison al animarse antes de regenerar material ya aprobado.
+2. Revisar la configuración existente de la API y conectar MongoDB Atlas y Cloudinary. Configurar secretos solo en los `.env` locales o en el proveedor de despliegue; nunca en Git.
+3. Persistir la relación ponente–evento y las traducciones. Hay cuatro asignaciones confirmadas; las otras cuatro experiencias siguen con ponente por confirmar.
+4. Decidir y configurar el alojamiento definitivo de los vídeos (por ahora son archivos locales del frontend) y actualizar sus catálogos sin perder subtítulos ni versiones ES/EN.
+5. Desactivar el modo de muestra, comprobar autenticación, creación de eventos, subida de carteles y asistencia contra la API real. Después preparar el despliegue y verificarlo.
+
+**Archivos clave:** `frontend/src/components/SpeakerVideos.jsx`, `frontend/src/data/speakerTalks.json`, `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakers.js`. Los MP4 canónicos están en `frontend/public/videos/`; los guiones, voces y retratos aprobados se conservan en `production/`. [Índice de las charlas](production/talk-excerpts/VIDEOS-TERMINADOS.md) · [Página de revisión](production/talk-excerpts/ver-charlas.html).
+
 ## La empresa
 
 KelseTS traslada al mundo profesional valores del deporte de equipo:
@@ -88,7 +112,13 @@ La vista previa enlaza eventos mediante `speakerId`. Mientras se prepara su pers
 
 Alison Patrick forma parte del Comité de Dirección del grupo y es profesora titular de Innovación Empresarial en KelseTS School. Jude enseña Liderazgo e Innovación de Equipos; Anna, Inteligencia Artificial y Estrategia del Dato; y Travis, Resiliencia y Cambio Organizacional. Son cargos del universo ficticio del proyecto.
 
-Los retratos, guiones ES/EN e indicaciones para los vídeos están en `production/speaker-videos/`. La usuaria generará las piezas en Kling AI. La web muestra la invitación escrita mientras no exista un MP4 registrado para el idioma elegido en `frontend/src/data/speakerVideos.json`. El reproductor utiliza controles, transcripción y subtítulos cuando están disponibles, sin reproducción automática.
+Las ocho invitaciones ES/EN ya están generadas con las voces aprobadas de ElevenLabs y animación de HeyGen. Los retratos, audios fuente y guiones se conservan en `production/speaker-videos/`; los MP4 públicos se registran en `frontend/src/data/speakerVideos.json`. Las ocho charlas están en `speakerTalks.json`. El reproductor incluye controles, transcripción y subtítulos, sin reproducción automática; muestra el texto como alternativa si falla la carga.
+
+### Vídeos de ponentes y charlas
+
+Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. Los 16 vídeos ES/EN se sirven desde `frontend/public/videos/`, con reproducción manual, subtítulos y transcripciones. El idioma sigue el selector global de la web.
+
+Los catálogos son `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakerTalks.json`. Los guiones y las fuentes aprobadas se conservan en `production/`; las versiones de prueba se han retirado. El vídeo público de Alison usa la charla ampliada.
 
 ## Revisión visual sin backend
 
@@ -165,9 +195,3 @@ KelseTS is a fictional brand created by Araceli Fradejas Muñoz solely for educa
 ## Author
 
 **Araceli Fradejas Muñoz**
-
-### Vídeos de ponentes y charlas
-
-Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. Los 16 vídeos ES/EN se sirven desde `frontend/public/videos/`, con reproducción manual, subtítulos y transcripciones. El idioma sigue el selector global de la web.
-
-Los catálogos son `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakerTalks.json`. Los guiones y las fuentes aprobadas se conservan en `production/`; las versiones de prueba se han retirado. El vídeo público de Alison usa la charla ampliada.
