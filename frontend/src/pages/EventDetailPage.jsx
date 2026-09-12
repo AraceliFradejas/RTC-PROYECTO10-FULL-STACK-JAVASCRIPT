@@ -60,6 +60,7 @@ export const EventDetailPage = () => {
     try {
       const response = await apiRequest(`/events/${id}/attendance`, {
         method: 'POST',
+        body: { language },
         token
       });
       setEvent({

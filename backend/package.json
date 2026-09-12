@@ -7,7 +7,8 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "test": "node --test",
-    "seed": "node src/data/seed.js"
+    "seed": "node src/data/seed.js",
+    "email:preview": "node src/emails/preview.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -17,10 +18,13 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.0",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "nodemailer": "^10.0.9"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

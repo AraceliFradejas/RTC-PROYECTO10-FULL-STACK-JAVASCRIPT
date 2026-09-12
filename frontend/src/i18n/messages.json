@@ -1182,5 +1182,17 @@
   "Una mirada desde el aula: fragmentos de las cuatro charlas y reflexiones sobre lo aprendido y cómo llevarlo a la práctica.": {
     "es": "Una mirada desde el aula: fragmentos de las cuatro charlas y reflexiones sobre lo aprendido y cómo llevarlo a la práctica.",
     "en": "A view from the classroom: excerpts from the four talks and reflections on what was learned and how to put it into practice."
+  },
+  "Ponente": {
+    "es": "Ponente",
+    "en": "Speaker"
+  },
+  "Elige quién dará la charla. La persona organizadora se guarda por separado.": {
+    "es": "Elige quién dará la charla. La persona organizadora se guarda por separado.",
+    "en": "Choose who will give the talk. The organizer is saved separately."
+  },
+  "Elige un ponente válido.": {
+    "es": "Elige un ponente válido.",
+    "en": "Choose a valid speaker."
   }
 }

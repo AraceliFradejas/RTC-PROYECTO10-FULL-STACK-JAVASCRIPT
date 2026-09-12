@@ -1,0 +1,254 @@
+[
+  {
+    "seedKey": "leadership",
+    "title": "The Next Inch: Leadership",
+    "date": "2027-02-18T18:00:00.000Z",
+    "location": "Madrid · Espacio KelseTS",
+    "category": "Liderazgo",
+    "poster": "/images/events/event-leadership.webp",
+    "description": "Alison Patrick convierte la presión del último cuarto en una conversación práctica sobre decisiones, responsabilidad y liderazgo compartido. Saldrás con una jugada concreta para activar con tu equipo.",
+    "capacity": 180,
+    "speakerId": "alison-patrick",
+    "translations": {
+      "es": {
+        "title": "The Next Inch: liderazgo",
+        "description": "Alison Patrick convierte la presión del último cuarto en una conversación práctica sobre decisiones, responsabilidad y liderazgo compartido. Saldrás con una jugada concreta para activar con tu equipo."
+      },
+      "en": {
+        "title": "The Next Inch: Leadership",
+        "description": "Alison Patrick turns the pressure of the final quarter into a practical conversation about decisions, responsibility and shared leadership. You’ll leave with a concrete play to put into action with your team."
+      }
+    }
+  },
+  {
+    "seedKey": "comeback",
+    "title": "The Comeback Mindset",
+    "date": "2027-03-11T18:30:00.000Z",
+    "location": "Barcelona · Impact Hub",
+    "category": "Resiliencia",
+    "poster": "/images/events/event-comeback.webp",
+    "description": "Travis Wood explora cómo volver después de un tropiezo sin ignorar lo aprendido. Una experiencia sobre recuperación, constancia y el valor de avanzar paso a paso.",
+    "capacity": 140,
+    "speakerId": "travis-wood",
+    "translations": {
+      "es": {
+        "title": "La mentalidad de la remontada",
+        "description": "Travis Wood explora cómo volver después de un tropiezo sin ignorar lo aprendido. Una experiencia sobre recuperación, constancia y el valor de avanzar paso a paso."
+      },
+      "en": {
+        "title": "The Comeback Mindset",
+        "description": "Travis Wood explores how to come back after a setback without forgetting what you have learned. An experience about recovery, consistency and the value of moving forward one step at a time."
+      }
+    }
+  },
+  {
+    "seedKey": "teamwork",
+    "title": "One Team, One Play",
+    "date": "2027-04-08T17:30:00.000Z",
+    "location": "Valencia · La Marina",
+    "category": "Equipo",
+    "poster": "/images/events/event-teamwork.webp",
+    "description": "Jude Becks propone dinámicas para transformar un grupo de talento individual en un equipo que comparte contexto, confianza y una dirección clara.",
+    "capacity": 200,
+    "speakerId": "jude-becks",
+    "translations": {
+      "es": {
+        "title": "Un equipo, una jugada",
+        "description": "Jude Becks propone dinámicas para transformar un grupo de talento individual en un equipo que comparte contexto, confianza y una dirección clara."
+      },
+      "en": {
+        "title": "One Team, One Play",
+        "description": "Jude Becks offers activities to turn a group of talented individuals into a team with shared context, trust and a clear direction."
+      }
+    }
+  },
+  {
+    "seedKey": "pressure",
+    "title": "Perform Under Pressure",
+    "date": "2027-05-20T18:00:00.000Z",
+    "location": "Bilbao · BAT Tower",
+    "category": "Rendimiento",
+    "poster": "/images/events/event-pressure.webp",
+    "description": "Una sesión para reconocer el ruido, recuperar el foco y actuar cuando el margen es pequeño. Herramientas del entrenamiento deportivo aplicadas al trabajo diario.",
+    "capacity": 120,
+    "speakerId": "travis-wood",
+    "translations": {
+      "es": {
+        "title": "Rendir bajo presión",
+        "description": "Una sesión para reconocer el ruido, recuperar el foco y actuar cuando el margen es pequeño. Herramientas del entrenamiento deportivo aplicadas al trabajo diario."
+      },
+      "en": {
+        "title": "Perform Under Pressure",
+        "description": "A session on recognising distractions, regaining focus and taking action when the margin is small. Tools from sports training applied to everyday work."
+      }
+    }
+  },
+  {
+    "seedKey": "last-quarter",
+    "title": "The Last Quarter",
+    "date": "2027-06-17T18:30:00.000Z",
+    "location": "Sevilla · Cartuja Center",
+    "category": "Rendimiento",
+    "poster": "/images/events/event-last-quarter-portrait-v4.jpg",
+    "description": "Cuando el tiempo aprieta, cada decisión importa. Esta experiencia trabaja prioridades, comunicación y energía colectiva para cerrar proyectos exigentes.",
+    "capacity": 240,
+    "speakerId": "alison-patrick",
+    "translations": {
+      "es": {
+        "title": "El último cuarto",
+        "description": "Cuando el tiempo aprieta, cada decisión importa. Esta experiencia trabaja prioridades, comunicación y energía colectiva para cerrar proyectos exigentes."
+      },
+      "en": {
+        "title": "The Last Quarter",
+        "description": "When time is running out, every decision matters. This experience explores priorities, communication and collective energy to bring demanding projects over the line."
+      }
+    }
+  },
+  {
+    "seedKey": "trust",
+    "title": "Trust Is the Strategy",
+    "date": "2027-09-16T18:00:00.000Z",
+    "location": "Málaga · Muelle Uno",
+    "category": "Equipo",
+    "poster": "/images/events/event-trust.webp",
+    "description": "La confianza no es una consigna: se entrena en cada interacción. Un talk sobre seguridad, conversaciones difíciles y coordinación real.",
+    "capacity": 160,
+    "speakerId": "jude-becks",
+    "translations": {
+      "es": {
+        "title": "La confianza es la estrategia",
+        "description": "La confianza no es una consigna: se entrena en cada interacción. Una charla sobre seguridad, conversaciones difíciles y coordinación real."
+      },
+      "en": {
+        "title": "Trust Is the Strategy",
+        "description": "Trust is more than a slogan: it is built through every interaction. A talk about psychological safety, difficult conversations and effective coordination."
+      }
+    }
+  },
+  {
+    "seedKey": "innovation",
+    "title": "Innovate the Playbook",
+    "date": "2027-10-21T17:30:00.000Z",
+    "location": "Madrid · KelseTS Business School",
+    "category": "Innovación",
+    "poster": "/images/events/event-innovation.webp",
+    "description": "Anna Nasser conecta estrategia deportiva e innovación para ayudar a los equipos a cuestionar su plan sin perder su propósito.",
+    "capacity": 150,
+    "speakerId": "anna-nasser",
+    "translations": {
+      "es": {
+        "title": "Innovar el plan de juego",
+        "description": "Anna Nasser conecta estrategia deportiva e innovación para ayudar a los equipos a cuestionar su plan sin perder su propósito."
+      },
+      "en": {
+        "title": "Innovate the Playbook",
+        "description": "Anna Nasser connects sports strategy and innovation to help teams question their plans without losing sight of their purpose."
+      }
+    }
+  },
+  {
+    "seedKey": "resilience",
+    "title": "Resilience Is a Team Sport",
+    "date": "2027-11-18T18:30:00.000Z",
+    "location": "A Coruña · Palexco",
+    "category": "Resiliencia",
+    "poster": "/images/events/event-resilience.webp",
+    "description": "Una experiencia que desmonta el mito de la resiliencia solitaria y muestra cómo pedir ayuda, repartir el esfuerzo y volver al terreno de juego.",
+    "capacity": 190,
+    "speakerId": "travis-wood",
+    "translations": {
+      "es": {
+        "title": "La resiliencia es un deporte de equipo",
+        "description": "Una experiencia que desmonta el mito de la resiliencia solitaria y muestra cómo pedir ayuda, repartir el esfuerzo y volver al terreno de juego."
+      },
+      "en": {
+        "title": "Resilience Is a Team Sport",
+        "description": "An experience that challenges the myth of solitary resilience and shows how to ask for help, share the effort and get back in the game."
+      }
+    }
+  },
+  {
+    "seedKey": "data-questions",
+    "title": "Questions That Change the Data",
+    "date": "2027-02-25T17:30:00.000Z",
+    "location": "Barcelona · Espacio KelseTS",
+    "category": "Innovación",
+    "poster": "/images/events/event-data-questions-portrait-v4.jpg",
+    "description": "Anna Nasser te invita a convertir una intuición en una pregunta que puedas investigar. Trabajaremos con casos cotidianos para elegir qué medir, detectar sesgos y distinguir una señal útil del ruido.",
+    "capacity": 140,
+    "speakerId": "anna-nasser",
+    "translations": {
+      "es": {
+        "title": "Preguntas que cambian los datos",
+        "description": "Anna Nasser te invita a convertir una intuición en una pregunta que puedas investigar. Trabajaremos con casos cotidianos para elegir qué medir, detectar sesgos y distinguir una señal útil del ruido."
+      },
+      "en": {
+        "title": "Questions That Change the Data",
+        "description": "Anna Nasser helps turn an intuition into a question you can investigate. Everyday cases will help you choose what to measure, spot bias and separate useful signals from noise."
+      }
+    }
+  },
+  {
+    "seedKey": "small-experiments",
+    "title": "Experiment Before You Commit",
+    "date": "2027-07-08T17:30:00.000Z",
+    "location": "Valencia · Espacio KelseTS",
+    "category": "Innovación",
+    "poster": "/images/events/event-small-experiments-portrait-v4.jpg",
+    "description": "Anna Nasser propone un laboratorio de pequeñas pruebas: define una hipótesis, diseña un experimento con IA y acuerda cómo evaluar el resultado. Saldrás con un plan para aprender antes de invertir más recursos.",
+    "capacity": 140,
+    "speakerId": "anna-nasser",
+    "translations": {
+      "es": {
+        "title": "Experimentar antes de apostar",
+        "description": "Anna Nasser propone un laboratorio de pequeñas pruebas: define una hipótesis, diseña un experimento con IA y acuerda cómo evaluar el resultado. Saldrás con un plan para aprender antes de invertir más recursos."
+      },
+      "en": {
+        "title": "Experiment Before You Commit",
+        "description": "Anna Nasser leads a lab of small trials: define a hypothesis, design an AI experiment and agree on how to assess the result. Leave with a plan to learn before committing more resources."
+      }
+    }
+  },
+  {
+    "seedKey": "shared-decisions",
+    "title": "Shared Decisions, Better Progress",
+    "date": "2027-10-07T18:00:00.000Z",
+    "location": "Madrid · Espacio KelseTS",
+    "category": "Liderazgo",
+    "poster": "/images/events/event-shared-decisions-portrait-v4.jpg",
+    "description": "Alison Patrick aborda las decisiones que se atascan entre equipos. Con un caso práctico, aprenderás a repartir responsabilidades, acordar límites y revisar los avances sin multiplicar las reuniones.",
+    "capacity": 140,
+    "speakerId": "alison-patrick",
+    "translations": {
+      "es": {
+        "title": "Decidir juntos, avanzar mejor",
+        "description": "Alison Patrick aborda las decisiones que se atascan entre equipos. Con un caso práctico, aprenderás a repartir responsabilidades, acordar límites y revisar los avances sin multiplicar las reuniones."
+      },
+      "en": {
+        "title": "Shared Decisions, Better Progress",
+        "description": "Alison Patrick explores decisions that get stuck between teams. A practical case helps you share responsibility, agree on boundaries and review progress without multiplying meetings."
+      }
+    }
+  },
+  {
+    "seedKey": "team-agreements",
+    "title": "The Agreements Behind a Team",
+    "date": "2027-12-02T17:30:00.000Z",
+    "location": "Bilbao · Espacio KelseTS",
+    "category": "Equipo",
+    "poster": "/images/events/event-team-agreements-portrait-v4.jpg",
+    "description": "Jude Becks cierra el año con un taller sobre los hábitos que sostienen la confianza. Practicarás cómo dar feedback, reparar un desacuerdo y construir compromisos claros para la siguiente temporada.",
+    "capacity": 140,
+    "speakerId": "jude-becks",
+    "translations": {
+      "es": {
+        "title": "Los acuerdos que hacen equipo",
+        "description": "Jude Becks cierra el año con un taller sobre los hábitos que sostienen la confianza. Practicarás cómo dar feedback, reparar un desacuerdo y construir compromisos claros para la siguiente temporada."
+      },
+      "en": {
+        "title": "The Agreements Behind a Team",
+        "description": "Jude Becks closes the year with a workshop on habits that sustain trust. Practise giving feedback, resolving a disagreement and making clear commitments for the next season."
+      }
+    }
+  }
+]

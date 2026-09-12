@@ -1,6 +1,7 @@
 node_modules/
 .env
 .env.local
+.env_mongoDBatlas-credentials
 .env heygen
 .env.elevenlabs.local
 .env.elevenlabs
@@ -20,3 +21,9 @@ frontend/public/images/hero-carousel/hero-balanced-01-stadium-arrival.webp
 frontend/public/images/hero-carousel/hero-balanced-02-next-generation.webp
 frontend/public/images/hero-carousel/hero-balanced-08-shared-future.webp
 frontend/public/images/hero-carousel/stadium-arrival-clean-local.jpg
+
+# Vistas locales de los correos
+.email-previews/
+
+# Cartel corporativo descartado: se utiliza la versión deportiva
+output/imagegen/alison-liderar-entornos-convulsos.*

@@ -29,3 +29,23 @@ test('eventPayload conserva únicamente los campos editables', () => {
 test('eventPayload permite actualizaciones parciales sin añadir valores ausentes', () => {
   assert.deepEqual(eventPayload({ title: 'Nuevo título' }), { title: 'Nuevo título' });
 });
+
+test('La búsqueda incluye traducciones, ignora acentos y trata la entrada como texto literal', async () => {
+  const { eventQuery } = await import('../src/controllers/eventController.js');
+  const query = eventQuery({ search: 'Málaga (equipo)', category: 'Equipo' });
+  assert.equal(query.category, 'Equipo');
+  assert.ok(query.$or.some(field => field['translations.es.title']));
+  assert.ok(query.$or.some(field => field['translations.en.description']));
+  const expression = Object.values(query.$or[0])[0];
+  const regex = new RegExp(expression.$regex, expression.$options);
+  assert.ok(regex.test('Málaga (equipo)'));
+  assert.ok(regex.test('malaga (equipo)'));
+  assert.ok(!regex.test('Málaga equipo'));
+  assert.deepEqual(eventQuery({ search: { $ne: '' }, category: { $ne: '' } }), {});
+});
+
+test('La API permite asignar un ponente conocido y rechaza identificadores inventados', () => {
+  assert.deepEqual(eventPayload({ speakerId: 'alison-patrick', creator: 'injected' }), { speakerId: 'alison-patrick' });
+  assert.deepEqual(eventPayload({ speakerId: '' }), { speakerId: '' });
+  assert.throws(() => eventPayload({ speakerId: 'unknown' }), { statusCode: 400 });
+});

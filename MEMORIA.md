@@ -136,3 +136,47 @@ El usuario confirma que se destacará expresamente que los vídeos son una recre
 Sección «Así lo vivimos en KelseTS» implementada en la portada entre ponentes y agenda, en ES/EN. Incluye cuatro reflexiones editoriales con acciones prácticas, fragmentos desplegables de los textos existentes y un bloque de presentación con aviso «Próximamente». Configuración: `frontend/src/data/learningStories.json`, campos `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl`. Pendiente recibir/publicar el montaje con el avatar; no se presenta como un testimonio real ya grabado. Se mantiene visible el aviso de recreación pedagógica sin fines lucrativos.
 
 Corrección del usuario: la nueva sección debe titularse «Conoce la experiencia de nuestros alumnos» / «Discover our students’ experience». Se conserva el orden original de la home: agenda, fichas de ponentes con los retratos originales; a continuación la nueva sección de alumnos y el ecosistema. Verificadas visualmente las cuatro fotografías originales en Chrome.
+
+## Backend: agenda inicial en MongoDB Atlas
+
+- Conexión local a la base kelsets_talks; secretos excluidos de Git.
+- Catálogo backend con las 12 charlas aprobadas, tres por ponente, carteles finales y traducciones ES/EN.
+- Modelo Event ampliado con speakerId, translations y seedKey único y opcional.
+- Carga repetible por seedKey: conserva IDs, asistentes y creador. Valida el catálogo antes de escribir y admite --dry-run.
+- Cuenta organizadora inicial talks@kelsets.com; contraseña aleatoria solo en backend/.env, almacenada con hash en MongoDB.
+- Seis pruebas backend correctas. Frontend continúa en modo de muestra; siguiente paso: conectar la web y comprobar autenticación y reservas. Cloudinary pendiente.
+
+## Conexión del frontend y prueba de autenticación
+
+- Frontend local conectado a http://127.0.0.1:3000/api con VITE_PREVIEW_MODE=false; API local en ejecución.
+- Búsqueda backend ampliada a descripciones, categoría y traducciones ES/EN; búsqueda literal con equivalencia de acentos.
+- Navegador: registro con inicio automático, sesión tras recargar, cierre de sesión, contraseña incorrecta y login correcto comprobados. Reserva, recarga y cancelación comprobadas en una charla real.
+- Búsquedas en castellano e inglés y carga de los 12 carteles verificadas. Cuenta temporal retirada; quedan 12 charlas y la cuenta organizadora.
+- Validación: 7 pruebas backend, 40 frontend y compilación correctas.
+- Siguiente paso: configurar Cloudinary para subir carteles y avatares; después probar creación de eventos. Credenciales locales excluidas de Git.
+
+## Correos HTML de confirmación y cancelación
+
+- Plantillas ES/EN con cartel completo, fecha de Madrid, ubicación, texto alternativo y botón para gestionar la reserva autenticándose en la ficha.
+- Integración SMTP con Nodemailer, desactivada hasta configurar proveedor y remitente. El usuario necesita guía para esa configuración. No se ha enviado ningún correo real.
+- El frontend transmite el idioma al confirmar/cancelar. Un fallo de envío no revierte la asistencia.
+- Vistas HTML locales generables con npm run email:preview --prefix backend; revisión móvil sin desbordamiento y cartel cargado.
+- Validación: 10 tests backend, 40 frontend y build correctos. Pendiente: proveedor SMTP, remitente, URL pública y prueba real de entrega.
+
+### Identidad visual del correo
+
+Plantillas de confirmación/cancelación ES/EN ajustadas al sitio: logo original y cabecera blanca, franja roja con degradado, tarjeta con cartel completo a la izquierda y datos a la derecha en escritorio, botón rojo y pie oscuro. En móvil se apilan las columnas. Revisadas en navegador a 390 y 1000 px sin desbordamientos. Diez pruebas backend correctas; pendiente verificar clientes de correo reales al configurar SMTP.
+
+## Cloudinary conectado
+
+Credenciales locales verificadas sin mostrarlas. Prueba real con API temporal y Atlas: registro de usuario de prueba, creación de evento multipart con cartel, descarga pública, subida de avatar y eliminación de evento. Imágenes y usuario temporales retirados al terminar. La API de desarrollo se reinicia para cargar el .env actualizado.
+
+## Selección de ponente al crear charlas
+
+Formulario ES/EN con los cuatro ponentes y opción por confirmar. La API acepta y valida speakerId y MongoDB conserva la asignación, separada del creador. Imagen solicitada para la charla nueva pendiente de conocer su título/tema; no se ha podido acceder al formulario del navegador del usuario.
+
+Cartel generado para «Liderar en entornos convulsos», dirigido a CEOs de entidades financieras. Alison con identidad y vestuario de su perfil en reunión corporativa natural. Archivo final en output/imagegen/alison-liderar-entornos-convulsos.png; prompt documentado junto al archivo. Pendiente que la usuaria lo seleccione en su formulario y elija a Alison; no se ha publicado la charla.
+
+## Cierre: primera charla creada desde la web
+
+La usuaria confirma que ha publicado «Liderar en entornos convulsos» desde el formulario. El cartel final es output/imagegen/cartel-liderar-entornos-convulsos-voleibol.png: equipo femenino durante un tiempo muerto. Las versiones corporativas de Alison quedan excluidas de Git. La charla nueva reside en MongoDB y no se incorpora al catálogo inicial de 12 eventos. El envío de correos sigue desactivado; siguiente paso propuesto: probarlo con Mailtrap y después preparar el despliegue.

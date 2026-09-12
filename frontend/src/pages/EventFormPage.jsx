@@ -5,11 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useToast } from '../context/ToastContext.jsx';
 import { apiRequest } from '../services/api.js';
+import { speakers } from '../data/speakers.js';
 const initial = {
   title: '',
   date: '',
   location: '',
   category: 'Liderazgo',
+  speakerId: '',
   capacity: 30,
   description: ''
 };
@@ -72,6 +74,7 @@ export const EventFormPage = () => {
       <label>{t("Lugar")}<input name="location" value={values.location} onChange={update} placeholder={t("Espacio y barrio")} />{errors.location && <small className="field-error">{t(errors.location)}</small>}</label>
       <label>{t("Categoría")}<select name="category" value={values.category} onChange={update}>{['Liderazgo', 'Resiliencia', 'Equipo', 'Rendimiento', 'Innovación', 'Bienestar', 'Otros'].map(item => <option key={item} value={item}>{t(item)}</option>)}</select></label>
       <label>{t("Aforo")}<input type="number" name="capacity" min="1" max="10000" value={values.capacity} onChange={update} /></label>
+      <label className="field--full">{t("Ponente")}<select name="speakerId" value={values.speakerId} onChange={update}><option value="">{t("Ponente por confirmar")}</option>{speakers.map(speaker => <option key={speaker.id} value={speaker.id}>{speaker.name}</option>)}</select><small>{t("Elige quién dará la charla. La persona organizadora se guarda por separado.")}</small></label>
       <label className="field--full">{t("Descripción")}<textarea name="description" value={values.description} onChange={update} rows="6" placeholder={t("Qué aprenderá el público, quién dará la charla y a quién va dirigida…")} />{errors.description && <small className="field-error">{t(errors.description)}</small>}<small>{values.description.length}/1200</small></label>
       <label className="upload-field field--full"><ImagePlus /><span><strong>{t("Sube un cartel")}</strong><small>{t("JPG, PNG o WebP · máximo 5 MB")}</small></span><input type="file" accept="image/jpeg,image/png,image/webp" onChange={e => setPoster(e.target.files[0])} /><span>{poster?.name || t("Elegir imagen")}</span>{errors.poster && <small className="field-error">{t(errors.poster)}</small>}</label>
       <button className="button button--accent button--wide field--full" disabled={loading}>{loading ? <><span className="mini-spinner" /> {t("Publicando…")}</> : <>{t("Publicar evento")} <Send /></>}</button>

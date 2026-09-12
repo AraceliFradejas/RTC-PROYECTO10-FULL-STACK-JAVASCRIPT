@@ -211,3 +211,15 @@ describe('bilingual learning stories', () => {
     expect(render('es', '/', <LearningStories content={invalid} />)).toContain('Próximamente');
   });
 });
+
+it('offers the four speakers and an unassigned option in the event form in both languages', () => {
+  for (const language of ['es', 'en']) {
+    const html = render(language, '/', <EventFormPage />);
+    expect(html).toContain('name="speakerId"');
+    for (const speaker of speakers) {
+      expect(html).toContain(`value="${speaker.id}"`);
+      expect(html).toContain(speaker.name);
+    }
+    expect(html).toContain(language === 'es' ? 'Ponente por confirmar' : 'Speaker to be announced');
+  }
+});

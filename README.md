@@ -6,29 +6,13 @@ KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y desa
 
 Este repositorio contiene la plataforma full stack con la que KelseTS publica su agenda, gestiona asistentes y permite que nuevos organizadores creen experiencias.
 
-## Para retomar mañana
+## Estado actual
 
-**Estado al cierre:** frontend bilingüe ES/EN terminado para revisión visual; 16 vídeos definitivos integrados (8 invitaciones y 8 fragmentos de charla) en las biografías y en los eventos con ponente asignado. Alison tiene la charla ampliada: **2:09 ES / 1:56 EN**. Las pruebas y versiones sustituidas se han eliminado del proyecto.
+Frontend bilingüe ES/EN con 12 charlas (tres por ponente), carteles definitivos y una sección pedagógica de experiencias. Los vídeos se conservan en `production/media/`; la web utiliza imágenes estáticas con enlaces opcionales a YouTube.
 
-**Validación:** build correcto, 34 tests de frontend y 4 de backend pasando. La integración y limpieza están subidas a `main` en el commit `3c8e3d3`. La conexión real y el despliegue de MongoDB Atlas/Cloudinary quedan pendientes de la siguiente sesión; no confundir la agenda de muestra con datos persistidos.
+La conexión local con MongoDB Atlas está configurada. La agenda se carga desde `backend/src/data/events.json`, con `speakerId`, traducciones ES/EN e identificadores estables `seedKey`. Repetir la carga actualiza el contenido editorial sin duplicar charlas ni sustituir asistentes o creador.
 
-**Abrir la revisión local:**
-
-```bash
-npm run dev --prefix frontend -- --host 127.0.0.1
-```
-
-Mantener `VITE_PREVIEW_MODE=true` en `frontend/.env.local` para revisar sin backend. Abrir [ponentes](http://127.0.0.1:5173/speakers), [Alison](http://127.0.0.1:5173/speakers/alison-patrick) o [su evento](http://127.0.0.1:5173/events/preview-event-leadership). Cada reproductor permite elegir charla o invitación; el selector global cambia vídeo y transcripción a ES/EN. Los vídeos no arrancan automáticamente.
-
-**Siguiente sesión:**
-
-1. Revisar el resultado insertado en biografías y eventos, en móvil y en ambos idiomas. El público del fondo permanece estático; esta limitación fue aceptada. Vigilar los pequeños cambios de ojos/gafas de Alison al animarse antes de regenerar material ya aprobado.
-2. Revisar la configuración existente de la API y conectar MongoDB Atlas y Cloudinary. Configurar secretos solo en los `.env` locales o en el proveedor de despliegue; nunca en Git.
-3. Persistir la relación ponente–evento y las traducciones. Hay cuatro asignaciones confirmadas; las otras cuatro experiencias siguen con ponente por confirmar.
-4. Decidir y configurar el alojamiento definitivo de los vídeos (por ahora son archivos locales del frontend) y actualizar sus catálogos sin perder subtítulos ni versiones ES/EN.
-5. Desactivar el modo de muestra, comprobar autenticación, creación de eventos, subida de carteles y asistencia contra la API real. Después preparar el despliegue y verificarlo.
-
-**Archivos clave:** `frontend/src/components/SpeakerVideos.jsx`, `frontend/src/data/speakerTalks.json`, `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakers.js`. Los MP4 se conservan fuera de la web, en `production/media/`; los guiones, voces y retratos aprobados se conservan en `production/`. [Índice de las charlas](production/talk-excerpts/VIDEOS-TERMINADOS.md) · [Página de revisión](production/talk-excerpts/ver-charlas.html).
+El frontend local ya utiliza la API real. Se han comprobado en navegador el registro, inicio y cierre de sesión, persistencia al recargar, rechazo de contraseña incorrecta, reserva y cancelación de asistencia. La búsqueda consulta también las traducciones ES/EN y admite palabras sin acentos. Cloudinary está conectado y se han comprobado la creación de eventos con cartel y la subida de avatar. El despliegue sigue pendiente. Los secretos se guardan solo en los archivos locales ignorados por Git.
 
 ## La empresa
 
@@ -100,13 +84,11 @@ npm run build    # build de producción del frontend
 npm run seed --prefix backend # cargar la agenda de demostración
 ```
 
-Para cargar las ocho experiencias iniciales, configura `MONGODB_URI` y una contraseña de al menos ocho caracteres en `SEED_PASSWORD`. El proceso puede repetirse sin duplicar los eventos.
+Para cargar las 12 experiencias iniciales, configura `MONGODB_URI` y una contraseña de al menos ocho caracteres en `SEED_PASSWORD`. El proceso puede repetirse sin duplicar los eventos. Para validar el catálogo sin conectar con MongoDB, ejecuta `npm run seed --prefix backend -- --dry-run`. La cuenta organizadora inicial es `talks@kelsets.com`; su contraseña se configura con `SEED_PASSWORD` y no se cambia al repetir la carga.
 
 ## Ponentes
 
-Los cuatro perfiles ficticios se definen en `frontend/src/data/speakers.js`, con biografías en español e inglés y rutas `/speakers/:slug`. Las asignaciones editoriales confirmadas son Alison Patrick (liderazgo), Jude Becks (equipo), Anna Nasser (innovación) y Travis Wood (remontada). Las otras cuatro experiencias muestran «Ponente por confirmar».
-
-La vista previa enlaza eventos mediante `speakerId`. Mientras se prepara su persistencia en el backend, los registros editoriales de la API se reconocen por su título y descripción originales; no se asignan ponentes automáticamente por categoría ni se confunden con la persona organizadora.
+Los cuatro perfiles ficticios se definen en `frontend/src/data/speakers.js`, con biografías ES/EN. Cada ponente tiene tres charlas en 2027. MongoDB conserva la relación mediante `speakerId`, que coincide con el identificador de su perfil; la persona organizadora se guarda por separado en `creator`.
 
 ### Equipo docente e invitaciones
 
@@ -122,13 +104,13 @@ Los catálogos son `frontend/src/data/speakerVideos.json` y `frontend/src/data/s
 
 ## Revisión visual sin backend
 
-Para revisar la agenda y sus ocho fichas en local, crea `frontend/.env.local` con `VITE_PREVIEW_MODE=true` y ejecuta `npm run dev --prefix frontend`. La agenda de muestra permite buscar en el idioma elegido, filtrar categorías y ordenar eventos. No confirma reservas ni escribe datos. Solo se activa durante el desarrollo; la compilación de producción utiliza siempre la API. Para conectar el backend, elimina esta opción o cámbiala a `false`.
+Para revisar la agenda y sus 12 fichas en local, crea `frontend/.env.local` con `VITE_PREVIEW_MODE=true` y ejecuta `npm run dev --prefix frontend`. La agenda de muestra permite buscar en el idioma elegido, filtrar categorías y ordenar eventos. No confirma reservas ni escribe datos. Solo se activa durante el desarrollo; la compilación de producción utiliza siempre la API. Para conectar el backend, elimina esta opción o cámbiala a `false`.
 
 ## Idiomas
 
 El selector ES/EN cambia el idioma sin recargar la página ni borrar los formularios. Español es el idioma inicial; la selección se guarda en el navegador cuando su almacenamiento está disponible. También se actualizan el atributo `lang`, la descripción de la página, las fechas, los textos accesibles y los avisos.
 
-Los textos están centralizados en `frontend/src/i18n/messages.json`. Las ocho experiencias editoriales tienen versiones en `frontend/src/i18n/events.json`. Los nombres propios se conservan. El contenido nuevo escrito por organizadores se muestra en su idioma original, salvo que el registro aporte `translations.es` o `translations.en`; la edición y persistencia de esas traducciones se abordará con el backend.
+Los textos están centralizados en `frontend/src/i18n/messages.json`. Las 12 experiencias editoriales tienen versiones en `frontend/src/i18n/events.json` y el catálogo inicial del backend conserva esas mismas traducciones. Los nombres propios se conservan. El contenido nuevo escrito por organizadores se muestra en su idioma original, salvo que el registro aporte `translations.es` o `translations.en`; la agenda inicial ya persiste esas traducciones en MongoDB; su edición desde formularios queda pendiente.
 
 ## API
 
@@ -205,3 +187,19 @@ Añade la URL HTTPS de cada vídeo en el campo `youtubeUrl` del idioma correspon
 ### Conoce la experiencia de nuestros alumnos
 
 La portada incluye `LearningStories` después de las fichas originales de los ponentes, en español e inglés. Las cuatro reflexiones y los enlaces de presentación se editan en `frontend/src/data/learningStories.json`. Añadir la URL del montaje a `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl` para cada idioma; mientras falte, se muestra «Próximamente» y se permite explorar los aprendizajes. Los fragmentos y sus posibles enlaces de YouTube se obtienen de `speakerTalks.json`. No hay reproducción ni conexión externa antes de pulsar. El aviso identifica expresamente la recreación pedagógica para el máster.
+
+## Correos de asistencia
+
+La API prepara un correo HTML y una alternativa de texto al confirmar o cancelar asistencia. Usa el idioma enviado por el frontend (ES/EN), el título traducido, el cartel y la fecha en Europe/Madrid. El botón abre la ficha; cancelar requiere iniciar sesión y pulsar el botón de asistencia. Abrir un enlace nunca modifica una reserva.
+
+Generar cuatro vistas locales sin enviar mensajes:
+
+```bash
+npm run email:preview --prefix backend
+```
+
+Los archivos se guardan en backend/.email-previews/ (ignorado por Git). Sus enlaces son de muestra.
+
+El envío está desactivado por defecto. Para activarlo, configurar SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, MAIL_FROM y PUBLIC_APP_URL en backend/.env. Utilizar un remitente autorizado por el proveedor y una URL pública de la web para que los enlaces y carteles funcionen fuera del ordenador. Activar MAIL_ENABLED=true solo después. Configuración SMTP mediante [Nodemailer](https://nodemailer.com/smtp).
+
+La respuesta de asistencia incluye email.status: disabled, unconfigured, sent o failed. sent indica aceptación del servidor SMTP, no recepción garantizada. Los errores de correo no revierten una reserva y no se reintentan automáticamente; la configuración y entrega real todavía están pendientes.
