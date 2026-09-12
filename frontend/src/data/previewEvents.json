@@ -68,7 +68,8 @@
       "_id": "preview-organizer",
       "name": "KelseTS Talks",
       "avatar": ""
-    }
+    },
+    "speakerId": "travis-wood"
   },
   {
     "_id": "preview-event-last-quarter",
@@ -76,7 +77,7 @@
     "date": "2027-06-17T18:30:00.000Z",
     "location": "Sevilla · Cartuja Center",
     "category": "Rendimiento",
-    "poster": "/images/events/event-last-quarter.webp",
+    "poster": "/images/events/event-last-quarter-portrait-v4.jpg",
     "description": "Cuando el tiempo aprieta, cada decisión importa. Esta experiencia trabaja prioridades, comunicación y energía colectiva para cerrar proyectos exigentes.",
     "capacity": 240,
     "createdAt": "2026-09-05T00:00:00.000Z",
@@ -85,7 +86,8 @@
       "_id": "preview-organizer",
       "name": "KelseTS Talks",
       "avatar": ""
-    }
+    },
+    "speakerId": "alison-patrick"
   },
   {
     "_id": "preview-event-trust",
@@ -102,7 +104,8 @@
       "_id": "preview-organizer",
       "name": "KelseTS Talks",
       "avatar": ""
-    }
+    },
+    "speakerId": "jude-becks"
   },
   {
     "_id": "preview-event-innovation",
@@ -137,6 +140,79 @@
       "_id": "preview-organizer",
       "name": "KelseTS Talks",
       "avatar": ""
-    }
+    },
+    "speakerId": "travis-wood"
+  },
+  {
+    "_id": "preview-event-data-questions",
+    "title": "Questions That Change the Data",
+    "date": "2027-02-25T17:30:00.000Z",
+    "location": "Barcelona · Espacio KelseTS",
+    "category": "Innovación",
+    "poster": "/images/events/event-data-questions-portrait-v4.jpg",
+    "description": "Anna Nasser te invita a convertir una intuición en una pregunta que puedas investigar. Trabajaremos con casos cotidianos para elegir qué medir, detectar sesgos y distinguir una señal útil del ruido.",
+    "capacity": 140,
+    "createdAt": "2026-09-09T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "anna-nasser"
+  },
+  {
+    "_id": "preview-event-small-experiments",
+    "title": "Experiment Before You Commit",
+    "date": "2027-07-08T17:30:00.000Z",
+    "location": "Valencia · Espacio KelseTS",
+    "category": "Innovación",
+    "poster": "/images/events/event-small-experiments-portrait-v4.jpg",
+    "description": "Anna Nasser propone un laboratorio de pequeñas pruebas: define una hipótesis, diseña un experimento con IA y acuerda cómo evaluar el resultado. Saldrás con un plan para aprender antes de invertir más recursos.",
+    "capacity": 140,
+    "createdAt": "2026-09-10T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "anna-nasser"
+  },
+  {
+    "_id": "preview-event-shared-decisions",
+    "title": "Shared Decisions, Better Progress",
+    "date": "2027-10-07T18:00:00.000Z",
+    "location": "Madrid · Espacio KelseTS",
+    "category": "Liderazgo",
+    "poster": "/images/events/event-shared-decisions-portrait-v4.jpg",
+    "description": "Alison Patrick aborda las decisiones que se atascan entre equipos. Con un caso práctico, aprenderás a repartir responsabilidades, acordar límites y revisar los avances sin multiplicar las reuniones.",
+    "capacity": 140,
+    "createdAt": "2026-09-11T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "alison-patrick"
+  },
+  {
+    "_id": "preview-event-team-agreements",
+    "title": "The Agreements Behind a Team",
+    "date": "2027-12-02T17:30:00.000Z",
+    "location": "Bilbao · Espacio KelseTS",
+    "category": "Equipo",
+    "poster": "/images/events/event-team-agreements-portrait-v4.jpg",
+    "description": "Jude Becks cierra el año con un taller sobre los hábitos que sostienen la confianza. Practicarás cómo dar feedback, reparar un desacuerdo y construir compromisos claros para la siguiente temporada.",
+    "capacity": 140,
+    "createdAt": "2026-09-12T00:00:00.000Z",
+    "attendees": [],
+    "creator": {
+      "_id": "preview-organizer",
+      "name": "KelseTS Talks",
+      "avatar": ""
+    },
+    "speakerId": "jude-becks"
   }
 ]

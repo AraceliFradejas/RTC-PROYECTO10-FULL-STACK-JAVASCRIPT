@@ -1,0 +1,24 @@
+{
+  "presentation": {
+    "es": { "youtubeUrl": "" },
+    "en": { "youtubeUrl": "" }
+  },
+  "reflections": {
+    "alison-patrick": {
+      "es": { "title": "Liderar empieza por escuchar", "text": "Cuando cada persona entiende qué puede decidir y dónde necesita apoyo, el equipo avanza con más claridad. La charla invita a revisar cómo repartimos la responsabilidad antes de pedir más esfuerzo.", "action": "Acuerda una decisión que tu equipo pueda tomar sin esperar otra reunión." },
+      "en": { "title": "Leadership starts with listening", "text": "When everyone understands what they can decide and where they need support, the team moves forward with greater clarity. The talk invites us to review how we share responsibility before asking for more effort.", "action": "Agree on one decision your team can make without waiting for another meeting." }
+    },
+    "jude-becks": {
+      "es": { "title": "El talento necesita confianza", "text": "Una buena jugada depende de lo que ocurre entre las personas. Los acuerdos cotidianos, la escucha y la constancia convierten las habilidades individuales en una capacidad compartida.", "action": "Elige un acuerdo pequeño que ayude a colaborar mejor y revisadlo juntos." },
+      "en": { "title": "Talent needs trust", "text": "A good play depends on what happens between people. Everyday agreements, listening and consistency turn individual skills into shared capability.", "action": "Choose one small agreement that helps you collaborate and review it together." }
+    },
+    "anna-nasser": {
+      "es": { "title": "Innovar es preguntar mejor", "text": "Antes de buscar una respuesta en la tecnología, necesitamos entender el problema. La propuesta de Anna combina curiosidad, datos y pequeñas pruebas para aprender con criterio.", "action": "Convierte una intuición en una pregunta y diseña una prueba sencilla para explorarla." },
+      "en": { "title": "Innovation means asking better questions", "text": "Before looking to technology for an answer, we need to understand the problem. Anna brings together curiosity, data and small experiments to help us learn thoughtfully.", "action": "Turn an intuition into a question and design a simple experiment to explore it." }
+    },
+    "travis-wood": {
+      "es": { "title": "Volver también se entrena", "text": "Un contratiempo puede abrir una conversación útil. Revisar lo ocurrido sin etiquetas, pedir apoyo y preparar el siguiente intento ayuda a recuperar la confianza del equipo.", "action": "Después de una dificultad, identifica qué podéis practicar de otra manera." },
+      "en": { "title": "A comeback takes practice too", "text": "A setback can open a useful conversation. Reviewing what happened without labels, asking for support and preparing the next attempt helps rebuild the team’s confidence.", "action": "After a setback, identify what you could practise differently." }
+    }
+  }
+}

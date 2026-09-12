@@ -1,3 +1,4 @@
+import { LearningStories } from '../components/LearningStories.jsx';
 import { PreviewNotice } from '../components/PreviewNotice.jsx';
 import { useLanguage } from "../context/LanguageContext.jsx";
 import { ArrowRight, Compass, Heart, Sparkles } from 'lucide-react';
@@ -47,6 +48,7 @@ export const HomePage = () => {
       {loading ? <Loader label={t("Buscando las próximas experiencias…")} /> : error ? <EmptyState title={t("No podemos cargar la agenda")} message={error} /> : events.length ? <div className="card-grid">{events.slice(0, 3).map((event, index) => <EventCard key={event._id} event={event} index={index} />)}</div> : <EmptyState />}
     </section>
     <Speakers />
+    <LearningStories />
     <Ecosystem />
   </>;
 };

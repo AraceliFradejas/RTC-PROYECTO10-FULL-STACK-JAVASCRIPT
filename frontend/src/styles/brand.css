@@ -223,14 +223,16 @@ em { font-family: inherit; font-style: normal; font-weight: inherit; }
 .event-card__link { display: flex; flex-direction: column; height: 100%; padding: 10px 10px 0; }
 .event-card__visual { position: relative; overflow: hidden; display: block; flex: none; height: 300px; border-radius: 18px; isolation: isolate; background: #211d26; }
 .event-card__visual img { width: 100%; height: 100%; object-fit: cover; object-position: center 32%; transition: transform .6s cubic-bezier(.2,.7,.3,1); }
-.event-card__visual::after { content: ''; position: absolute; z-index: 0; inset: 45% 0 0; background: linear-gradient(transparent, #1511199c); pointer-events: none; }
+
 .event-card__visual--empty { background: linear-gradient(135deg, #221c2b, var(--card-accent)); }
 .event-card__visual > .event-card__monogram { position: absolute; top: 22%; left: 12%; font: 800 7rem/1 'Poppins', sans-serif; color: #ffffff30; }
-.event-card__date { position: absolute; z-index: 1; top: 16px; right: 16px; width: 68px; padding: 11px 8px 9px; display: flex; align-items: center; flex-direction: column; border: 1px solid #ffffffb3; border-radius: 14px; background: #fffffff2; color: #19191d; box-shadow: 0 6px 18px #00000014; }
-.event-card__day { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; line-height: 1.1; letter-spacing: -.05em; }
-.event-card__month { font-size: .875rem; font-weight: 700; line-height: 1.6; text-transform: uppercase; color: var(--card-accent); }
-.event-card__year { font-size: .75rem; line-height: 1.5; color: #66616c; }
-.event-card__visual > .event-card__category { position: absolute; z-index: 1; bottom: 16px; left: 16px; max-width: calc(100% - 32px); padding: 8px 14px; border-radius: 999px; background: var(--card-tint); color: var(--card-accent); font: 600 .875rem/1.35 'Outfit', sans-serif; letter-spacing: .02em; }
+.event-card__metadata { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 14px; }
+.event-card__date { display: inline-flex; align-items: baseline; gap: 5px; color: #332b38; font-size: .875rem; font-weight: 600; }
+.event-card__day { font-weight: 800; font-size: 1.1rem; }
+.event-card__month { text-transform: uppercase; color: var(--card-accent); }
+.event-card__year { color: #746c78; font-weight: 400; }
+.event-card__category { padding: 5px 11px; border-radius: 999px; background: var(--card-tint); color: var(--card-accent); font-size: .8rem; font-weight: 600; }
+
 .event-card__body { display: flex; flex-direction: column; flex: 1; padding: 23px 16px 18px; }
 .event-card__location { display: flex; align-items: flex-start; gap: 7px; margin: 0 0 12px; color: #746c78; font-size: .875rem; line-height: 1.5; }
 .event-card__location svg { flex: none; width: 16px; height: 20px; color: var(--card-accent); }
@@ -289,7 +291,7 @@ em { font-family: inherit; font-style: normal; font-weight: inherit; }
 .speaker-profile__role { font-size: 1.1rem; font-weight: 600; color: var(--coral); }
 .speaker-profile__lead { font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.65; color: #665c6a; }
 .speaker-profile__intro .button { margin-top: 14px; }
-.speaker-profile__body { display: grid; grid-template-columns: 1.2fr .8fr; gap: 75px; margin-top: 80px; }
+.speaker-profile__body { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; margin-top: 48px; }
 .speaker-profile__body h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
 .speaker-profile__body p:not(.kicker) { font-size: 1.1rem; line-height: 1.85; color: #625a67; }
 .speaker-profile__body .speaker-profile__note { padding-top: 20px; border-top: 1px solid var(--line); font-size: .875rem !important; }
@@ -318,8 +320,8 @@ em { font-family: inherit; font-style: normal; font-weight: inherit; }
 .speaker-profile__appointments li + li { margin-top: 9px; }
 .speaker-card__faculty { display: block; margin-top: 9px; color: #ffdc76; font-size: .875rem; }
 
-.speaker-profile__invitation { margin-top: 70px; }
-.speaker-invitation { padding: clamp(26px, 4vw, 48px); background: #211b25; color: white; border-radius: 24px; }
+.speaker-profile__invitation { margin-top: 40px; }
+.speaker-invitation { padding: clamp(20px, 2.5vw, 30px); background: #211b25; color: white; border-radius: 24px; }
 .speaker-invitation .kicker { color: #ffdc76; }
 .speaker-invitation h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
 .speaker-invitation__text { max-width: 850px; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.75; margin-bottom: 0; color: #f0e6ed; }
@@ -339,3 +341,96 @@ em { font-family: inherit; font-style: normal; font-weight: inherit; }
 .speaker-talk video { aspect-ratio: 16 / 9; max-height: none; }
 .detail-videos { margin-top: 45px; margin-bottom: 70px; }
 @media (max-width: 620px) { .speaker-talk__heading { display: block; } .speaker-talk__heading > span { display: block; margin-bottom: 14px; } .speaker-videos__selector button { padding: 10px 15px; font-size: .875rem; } }
+
+/* Compact media cards shared by speaker profiles and event details. */
+.speaker-media { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: clamp(22px, 3vw, 38px); }
+.speaker-media__content { min-width: 0; }
+.speaker-media__content .kicker { margin-top: 0; }
+.speaker-media__content h2 { font-size: clamp(1.5rem, 2.4vw, 2.1rem); line-height: 1.2; margin-top: 0; }
+.speaker-talk__heading { display: block; }
+.speaker-talk__heading > span { display: block; margin-bottom: 14px; }
+.speaker-talk__intro { color: #f0e6ed; margin: 0 0 16px; line-height: 1.65; }
+.speaker-talk__topics { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0 0 18px; }
+.speaker-talk__topics li { border: 1px solid #62536b; border-radius: 999px; padding: 6px 11px; color: #f0e6ed; font-size: .8rem; }
+.speaker-talk__note { margin-bottom: 16px; line-height: 1.5; }
+.speaker-media__prompt { font-weight: 600; color: #ffdc76; margin: 0; }
+.speaker-media__content details { margin-top: 12px; }
+.speaker-preview { position: relative; display: block; width: 100%; padding: 0; border: 0; overflow: hidden; border-radius: 16px; color: white; cursor: pointer; text-decoration: none; isolation: isolate; font: inherit; text-align: left; background: #17121b; }
+.speaker-preview img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.speaker-preview__overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 12px; padding: 18px; background: linear-gradient(180deg, transparent 55%, rgba(18, 12, 22, .85) 100%); }
+.speaker-preview__icon { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: #ffdc76; color: #211b25; font-size: 22px; }
+.speaker-preview__action { align-self: flex-end; padding-bottom: 8px; color: #ffdc76; font-size: .8rem; }
+.speaker-preview:hover .speaker-preview__action { text-decoration: underline; text-underline-offset: 4px; }
+.speaker-preview:focus-visible { outline: 3px solid #ffdc76; outline-offset: 5px; }
+.speaker-profile__events.section { padding-top: 48px; padding-bottom: 40px; }
+@media (max-width: 760px) {
+  .speaker-media { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .speaker-profile__invitation { margin-top: 30px; }
+  .speaker-profile__events.section { padding-top: 36px; }
+}
+
+/* The agenda uses full-width rows so every talk has room for its details. */
+.event-agenda { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.event-card--horizontal .event-card__link { display: grid; grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr); gap: 12px; padding: 12px; }
+.event-card--horizontal .event-card__visual { height: 100%; min-height: 250px; }
+.event-card--horizontal .event-card__body { min-width: 0; padding: 18px 20px; }
+.event-card--horizontal .event-card__description { display: block; overflow: visible; margin-bottom: 18px; }
+.event-card--horizontal .event-card__body h3 { font-size: clamp(1.35rem, 2.3vw, 1.85rem); }
+.preview-notice { padding: 10px 16px; margin-bottom: 20px; font-size: .875rem; }
+@media (max-width: 620px) {
+  .event-card--horizontal .event-card__link { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .event-card--horizontal .event-card__visual { height: 230px; min-height: 0; }
+  .event-card--horizontal .event-card__body { padding: 20px 10px 10px; }
+}
+
+/* Invitation portraits retain their own proportions; controls sit below the photo. */
+.speaker-invitation--personal .speaker-preview img { aspect-ratio: auto; height: auto; object-fit: contain; }
+.speaker-invitation--personal .speaker-preview__overlay { position: static; align-items: center; padding: 12px 16px; background: #302637; }
+.speaker-invitation--personal .speaker-preview__action { align-self: center; padding-bottom: 0; }
+
+/* All agenda posters share the original 4:5 format, without cropping. */
+.event-card .event-card__visual { height: auto; min-height: 0; aspect-ratio: 4 / 5; }
+.event-card .event-card__visual img { object-fit: contain; object-position: center; }
+.event-card--horizontal .event-card__link { grid-template-columns: minmax(220px, 290px) minmax(0, 1fr); align-items: start; }
+@media (max-width: 620px) {
+  .event-card--horizontal .event-card__link { grid-template-columns: minmax(0, 1fr); }
+}
+
+.learning-stories { background: #f7f3f7; scroll-margin-top: 90px; }
+.learning-stories__heading { max-width: 760px; margin-bottom: 28px; }
+.learning-stories__heading h2 { font-size: clamp(2rem, 4vw, 3.3rem); margin-bottom: 14px; }
+.learning-stories__heading > p:last-child { color: #655b6b; font-size: 1.15rem; line-height: 1.6; }
+.learning-stories__intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: stretch; margin-bottom: 32px; }
+.learning-stories__presentation { padding: clamp(24px, 3vw, 38px); border-radius: 22px; color: #fff; background: linear-gradient(125deg, #211b25, #49364e); }
+.learning-stories__badge { display: inline-block; color: #ffdc76; font-size: .875rem; margin-bottom: 20px; }
+.learning-stories__presentation h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
+.learning-stories__presentation p { color: #e7dfe8; line-height: 1.7; }
+.learning-stories__presentation .text-link { color: #ffdc76; }
+.learning-stories__context { padding: 22px 0; }
+.learning-stories__context > svg { width: 30px; height: 30px; color: #713daf; margin-bottom: 12px; }
+.learning-stories__context h3 { font-size: 1.4rem; margin-bottom: 12px; }
+.learning-stories__context p { color: #655b6b; line-height: 1.65; }
+.learning-stories__context .learning-stories__notice { font-size: .85rem; border-top: 1px solid #dcd0df; padding-top: 14px; margin-top: 18px; }
+.learning-stories__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; scroll-margin-top: 100px; }
+.learning-story { overflow: hidden; background: #fff; border: 1px solid #e6dfe8; border-radius: 22px; }
+.learning-story__image { display: block; width: 100%; height: auto; }
+.learning-story__body { padding: clamp(22px, 2.5vw, 30px); }
+.learning-story__speaker { display: flex; gap: 12px; align-items: baseline; color: #713daf; font-weight: 600; font-size: .9rem; }
+.learning-story__speaker > span { color: #9984a4; }
+.learning-story h3 { font-size: clamp(1.4rem, 2.3vw, 1.9rem); line-height: 1.25; margin-bottom: 14px; }
+.learning-story__body > p:not(.learning-story__speaker), .learning-story details p { color: #655b6b; line-height: 1.7; }
+.learning-story__action { padding: 16px 18px; border-left: 3px solid #d3b37b; background: #fbf7ee; border-radius: 0 12px 12px 0; margin: 20px 0; }
+.learning-story__action strong { color: #6c4e1a; font-size: .875rem; }
+.learning-story__action p { margin: 8px 0 0; line-height: 1.6; color: #5d5363; }
+.learning-story summary { cursor: pointer; color: #49364e; font-weight: 600; line-height: 1.5; }
+.learning-story details h4 { margin: 18px 0 12px; }
+.learning-story__links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+.learning-story__links .text-link { font-size: .875rem; }
+.learning-stories__footer { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-top: 32px; }
+.learning-stories__footer p { margin: 0; font-size: 1.1rem; color: #5d5363; }
+.learning-stories :is(a, summary):focus-visible { outline: 3px solid #bc202c; outline-offset: 5px; border-radius: 4px; }
+@media (max-width: 760px) {
+  .learning-stories__intro, .learning-stories__grid { grid-template-columns: minmax(0, 1fr); }
+  .learning-stories__intro { gap: 8px; }
+  .learning-stories__context { padding: 18px 0 0; }
+}

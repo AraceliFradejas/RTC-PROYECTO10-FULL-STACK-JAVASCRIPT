@@ -115,3 +115,24 @@ The product combines a React SPA with an Express/MongoDB REST API. It supports J
 The brand draws on the broad themes of incremental progress and collective effort found in the coach's speech from *Any Given Sunday*. All copy, visual identity and product content are original.
 
 **Author: Araceli Fradejas Muñoz**
+
+
+## Punto de continuación · frontend y agenda (12 de septiembre de 2026)
+
+- Agenda de muestra: 12 charlas en 2027, tres por ponente, en `frontend/src/data/previewEvents.json`; traducciones en `frontend/src/i18n/events.json`.
+- Tarjetas horizontales con fecha y categoría junto al texto. Los 12 carteles tienen 1200 × 1500 píxeles (4:5) y se muestran completos.
+- Alison: baloncesto, remo y atletismo; imágenes variadas, mujeres y equipos protagonistas.
+- Charlas e invitaciones: imágenes propias, naturales y diferentes de la ficha principal. Invitaciones con el mismo vestuario del perfil, proporción original y controles debajo.
+- Enlaces `youtubeUrl` pendientes. Vídeos conservados en `production/media/`, fuera de la compilación pública.
+- Limpieza de imágenes públicas descartadas registrada en `production/event-covers/cleanup.json`. Fuentes de los vídeos conservadas.
+- Siguiente trabajo, cuando el usuario lo solicite: conectar la agenda al backend, trasladar las 12 charlas y sus asociaciones con los ponentes, y habilitar reservas. El seed actual sigue teniendo ocho eventos; solo se actualizó la ruta de la portada sustituida. No ejecutar el seed ni modificar una base de datos como parte de esta limpieza.
+
+### Enfoque de los vídeos · aprendizaje
+
+El selector de las charlas ahora dice «Así aprendemos» y la llamada a la acción «Descubre cómo aprendieron nuestros alumnos con nuestros ponentes», con traducción inglesa. Se mantiene el aviso de ficción. Propuesta del usuario para más adelante: combinar las charlas existentes con su propio avatar de Synthesia comentando los aprendizajes de los cuatro ponentes y publicar el resultado en YouTube. Pendientes guion, montaje y enlaces; no se han generado ni publicado esos vídeos. Presentar el montaje como recreación del proyecto y la opinión como valoración personal, sin atribuir asistencia o grabación presencial que no haya ocurrido.
+
+El usuario confirma que se destacará expresamente que los vídeos son una recreación para un proyecto del máster, sin fines lucrativos y exclusivamente pedagógica. Aviso aplicado a las cuatro charlas, en español e inglés; mantenerlo también en el futuro montaje y su descripción de YouTube.
+
+Sección «Así lo vivimos en KelseTS» implementada en la portada entre ponentes y agenda, en ES/EN. Incluye cuatro reflexiones editoriales con acciones prácticas, fragmentos desplegables de los textos existentes y un bloque de presentación con aviso «Próximamente». Configuración: `frontend/src/data/learningStories.json`, campos `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl`. Pendiente recibir/publicar el montaje con el avatar; no se presenta como un testimonio real ya grabado. Se mantiene visible el aviso de recreación pedagógica sin fines lucrativos.
+
+Corrección del usuario: la nueva sección debe titularse «Conoce la experiencia de nuestros alumnos» / «Discover our students’ experience». Se conserva el orden original de la home: agenda, fichas de ponentes con los retratos originales; a continuación la nueva sección de alumnos y el ecosistema. Verificadas visualmente las cuatro fotografías originales en Chrome.

@@ -1,0 +1,33 @@
+{
+  "generator": "Built-in image_gen",
+  "images": [
+    {
+      "slug": "alison-patrick",
+      "reference": "/Users/LDAAFM/Documents/ProyectosMasters/ThePower/MODULO 6  BACKEND TO FRONTEND WEB DESIGN/RTC PROYECTO10 FULL STACK JAVASCRIPT/production/talk-excerpts/alison-patrick/alison-school-closeup-v9.png",
+      "prompt": "Use case: identity-preserve. Edit this reference into a new candid editorial photograph for a KelseTS School talk cover. Preserve this fictional speaker's recognizable facial identity, age, hairstyle, skin tone and outfit, but completely change the frontal posed composition to the scene described. Landscape 16:9. Warm oak lecture hall, burgundy seating and soft amber light consistent with reference, natural skin texture, believable anatomy, documentary photography. The speaker must NOT look at the camera. Medium-wide framing with breathing room above the head and visible hands. No text, logos, diagram overlays or watermark. Not a centered headshot, not a symmetrical staged portrait. Alison: clearly side-on profile facing right, standing on the left-middle of frame and answering a student in the front row to the right. Preserve her dark glasses. One relaxed open hand at waist level as she explains, thoughtful small smile, audience in soft focus, shoot from an aisle slightly behind the front row. Do not recreate the frontal portrait.",
+      "source": "/Users/LDAAFM/.codex/generated_images/01a09563-d373-7df1-8746-c132a7cafb17/exec-a1e444ad-d321-48c1-8ce1-d57f84f83510.png",
+      "destination": "frontend/public/images/video-posters/talks/alison-patrick-candid-v1.jpg"
+    },
+    {
+      "slug": "jude-becks",
+      "reference": "/Users/LDAAFM/Documents/ProyectosMasters/ThePower/MODULO 6  BACKEND TO FRONTEND WEB DESIGN/RTC PROYECTO10 FULL STACK JAVASCRIPT/production/talk-excerpts/jude-becks/portrait-talk-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this reference into a new candid editorial photograph for a KelseTS School talk cover. Preserve this fictional speaker's recognizable facial identity, age, hairstyle, skin tone and outfit, but completely change the frontal posed composition to the scene described. Landscape 16:9. Warm oak lecture hall, burgundy seating and soft amber light consistent with reference, natural skin texture, believable anatomy, documentary photography. The speaker must NOT look at the camera. Medium-wide framing with breathing room above the head and visible hands. No text, logos, diagram overlays or watermark. Not a centered headshot, not a symmetrical staged portrait. Jude: seated informally on the edge of a low stage, three-quarter view facing left, leaning forward slightly while listening to an adult attendee's question. Forearms resting naturally on knees, one hand loosely holding a wireless microphone. Candid attentive expression with slight smile, audience shoulder softly blurred at lower left. Camera at seated eye level. Different from a standing presenter or pointing gesture.",
+      "source": "/Users/LDAAFM/.codex/generated_images/01a09563-d373-7df1-8746-c132a7cafb17/exec-ebbc7494-af4e-4a10-9bd7-2d7f12f3634e.png",
+      "destination": "frontend/public/images/video-posters/talks/jude-becks-candid-v1.jpg"
+    },
+    {
+      "slug": "anna-nasser",
+      "reference": "/Users/LDAAFM/Documents/ProyectosMasters/ThePower/MODULO 6  BACKEND TO FRONTEND WEB DESIGN/RTC PROYECTO10 FULL STACK JAVASCRIPT/production/talk-excerpts/anna-nasser/portrait-talk-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this reference into a new candid editorial photograph for a KelseTS School talk cover. Preserve this fictional speaker's recognizable facial identity, age, hairstyle, skin tone and outfit, but completely change the frontal posed composition to the scene described. Landscape 16:9. Warm oak lecture hall, burgundy seating and soft amber light consistent with reference, natural skin texture, believable anatomy, documentary photography. The speaker must NOT look at the camera. Medium-wide framing with breathing room above the head and visible hands. No text, logos, diagram overlays or watermark. Not a centered headshot, not a symmetrical staged portrait. Anna: standing beside a freestanding whiteboard with a few abstract dots and lines but no writing. Side three-quarter view facing right, body turned toward the board while she glances toward students just outside frame. One hand holding a marker near the board, other relaxed. Frame her at right-middle, with board occupying left side so she turns her head back naturally toward the room. Capture a real teaching moment from a lateral position, not a camera-facing smile.",
+      "source": "/Users/LDAAFM/.codex/generated_images/01a09563-d373-7df1-8746-c132a7cafb17/exec-af570eb7-7617-49be-b99d-aa2963dcd9fa.png",
+      "destination": "frontend/public/images/video-posters/talks/anna-nasser-candid-v1.jpg"
+    },
+    {
+      "slug": "travis-wood",
+      "reference": "/Users/LDAAFM/Documents/ProyectosMasters/ThePower/MODULO 6  BACKEND TO FRONTEND WEB DESIGN/RTC PROYECTO10 FULL STACK JAVASCRIPT/production/talk-excerpts/travis-wood/portrait-talk-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this reference into a new candid editorial photograph for a KelseTS School talk cover. Preserve this fictional speaker's recognizable facial identity, age, hairstyle, skin tone and outfit, but completely change the frontal posed composition to the scene described. Landscape 16:9. Warm oak lecture hall, burgundy seating and soft amber light consistent with reference, natural skin texture, believable anatomy, documentary photography. The speaker must NOT look at the camera. Medium-wide framing with breathing room above the head and visible hands. No text, logos, diagram overlays or watermark. Not a centered headshot, not a symmetrical staged portrait. Travis: waist-up candid view from a diagonal audience seat as he walks slowly along the front of the lecture hall, torso three-quarter facing left, looking toward someone seated further left. A spontaneous warm laugh and one gently open conversational hand; other hand relaxed by side. More energetic and open posture than the other speakers. A blurred attendee silhouette at bottom right and rows of listeners in background. No front-on eye contact.",
+      "source": "/Users/LDAAFM/.codex/generated_images/01a09563-d373-7df1-8746-c132a7cafb17/exec-844f9744-b4ca-4958-acdf-3b46c4d1254f.png",
+      "destination": "frontend/public/images/video-posters/talks/travis-wood-candid-v1.jpg"
+    }
+  ]
+}

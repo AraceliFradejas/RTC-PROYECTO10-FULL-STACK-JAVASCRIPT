@@ -10,27 +10,30 @@ const categoryTones = {
 };
 export { formatEventDate as formatDate } from '../i18n/translate.js';
 
-export const EventCard = ({ event }) => {
+export const EventCard = ({ event, horizontal = false }) => {
   const { t, language, locale } = useLanguage();
   const content = localizeEvent(event, language);
   const date = new Date(event.date);
   const attendees = event.attendees?.length || 0;
   const tone = categoryTones[event.category] || 'red';
 
-  return <article className={`event-card event-card--${tone}`}>
+  return <article className={`event-card event-card--${tone}${horizontal ? ' event-card--horizontal' : ''}`}>
     <Link className="event-card__link" to={`/events/${event._id}`} aria-label={t('Ver {title}', { title: content.title })}>
       <div className={`event-card__visual${event.poster ? '' : ' event-card__visual--empty'}`}>
         {event.poster
           ? <img src={event.poster} alt={t('Cartel de {title}', { title: content.title })} loading="lazy" />
           : <span className="event-card__monogram" aria-hidden="true">K.</span>}
+
+      </div>
+      <div className="event-card__body">
+        <div className="event-card__metadata">
         <time className="event-card__date" dateTime={event.date} aria-label={formatEventDate(event.date, language)}>
           <span aria-hidden="true" className="event-card__day">{new Intl.DateTimeFormat(locale, { day: '2-digit' }).format(date)}</span>
           <span aria-hidden="true" className="event-card__month">{new Intl.DateTimeFormat(locale, { month: 'short' }).format(date)}</span>
           <span aria-hidden="true" className="event-card__year">{date.getFullYear()}</span>
         </time>
         <span className="event-card__category">{t(event.category)}</span>
-      </div>
-      <div className="event-card__body">
+        </div>
         <p className="event-card__location"><MapPin aria-hidden="true" /> {event.location}</p>
         <h3>{content.title}</h3>
         {content.description && <p className="event-card__description">{content.description}</p>}

@@ -1,3 +1,5 @@
+import { LearningStories } from '../components/LearningStories.jsx';
+import learningStories from '../data/learningStories.json';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
@@ -74,7 +76,7 @@ describe('complete language versions', () => {
     expect(formatEventDate('2027-04-08T12:00:00Z', 'es')).toContain('abr');
     expect(translate('en', '{count} de {capacity} plazas confirmadas', { count: 1, capacity: 30 })).toBe('1 of 30 places confirmed');
   });
-  it('translates all eight editorial events without overwriting organiser content', () => {
+  it('translates all editorial events without overwriting organiser content', () => {
     for (const item of catalogue) {
       const event = { title: item.sourceTitle, description: item.sourceDescription };
       expect(localizeEvent(event, 'en').description).toBe(item.en.description);
@@ -111,8 +113,7 @@ describe('speaker profiles and event relationships', () => {
     expect(render('en', '/speakers/alison-patrick')).toContain('href="/events/demo"');
   });
   it('keeps unassigned talks pending and does not infer a speaker from their category', () => {
-    const unassigned = previewEvents.filter(event => !event.speakerId);
-    expect(unassigned).toHaveLength(4);
+    const unassigned = [{ title: 'A new event', category: 'Liderazgo' }];
     for (const event of unassigned) {
       expect(getEventSpeaker(event)).toBeUndefined();
       expect(render('en', '/', <EventSpeaker event={event} />)).toContain('Speaker to be announced');
@@ -151,12 +152,62 @@ describe('faculty appointments and video invitations', () => {
     expect(english).toContain(speaker.en.invitation);
     expect(english).not.toContain('/test-es.mp4');
   });
-  it('provides playback controls, captions and a transcript without autoplay', () => {
-    const html = render('en', '/', <SpeakerInvitation speaker={speakers[0]} media={{ 'alison-patrick': { en: { src: '/test-en.mp4', captions: '/test-en.vtt' } } }} />);
-    expect(html).toContain('<video');
-    expect(html).toContain('controls=""');
-    expect(html).toContain('srcLang="en"');
+  it('opens published videos on YouTube from a static image', () => {
+    const html = render('en', '/', <SpeakerInvitation speaker={speakers[0]} media={{ 'alison-patrick': { en: { youtubeUrl: 'https://www.youtube.com/watch?v=example' } } }} />);
+    expect(html).toContain('<img');
+    expect(html).toContain('href="https://www.youtube.com/watch?v=example"');
+    expect(html).toContain('target="_blank"');
     expect(html).toContain('Read transcript');
-    expect(html.toLowerCase()).not.toContain('autoplay');
+    expect(html).not.toContain('<video');
+    expect(html).not.toContain('<iframe');
+  });
+  it('uses an expandable static preview until a valid YouTube link is available', () => {
+    for (const youtubeUrl of ['', 'https://example.com/video', 'javascript:alert(1)']) {
+      const html = render('es', '/', <SpeakerInvitation speaker={speakers[0]} media={{ 'alison-patrick': { es: { youtubeUrl } } }} />);
+      expect(html).toContain('class="speaker-preview"');
+      expect(html).toContain('aria-expanded="false"');
+      expect(html).toContain('Leer transcripción');
+      expect(html).toContain(speakers[0].es.invitation);
+      expect(html).not.toContain('target="_blank"');
+    }
+    expect(render('es', '/speakers/alison-patrick')).toContain('Descubre cómo aprendieron nuestros alumnos con nuestros ponentes');
+    expect(render('en', '/speakers/alison-patrick')).toContain('Discover how our students learned with our speakers');
+  });
+});
+
+
+describe('bilingual learning stories', () => {
+  it.each(['es', 'en'])('shows four reflections, excerpts and the educational notice in %s', language => {
+    const html = render(language, '/', <LearningStories />);
+    expect(html.match(/class="learning-story"/g)).toHaveLength(4);
+    for (const speaker of speakers) {
+      expect(html).toContain(learningStories.reflections[speaker.id][language].title);
+      expect(html).toContain(learningStories.reflections[speaker.id][language].action);
+      expect(html).toContain(`href="/speakers/${speaker.id}"`);
+      expect(html).not.toContain(learningStories.reflections[speaker.id][language === 'es' ? 'en' : 'es'].title);
+    }
+    expect(html).toContain(language === 'es' ? 'finalidad exclusivamente pedagógica' : 'solely for educational use');
+    expect(html).toContain(language === 'es' ? 'Próximamente' : 'Coming soon');
+    expect(html).toContain('href="#learning-fragments"');
+    expect(html).not.toContain('<video');
+    expect(html).not.toContain('<iframe');
+  });
+  it('preserves the agenda and original portraits before the student experience', () => {
+    const html = render('es');
+    expect(html.indexOf('id="speakers"')).toBeLessThan(html.indexOf('id="asi-lo-vivimos"'));
+    expect(html.indexOf('Próximas experiencias')).toBeLessThan(html.indexOf('id="speakers"'));
+    expect(html).toContain('Conoce la experiencia de nuestros alumnos');
+    for (const speaker of speakers) expect(html).toContain(`src="${speaker.image}"`);
+    expect(render('en')).toContain('Discover our students’ experience');
+  });
+  it('opens only a published YouTube presentation for the selected language', () => {
+    const content = { ...learningStories, presentation: { es: { youtubeUrl: 'https://youtu.be/example' }, en: { youtubeUrl: '' } } };
+    const es = render('es', '/', <LearningStories content={content} />);
+    expect(es).toContain('href="https://youtu.be/example"');
+    expect(es).toContain('target="_blank"');
+    expect(es).not.toContain('Próximamente');
+    expect(render('en', '/', <LearningStories content={content} />)).not.toContain('https://youtu.be/example');
+    const invalid = { ...content, presentation: { es: { youtubeUrl: 'https://example.com/video' } } };
+    expect(render('es', '/', <LearningStories content={invalid} />)).toContain('Próximamente');
   });
 });

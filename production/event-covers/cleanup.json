@@ -1,0 +1,121 @@
+{
+  "reason": "Discarded public images replaced by approved covers; original video production sources retained.",
+  "removed": [
+    {
+      "path": "frontend/public/images/video-posters/speakers/travis-wood-front-v2.jpg",
+      "bytes": 381771
+    },
+    {
+      "path": "frontend/public/images/video-posters/speakers/anna-nasser-front-v2.jpg",
+      "bytes": 274701
+    },
+    {
+      "path": "frontend/public/images/video-posters/speakers/jude-becks-front-v2.jpg",
+      "bytes": 291230
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/anna-nasser-es.jpg",
+      "bytes": 37769
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/travis-wood-en.jpg",
+      "bytes": 46214
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/jude-becks-es.jpg",
+      "bytes": 35040
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/alison-patrick-base.png",
+      "bytes": 1975881
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/alison-patrick-en.jpg",
+      "bytes": 41976
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/travis-wood-base.png",
+      "bytes": 2169248
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/jude-becks-base.png",
+      "bytes": 1868899
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/anna-nasser-base.png",
+      "bytes": 1801488
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/alison-patrick-es.jpg",
+      "bytes": 43239
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/travis-wood-es.jpg",
+      "bytes": 44978
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/jude-becks-en.jpg",
+      "bytes": 34985
+    },
+    {
+      "path": "frontend/public/images/video-posters/talks/anna-nasser-en.jpg",
+      "bytes": 35834
+    },
+    {
+      "path": "frontend/public/images/brand/hero-next-inch-ceo.webp",
+      "bytes": 122730
+    },
+    {
+      "path": "frontend/public/images/hero-carousel/hero-balanced-01-stadium-arrival.webp",
+      "bytes": 128430
+    },
+    {
+      "path": "frontend/public/images/hero-carousel/hero-balanced-08-shared-future.webp",
+      "bytes": 183056
+    },
+    {
+      "path": "frontend/public/images/hero-carousel/hero-balanced-02-next-generation.webp",
+      "bytes": 146324
+    },
+    {
+      "path": "frontend/public/images/hero-carousel/stadium-arrival-clean-local.jpg",
+      "bytes": 322024
+    },
+    {
+      "path": "frontend/public/images/events/event-shared-decisions-women-v2.jpg",
+      "bytes": 428727
+    },
+    {
+      "path": "frontend/public/images/events/event-last-quarter-sports-v3.jpg",
+      "bytes": 451400
+    },
+    {
+      "path": "frontend/public/images/events/event-data-questions.jpg",
+      "bytes": 332437
+    },
+    {
+      "path": "frontend/public/images/events/event-shared-decisions.jpg",
+      "bytes": 377841
+    },
+    {
+      "path": "frontend/public/images/events/event-team-agreements.jpg",
+      "bytes": 427886
+    },
+    {
+      "path": "frontend/public/images/events/event-last-quarter-women-v2.jpg",
+      "bytes": 439552
+    },
+    {
+      "path": "frontend/public/images/events/event-small-experiments.jpg",
+      "bytes": 355500
+    },
+    {
+      "path": "frontend/public/images/events/event-shared-decisions-sports-v3.jpg",
+      "bytes": 406222
+    },
+    {
+      "path": "frontend/public/images/events/event-last-quarter.webp",
+      "bytes": 162188
+    }
+  ]
+}

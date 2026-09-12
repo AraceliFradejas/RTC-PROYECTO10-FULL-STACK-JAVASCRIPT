@@ -1062,5 +1062,125 @@
   "No se ha podido cargar el vídeo. Puedes leer la charla a continuación.": {
     "es": "No se ha podido cargar el vídeo. Puedes leer la charla a continuación.",
     "en": "The video could not be loaded. You can read the talk below."
+  },
+  "Descubre lo que te espera en esta sesión": {
+    "es": "Descubre lo que te espera en esta sesión",
+    "en": "Discover what awaits you in this session"
+  },
+  "Una idea puede cambiar tu próxima jugada. Empieza aquí.": {
+    "es": "Una idea puede cambiar tu próxima jugada. Empieza aquí.",
+    "en": "One idea can change your next play. Start here."
+  },
+  "Ver en YouTube · Se abre en otra pestaña": {
+    "es": "Ver en YouTube · Se abre en otra pestaña",
+    "en": "Watch on YouTube · Opens in a new tab"
+  },
+  "Pulsa para descubrir la charla": {
+    "es": "Pulsa para descubrir la charla",
+    "en": "Click to explore the talk"
+  },
+  "Descubre su invitación": {
+    "es": "Descubre su invitación",
+    "en": "Discover their invitation"
+  },
+  "Descubre las charlas del año. Reservas aún no disponibles.": {
+    "es": "Descubre las charlas del año. Reservas aún no disponibles.",
+    "en": "Explore this year’s talks. Booking is not yet available."
+  },
+  "Así aprendemos": {
+    "es": "Así aprendemos",
+    "en": "How we learn"
+  },
+  "Descubre cómo aprendieron nuestros alumnos con nuestros ponentes": {
+    "es": "Descubre cómo aprendieron nuestros alumnos con nuestros ponentes",
+    "en": "Discover how our students learned with our speakers"
+  },
+  "Recreación con IA para un proyecto del máster, sin fines lucrativos y con finalidad exclusivamente pedagógica.": {
+    "es": "Recreación con IA para un proyecto del máster, sin fines lucrativos y con finalidad exclusivamente pedagógica.",
+    "en": "An AI-assisted recreation for a master’s project, with no commercial purpose and solely for educational use."
+  },
+  "Así lo vivimos en KelseTS": {
+    "es": "Así lo vivimos en KelseTS",
+    "en": "The KelseTS experience"
+  },
+  "Una mirada a lo aprendido con nuestros cuatro ponentes.": {
+    "es": "Una mirada a lo aprendido con nuestros cuatro ponentes.",
+    "en": "A look at what we learned with our four speakers."
+  },
+  "Nuestra mirada, en vídeo": {
+    "es": "Nuestra mirada, en vídeo",
+    "en": "Our perspective, on video"
+  },
+  "Nuestra mirada, en vídeo · Próximamente": {
+    "es": "Nuestra mirada, en vídeo · Próximamente",
+    "en": "Our perspective, on video · Coming soon"
+  },
+  "Cuatro voces. Ideas para tu próxima jugada.": {
+    "es": "Cuatro voces. Ideas para tu próxima jugada.",
+    "en": "Four voices. Ideas for your next play."
+  },
+  "Una presentación personal, fragmentos de las charlas y una reflexión sobre lo que podemos llevar a nuestro día a día.": {
+    "es": "Una presentación personal, fragmentos de las charlas y una reflexión sobre lo que podemos llevar a nuestro día a día.",
+    "en": "A personal introduction, excerpts from the talks and reflections on what we can take into everyday life."
+  },
+  "Explora los aprendizajes": {
+    "es": "Explora los aprendizajes",
+    "en": "Explore the takeaways"
+  },
+  "Aprender, compartir, poner en práctica": {
+    "es": "Aprender, compartir, poner en práctica",
+    "en": "Learn, share, put it into practice"
+  },
+  "Selecciona un fragmento, descubre su idea principal y encuentra un pequeño paso que puedas probar con tu equipo.": {
+    "es": "Selecciona un fragmento, descubre su idea principal y encuentra un pequeño paso que puedas probar con tu equipo.",
+    "en": "Choose an excerpt, explore its main idea and find a small step to try with your team."
+  },
+  "Durante la charla de {name}": {
+    "es": "Durante la charla de {name}",
+    "en": "During the talk by {name}"
+  },
+  "Llévalo a tu equipo": {
+    "es": "Llévalo a tu equipo",
+    "en": "Try it with your team"
+  },
+  "Leer un fragmento de la charla": {
+    "es": "Leer un fragmento de la charla",
+    "en": "Read an excerpt from the talk"
+  },
+  "Ver charla en YouTube": {
+    "es": "Ver charla en YouTube",
+    "en": "Watch the talk on YouTube"
+  },
+  "Tu próxima experiencia empieza con una buena pregunta.": {
+    "es": "Tu próxima experiencia empieza con una buena pregunta.",
+    "en": "Your next experience starts with a good question."
+  },
+  "Descubre las próximas charlas": {
+    "es": "Descubre las próximas charlas",
+    "en": "Discover upcoming talks"
+  },
+  "Conoce la experiencia de nuestros alumnos": {
+    "es": "Conoce la experiencia de nuestros alumnos",
+    "en": "Discover our students’ experience"
+  },
+  "Descubre cómo aprendieron nuestros alumnos con nuestros ponentes.": {
+    "es": "Descubre cómo aprendieron nuestros alumnos con nuestros ponentes.",
+    "en": "Discover how our students learned with our speakers."
+  },
+  "La experiencia de nuestros alumnos, en vídeo": {
+    "es": "La experiencia de nuestros alumnos, en vídeo",
+    "en": "Our students’ experience, on video"
+  },
+  "La experiencia de nuestros alumnos, en vídeo · Próximamente": {
+    "es": "La experiencia de nuestros alumnos, en vídeo · Próximamente",
+    "en": "Our students’ experience, on video · Coming soon"
+  },
+  "Cuatro charlas vistas desde el aula.": {
+    "es": "Cuatro charlas vistas desde el aula.",
+    "en": "Four talks from the students’ perspective."
+  },
+  "Una mirada desde el aula: fragmentos de las cuatro charlas y reflexiones sobre lo aprendido y cómo llevarlo a la práctica.": {
+    "es": "Una mirada desde el aula: fragmentos de las cuatro charlas y reflexiones sobre lo aprendido y cómo llevarlo a la práctica.",
+    "en": "A view from the classroom: excerpts from the four talks and reflections on what was learned and how to put it into practice."
   }
 }

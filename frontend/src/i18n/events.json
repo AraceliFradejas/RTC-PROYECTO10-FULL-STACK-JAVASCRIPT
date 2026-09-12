@@ -48,7 +48,8 @@
     "en": {
       "title": "Perform Under Pressure",
       "description": "A session on recognising distractions, regaining focus and taking action when the margin is small. Tools from sports training applied to everyday work."
-    }
+    },
+    "speakerId": "travis-wood"
   },
   {
     "sourceTitle": "The Last Quarter",
@@ -60,7 +61,8 @@
     "en": {
       "title": "The Last Quarter",
       "description": "When time is running out, every decision matters. This experience explores priorities, communication and collective energy to bring demanding projects over the line."
-    }
+    },
+    "speakerId": "alison-patrick"
   },
   {
     "sourceTitle": "Trust Is the Strategy",
@@ -72,7 +74,8 @@
     "en": {
       "title": "Trust Is the Strategy",
       "description": "Trust is more than a slogan: it is built through every interaction. A talk about psychological safety, difficult conversations and effective coordination."
-    }
+    },
+    "speakerId": "jude-becks"
   },
   {
     "sourceTitle": "Innovate the Playbook",
@@ -97,6 +100,59 @@
     "en": {
       "title": "Resilience Is a Team Sport",
       "description": "An experience that challenges the myth of solitary resilience and shows how to ask for help, share the effort and get back in the game."
+    },
+    "speakerId": "travis-wood"
+  },
+  {
+    "sourceTitle": "Questions That Change the Data",
+    "sourceDescription": "Anna Nasser te invita a convertir una intuición en una pregunta que puedas investigar. Trabajaremos con casos cotidianos para elegir qué medir, detectar sesgos y distinguir una señal útil del ruido.",
+    "speakerId": "anna-nasser",
+    "es": {
+      "title": "Preguntas que cambian los datos",
+      "description": "Anna Nasser te invita a convertir una intuición en una pregunta que puedas investigar. Trabajaremos con casos cotidianos para elegir qué medir, detectar sesgos y distinguir una señal útil del ruido."
+    },
+    "en": {
+      "title": "Questions That Change the Data",
+      "description": "Anna Nasser helps turn an intuition into a question you can investigate. Everyday cases will help you choose what to measure, spot bias and separate useful signals from noise."
+    }
+  },
+  {
+    "sourceTitle": "Experiment Before You Commit",
+    "sourceDescription": "Anna Nasser propone un laboratorio de pequeñas pruebas: define una hipótesis, diseña un experimento con IA y acuerda cómo evaluar el resultado. Saldrás con un plan para aprender antes de invertir más recursos.",
+    "speakerId": "anna-nasser",
+    "es": {
+      "title": "Experimentar antes de apostar",
+      "description": "Anna Nasser propone un laboratorio de pequeñas pruebas: define una hipótesis, diseña un experimento con IA y acuerda cómo evaluar el resultado. Saldrás con un plan para aprender antes de invertir más recursos."
+    },
+    "en": {
+      "title": "Experiment Before You Commit",
+      "description": "Anna Nasser leads a lab of small trials: define a hypothesis, design an AI experiment and agree on how to assess the result. Leave with a plan to learn before committing more resources."
+    }
+  },
+  {
+    "sourceTitle": "Shared Decisions, Better Progress",
+    "sourceDescription": "Alison Patrick aborda las decisiones que se atascan entre equipos. Con un caso práctico, aprenderás a repartir responsabilidades, acordar límites y revisar los avances sin multiplicar las reuniones.",
+    "speakerId": "alison-patrick",
+    "es": {
+      "title": "Decidir juntos, avanzar mejor",
+      "description": "Alison Patrick aborda las decisiones que se atascan entre equipos. Con un caso práctico, aprenderás a repartir responsabilidades, acordar límites y revisar los avances sin multiplicar las reuniones."
+    },
+    "en": {
+      "title": "Shared Decisions, Better Progress",
+      "description": "Alison Patrick explores decisions that get stuck between teams. A practical case helps you share responsibility, agree on boundaries and review progress without multiplying meetings."
+    }
+  },
+  {
+    "sourceTitle": "The Agreements Behind a Team",
+    "sourceDescription": "Jude Becks cierra el año con un taller sobre los hábitos que sostienen la confianza. Practicarás cómo dar feedback, reparar un desacuerdo y construir compromisos claros para la siguiente temporada.",
+    "speakerId": "jude-becks",
+    "es": {
+      "title": "Los acuerdos que hacen equipo",
+      "description": "Jude Becks cierra el año con un taller sobre los hábitos que sostienen la confianza. Practicarás cómo dar feedback, reparar un desacuerdo y construir compromisos claros para la siguiente temporada."
+    },
+    "en": {
+      "title": "The Agreements Behind a Team",
+      "description": "Jude Becks closes the year with a workshop on habits that sustain trust. Practise giving feedback, resolving a disagreement and making clear commitments for the next season."
     }
   }
 ]

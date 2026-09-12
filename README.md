@@ -28,7 +28,7 @@ Mantener `VITE_PREVIEW_MODE=true` en `frontend/.env.local` para revisar sin back
 4. Decidir y configurar el alojamiento definitivo de los vídeos (por ahora son archivos locales del frontend) y actualizar sus catálogos sin perder subtítulos ni versiones ES/EN.
 5. Desactivar el modo de muestra, comprobar autenticación, creación de eventos, subida de carteles y asistencia contra la API real. Después preparar el despliegue y verificarlo.
 
-**Archivos clave:** `frontend/src/components/SpeakerVideos.jsx`, `frontend/src/data/speakerTalks.json`, `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakers.js`. Los MP4 canónicos están en `frontend/public/videos/`; los guiones, voces y retratos aprobados se conservan en `production/`. [Índice de las charlas](production/talk-excerpts/VIDEOS-TERMINADOS.md) · [Página de revisión](production/talk-excerpts/ver-charlas.html).
+**Archivos clave:** `frontend/src/components/SpeakerVideos.jsx`, `frontend/src/data/speakerTalks.json`, `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakers.js`. Los MP4 se conservan fuera de la web, en `production/media/`; los guiones, voces y retratos aprobados se conservan en `production/`. [Índice de las charlas](production/talk-excerpts/VIDEOS-TERMINADOS.md) · [Página de revisión](production/talk-excerpts/ver-charlas.html).
 
 ## La empresa
 
@@ -112,11 +112,11 @@ La vista previa enlaza eventos mediante `speakerId`. Mientras se prepara su pers
 
 Alison Patrick forma parte del Comité de Dirección del grupo y es profesora titular de Innovación Empresarial en KelseTS School. Jude enseña Liderazgo e Innovación de Equipos; Anna, Inteligencia Artificial y Estrategia del Dato; y Travis, Resiliencia y Cambio Organizacional. Son cargos del universo ficticio del proyecto.
 
-Las ocho invitaciones ES/EN ya están generadas con las voces aprobadas de ElevenLabs y animación de HeyGen. Los retratos, audios fuente y guiones se conservan en `production/speaker-videos/`; los MP4 públicos se registran en `frontend/src/data/speakerVideos.json`. Las ocho charlas están en `speakerTalks.json`. El reproductor incluye controles, transcripción y subtítulos, sin reproducción automática; muestra el texto como alternativa si falla la carga.
+Las ocho invitaciones ES/EN ya están generadas con las voces aprobadas de ElevenLabs y animación de HeyGen. Los retratos, audios fuente y guiones se conservan en `production/speaker-videos/`; los MP4 públicos se registran en `frontend/src/data/speakerVideos.json`. Las ocho charlas están en `speakerTalks.json`. La web muestra imágenes estáticas y transcripciones; al añadir un enlace de YouTube, la imagen abre el vídeo en otra pestaña.
 
 ### Vídeos de ponentes y charlas
 
-Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. Los 16 vídeos ES/EN se sirven desde `frontend/public/videos/`, con reproducción manual, subtítulos y transcripciones. El idioma sigue el selector global de la web.
+Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. Los 16 vídeos ES/EN se conservan en `production/media/`, fuera de la compilación del frontend. La web utiliza imágenes estáticas y enlaces externos opcionales. El idioma sigue el selector global de la web.
 
 Los catálogos son `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakerTalks.json`. Los guiones y las fuentes aprobadas se conservan en `production/`; las versiones de prueba se han retirado. El vídeo público de Alison usa la charla ampliada.
 
@@ -195,3 +195,13 @@ KelseTS is a fictional brand created by Araceli Fradejas Muñoz solely for educa
 ## Author
 
 **Araceli Fradejas Muñoz**
+
+### Enlazar los vídeos de YouTube
+
+Añade la URL HTTPS de cada vídeo en el campo `youtubeUrl` del idioma correspondiente en `frontend/src/data/speakerTalks.json` (charlas) o `frontend/src/data/speakerVideos.json` (invitaciones). Mientras esté vacío, la imagen despliega la transcripción; cuando tenga un enlace válido de YouTube, abrirá el vídeo en otra pestaña. No hay reproducción ni conexión a YouTube antes de pulsar.
+
+`production/` conserva los originales y sigue formando parte del repositorio; no se incluye en `frontend/dist`. Los catálogos de archivo en `production/media/` conservan las rutas públicas antiguas como referencia histórica. Los personajes y las charlas siguen siendo ficticios y se mantiene el aviso de su recreación con IA.
+
+### Conoce la experiencia de nuestros alumnos
+
+La portada incluye `LearningStories` después de las fichas originales de los ponentes, en español e inglés. Las cuatro reflexiones y los enlaces de presentación se editan en `frontend/src/data/learningStories.json`. Añadir la URL del montaje a `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl` para cada idioma; mientras falte, se muestra «Próximamente» y se permite explorar los aprendizajes. Los fragmentos y sus posibles enlaces de YouTube se obtienen de `speakerTalks.json`. No hay reproducción ni conexión externa antes de pulsar. El aviso identifica expresamente la recreación pedagógica para el máster.

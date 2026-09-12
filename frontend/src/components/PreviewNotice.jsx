@@ -4,5 +4,5 @@ import { previewMode } from '../services/events.js';
 export const PreviewNotice = () => {
   const { t } = useLanguage();
   if (!previewMode) return null;
-  return <p className="preview-notice"><strong>{t('Agenda de muestra')}</strong><span>{t('Explora las experiencias. Las reservas estarán disponibles cuando conectemos la plataforma.')}</span></p>;
+  return <p className="preview-notice"><strong>{t('Agenda de muestra')}</strong><span>{t('Descubre las charlas del año. Reservas aún no disponibles.')}</span></p>;
 };

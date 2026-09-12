@@ -37,6 +37,6 @@ export const EventsPage = () => {
     </div>
     <div className="chips" aria-label={t("Filtrar por categoría")}>{categories.map(item => <button className={category === item ? 'chip chip--active' : 'chip'} onClick={() => setCategory(item)} key={item}>{t(item)}</button>)}</div>
     <div className="results-line"><p>{loading ? t("Actualizando agenda…") : t(events.length === 1 ? '{count} encuentro' : '{count} encuentros', { count: events.length })}</p></div>
-    {loading ? <Loader label={t("Preparando la agenda…")} /> : error ? <EmptyState title={t("La agenda no está disponible")} message={error} /> : events.length ? <div className="card-grid">{events.map((event, index) => <EventCard key={event._id} event={event} index={index} />)}</div> : <EmptyState />}
+    {loading ? <Loader label={t("Preparando la agenda…")} /> : error ? <EmptyState title={t("La agenda no está disponible")} message={error} /> : events.length ? <div className="event-agenda">{events.map((event, index) => <EventCard horizontal key={event._id} event={event} index={index} />)}</div> : <EmptyState />}
   </section>;
 };

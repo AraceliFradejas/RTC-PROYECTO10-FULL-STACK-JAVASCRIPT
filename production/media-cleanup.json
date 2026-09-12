@@ -381,5 +381,5 @@
     "production/talk-excerpts/alison-patrick/alison-talk-es-audio.mp3",
     "production/talk-excerpts/alison-patrick/alison-patrick-talk-en-final-v1-poster.jpg"
   ],
-  "canonical_media": "frontend/public/videos/"
+  "canonical_media": "production/media/"
 }

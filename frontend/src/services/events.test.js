@@ -9,8 +9,18 @@ describe('local event preview', () => {
     expect(filterPreviewEvents(events, '?search=remontada', 'es')[0].title).toBe('The Comeback Mindset');
     expect(filterPreviewEvents(events, '?search=trust', 'en').length).toBeGreaterThan(0);
     expect(filterPreviewEvents(events, '?search=malaga', 'es')[0].location).toContain('Málaga');
-    expect(filterPreviewEvents(events, '?category=Innovación', 'en')).toHaveLength(1);
+    expect(filterPreviewEvents(events, '?category=Innovación', 'en')).toHaveLength(3);
     expect(filterPreviewEvents(events, '?search=no-match', 'es')).toHaveLength(0);
+  });
+  it('offers three distinct talks per speaker spread across 2027', () => {
+    for (const speaker of ['alison-patrick', 'jude-becks', 'anna-nasser', 'travis-wood']) {
+      const talks = events.filter(event => event.speakerId === speaker);
+      expect(talks).toHaveLength(3);
+      expect(new Set(talks.map(event => event.title)).size).toBe(3);
+      const months = talks.map(event => new Date(event.date).getUTCMonth());
+      expect(Math.max(...months) - Math.min(...months)).toBeGreaterThanOrEqual(6);
+      expect(talks.every(event => event.date.startsWith('2027-'))).toBe(true);
+    }
   });
   it('sorts without changing the source catalogue', () => {
     const first = events[0]._id;
@@ -18,12 +28,12 @@ describe('local event preview', () => {
     expect(filterPreviewEvents(events, '?sort=soonest')[0]._id).toBe(first);
     expect(events[0]._id).toBe(first);
   });
-  it('opens all eight detail records without making network requests', async () => {
+  it('opens all twelve detail records without making network requests', async () => {
     vi.stubEnv('DEV', true); vi.stubEnv('VITE_PREVIEW_MODE', 'true');
     const fetch = vi.fn(); vi.stubGlobal('fetch', fetch);
     const { getEvent, getEvents } = await import('./events.js');
     const { data } = await getEvents('');
-    expect(data).toHaveLength(8);
+    expect(data).toHaveLength(12);
     for (const event of data) expect((await getEvent(event._id)).data).toEqual(event);
     await expect(getEvent('missing')).rejects.toMatchObject({ status: 404 });
     expect(fetch).not.toHaveBeenCalled();

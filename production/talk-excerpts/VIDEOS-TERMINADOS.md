@@ -14,5 +14,5 @@ Abrir `ver-charlas.html` para revisar los ocho vídeos. Todos incluyen ambiente 
 | Travis Wood | EN | 1:53 | [The next play](travis-wood/travis-wood-talk-en-final-v1.mp4) |
 
 La página incluye subtítulos mediante Blob URLs para revisión local; también se entregan los VTT por separado.
-Los vídeos de invitación ya aprobados permanecen en `frontend/public/videos/speakers/`.
+Los vídeos de invitación ya aprobados permanecen en `production/media/speakers/`.
 Las charlas e invitaciones están integradas en las biografías y las páginas de eventos del frontend, con selector ES/EN.

@@ -32,7 +32,7 @@ export const SpeakerPage = () => {
     <section className="shell section speaker-profile__events" id="speaker-events">
       <div className="section-heading"><div><p className="kicker">{t('El próximo encuentro')}</p><h2>{t('Charlas con {name}', { name: speaker.name })}</h2></div><Link className="text-link" to="/events">{t('Ver toda la agenda')}<ArrowRight /></Link></div>
       <PreviewNotice />
-      {loading ? <Loader /> : error ? <EmptyState title={t('No podemos cargar la agenda')} message={error} /> : related.length ? <div className="card-grid">{related.map(event => <EventCard key={event._id} event={event} />)}</div> : <EmptyState title={t('Próximas fechas por anunciar')} message={t('Vuelve pronto para descubrir sus próximas charlas.')} />}
+      {loading ? <Loader /> : error ? <EmptyState title={t('No podemos cargar la agenda')} message={error} /> : related.length ? <div className="event-agenda">{related.map(event => <EventCard horizontal key={event._id} event={event} />)}</div> : <EmptyState title={t('Próximas fechas por anunciar')} message={t('Vuelve pronto para descubrir sus próximas charlas.')} />}
     </section>
   </article>;
 };
