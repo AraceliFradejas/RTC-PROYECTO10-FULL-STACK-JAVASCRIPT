@@ -11,6 +11,9 @@ uploads/
 .DS_Store
 npm-debug.log*
 
+# Herramientas locales de producción audiovisual; no forman parte de la aplicación
+production/talk-excerpts/tools/
+
 # Alternativas visuales no utilizadas en esta entrega
 frontend/public/images/brand/hero-next-inch-ceo.webp
 frontend/public/images/hero-carousel/hero-balanced-01-stadium-arrival.webp
