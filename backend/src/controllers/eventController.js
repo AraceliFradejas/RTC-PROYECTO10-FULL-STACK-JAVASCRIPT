@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 import { Event } from '../models/Event.js';
 import { User } from '../models/User.js';
-import { uploadBuffer, deleteImage } from '../config/cloudinary.js';
+import { deleteImage } from '../config/cloudinary.js';
 import { AppError } from '../utils/AppError.js';
+import { saveWithImage } from '../utils/saveImage.js';
 import { sendAttendanceEmail } from '../services/attendanceMail.js';
 
 const assertId = (id) => {
@@ -10,11 +11,18 @@ const assertId = (id) => {
 };
 
 const editableFields = ['title', 'date', 'location', 'description', 'category', 'capacity', 'speakerId'];
-export const eventPayload = (body) => editableFields.reduce((result, field) => {
+export const eventPayload = (body = {}) => editableFields.reduce((result, field) => {
   if (field === 'speakerId' && body[field] !== undefined && !['', 'alison-patrick', 'jude-becks', 'anna-nasser', 'travis-wood'].includes(body[field])) {
     throw new AppError('Elige un ponente válido.', 400);
   }
-  if (body[field] !== undefined) result[field] = body[field];
+  if (body[field] !== undefined) {
+    const value = body[field];
+    if (field === 'capacity') {
+      if (!['number', 'string'].includes(typeof value) || !String(value).trim() || !Number.isInteger(Number(value)) || Number(value) < 1 || Number(value) > 10000) throw new AppError('El aforo debe ser un número entero entre 1 y 10000.', 400);
+    } else if (typeof value !== 'string') throw new AppError('Revisa los datos del formulario.', 400);
+    if (field === 'date' && (!Number.isFinite(Date.parse(value)) || new Date(value) <= new Date())) throw new AppError('Elige una fecha futura.', 400);
+    result[field] = value;
+  }
   return result;
 }, {});
 
@@ -62,14 +70,8 @@ export const getEvent = async (req, res) => {
 
 export const createEvent = async (req, res) => {
   const payload = eventPayload(req.body);
-  let poster = '';
-  let posterPublicId = '';
-  if (req.file) {
-    const uploaded = await uploadBuffer(req.file.buffer, 'kelsets-talks/events');
-    poster = uploaded.secure_url;
-    posterPublicId = uploaded.public_id;
-  }
-  const event = await Event.create({ ...payload, poster, posterPublicId, creator: req.user.id });
+  const event = new Event({ ...payload, creator: req.user.id });
+  await saveWithImage(event, req.file, { field: 'poster', idField: 'posterPublicId', folder: 'kelsets-talks/events' });
   await event.populate('creator', 'name avatar');
   res.status(201).json({ success: true, data: event });
 };
@@ -80,13 +82,8 @@ export const updateEvent = async (req, res) => {
   editableFields.forEach((key) => {
     if (payload[key] !== undefined) event[key] = payload[key];
   });
-  if (req.file) {
-    const uploaded = await uploadBuffer(req.file.buffer, 'kelsets-talks/events');
-    await deleteImage(event.posterPublicId);
-    event.poster = uploaded.secure_url;
-    event.posterPublicId = uploaded.public_id;
-  }
-  await event.save();
+  if (event.capacity < event.attendees.length) throw new AppError('El aforo no puede ser menor que las plazas confirmadas.', 400);
+  await saveWithImage(event, req.file, { field: 'poster', idField: 'posterPublicId', folder: 'kelsets-talks/events' });
   res.json({ success: true, data: event });
 };
 

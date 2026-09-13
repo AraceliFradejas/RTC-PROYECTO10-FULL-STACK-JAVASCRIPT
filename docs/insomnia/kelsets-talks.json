@@ -1,0 +1,674 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-09-12T16:27:09.521Z",
+  "__export_source": "kelsets-talks",
+  "resources": [
+    {
+      "_id": "_wrk_kelsets",
+      "_type": "workspace",
+      "name": "KelseTS Talks · Validación backend",
+      "description": "Ejecutar en orden con cuentas de prueba. No contiene credenciales reales.",
+      "scope": "collection"
+    },
+    {
+      "_id": "_env_kelsets",
+      "_type": "environment",
+      "parentId": "_wrk_kelsets",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://127.0.0.1:3000/api",
+        "email": "insomnia-organizer@example.invalid",
+        "other_email": "insomnia-attendee@example.invalid",
+        "password": "CambiarPrueba123!",
+        "token": "",
+        "other_token": "",
+        "event_id": "",
+        "poster_file": "",
+        "avatar_file": ""
+      },
+      "dataPropertyOrder": null
+    },
+    {
+      "_id": "_req_kelsets_1",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "01 · Salud",
+      "method": "GET",
+      "url": "{{ _.base_url }}/health",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Salud · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\n",
+      "metaSortKey": 1
+    },
+    {
+      "_id": "_req_kelsets_2",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "02 · Registro organizador e inicio automático",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/register",
+      "description": "Cambiar email y other_email para cada ejecución completa. Las cuentas permanecen en la base: no existe una ruta pública para eliminarlas.",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Organizador Insomnia\",\n  \"email\": \"{{ _.email }}\",\n  \"password\": \"{{ _.password }}\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Registro organizador e inicio automático · HTTP 201\", () => { insomnia.expect(insomnia.response.code).to.eql(201); });\nif (insomnia.response.code === 201) { const data = insomnia.response.json().data; insomnia.environment.set(\"token\", data.token); insomnia.expect(data.user.role).to.eql(\"user\"); insomnia.expect(data.user.password).to.eql(undefined); }",
+      "metaSortKey": 2
+    },
+    {
+      "_id": "_req_kelsets_3",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "03 · Registro duplicado",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/register",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Organizador Insomnia\",\n  \"email\": \"{{ _.email }}\",\n  \"password\": \"{{ _.password }}\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Registro duplicado · HTTP 409\", () => { insomnia.expect(insomnia.response.code).to.eql(409); });\n",
+      "metaSortKey": 3
+    },
+    {
+      "_id": "_req_kelsets_4",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "04 · Login incorrecto",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/login",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"{{ _.email }}\",\n  \"password\": \"ContraseñaIncorrecta123\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Login incorrecto · HTTP 401\", () => { insomnia.expect(insomnia.response.code).to.eql(401); });\n",
+      "metaSortKey": 4
+    },
+    {
+      "_id": "_req_kelsets_5",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "05 · Login correcto",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/login",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"{{ _.email }}\",\n  \"password\": \"{{ _.password }}\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Login correcto · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.environment.set(\"token\", data.token); }",
+      "metaSortKey": 5
+    },
+    {
+      "_id": "_req_kelsets_6",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "06 · Perfil privado",
+      "method": "GET",
+      "url": "{{ _.base_url }}/auth/me",
+      "description": "",
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Perfil privado · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\n",
+      "metaSortKey": 6
+    },
+    {
+      "_id": "_req_kelsets_7",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "07 · Perfil sin token",
+      "method": "GET",
+      "url": "{{ _.base_url }}/auth/me",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Perfil sin token · HTTP 401\", () => { insomnia.expect(insomnia.response.code).to.eql(401); });\n",
+      "metaSortKey": 7
+    },
+    {
+      "_id": "_req_kelsets_8",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "08 · Agenda por fecha",
+      "method": "GET",
+      "url": "{{ _.base_url }}/events?sort=soonest",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Agenda por fecha · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.expect(data.every((event,index) => index === 0 || new Date(data[index-1].date) <= new Date(event.date))).to.eql(true); }",
+      "metaSortKey": 8
+    },
+    {
+      "_id": "_req_kelsets_9",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "09 · Agenda por popularidad",
+      "method": "GET",
+      "url": "{{ _.base_url }}/events?sort=popular",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Agenda por popularidad · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.expect(data.every((event,index) => index === 0 || data[index-1].attendees.length >= event.attendees.length)).to.eql(true); }",
+      "metaSortKey": 9
+    },
+    {
+      "_id": "_req_kelsets_10",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "10 · Búsqueda traducida y categoría",
+      "method": "GET",
+      "url": "{{ _.base_url }}/events?search=remontada&category=Resiliencia",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Búsqueda traducida y categoría · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.expect(data.length > 0).to.eql(true); insomnia.expect(data.every(event => event.category === \"Resiliencia\")).to.eql(true); }",
+      "metaSortKey": 10
+    },
+    {
+      "_id": "_req_kelsets_11",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "11 · Crear evento sin sesión",
+      "method": "POST",
+      "url": "{{ _.base_url }}/events",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Charla temporal Insomnia\",\n  \"date\": \"2030-06-15T18:00:00Z\",\n  \"location\": \"Madrid · Pruebas\",\n  \"description\": \"Charla temporal para comprobar asistentes, permisos y aforo.\",\n  \"category\": \"Liderazgo\",\n  \"speakerId\": \"alison-patrick\",\n  \"capacity\": 1\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Crear evento sin sesión · HTTP 401\", () => { insomnia.expect(insomnia.response.code).to.eql(401); });\n",
+      "metaSortKey": 11
+    },
+    {
+      "_id": "_req_kelsets_12",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "12 · Crear evento de prueba",
+      "method": "POST",
+      "url": "{{ _.base_url }}/events",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Charla temporal Insomnia\",\n  \"date\": \"2030-06-15T18:00:00Z\",\n  \"location\": \"Madrid · Pruebas\",\n  \"description\": \"Charla temporal para comprobar asistentes, permisos y aforo.\",\n  \"category\": \"Liderazgo\",\n  \"speakerId\": \"alison-patrick\",\n  \"capacity\": 1\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Crear evento de prueba · HTTP 201\", () => { insomnia.expect(insomnia.response.code).to.eql(201); });\nif (insomnia.response.code === 201) { const data = insomnia.response.json().data; insomnia.environment.set(\"event_id\", data._id); insomnia.expect(data.speakerId).to.eql(\"alison-patrick\"); insomnia.expect(data.attendees.length).to.eql(0); }",
+      "metaSortKey": 12
+    },
+    {
+      "_id": "_req_kelsets_13",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "13 · Detalle y asistentes",
+      "method": "GET",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Detalle y asistentes · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.expect(Array.isArray(data.attendees)).to.eql(true); }",
+      "metaSortKey": 13
+    },
+    {
+      "_id": "_req_kelsets_14",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "14 · Editar evento propio",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Charla temporal Insomnia editada\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Editar evento propio · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.expect(data.title).to.eql(\"Charla temporal Insomnia editada\"); }",
+      "metaSortKey": 14
+    },
+    {
+      "_id": "_req_kelsets_15",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "15 · Registro segundo usuario",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/register",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Asistente Insomnia\",\n  \"email\": \"{{ _.other_email }}\",\n  \"password\": \"{{ _.password }}\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Registro segundo usuario · HTTP 201\", () => { insomnia.expect(insomnia.response.code).to.eql(201); });\nif (insomnia.response.code === 201) { const data = insomnia.response.json().data; insomnia.environment.set(\"other_token\", data.token); }",
+      "metaSortKey": 15
+    },
+    {
+      "_id": "_req_kelsets_16",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "16 · Edición ajena denegada",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.other_token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Cambio no autorizado\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Edición ajena denegada · HTTP 403\", () => { insomnia.expect(insomnia.response.code).to.eql(403); });\n",
+      "metaSortKey": 16
+    },
+    {
+      "_id": "_req_kelsets_17",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "17 · Borrado ajeno denegado",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.other_token }}"
+      },
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Borrado ajeno denegado · HTTP 403\", () => { insomnia.expect(insomnia.response.code).to.eql(403); });\n",
+      "metaSortKey": 17
+    },
+    {
+      "_id": "_req_kelsets_18",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "18 · Reservar única plaza",
+      "method": "POST",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}/attendance",
+      "description": "Envía correo solo si MAIL_ENABLED=true. Usar Mailtrap Sandbox; las direcciones .invalid no reciben correo real.",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.other_token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"language\": \"es\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Reservar única plaza · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.expect(data.attendees.length).to.eql(1); }",
+      "metaSortKey": 18
+    },
+    {
+      "_id": "_req_kelsets_19",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "19 · Aforo completo",
+      "method": "POST",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}/attendance",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"language\": \"en\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Aforo completo · HTTP 409\", () => { insomnia.expect(insomnia.response.code).to.eql(409); });\n",
+      "metaSortKey": 19
+    },
+    {
+      "_id": "_req_kelsets_20",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "20 · Cancelar reserva",
+      "method": "POST",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}/attendance",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.other_token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"language\": \"es\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Cancelar reserva · HTTP 200\", () => { insomnia.expect(insomnia.response.code).to.eql(200); });\nif (insomnia.response.code === 200) { const data = insomnia.response.json().data; insomnia.expect(data.attendees.length).to.eql(0); }",
+      "metaSortKey": 20
+    },
+    {
+      "_id": "_req_kelsets_21",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "21 · ID malformado",
+      "method": "GET",
+      "url": "{{ _.base_url }}/events/no-es-un-id",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"ID malformado · HTTP 400\", () => { insomnia.expect(insomnia.response.code).to.eql(400); });\n",
+      "metaSortKey": 21
+    },
+    {
+      "_id": "_req_kelsets_22",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "22 · ID inexistente",
+      "method": "GET",
+      "url": "{{ _.base_url }}/events/000000000000000000000000",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"ID inexistente · HTTP 404\", () => { insomnia.expect(insomnia.response.code).to.eql(404); });\n",
+      "metaSortKey": 22
+    },
+    {
+      "_id": "_req_kelsets_23",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "23 · Ponente inválido",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"speakerId\": \"inventado\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Ponente inválido · HTTP 400\", () => { insomnia.expect(insomnia.response.code).to.eql(400); });\n",
+      "metaSortKey": 23
+    },
+    {
+      "_id": "_req_kelsets_24",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "24 · Aforo inválido",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"capacity\": 0\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Aforo inválido · HTTP 400\", () => { insomnia.expect(insomnia.response.code).to.eql(400); });\n",
+      "metaSortKey": 24
+    },
+    {
+      "_id": "_req_kelsets_25",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "25 · Eliminar evento temporal",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Eliminar evento temporal · HTTP 204\", () => { insomnia.expect(insomnia.response.code).to.eql(204); });\n",
+      "metaSortKey": 25
+    },
+    {
+      "_id": "_req_kelsets_26",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "26 · Confirmar eliminación",
+      "method": "GET",
+      "url": "{{ _.base_url }}/events/{{ _.event_id }}",
+      "description": "",
+      "headers": [],
+      "authentication": {},
+      "body": {},
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Confirmar eliminación · HTTP 404\", () => { insomnia.expect(insomnia.response.code).to.eql(404); });\n",
+      "metaSortKey": 26
+    },
+    {
+      "_id": "_req_kelsets_27",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "27 · Subir avatar (manual)",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/auth/me",
+      "description": "Seleccionar un archivo real en Body → Multipart → avatar (File). La prueba exige HTTP 200 y una URL Cloudinary no vacía. Un 200 con avatar vacío no valida la subida. Para demostrar sustitución, usar una imagen diferente y comprobar que cambia la URL.",
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      },
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "name": "avatar",
+            "type": "file",
+            "fileName": "{{ _.avatar_file }}"
+          }
+        ]
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Subir avatar · HTTP 200 y URL Cloudinary\", () => {\n  insomnia.expect(insomnia.response.code).to.eql(200);\n  const avatar = insomnia.response.json().data?.avatar;\n  insomnia.expect(typeof avatar).to.eql(\"string\");\n  insomnia.expect(/^https:\\/\\/res\\.cloudinary\\.com\\/[^/]+\\/image\\/upload\\/.+/.test(avatar || \"\")).to.eql(true);\n});\n",
+      "metaSortKey": 27
+    },
+    {
+      "_id": "_req_kelsets_28",
+      "_type": "request",
+      "parentId": "_wrk_kelsets",
+      "name": "28 · Email inválido",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/register",
+      "description": "Email malformado: debe devolver 400 sin crear ningún usuario.",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Validación\",\n  \"email\": \"correo-sin-formato\",\n  \"password\": \"{{ _.password }}\"\n}"
+      },
+      "parameters": [],
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "afterResponseScript": "insomnia.test(\"Email inválido · HTTP 400\", () => { insomnia.expect(insomnia.response.code).to.eql(400); });\n",
+      "metaSortKey": 28
+    }
+  ]
+}

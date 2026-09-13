@@ -125,6 +125,37 @@ Los textos están centralizados en `frontend/src/i18n/messages.json`. Las 12 exp
 | `PATCH/DELETE` | `/api/events/:id` | Creadora/admin | Editar o eliminar evento |
 | `POST` | `/api/events/:id/attendance` | Privado | Alternar asistencia |
 
+## Pruebas del backend con Insomnia
+
+Revisión de 28 capturas reales en local (12–13 de septiembre de 2026): **28 casos con resultado esperado**. La prueba 27 se repitió con una imagen real y devuelve 200 con la URL del avatar en Cloudinary. Su aserción se ha reforzado para exigir esa URL. Los errores de los casos negativos son respuestas esperadas.
+
+- [Colección importable e instrucciones](docs/insomnia/README.md).
+- [Memoria: objetivo, petición, resultado e interpretación de cada prueba](MEMORIA.md#validación-detallada-en-insomnia--revisión-del-13-de-septiembre-de-2026).
+- [Capturas de Insomnia](docs/screenshots/Insomnia).
+- [Guía para completar evidencias de MongoDB, Cloudinary, correo y despliegue](docs/GUIA-CAPTURAS.md).
+
+Creación autenticada: 201 y evento temporal con aforo 1.
+
+![Prueba 12: Creación autenticada: 201 y evento temporal con aforo 1.](docs/screenshots/Insomnia/Insomnia-12%20%C2%B7%20Crear%20evento%20de%20prueba%C2%BB.png)
+
+Permisos: el segundo usuario recibe 403 al editar un evento ajeno.
+
+![Prueba 16: Permisos: el segundo usuario recibe 403 al editar un evento ajeno.](docs/screenshots/Insomnia/Insomnia-16%20%C2%B7%20Edicio%CC%81n%20ajena%20denegada.png)
+
+Reserva: un asistente y correo aceptado en Mailtrap Sandbox.
+
+![Prueba 18: Reserva: un asistente y correo aceptado en Mailtrap Sandbox.](docs/screenshots/Insomnia/insomnia-18-reserva.png)
+
+Aforo completo: 409 al intentar ocupar una segunda plaza.
+
+![Prueba 19: Aforo completo: 409 al intentar ocupar una segunda plaza.](docs/screenshots/Insomnia/insomnia-19-aforo-completo.png)
+
+Subida multipart de avatar: 200 y URL de Cloudinary.
+
+![Prueba 27: avatar subido a Cloudinary](docs/screenshots/Insomnia/insomnia-27-avatar.png)
+
+El Sandbox no entrega mensajes a destinatarios reales. Estas evidencias locales se complementarán con pruebas sobre las URLs públicas antes de entregar.
+
 ## Universo KelseTS
 
 | Proyecto | Enfoque | Web |

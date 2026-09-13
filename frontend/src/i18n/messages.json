@@ -1194,5 +1194,33 @@
   "Elige un ponente válido.": {
     "es": "Elige un ponente válido.",
     "en": "Choose a valid speaker."
+  },
+  "El título no puede superar 100 caracteres.": {
+    "es": "El título no puede superar 100 caracteres.",
+    "en": "The title cannot exceed 100 characters."
+  },
+  "El lugar no puede superar 120 caracteres.": {
+    "es": "El lugar no puede superar 120 caracteres.",
+    "en": "The location cannot exceed 120 characters."
+  },
+  "La descripción no puede superar 1200 caracteres.": {
+    "es": "La descripción no puede superar 1200 caracteres.",
+    "en": "The description cannot exceed 1200 characters."
+  },
+  "El aforo debe ser un número entero entre 1 y 10000.": {
+    "es": "El aforo debe ser un número entero entre 1 y 10000.",
+    "en": "Capacity must be a whole number between 1 and 10000."
+  },
+  "El nombre debe tener entre 2 y 60 caracteres.": {
+    "es": "El nombre debe tener entre 2 y 60 caracteres.",
+    "en": "The name must contain between 2 and 60 characters."
+  },
+  "La contraseña debe tener al menos 8 caracteres y ocupar como máximo 72 bytes.": {
+    "es": "La contraseña debe tener al menos 8 caracteres y ocupar como máximo 72 bytes.",
+    "en": "The password must contain at least 8 characters and use at most 72 bytes."
+  },
+  "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.": {
+    "es": "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.",
+    "en": "An unexpected error occurred. Please try again later."
   }
 }

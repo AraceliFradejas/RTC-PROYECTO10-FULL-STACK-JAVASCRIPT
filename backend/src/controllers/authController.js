@@ -1,7 +1,8 @@
 import { User } from '../models/User.js';
 import { AppError } from '../utils/AppError.js';
 import { createToken } from '../utils/token.js';
-import { uploadBuffer } from '../config/cloudinary.js';
+import { validateCredentials } from '../utils/validation.js';
+import { saveWithImage } from '../utils/saveImage.js';
 
 const publicUser = (user) => ({
   id: user._id,
@@ -12,9 +13,7 @@ const publicUser = (user) => ({
 });
 
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) throw new AppError('Nombre, email y contraseña son obligatorios.', 400);
-  if (password.length < 8) throw new AppError('La contraseña debe tener al menos 8 caracteres.', 400);
+  const { name, email, password } = validateCredentials(req.body, true);
 
   const exists = await User.exists({ email: email.trim().toLowerCase() });
   if (exists) throw new AppError('Ya existe una cuenta con ese correo electrónico.', 409);
@@ -24,8 +23,7 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) throw new AppError('Email y contraseña son obligatorios.', 400);
+  const { email, password } = validateCredentials(req.body);
   const user = await User.findOne({ email: email.trim().toLowerCase() }).select('+password');
   if (!user || !(await user.comparePassword(password))) throw new AppError('El email o la contraseña no son correctos.', 401);
   res.json({ success: true, data: { token: createToken(user.id), user: publicUser(user) } });
@@ -34,12 +32,14 @@ export const login = async (req, res) => {
 export const getMe = async (req, res) => res.json({ success: true, data: publicUser(req.user) });
 
 export const updateMe = async (req, res) => {
-  if (req.body.name) req.user.name = req.body.name;
-  if (req.file) {
-    const uploaded = await uploadBuffer(req.file.buffer, 'kelsets-talks/avatars');
-    req.user.avatar = uploaded.secure_url;
-    req.user.avatarPublicId = uploaded.public_id;
+  if (req.body?.name !== undefined) {
+    if (typeof req.body.name !== 'string') throw new AppError('El nombre debe tener entre 2 y 60 caracteres.', 400);
+    req.user.name = req.body.name;
   }
-  await req.user.save();
+  // The private image ID is needed to retire the previous avatar after saving.
+  const stored = await User.findById(req.user.id).select('+avatarPublicId');
+  stored.name = req.user.name;
+  await saveWithImage(stored, req.file, { field: 'avatar', idField: 'avatarPublicId', folder: 'kelsets-talks/avatars' });
+  req.user = stored;
   res.json({ success: true, data: publicUser(req.user) });
 };
