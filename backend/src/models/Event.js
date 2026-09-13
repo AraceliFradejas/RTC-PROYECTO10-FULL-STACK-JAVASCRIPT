@@ -23,6 +23,7 @@ const eventSchema = new mongoose.Schema(
     posterPublicId: { type: String, default: '', select: false },
     capacity: { type: Number, min: 1, max: 10000, default: 50 },
     creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    demoAttendance: { type: Boolean, default: false },
     attendees: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   },
   { timestamps: true, versionKey: false }

@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true, trim: true, minlength: 2, maxlength: 60 },
     email: { type: String, required: true, unique: true, trim: true, lowercase: true, validate: { validator: isEmail, message: 'Escribe un email válido.' } },
     password: { type: String, required: true, minlength: 8, select: false },
+    isDemo: { type: Boolean, default: false },
     avatar: { type: String, default: '' },
     avatarPublicId: { type: String, default: '', select: false },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },

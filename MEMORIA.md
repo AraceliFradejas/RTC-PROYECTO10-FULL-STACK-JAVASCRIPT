@@ -547,3 +547,91 @@ La [colección importable](docs/insomnia/kelsets-talks.json) conserva los cuerpo
 ### Alcance y siguientes evidencias
 
 Estas pruebas cubren el recorrido local de autenticación, CRUD, permisos, ordenación, asistencia y validación de entrada. No sustituyen las pruebas de concurrencia, la revisión de todos los estados del frontend ni la repetición sobre las URLs desplegadas. Para la entrega hay que añadir las capturas de MongoDB (referencias de usuario/evento sin secretos), Cloudinary, Mailtrap HTML ES/EN y Vercel siguiendo la [guía de capturas](docs/GUIA-CAPTURAS.md). Las dos cuentas de demostración permanecen en Atlas; el evento temporal se eliminó en 25.
+
+## MongoDB: asistentes y ocupación de demostración
+
+La agenda editorial de 2027 incorpora asistentes ficticios para mostrar el recorrido completo de reservas, la ordenación por popularidad y los distintos estados de disponibilidad. No son registros de clientes ni testimonios de asistencia real. La interfaz ES/EN identifica los eventos precargados con «Incluye asistentes ficticios · Proyecto académico».
+
+### Carga reproducible y relaciones
+
+`npm run seed:attendance --prefix backend -- --dry-run` muestra la distribución sin conectar a MongoDB. Sin `--dry-run`, el script utiliza la conexión local configurada y modifica exclusivamente los eventos con `seedKey` del catálogo editorial. Debe ejecutarse después de cargar las 12 charlas. No se ejecuta durante el arranque de la API ni durante la compilación de Vercel.
+
+Los usuarios de muestra tienen `isDemo: true`, nombres inventados y emails del dominio reservado `demo.kelsets.invalid`. Su contraseña se almacena con bcrypt a partir de un secreto aleatorio que no se guarda ni se publica. La carga no inicia sesión con esas cuentas y no envía correos. Las cuentas normales y los eventos creados por la usuaria se conservan.
+
+Cada asistencia persiste como ObjectId en `Event.attendees` y su referencia inversa en `User.attendingEvents`. Se utiliza una transacción de MongoDB para confirmar conjuntamente la carga. `$addToSet` evita duplicados; se añaden únicamente las plazas necesarias para alcanzar el objetivo, contando también las reservas existentes. Repetir la carga no elimina asistentes ni reduce el aforo. Si nuevas reservas superan el objetivo, se conservan. El indicador `demoAttendance` permite informar en la interfaz sobre el origen ficticio de parte de los datos.
+
+### Distribución y mensajes
+
+| Periodo editorial | Ocupación inicial buscada | Mensaje ES / EN |
+| --- | --- | --- |
+| Hasta el 31/03/2027 | Quedan 5, 7 o 9 plazas según la charla | Últimas plazas · ¡No te quedes sin la tuya! / Last few places · Book yours! |
+| Abril–junio de 2027 | Aproximadamente 63–74 % ocupado | No te quedes sin tu plaza / Secure your place |
+| Julio–diciembre de 2027 | Aproximadamente 19–31 % ocupado | Plazas disponibles / Places available |
+
+Las fechas determinan la distribución inicial, pero el banner se calcula a partir del aforo y los asistentes actuales. Así no promete escasez si realmente quedan muchas plazas. Muestra la cantidad exacta disponible; al alcanzar el aforo indica «Aforo completo» y, pasada la fecha, «Evento finalizado». La reserva y cancelación actualizan los datos que utiliza el mismo componente, reutilizado en tarjetas y fichas. El banner está en el bloque de texto, sin superponerse a los carteles. La lista extensa de asistentes tiene desplazamiento propio.
+
+### Evidencia que recoger en MongoDB y en la web
+
+Plan de capturas en `docs/screenshots/MongoDB/`. Las evidencias revisadas y sus nombres definitivos se enumeran al final de este bloque; siguen pendientes la versión EN y la reserva posterior a la precarga:
+
+1. **mongodb-01-demo-events.png**: Atlas → Browse Collections → events. Filtrar `{ "seedKey": "leadership" }` y mostrar `seedKey`, `capacity`, `demoAttendance` y el array `attendees`. No mostrar credenciales ni URI.
+2. **mongodb-02-demo-user.png**: users, filtrar `{ "email": "attendee-001@demo.kelsets.invalid" }`. Mostrar `_id`, `name`, `isDemo` y `attendingEvents`; ocultar el hash de `password`. El ObjectId del usuario debe estar en los asistentes del evento y el del evento en su lista inversa.
+3. **mongodb-03-occupancy.png**: en Aggregations sobre events, usar el pipeline de abajo. Mostrar aforo, confirmadas y libres de las 12 charlas; comprobar que no hay valores negativos ni aforo superado.
+4. **web-ocupacion-es.png / web-ocupacion-en.png**: mostrar las tarjetas de distintos periodos y sus banners en ambos idiomas. Los números deben coincidir con la agregación de MongoDB.
+5. **mongodb-04-reserva-real.png**: con una cuenta de prueba normal, reservar una charla y comprobar ambas referencias y el incremento de asistentes. Cancelar después y verificar que se libera una plaza sin borrar los asistentes ficticios.
+
+```json
+[
+  { "$match": { "demoAttendance": true } },
+  { "$project": { "_id": 0, "seedKey": 1, "date": 1, "capacity": 1,
+    "confirmadas": { "$size": "$attendees" },
+    "libres": { "$subtract": ["$capacity", { "$size": "$attendees" }] } } },
+  { "$sort": { "date": 1 } }
+]
+```
+
+Validación de código: 17 pruebas backend y 42 frontend correctas, más build de producción. Se comprueban distribución trimestral, planificación repetible sin duplicados, conservación de reservas existentes y cambios de estado al llenarse o finalizar un evento. Las transacciones de esta carga no sustituyen la revisión pendiente de concurrencia del controlador público de reservas.
+
+### Resultado de la carga local · 13/09/2026
+
+Carga realizada en Atlas: 240 perfiles ficticios disponibles y 1.049 relaciones de asistencia distribuidas entre las 12 charlas editoriales. La comprobación posterior en lectura verifica que ningún evento supera el aforo, que no hay asistentes duplicados y que cada asistente ficticio de un evento conserva la referencia inversa. La API devuelve los recuentos y la marca de demostración. La charla creada manualmente se conserva con su reserva existente.
+
+| Charla (`seedKey`) | Confirmadas | Libres |
+| --- | ---: | ---: |
+| leadership | 173 | 7 |
+| data-questions | 131 | 9 |
+| comeback | 135 | 5 |
+| teamwork | 126 | 74 |
+| pressure | 81 | 39 |
+| last-quarter | 177 | 63 |
+| small-experiments | 33 | 107 |
+| trust | 30 | 130 |
+| shared-decisions | 43 | 97 |
+| innovation | 36 | 114 |
+| resilience | 58 | 132 |
+| team-agreements | 26 | 114 |
+
+[Vista real de la agenda en castellano](docs/screenshots/MongoDB/web-ocupacion-es.png), revisada en navegador a 1440 px: los banners aparecen junto al texto, sin tapar las imágenes. Esta captura corresponde a la web, no a la consola de Atlas. Las capturas de Atlas revisadas se describen a continuación. La versión inglesa y el recorrido de reserva posterior a la precarga quedan pendientes de captura.
+
+Se repitió la carga contra Atlas y las 12 charlas conservaron exactamente los mismos recuentos: no se añadieron reservas duplicadas. La creación de usuarios consulta los emails estables antes de insertar.
+
+### Capturas de Atlas revisadas · 13/09/2026
+
+| Evidencia | Qué demuestra |
+| --- | --- |
+| [01 · Proyecto y clúster](docs/screenshots/MongoDB/MongoDBAtlas-1.png) | Proyecto del máster y clúster kelsets-talks configurado. No acredita por sí sola las relaciones. |
+| [02 · Colecciones](docs/screenshots/MongoDB/MongoDBAtlas-2%20kelsets%20talks.png) | Data Explorer muestra 13 eventos y 244 usuarios: 12 charlas editoriales más la creada en la web; 240 perfiles ficticios más cuatro cuentas existentes. |
+| [03 · Filtro del evento](docs/screenshots/MongoDB/MongoDBAtlas-3%20events%20filter.png) | leadership: aforo 180, 173 asistentes, demoAttendance=true, fecha y ponente. Quedan 7 plazas, como en la web. |
+| [04 · Asistentes desplegados](docs/screenshots/MongoDB/MongoDBAtlas-4%20asistentes.png) | Array de 173 referencias ObjectId, con las primeras 25 visibles y acceso a las 148 restantes. |
+| [06 · Usuario ficticio](docs/screenshots/MongoDB/MongoDBAtlas-6%20usuario.png) | Lucía Vega, email de demostración, isDemo=true y 12 eventos; hash oculto en la versión publicada. |
+| [07 · Referencias del usuario](docs/screenshots/MongoDB/MongoDBAtlas-7%20usuario%20detalles.png) | Los 12 ObjectId de attendingEvents desplegados, con hash oculto. |
+| [08 · Editor de agregaciones](docs/screenshots/MongoDB/MongoDBAtlas-8%20events%20agregations.png) | Preparación de la consulta en events. El pipeline está vacío: esta captura es de contexto, no de resultados calculados. |
+| [09 · Resultado de la agregación](docs/screenshots/MongoDB/MongoDBAtlas-9%20ocupacion.png) | Pipeline y vista previa de aforo, confirmadas y libres calculados desde los documentos. |
+
+**Relación en ambos sentidos.** El identificador de Lucía Vega en la captura 07 coincide con el primer ObjectId de attendees del evento leadership (04). El primer identificador de attendingEvents de Lucía coincide con el _id de leadership (03–04). La evidencia acredita referencias persistidas entre las colecciones, no un contador independiente de la interfaz.
+
+**Interpretación de la agregación.** La captura 09 filtra demoAttendance=true, ordena por fecha y proyecta charla, aforo, confirmadas y libres. Se ven completos leadership (180/173/7), data-questions (140/131/9), comeback (140/135/5), teamwork (200/126/74) y pressure (120/81/39). Los tres números expresan aforo/confirmadas/libres. Atlas muestra «Sample of 10 documents» y el panel tiene desplazamiento: la captura es una vista previa parcial, no una imagen de las 12 filas completas. La tabla completa anterior procede de la comprobación directa en Atlas mediante el script, que revisó las 12 charlas, duplicados, aforo y referencias inversas.
+
+La consulta es de lectura y no modifica datos. Los totales reflejan el momento de la revisión y pueden cambiar con nuevas reservas. La captura 05 se descartó porque mostraba hashes de varias cuentas; no se publica. Las versiones iniciales sin ocultar el hash fueron sustituidas antes de añadir las capturas a Git.
+
+Bloque de evidencia inicial de MongoDB completado. Siguen pendientes las capturas de Cloudinary, Mailtrap, la vista de banners EN, la reserva posterior a la precarga y el recorrido sobre las URLs desplegadas; no se consideran verificadas por estas imágenes.

@@ -234,3 +234,26 @@ Los archivos se guardan en backend/.email-previews/ (ignorado por Git). Sus enla
 El envío está desactivado por defecto. Para activarlo, configurar SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, MAIL_FROM y PUBLIC_APP_URL en backend/.env. Utilizar un remitente autorizado por el proveedor y una URL pública de la web para que los enlaces y carteles funcionen fuera del ordenador. Activar MAIL_ENABLED=true solo después. Configuración SMTP mediante [Nodemailer](https://nodemailer.com/smtp).
 
 La respuesta de asistencia incluye email.status: disabled, unconfigured, sent o failed. sent indica aceptación del servidor SMTP, no recepción garantizada. Los errores de correo no revierten una reserva y no se reintentan automáticamente; la entrega real a destinatarios externos sigue pendiente. La conexión local a Mailtrap Sandbox ya se ha verificado: confirmación ES y cancelación EN aceptadas y visualización confirmada por la usuaria. Ver [configuración, evidencia y capturas del correo](docs/CORREO.md).
+
+## Ocupación de demostración
+
+Las 12 charlas editoriales admiten una precarga de asistentes ficticios identificada en la interfaz ES/EN. Los banners muestran las plazas disponibles según el aforo y las reservas actuales: últimas plazas, reserva abierta o plazas disponibles. Los eventos del primer trimestre de 2027 empiezan con pocas plazas; los posteriores tienen más disponibilidad.
+
+```bash
+npm run seed:attendance --prefix backend -- --dry-run # revisar distribución sin escribir
+npm run seed:attendance --prefix backend             # tras cargar la agenda y configurar MongoDB
+```
+
+La carga es repetible, conserva reservas existentes, mantiene las referencias usuario–evento en una transacción y no envía correos. No se ejecuta automáticamente al desplegar. La [memoria documenta el modelo y las evidencias de MongoDB](MEMORIA.md#mongodb-asistentes-y-ocupación-de-demostración).
+
+### Evidencias de las relaciones en MongoDB Atlas
+
+La base de datos conserva referencias en ambos sentidos: `events.attendees` contiene IDs de usuarios y `users.attendingEvents` contiene IDs de eventos. Las capturas del mismo evento y de Lucía Vega, un perfil ficticio, permiten contrastar los identificadores. El evento tiene 173 asistentes de un aforo de 180; quedan 7 plazas.
+
+![Evento leadership con referencias de asistentes](docs/screenshots/MongoDB/MongoDBAtlas-4%20asistentes.png)
+
+![Usuario ficticio con referencias de sus eventos y hash oculto](docs/screenshots/MongoDB/MongoDBAtlas-7%20usuario%20detalles.png)
+
+La agregación calcula la ocupación desde los arrays de asistentes. La captura muestra una vista previa parcial; la memoria incluye los resultados completos de las 12 charlas verificados mediante el script.
+
+![Agregación de ocupación en Atlas](docs/screenshots/MongoDB/MongoDBAtlas-9%20ocupacion.png)

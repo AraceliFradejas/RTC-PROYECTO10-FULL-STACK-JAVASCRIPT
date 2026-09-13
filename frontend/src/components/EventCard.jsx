@@ -1,3 +1,4 @@
+import { EventAvailability } from './EventAvailability.jsx';
 import { formatEventDate } from '../i18n/translate.js';
 import { localizeEvent } from '../i18n/events.js';
 import { useLanguage } from '../context/LanguageContext.jsx';
@@ -37,6 +38,7 @@ export const EventCard = ({ event, horizontal = false }) => {
         <p className="event-card__location"><MapPin aria-hidden="true" /> {event.location}</p>
         <h3>{content.title}</h3>
         {content.description && <p className="event-card__description">{content.description}</p>}
+        <EventAvailability event={event} />
         <div className="event-card__footer">
           <span className="event-card__attendance"><Users aria-hidden="true" /> {t(attendees === 1 ? '{count} asistente' : '{count} asistentes', { count: attendees })}</span>
           <span className="event-card__cta">{t('Ver experiencia')}<span className="event-card__arrow"><ArrowUpRight aria-hidden="true" /></span></span>

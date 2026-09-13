@@ -1222,5 +1222,37 @@
   "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.": {
     "es": "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.",
     "en": "An unexpected error occurred. Please try again later."
+  },
+  "Evento finalizado": {
+    "es": "Evento finalizado",
+    "en": "Event ended"
+  },
+  "Aforo completo": {
+    "es": "Aforo completo",
+    "en": "Fully booked"
+  },
+  "Últimas plazas · ¡No te quedes sin la tuya!": {
+    "es": "Últimas plazas · ¡No te quedes sin la tuya!",
+    "en": "Last few places · Book yours!"
+  },
+  "No te quedes sin tu plaza": {
+    "es": "No te quedes sin tu plaza",
+    "en": "Secure your place"
+  },
+  "Plazas disponibles": {
+    "es": "Plazas disponibles",
+    "en": "Places available"
+  },
+  "Queda {count} plaza": {
+    "es": "Queda {count} plaza",
+    "en": "{count} place left"
+  },
+  "Quedan {count} plazas": {
+    "es": "Quedan {count} plazas",
+    "en": "{count} places left"
+  },
+  "Incluye asistentes ficticios · Proyecto académico": {
+    "es": "Incluye asistentes ficticios · Proyecto académico",
+    "en": "Includes fictional attendees · Academic project"
   }
 }

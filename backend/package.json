@@ -8,7 +8,8 @@
     "start": "node src/server.js",
     "test": "node --test",
     "seed": "node src/data/seed.js",
-    "email:preview": "node src/emails/preview.js"
+    "email:preview": "node src/emails/preview.js",
+    "seed:attendance": "node src/data/seedAttendance.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

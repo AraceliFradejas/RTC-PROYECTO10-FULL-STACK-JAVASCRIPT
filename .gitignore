@@ -27,3 +27,6 @@ frontend/public/images/hero-carousel/stadium-arrival-clean-local.jpg
 
 # Cartel corporativo descartado: se utiliza la versión deportiva
 output/imagegen/alison-liderar-entornos-convulsos.*
+
+# Captura descartada: contiene hashes de contraseñas de cuentas
+/docs/screenshots/MongoDB/MongoDBAtlas-5 asistentes detalles.png

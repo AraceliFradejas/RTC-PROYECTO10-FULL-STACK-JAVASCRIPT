@@ -11,3 +11,13 @@
 @media(max-width:850px){.menu-button{display:grid}.nav{display:none;position:absolute;top:78px;left:0;right:0;background:var(--cream);padding:25px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}.nav--open{display:flex}.hero{padding-top:45px}.hero__grid,.manifesto__grid,.detail-hero,.detail-content{grid-template-columns:1fr}.hero-carousel{margin-top:20px}.card-grid{grid-template-columns:repeat(2,1fr)}.auth-page{grid-template-columns:1fr}.auth-visual{min-height:330px}.detail-visual{height:450px}.about__grid{grid-template-columns:1fr}.footer__inner{flex-direction:column;gap:22px;text-align:center}}
 @media(max-width:580px){.shell{width:min(100% - 28px,1180px)}h1{font-size:3.2rem}.hero__actions,.section-heading,.filters{align-items:stretch;flex-direction:column}.hero-art__card{left:15px}.card-grid{grid-template-columns:1fr}.manifesto{padding:70px 0}.auth-panel{padding:45px 20px}.auth-visual{padding:55px 25px}.event-form{grid-template-columns:1fr;padding:22px}.field--full{grid-column:auto}.form-heading h1{font-size:3.2rem}.upload-field{grid-template-columns:auto 1fr!important}.upload-field>span:last-of-type{grid-column:1/-1;text-align:center}.detail-visual{height:360px}.detail-content{gap:45px}.footer__inner{align-items:flex-start;text-align:left}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Availability lives beside the copy, leaving event artwork unobstructed. */
+.event-availability { display: grid; gap: .3rem; padding: .85rem 1rem; margin: .9rem 0; border-radius: 12px; background: #eef5f0; color: #244f38; border-left: 3px solid #467953; font-size: .85rem; }
+.event-availability strong { line-height: 1.4; }
+.event-availability span { font-weight: 600; }
+.event-availability small { font-size: .72rem; font-weight: 400; line-height: 1.4; }
+.event-availability--urgent { background: #fff0f0; color: #9b1825; border-color: #ce202d; }
+.event-availability--reserve { background: #fff7e7; color: #795014; border-color: #c58a27; }
+.event-availability--closed { background: #f1f1f1; color: #505050; border-color: #767676; }
+.attendee-list--scroll { max-height: 28rem; overflow-y: auto; scrollbar-gutter: stable; }
