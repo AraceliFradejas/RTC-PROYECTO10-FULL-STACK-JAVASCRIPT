@@ -44,3 +44,22 @@ test('Envío al correo del usuario autenticado, con HTML y texto; fallo SMTP con
   const failed = await sendAttendanceEmail(details, { env, createTransport: () => ({ sendMail: async () => { throw Error('SMTP failure'); } }) });
   assert.equal(failed.status, 'failed');
 });
+
+test('SMTP embeds local images as buffers and retains public Cloudinary artwork', async () => {
+  let sent;
+  const createTransport = () => ({ sendMail: async message => { sent = message; return { accepted: [details.user.email] }; } });
+  await sendAttendanceEmail(details, { env: { ...env, PUBLIC_APP_URL: 'http://127.0.0.1:5173' }, createTransport });
+  assert.equal(sent.attachments.length, 2);
+  for (const attachment of sent.attachments) {
+    assert.ok(Buffer.isBuffer(attachment.content) && attachment.content.length > 0);
+    assert.ok(sent.html.includes(`src="cid:${attachment.cid}"`));
+    assert.equal(attachment.path, undefined);
+  }
+  assert.doesNotMatch(sent.html, /src="http:\/\/127\.0\.0\.1/);
+  const poster = 'https://res.cloudinary.com/demo/image/upload/sample.jpg';
+  await sendAttendanceEmail({ ...details, event: { ...details.event, poster } }, { env, createTransport });
+  assert.equal(sent.attachments.length, 1);
+  assert.ok(sent.html.includes(poster));
+  await sendAttendanceEmail({ ...details, event: { ...details.event, poster: '/../../.env' } }, { env, createTransport });
+  assert.equal(sent.attachments.length, 1);
+});

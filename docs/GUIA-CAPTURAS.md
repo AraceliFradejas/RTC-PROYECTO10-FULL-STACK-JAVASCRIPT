@@ -49,3 +49,13 @@ Estado a 13 de septiembre de 2026: capturas de Insomnia revisadas en `docs/scree
 ## Bloque MongoDB: ocupación de demostración
 
 Seguir el procedimiento y el pipeline del bloque [MongoDB: asistentes y ocupación de demostración](../MEMORIA.md#mongodb-asistentes-y-ocupación-de-demostración). Guardar en `docs/screenshots/MongoDB/` las evidencias del evento, el usuario ficticio, la agregación de aforo y la relación después de una reserva real. Complementar con banners ES/EN en la web. Revisadas las capturas 01–04 y 06–09: infraestructura, colecciones, evento, usuario con referencias y vista previa de agregación. La 05 se descartó por mostrar hashes. También existe web-ocupacion-es.png. Quedan pendientes la versión EN y la reserva posterior a la precarga; los números deben coincidir con la base de datos. No mostrar contraseñas, hashes completos ni conexiones.
+
+## Cloudinary: evidencia revisada
+
+La [captura del cartel y su panel Summary](screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png) cubre la imagen alojada, carpeta de eventos, formato, tamaño, dimensiones y creación mediante API. Revisada sin credenciales visibles. No hace falta repetirla para separar esos datos en dos imágenes. Siguiente bloque: Mailtrap, vista HTML de confirmación ES y cancelación EN, sin abrir Integration/Credentials.
+
+## Mailtrap: confirmación revisada
+
+Capturas 02 (escritorio) y 03 (vista móvil) verificadas con logo y cartel visibles. La 01 muestra el mensaje antiguo sin imágenes. Siguiente captura: cancelación EN del mensaje nuevo, en HTML, mostrando cabecera, cartel y botón; guardar en `docs/screenshots/Mailtrap/`.
+
+Cancelación EN: captura 04 revisada en vista de tableta con logo, aviso y cartel visibles. El bloque básico de Mailtrap queda documentado en memoria y README. Las capturas son parciales: no equivalen a una revisión de todos los clientes de correo ni del despliegue.

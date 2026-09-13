@@ -635,3 +635,33 @@ Se repitió la carga contra Atlas y las 12 charlas conservaron exactamente los m
 La consulta es de lectura y no modifica datos. Los totales reflejan el momento de la revisión y pueden cambiar con nuevas reservas. La captura 05 se descartó porque mostraba hashes de varias cuentas; no se publica. Las versiones iniciales sin ocultar el hash fueron sustituidas antes de añadir las capturas a Git.
 
 Bloque de evidencia inicial de MongoDB completado. Siguen pendientes las capturas de Cloudinary, Mailtrap, la vista de banners EN, la reserva posterior a la precarga y el recorrido sobre las URLs desplegadas; no se consideran verificadas por estas imágenes.
+
+## Evidencia visual de Cloudinary · 13/09/2026
+
+La [captura del cartel en Cloudinary](docs/screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png) muestra el recurso deportivo utilizado para la charla «Liderazgo en entornos convulsos», dentro de `kelsets-talks/events`. En el panel Summary se observan formato JPG, tamaño 142.49 KB y dimensiones 1122 × 1402 píxeles. El recurso figura con acceso Public y creación mediante API el 12 de septiembre de 2026.
+
+Esta evidencia acredita que el cartel está alojado en Cloudinary y permite reconocer el mismo recurso mostrado en la agenda. El Public ID identifica la imagen y no es una credencial. La captura no muestra API Key, API Secret ni tokens, por lo que es apta para el repositorio. Complementa la creación desde el formulario y la prueba 27 de Insomnia, que acredita por separado la respuesta de subida de un avatar con URL de Cloudinary. No demuestra por sí sola los casos de eliminación o sustitución de archivos ni el funcionamiento del despliegue.
+
+## Corrección de imágenes en los correos de prueba
+
+La plantilla construía las URLs del logo y de los carteles locales a partir de PUBLIC_APP_URL. Con una dirección localhost esas imágenes dependen del servidor del ordenador y no son accesibles desde servicios externos. El envío SMTP ahora adjunta el logo y el cartel editorial como buffers inline y los referencia mediante CID; los carteles públicos de Cloudinary mantienen su URL. Se conserva el diseño ES/EN y los enlaces autenticados para gestionar la reserva.
+
+Los recursos finales se empaquetan en el backend para independizar el correo del servidor del frontend. Solo se admite la lista de carteles del catálogo, sin permitir que una ruta enviada por el usuario seleccione archivos arbitrarios. Pruebas backend: 18 correctas, incluida la comprobación de buffers, correspondencia CID, ausencia de localhost en src y conservación de URLs Cloudinary. La inclusión de archivos se ha declarado en Vercel; falta comprobar el despliegue. Los mensajes anteriores no se actualizan; la evidencia visual debe tomarse de mensajes nuevos.
+
+Mailtrap Sandbox aceptó las nuevas muestras de confirmación ES y cancelación EN con logo y cartel incluidos. La cancelación necesitó un reintento. Se enviaron a una dirección ficticia del Sandbox sin modificar reservas. La aceptación SMTP no sustituye la revisión visual del HTML por la usuaria.
+
+### Confirmación ES revisada visualmente en Mailtrap
+
+- [Confirmación en escritorio](docs/screenshots/Mailtrap/Mailtrap%20-2%20email%20confirmacion%20sandbox.png): se ven el logo, el cartel completo, el título, fecha del 18/02/2027 a las 19:00 Europe/Madrid, ubicación y botón para gestionar la reserva. Confirma que las imágenes incluidas en el nuevo mensaje se visualizan en Mailtrap.
+- [Confirmación en vista móvil](docs/screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png): cabecera, texto e imagen se adaptan al ancho del dispositivo simulado. La captura muestra la parte superior; no acredita por sí sola el pie y el botón inferior ni todos los clientes de correo.
+- La captura 01 de la bandeja corresponde a un mensaje anterior con imágenes sin cargar. Se conserva como evidencia del problema inicial, no como resultado de la corrección.
+
+Las muestras se identifican como «Araceli · muestra del proyecto» y se reciben en Sandbox, sin representar una reserva nueva ni entrega a un destinatario externo. La captura HTML de cancelación EN se revisó posteriormente y se describe a continuación.
+
+### Cancelación EN revisada visualmente en Mailtrap
+
+La [captura de cancelación en inglés](docs/screenshots/Mailtrap/Mailtrap%20-4%20email%20responsive%20english%20version%20sandbox.png) muestra el mensaje nuevo seleccionado en My Sandbox y su vista HTML con simulación de tableta. Se ven el logo, el encabezado «Your booking has been cancelled», el texto explicativo en inglés, la etiqueta BOOKING CANCELLED, el título traducido y la parte superior del cartel cargado. El destinatario es una dirección ficticia del Sandbox. El nombre de muestra conserva el texto en castellano porque es un dato del usuario, no una etiqueta de la plantilla.
+
+La captura cubre la parte superior del mensaje; no muestra el botón inferior ni el pie. Junto a la confirmación ES en escritorio y móvil, completa la evidencia visual básica de ambos estados e idiomas. El indicador HTML Check visible contiene avisos que no se han analizado; no se presenta esta revisión como compatibilidad universal con todos los clientes de correo. No hay credenciales visibles.
+
+Validación final antes del commit de correo y evidencias: 18 pruebas backend y 42 frontend correctas (60 en total), compilación de producción correcta y enlaces locales de documentación comprobados. Las copias del logo y los 12 carteles incluidas en el backend coinciden byte a byte con los recursos finales del frontend.

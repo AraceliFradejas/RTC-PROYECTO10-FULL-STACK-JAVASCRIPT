@@ -37,4 +37,18 @@ El botón del correo abre la ficha: cancelar requiere una sesión válida y una 
 
 ## Capturas para la memoria
 
-En My Sandbox, abrir la confirmación ES y seleccionar la vista HTML; repetir con la cancelación EN. Capturar el diseño, el cartel y el botón, sin mostrar Integration/Credentials. Guardar como 14-mailtrap-confirmacion-es.png y 15-mailtrap-cancelacion-en.png. Indicar en el pie que son correos recibidos en Sandbox. Las capturas todavía están pendientes.
+En My Sandbox, abrir la confirmación ES y seleccionar la vista HTML; repetir con la cancelación EN. Capturar el diseño, el cartel y el botón, sin mostrar Integration/Credentials. Guardar como 14-mailtrap-confirmacion-es.png y 15-mailtrap-cancelacion-en.png. Indicar en el pie que son correos recibidos en Sandbox. Las capturas revisadas se enlazan al final de este documento.
+
+## Imágenes incluidas en el mensaje
+
+El envío SMTP incorpora el logo y los carteles del catálogo local como adjuntos inline con identificadores `cid:`. Los bytes viajan en el correo: esas imágenes no necesitan que el destinatario pueda acceder a localhost. Los carteles con URL pública de Cloudinary conservan su URL HTTPS. Se mantiene desactivado el acceso automático a ficheros y URLs de Nodemailer; solo se leen buffers de una lista cerrada de recursos aprobados.
+
+`src/emails/assets/` contiene copias finales de distribución del logo y de los 12 carteles. Deben sincronizarse si se cambia el original correspondiente en `frontend/public/images/`; no son nuevas versiones de diseño. `backend/vercel.json` incluye esos recursos en la función. Su empaquetado en Vercel queda pendiente de comprobar durante el despliegue.
+
+Las vistas HTML locales generadas con `email:preview` conservan URLs normales para que puedan abrirse en un navegador. El envío SMTP añade las referencias CID, según el mecanismo de [imágenes incrustadas de Nodemailer](https://nodemailer.com/message/embedded-images). Los correos ya recibidos no cambian: para revisar la corrección hay que abrir un mensaje nuevo. Los botones siguen usando PUBLIC_APP_URL; habrá que actualizarlo con la URL de Vercel. Algunos clientes pueden aplicar sus propias restricciones de visualización; las capturas de los mensajes nuevos se han revisado y se enlazan abajo.
+
+## Capturas verificadas tras incluir las imágenes
+
+Revisadas la [confirmación ES en escritorio](screenshots/Mailtrap/Mailtrap%20-2%20email%20confirmacion%20sandbox.png) y su [vista móvil](screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png): logo y cartel visibles. La imagen móvil solo muestra la parte superior. La captura 01 de bandeja es anterior a la corrección y muestra imágenes rotas; no se usa como evidencia del resultado final. Cancelación EN revisada en la captura siguiente.
+
+[Cancelación EN en vista de tableta](screenshots/Mailtrap/Mailtrap%20-4%20email%20responsive%20english%20version%20sandbox.png): logo, encabezado de cancelación, texto inglés y cartel visibles. La imagen no incluye el botón inferior ni el pie. Confirmación ES y cancelación EN cuentan ya con evidencia visual en Sandbox; quedan pendientes la revisión de avisos HTML Check y la comprobación tras desplegar.

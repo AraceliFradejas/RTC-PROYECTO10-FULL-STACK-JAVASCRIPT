@@ -257,3 +257,19 @@ La base de datos conserva referencias en ambos sentidos: `events.attendees` cont
 La agregación calcula la ocupación desde los arrays de asistentes. La captura muestra una vista previa parcial; la memoria incluye los resultados completos de las 12 charlas verificados mediante el script.
 
 ![Agregación de ocupación en Atlas](docs/screenshots/MongoDB/MongoDBAtlas-9%20ocupacion.png)
+
+### Evidencia del cartel alojado en Cloudinary
+
+Cartel de la charla creada desde la web, alojado en `kelsets-talks/events`: JPG, 1122 × 1402 píxeles y 142.49 KB. Cloudinary muestra creación mediante API y acceso público.
+
+![Cartel y propiedades del recurso en Cloudinary](docs/screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png)
+
+### Correo de confirmación en Mailtrap Sandbox
+
+El logo y el cartel editorial viajan incluidos en el mensaje. Confirmación ES revisada en escritorio y en la vista móvil de Mailtrap; no implica entrega a Gmail ni validación en todos los clientes de correo.
+
+![Confirmación ES con logo, cartel y botón de gestión](docs/screenshots/Mailtrap/Mailtrap%20-2%20email%20confirmacion%20sandbox.png)
+
+[Vista móvil de la confirmación](docs/screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png).
+
+[Cancelación EN en Mailtrap, vista de tableta](docs/screenshots/Mailtrap/Mailtrap%20-4%20email%20responsive%20english%20version%20sandbox.png). Se ven el aviso de cancelación, el logo y el cartel; la captura muestra la parte superior del mensaje.

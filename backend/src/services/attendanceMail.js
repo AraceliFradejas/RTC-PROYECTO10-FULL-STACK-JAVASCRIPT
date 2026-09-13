@@ -1,3 +1,4 @@
+import { emailImages } from '../emails/images.js';
 import nodemailer from 'nodemailer';
 import { attendanceEmail } from '../emails/attendance.js';
 
@@ -16,8 +17,9 @@ export const sendAttendanceEmail = async (details, { env = process.env, createTr
       connectionTimeout: 5000, greetingTimeout: 5000, socketTimeout: 10000,
       disableFileAccess: true, disableUrlAccess: true,
     });
-    const message = attendanceEmail({ ...details, appUrl: env.PUBLIC_APP_URL });
-    const result = await transport.sendMail({ from: env.MAIL_FROM, to: { name: details.user.name, address: details.user.email }, ...message });
+    const { images, attachments } = await emailImages(details.event);
+    const message = attendanceEmail({ ...details, appUrl: env.PUBLIC_APP_URL, images });
+    const result = await transport.sendMail({ from: env.MAIL_FROM, to: { name: details.user.name, address: details.user.email }, ...message, attachments });
     return { status: result.accepted?.length ? 'sent' : 'failed' };
   } catch {
     // A mail failure must not undo a confirmed booking or expose SMTP credentials.

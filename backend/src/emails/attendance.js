@@ -18,7 +18,7 @@ const copy = {
   },
 };
 
-export const attendanceEmail = ({ event, user, language = 'es', cancelled = false, appUrl }) => {
+export const attendanceEmail = ({ event, user, language = 'es', cancelled = false, appUrl, images = {} }) => {
   const lang = language === 'en' ? 'en' : 'es';
   const t = copy[lang];
   const base = new URL(appUrl);
@@ -36,6 +36,8 @@ export const attendanceEmail = ({ event, user, language = 'es', cancelled = fals
     const image = new URL(event.poster, base);
     if (['http:', 'https:'].includes(image.protocol)) poster = image.href;
   }
+  if (images.poster) poster = images.poster;
+  const logo = images.logo || new URL('/images/brand/kelcets-logo.png', base).href;
   return {
     subject: `${heading} · ${title}`,
     text: `${t.greeting} ${user.name},\n\n${heading}\n${intro}\n\n${title}\n${t.date}: ${date}\n${t.location}: ${event.location}\n\n${button}: ${url}\n${cancelled ? '' : t.help}\n\n${t.footer}`,
@@ -46,7 +48,7 @@ export const attendanceEmail = ({ event, user, language = 'es', cancelled = fals
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="680" cellspacing="0" cellpadding="0" style="width:100%;max-width:680px;background:#ffffff;border:1px solid #e5e7eb">
 <tr><td class="email-pad" style="padding:20px 32px;border-bottom:1px solid #e5e7eb"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>
-<td><a href="${escape(base.origin)}" style="color:#1a1a1a;text-decoration:none"><table role="presentation" cellspacing="0" cellpadding="0"><tr><td><img class="email-logo" src="${escape(new URL('/images/brand/kelcets-logo.png', base).href)}" width="56" height="56" alt="" style="display:block;border-radius:8px"></td><td style="padding-left:10px;font-size:24px;font-weight:800;letter-spacing:-1px">KelceTS<span style="display:block;color:#c9252c;font-size:12px;letter-spacing:3px">TALKS</span></td></tr></table></a></td>
+<td><a href="${escape(base.origin)}" style="color:#1a1a1a;text-decoration:none"><table role="presentation" cellspacing="0" cellpadding="0"><tr><td><img class="email-logo" src="${escape(logo)}" width="56" height="56" alt="" style="display:block;border-radius:8px"></td><td style="padding-left:10px;font-size:24px;font-weight:800;letter-spacing:-1px">KelceTS<span style="display:block;color:#c9252c;font-size:12px;letter-spacing:3px">TALKS</span></td></tr></table></a></td>
 <td align="right" style="padding-left:12px;font-size:13px;font-weight:600"><a href="${escape(new URL('/', base).href)}" style="color:#c9252c;text-decoration:none">${lang === 'en' ? 'Visit KelseTS Talks' : 'Visitar KelseTS Talks'} &rarr;</a></td>
 </tr></table></td></tr>
 <tr><td class="email-pad" bgcolor="#c9252c" style="padding:36px 32px;background:#c9252c;background-image:linear-gradient(135deg,#ad1824 0%,#d82d30 62%,#a65712 100%);color:#ffffff">
