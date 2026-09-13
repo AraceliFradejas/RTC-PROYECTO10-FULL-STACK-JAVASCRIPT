@@ -1,6 +1,8 @@
 node_modules/
 .env
 .env.local
+.env.vercel
+.vercel/
 .env_mongoDBatlas-credentials
 .env heygen
 .env.elevenlabs.local
@@ -30,3 +32,8 @@ output/imagegen/alison-liderar-entornos-convulsos.*
 
 # Captura descartada: contiene hashes de contraseñas de cuentas
 /docs/screenshots/MongoDB/MongoDBAtlas-5 asistentes detalles.png
+
+# Originales y exportaciones locales para YouTube
+/production/synthesia/originals/
+/production/synthesia/previews/
+/production/synthesia/exports/

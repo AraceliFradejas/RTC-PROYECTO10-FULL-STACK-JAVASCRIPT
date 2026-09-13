@@ -26,9 +26,9 @@ export const eventPayload = (body = {}) => editableFields.reduce((result, field)
   return result;
 }, {});
 
-const getOwnedEvent = async (id, user) => {
+const getOwnedEvent = async (id, user, session = null) => {
   assertId(id);
-  const event = await Event.findById(id).select('+posterPublicId');
+  const event = await Event.findById(id).select('+posterPublicId').session(session);
   if (!event) throw new AppError('No hemos encontrado ese evento.', 404);
   if (event.creator.toString() !== user.id && user.role !== 'admin') throw new AppError('Solo la persona creadora puede modificar este evento.', 403);
   return event;
@@ -88,34 +88,40 @@ export const updateEvent = async (req, res) => {
 };
 
 export const deleteEvent = async (req, res) => {
-  const event = await getOwnedEvent(req.params.id, req.user);
-  await User.updateMany({ _id: { $in: event.attendees } }, { $pull: { attendingEvents: event.id } });
-  await deleteImage(event.posterPublicId);
-  await event.deleteOne();
+  const posterPublicId = await mongoose.connection.transaction(async (session) => {
+    const event = await getOwnedEvent(req.params.id, req.user, session);
+    await User.updateMany({ attendingEvents: event._id }, { $pull: { attendingEvents: event._id } }, { session });
+    await event.deleteOne({ session });
+    return event.posterPublicId;
+  });
+  try { await deleteImage(posterPublicId); }
+  catch { console.warn('Evento eliminado; queda pendiente retirar su imagen.'); }
   res.status(204).send();
 };
 
 export const toggleAttendance = async (req, res) => {
   assertId(req.params.id);
-  const event = await Event.findById(req.params.id);
-  if (!event) throw new AppError('No hemos encontrado ese evento.', 404);
-  const attends = event.attendees.some((id) => id.equals(req.user._id));
-
-  if (attends) {
-    await Promise.all([
-      Event.updateOne({ _id: event.id }, { $pull: { attendees: req.user.id } }),
-      User.updateOne({ _id: req.user.id }, { $pull: { attendingEvents: event.id } }),
-    ]);
-  } else {
-    const result = await Event.updateOne(
-      { _id: event.id, attendees: { $ne: req.user._id }, $expr: { $lt: [{ $size: '$attendees' }, '$capacity'] } },
-      { $addToSet: { attendees: req.user.id } }
-    );
-    if (!result.modifiedCount) throw new AppError('El evento ya está completo.', 409);
-    await User.updateOne({ _id: req.user.id }, { $addToSet: { attendingEvents: event.id } });
-  }
-
-  const updated = await Event.findById(event.id).populate('attendees', 'name avatar');
-  const email = await sendAttendanceEmail({ event: updated, user: req.user, language: req.body?.language, cancelled: attends });
-  res.json({ success: true, data: updated, email, message: attends ? 'Tu asistencia se ha cancelado.' : '¡Tu plaza está confirmada!' });
+  const { updated, cancelled } = await mongoose.connection.transaction(async (session) => {
+    const event = await Event.findById(req.params.id).session(session);
+    if (!event) throw new AppError('No hemos encontrado ese evento.', 404);
+    const attends = event.attendees.some((id) => id.equals(req.user._id));
+    if (attends) {
+      await Event.updateOne({ _id: event.id }, { $pull: { attendees: req.user.id }, $inc: { __v: 1 } }, { session });
+    } else {
+      const result = await Event.updateOne(
+        { _id: event.id, attendees: { $ne: req.user._id }, $expr: { $lt: [{ $size: '$attendees' }, '$capacity'] } },
+        { $addToSet: { attendees: req.user.id }, $inc: { __v: 1 } },
+        { session }
+      );
+      if (!result.modifiedCount) throw new AppError('El evento ya está completo.', 409);
+    }
+    const change = attends ? { $pull: { attendingEvents: event.id } } : { $addToSet: { attendingEvents: event.id } };
+    const userResult = await User.updateOne({ _id: req.user.id }, change, { session });
+    if (!userResult.matchedCount) throw new AppError('Inicia sesión de nuevo para continuar.', 401);
+    const updated = await Event.findById(event.id).session(session).populate('attendees', 'name avatar');
+    return { updated, cancelled: attends };
+  });
+  // External mail is sent only after a successful commit, never during transaction retries.
+  const email = await sendAttendanceEmail({ event: updated, user: req.user, language: req.body?.language, cancelled });
+  res.json({ success: true, data: updated, email, message: cancelled ? 'Tu asistencia se ha cancelado.' : '¡Tu plaza está confirmada!' });
 };

@@ -10,7 +10,7 @@ Revisión de código y de las comprobaciones realizadas en local. No equivale a 
 | Middleware JWT y rutas privadas | auth.js y rutas auth/events. Casos 06–07 y 16–17 revisados en Insomnia con dos usuarios. |
 | Subida de ficheros | Cartel y avatar probados mediante API con Cloudinary; creación desde la web confirmada por la usuaria. |
 | Controladores de ordenación | Fecha, publicación y popularidad en listEvents. Evidencias locales 08–09 revisadas. |
-| Inserción entre colecciones | Asistencia enlaza Event.attendees y User.attendingEvents. Revisar consistencia si una escritura falla y concurrencia. |
+| Inserción entre colecciones | Asistencia enlaza Event.attendees y User.attendingEvents en una transacción. Concurrencia, reversión ante fallos y eliminación de referencias verificadas en una base temporal de Atlas. |
 | Registro con login automático | Probado en navegador. |
 | Lista, creación y asistencia | Funcionan en local. |
 | Detalle y asistentes | Implementado y comprobado en recorrido local. |
@@ -42,4 +42,10 @@ Se han corregido email y tipos de credenciales, aforo entero, fechas futuras en 
 
 Resultado: 15 pruebas backend, 41 frontend y build correctos. Además, 29 comprobaciones HTTP reales correctas mediante el ejecutor de la colección (ver insomnia/RESULTADO-HTTP.md), incluyendo dos usuarios, permisos, aforo, email inválido, JSON malformado y fichero demasiado grande. La colección ya se ejecutó en Insomnia: 28 capturas revisadas con resultado esperado, incluida la repetición de la subida de avatar.
 
-Mailtrap Sandbox ya acepta confirmación ES y cancelación EN, y la usuaria confirma que se ven correctamente. Faltan las capturas y la verificación con URLs públicas tras el despliegue. La consistencia de escrituras concurrentes entre colecciones y la prueba del arranque en Vercel siguen pendientes de la revisión final.
+Mailtrap Sandbox ya acepta confirmación ES y cancelación EN, con capturas enlazadas en docs/CORREO.md. Queda la verificación con URLs públicas tras el despliegue.
+
+## Preparación del despliegue — 13/09/2026
+
+La API espera la conexión con MongoDB antes de atender peticiones y reutiliza una conexión compartida durante el arranque. Un fallo devuelve 503 sin exponer detalles internos. Las reservas, cancelaciones y eliminaciones usan transacciones; las ediciones detectan cambios concurrentes y devuelven 409. El correo se envía después de confirmar la transacción.
+
+El límite de imágenes pasa a 4 MB en frontend y backend, por el límite de 4,5 MB por petición de Vercel. Las pruebas ordinarias pasan (19 backend y 42 frontend), además de una prueba de integración real en Atlas: aforo con dos reservas simultáneas, cancelación, edición obsoleta, reversión de una escritura fallida y borrado de referencias. La base temporal se elimina al terminar y no se envían correos. Compilación de producción correcta. El despliegue público aún no está verificado.

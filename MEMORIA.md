@@ -57,7 +57,7 @@ La asistencia utiliza `$addToSet` y `$pull` para evitar duplicados y mantener si
 - La edición y eliminación comprueban propiedad o rol administrador.
 - La creación utiliza una lista blanca de campos para impedir la inyección de asistentes, autoría o metadatos de archivos.
 - La reserva de la última plaza se realiza mediante una actualización atómica para evitar superar el aforo.
-- Multer limita imágenes a 5 MB y acepta JPG, PNG o WebP.
+- Multer limita imágenes a 4 MB y acepta JPG, PNG o WebP.
 - Cloudinary almacena carteles y avatares fuera del entorno serverless.
 
 ## 8. UX, UI y accesibilidad
@@ -524,7 +524,7 @@ La [colección importable](docs/insomnia/kelsets-talks.json) conserva los cuerpo
 
 **Objetivo.** Comprobar la subida multipart de un avatar a Cloudinary.
 
-**Petición y preparación.** `PATCH /auth/me`. Bearer token; campo avatar de tipo File. Debe seleccionarse una imagen real JPG/PNG/WebP, de hasta 5 MB.
+**Petición y preparación.** `PATCH /auth/me`. Bearer token; campo avatar de tipo File. Debe seleccionarse una imagen real JPG/PNG/WebP, de hasta 4 MB (límite ajustado al preparar Vercel).
 
 **Resultado observado frente al esperado.** La nueva ejecución devuelve 200, success=true y data.avatar con URL HTTPS de res.cloudinary.com, dentro de kelsets-talks/avatars. En el formulario multipart se ve un archivo JPEG seleccionado. Coincide con el resultado esperado.
 
@@ -665,3 +665,13 @@ La [captura de cancelación en inglés](docs/screenshots/Mailtrap/Mailtrap%20-4%
 La captura cubre la parte superior del mensaje; no muestra el botón inferior ni el pie. Junto a la confirmación ES en escritorio y móvil, completa la evidencia visual básica de ambos estados e idiomas. El indicador HTML Check visible contiene avisos que no se han analizado; no se presenta esta revisión como compatibilidad universal con todos los clientes de correo. No hay credenciales visibles.
 
 Validación final antes del commit de correo y evidencias: 18 pruebas backend y 42 frontend correctas (60 en total), compilación de producción correcta y enlaces locales de documentación comprobados. Las copias del logo y los 12 carteles incluidas en el backend coinciden byte a byte con los recursos finales del frontend.
+
+## Preparación de Vercel y consistencia de reservas — 13/09/2026
+
+Cada petición de la API espera a MongoDB. Las peticiones concurrentes reutilizan una única promesa de conexión; si falla, se permite un nuevo intento y se devuelve un error 503 comprensible. En Vercel se exporta Express sin arrancar un servidor con `listen`; el arranque local sigue esperando a MongoDB.
+
+La reserva y la cancelación escriben `Event.attendees` y `User.attendingEvents` dentro de una transacción. Así, un fallo en la segunda colección no deja una plaza ocupada sin su referencia inversa. La eliminación también retira conjuntamente el evento y las referencias de usuarios. Los correos se envían después del commit, para no duplicarlos durante los reintentos de MongoDB. La retirada de Cloudinary ocurre después del borrado confirmado; un fallo de ese servicio puede dejar una imagen pendiente de limpieza.
+
+El control de versiones del evento evita guardar una edición basada en un aforo o una lista de asistentes obsoletos: se devuelve 409 y se solicita recargar la ficha. El límite de carteles y avatares se reduce a 4 MB, dejando margen al multipart dentro del [límite de 4,5 MB de Vercel](https://vercel.com/docs/functions/limitations). Los mensajes nuevos se ofrecen en castellano e inglés.
+
+Validación: 19 pruebas backend y 42 frontend, más una prueba de integración real contra una base temporal de Atlas. Esta última comprueba dos usuarios compitiendo por una plaza, cancelación, rechazo de edición obsoleta, reversión ante un fallo simulado de escritura y eliminación de referencias. No envía correos y elimina su base temporal al terminar. Se ejecuta desde `backend` con `RUN_DB_INTEGRATION=true node --test test/attendance.integration.test.js`; requiere `MONGODB_URI` y permiso para crear y eliminar esa base de pruebas. En `npm test` se omite para no depender de la red. Compilación de producción correcta. Queda por verificar el despliegue público y añadir sus capturas.

@@ -10,9 +10,12 @@ export const errorHandler = (error, _req, res, _next) => {
     status = 400;
     message = 'Revisa los datos del formulario.';
     details = error.errors ? Object.values(error.errors).map(({ path }) => ({ field: path, message: 'El valor de este campo no es válido.' })) : null;
+  } else if (error.name === 'VersionError') {
+    status = 409;
+    message = 'El evento ha cambiado. Recarga la página antes de volver a editarlo.';
   } else if (error.name === 'MulterError') {
     status = error.code === 'LIMIT_FILE_SIZE' ? 413 : 400;
-    message = error.code === 'LIMIT_FILE_SIZE' ? 'La imagen no puede superar 5 MB.' : 'Revisa los archivos adjuntos del formulario.';
+    message = error.code === 'LIMIT_FILE_SIZE' ? 'La imagen no puede superar 4 MB.' : 'Revisa los archivos adjuntos del formulario.';
   } else if (error.type === 'entity.parse.failed') {
     status = 400; message = 'El contenido de la petición no es un JSON válido.';
   } else if (error.type === 'entity.too.large') {

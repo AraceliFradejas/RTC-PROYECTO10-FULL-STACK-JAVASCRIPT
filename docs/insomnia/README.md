@@ -17,7 +17,7 @@ Se comprueban registro con sesión automática, duplicados, login incorrecto, pe
 
 La petición 27 es manual: seleccionar un archivo de imagen en Body para verificar el avatar. La 28 verifica que un email malformado se rechaza con 400.
 
-Para completar ficheros: repetir Crear evento con Body → Multipart, los mismos campos de texto y `poster` de tipo File. Comprobar URL pública en la respuesta. Eliminar ese evento al terminar. Probar también un archivo no admitido y otro mayor de 5 MB; el segundo debe devolver 413 con un mensaje comprensible.
+Para completar ficheros: repetir Crear evento con Body → Multipart, los mismos campos de texto y `poster` de tipo File. Comprobar URL pública en la respuesta. Eliminar ese evento al terminar. Probar también un archivo no admitido y otro mayor de 4 MB; el segundo debe devolver 413 con un mensaje comprensible. En Vercel, usar un archivo entre 4 y 4,5 MB para comprobar el error de la aplicación: peticiones mayores pueden ser rechazadas por la plataforma antes de llegar a Express.
 
 Las dos cuentas de prueba permanecen en MongoDB: la API no dispone de borrado público de usuarios. No borrar cuentas reales. Si una ejecución se interrumpe, eliminar únicamente el evento temporal de esa ejecución. No exportar tokens de sesión reales a GitHub.
 

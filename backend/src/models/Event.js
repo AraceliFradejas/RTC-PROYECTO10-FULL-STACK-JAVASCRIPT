@@ -26,7 +26,7 @@ const eventSchema = new mongoose.Schema(
     demoAttendance: { type: Boolean, default: false },
     attendees: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, optimisticConcurrency: true }
 );
 
 export const Event = mongoose.model('Event', eventSchema);

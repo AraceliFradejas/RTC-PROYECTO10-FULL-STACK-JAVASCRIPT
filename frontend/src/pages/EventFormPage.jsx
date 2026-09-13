@@ -41,7 +41,7 @@ export const EventFormPage = () => {
     if (!values.date || new Date(values.date) <= new Date()) next.date = 'Elige una fecha futura.';
     if (!values.location.trim()) next.location = 'Indica dónde será.';
     if (values.description.trim().length < 20) next.description = 'Cuéntanos algo más (mínimo 20 caracteres).';
-    if (poster && poster.size > 5 * 1024 * 1024) next.poster = 'La imagen no puede superar 5 MB.';
+    if (poster && poster.size > 4 * 1024 * 1024) next.poster = 'La imagen no puede superar 4 MB.';
     if (values.title.trim().length > 100) next.title = 'El título no puede superar 100 caracteres.';
     if (values.location.trim().length > 120) next.location = 'El lugar no puede superar 120 caracteres.';
     if (values.description.trim().length > 1200) next.description = 'La descripción no puede superar 1200 caracteres.';
@@ -81,7 +81,7 @@ export const EventFormPage = () => {
       <label>{t("Aforo")}<input type="number" name="capacity" min="1" max="10000" value={values.capacity} onChange={update} />{errors.capacity && <small className="field-error">{t(errors.capacity)}</small>}</label>
       <label className="field--full">{t("Ponente")}<select name="speakerId" value={values.speakerId} onChange={update}><option value="">{t("Ponente por confirmar")}</option>{speakers.map(speaker => <option key={speaker.id} value={speaker.id}>{speaker.name}</option>)}</select><small>{t("Elige quién dará la charla. La persona organizadora se guarda por separado.")}</small></label>
       <label className="field--full">{t("Descripción")}<textarea name="description" value={values.description} onChange={update} rows="6" placeholder={t("Qué aprenderá el público, quién dará la charla y a quién va dirigida…")} />{errors.description && <small className="field-error">{t(errors.description)}</small>}<small>{values.description.length}/1200</small></label>
-      <label className="upload-field field--full"><ImagePlus /><span><strong>{t("Sube un cartel")}</strong><small>{t("JPG, PNG o WebP · máximo 5 MB")}</small></span><input type="file" accept="image/jpeg,image/png,image/webp" onChange={e => setPoster(e.target.files[0])} /><span>{poster?.name || t("Elegir imagen")}</span>{errors.poster && <small className="field-error">{t(errors.poster)}</small>}</label>
+      <label className="upload-field field--full"><ImagePlus /><span><strong>{t("Sube un cartel")}</strong><small>{t("JPG, PNG o WebP · máximo 4 MB")}</small></span><input type="file" accept="image/jpeg,image/png,image/webp" onChange={e => setPoster(e.target.files[0])} /><span>{poster?.name || t("Elegir imagen")}</span>{errors.poster && <small className="field-error">{t(errors.poster)}</small>}</label>
       <button className="button button--accent button--wide field--full" disabled={loading}>{loading ? <><span className="mini-spinner" /> {t("Publicando…")}</> : <>{t("Publicar evento")} <Send /></>}</button>
     </form>
   </section>;

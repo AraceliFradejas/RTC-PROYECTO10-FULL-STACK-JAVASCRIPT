@@ -1,4 +1,12 @@
 {
+  "El servicio no está disponible temporalmente. Inténtalo de nuevo.": {
+    "es": "El servicio no está disponible temporalmente. Inténtalo de nuevo.",
+    "en": "The service is temporarily unavailable. Please try again."
+  },
+  "El evento ha cambiado. Recarga la página antes de volver a editarlo.": {
+    "es": "El evento ha cambiado. Recarga la página antes de volver a editarlo.",
+    "en": "The event has changed. Reload the page before editing it again."
+  },
   "One brand · Different plays": {
     "es": "Una marca · Distintas formas de avanzar",
     "en": "One brand · Different ways forward"
@@ -363,9 +371,9 @@
     "es": "Cuéntanos algo más (mínimo 20 caracteres).",
     "en": "Tell us a little more (at least 20 characters)."
   },
-  "La imagen no puede superar 5 MB.": {
-    "es": "La imagen no puede superar 5 MB.",
-    "en": "The image must be no larger than 5 MB."
+  "La imagen no puede superar 4 MB.": {
+    "es": "La imagen no puede superar 4 MB.",
+    "en": "The image must be no larger than 4 MB."
   },
   "Tu experiencia ya forma parte de la agenda KelseTS.": {
     "es": "Tu experiencia ya forma parte de la agenda KelseTS.",
@@ -451,9 +459,9 @@
     "es": "Sube un cartel",
     "en": "Upload a poster"
   },
-  "JPG, PNG o WebP · máximo 5 MB": {
-    "es": "JPG, PNG o WebP · máximo 5 MB",
-    "en": "JPG, PNG or WebP · maximum 5 MB"
+  "JPG, PNG o WebP · máximo 4 MB": {
+    "es": "JPG, PNG o WebP · máximo 4 MB",
+    "en": "JPG, PNG or WebP · maximum 4 MB"
   },
   "Elegir imagen": {
     "es": "Elegir imagen",
@@ -924,8 +932,8 @@
     "en": "carousel"
   },
   "File too large": {
-    "es": "La imagen no puede superar 5 MB.",
-    "en": "The image must be no larger than 5 MB."
+    "es": "La imagen no puede superar 4 MB.",
+    "en": "The image must be no larger than 4 MB."
   },
   "Unexpected field": {
     "es": "Revisa el archivo adjunto al formulario.",
