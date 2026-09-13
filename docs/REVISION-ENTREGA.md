@@ -18,7 +18,7 @@ Revisión de código y de las comprobaciones realizadas en local. No equivale a 
 | Loading en procesos asíncronos | Formularios, agenda y reservas muestran estados. Completar revisión de sesión/carga y casos de red fallida antes de entregar. |
 | Componentización y reutilización | Componentes, hooks, contextos y servicios separados. Revisar duplicación residual de catálogos/validaciones; no afirmar que es inexistente. |
 | Fetch centralizado | Única llamada fetch de aplicación en frontend/src/services/api.js. |
-| Backend y frontend desplegados | Pendiente. Existen vercel.json, pero no hay evidencia de dos URLs públicas verificadas. Revisar conexión MongoDB al arrancar una función, CORS y variables de producción. |
+| Backend y frontend desplegados | Publicados en Vercel: kelse-ts-talks.vercel.app y kelse-ts-talks-api.vercel.app. Salud, agenda de 13 eventos y CORS comprobados. Falta repetir el recorrido autenticado completo y recoger las capturas. |
 | Enlaces GitHub | Monorepo existente. Facilitar enlaces directos a backend y frontend y confirmar si el profesor exige dos repositorios independientes. |
 
 ## Antes de entregar

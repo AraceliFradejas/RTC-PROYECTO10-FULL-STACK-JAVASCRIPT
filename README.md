@@ -8,11 +8,13 @@ Este repositorio contiene la plataforma full stack con la que KelseTS publica su
 
 ## Estado actual
 
+**Web pública:** [KelseTS Talks](https://kelse-ts-talks.vercel.app/). **API:** [comprobación de salud](https://kelse-ts-talks-api.vercel.app/api/health). Configuración y verificaciones en [la guía de despliegue](docs/DESPLIEGUE.md).
+
 Frontend bilingüe ES/EN con 12 charlas (tres por ponente), carteles definitivos y una sección pedagógica de experiencias. Los vídeos se conservan en `production/media/`; la web utiliza imágenes estáticas con enlaces opcionales a YouTube.
 
 La conexión local con MongoDB Atlas está configurada. La agenda se carga desde `backend/src/data/events.json`, con `speakerId`, traducciones ES/EN e identificadores estables `seedKey`. Repetir la carga actualiza el contenido editorial sin duplicar charlas ni sustituir asistentes o creador.
 
-El frontend local ya utiliza la API real. Se han comprobado en navegador el registro, inicio y cierre de sesión, persistencia al recargar, rechazo de contraseña incorrecta, reserva y cancelación de asistencia. La búsqueda consulta también las traducciones ES/EN y admite palabras sin acentos. Cloudinary está conectado y se han comprobado la creación de eventos con cartel y la subida de avatar. El despliegue sigue pendiente. Los secretos se guardan solo en los archivos locales ignorados por Git.
+El frontend utiliza la API real. Se han comprobado en local el registro, inicio y cierre de sesión, persistencia al recargar, rechazo de contraseña incorrecta, reserva y cancelación de asistencia. La búsqueda consulta también las traducciones ES/EN y admite palabras sin acentos. Cloudinary está conectado y se han comprobado la creación de eventos con cartel y la subida de avatar. Frontend y backend están publicados en Vercel; salud, agenda y CORS verificados en producción. Los secretos se guardan en variables privadas del backend y archivos locales ignorados por Git. El `.env` solicitado para la corrección se entrega por privado, separado del repositorio público.
 
 ## La empresa
 

@@ -666,6 +666,14 @@ La captura cubre la parte superior del mensaje; no muestra el botón inferior ni
 
 Validación final antes del commit de correo y evidencias: 18 pruebas backend y 42 frontend correctas (60 en total), compilación de producción correcta y enlaces locales de documentación comprobados. Las copias del logo y los 12 carteles incluidas en el backend coinciden byte a byte con los recursos finales del frontend.
 
+## Publicación en Vercel — 13/09/2026
+
+Se han creado dos proyectos desde el mismo repositorio y el commit `da840d2`: frontend en https://kelse-ts-talks.vercel.app y backend en https://kelse-ts-talks-api.vercel.app/api. El frontend usa Vite, raíz `frontend`, `VITE_API_URL` apuntando a la API publicada y `VITE_PREVIEW_MODE=false`. El backend usa Express, raíz `backend`, con credenciales y configuración SMTP en variables privadas de Vercel. Los enlaces de correo y CORS apuntan al dominio público de la web.
+
+El primer acceso a la API devolvió 503: Atlas solo admitía la IP doméstica. Tras autorización expresa de la usuaria, se añadió la regla `0.0.0.0/0` sin caducidad para la demostración y corrección. Esta regla admite intentos de conexión desde cualquier IPv4 y mantiene la autenticación obligatoria. Una vez aplicada, `/api/health` respondió 200; `/api/events` devolvió las 13 charlas con CORS correcto. La home pública muestra la agenda de Atlas y la ruta directa `/events` responde 200.
+
+Se ha preparado `backend/.env.entrega`, ignorado por Git, para enviarlo por el canal privado de corrección solicitado en las indicaciones aportadas por la usuaria. El repositorio conserva `.env.example` con marcadores y referencias a las URLs públicas. El archivo privado no contiene claves de HeyGen ni ElevenLabs. Pendientes: repetir el recorrido autenticado completo sobre producción, comprobar el correo desde ese flujo y recoger capturas de Vercel. Ver [guía de despliegue](docs/DESPLIEGUE.md).
+
 ## Preparación de Vercel y consistencia de reservas — 13/09/2026
 
 Cada petición de la API espera a MongoDB. Las peticiones concurrentes reutilizan una única promesa de conexión; si falla, se permite un nuevo intento y se devuelve un error 503 comprensible. En Vercel se exporta Express sin arrancar un servidor con `listen`; el arranque local sigue esperando a MongoDB.
