@@ -1,10 +1,24 @@
 # KelseTS Talks
 
-> **Move the next inch. Change the whole game.**
+> **Avanza un centímetro más. Cambia todo el partido.**
 
-KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y desarrollo profesional. **KelseTS Talks** es su plataforma de charlas motivacionales y experiencias de aprendizaje para speakers, líderes, profesionales y equipos.
+KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y desarrollo profesional. **KelseTS Talks** es su plataforma de charlas motivacionales y experiencias de aprendizaje para ponentes, líderes, profesionales y equipos.
 
 Este repositorio contiene la plataforma full stack con la que KelseTS publica su agenda, gestiona asistentes y permite que nuevos organizadores creen experiencias.
+
+## Contenido
+
+- [Estado actual](#estado-actual)
+- [Funcionalidades](#funcionalidades)
+- [Instalación local](#instalación-local)
+- [Variables de entorno](#variables-de-entorno)
+- [Ponentes y vídeos](#ponentes)
+- [Idiomas](#idiomas)
+- [API](#api)
+- [Pruebas con Insomnia](#pruebas-del-backend-con-insomnia)
+- [Ocupación de demostración](#ocupación-de-demostración)
+- [Correos de asistencia](#correos-de-asistencia)
+- [Aviso legal](#aviso-legal)
 
 ## Estado actual
 
@@ -15,6 +29,8 @@ Frontend bilingüe ES/EN con 12 charlas (tres por ponente), carteles definitivos
 La conexión local con MongoDB Atlas está configurada. La agenda se carga desde `backend/src/data/events.json`, con `speakerId`, traducciones ES/EN e identificadores estables `seedKey`. Repetir la carga actualiza el contenido editorial sin duplicar charlas ni sustituir asistentes o creador.
 
 El frontend utiliza la API real. Se han comprobado en local el registro, inicio y cierre de sesión, persistencia al recargar, rechazo de contraseña incorrecta, reserva y cancelación de asistencia. La búsqueda consulta también las traducciones ES/EN y admite palabras sin acentos. Cloudinary está conectado y se han comprobado la creación de eventos con cartel y la subida de avatar. Frontend y backend están publicados en Vercel; salud, agenda y CORS verificados en producción. Los secretos se guardan en variables privadas del backend y archivos locales ignorados por Git. El `.env` solicitado para la corrección se entrega por privado, separado del repositorio público.
+
+La arquitectura, las decisiones de producto y las evidencias de validación se desarrollan en la [memoria del proyecto](MEMORIA.md). Los pendientes de entrega están en la [revisión del enunciado](docs/REVISION-ENTREGA.md).
 
 ## La empresa
 
@@ -31,14 +47,14 @@ Su narrativa toma como punto de partida el espíritu del discurso del entrenador
 ## Funcionalidades
 
 - Registro con inicio de sesión automático y login mediante JWT.
-- Catálogo de talks con búsqueda, categorías y criterios de ordenación.
+- Catálogo de charlas con búsqueda, categorías y criterios de ordenación.
 - Ficha completa de cada experiencia, aforo y listado de asistentes.
 - Directorio de ponentes y biografías bilingües enlazadas desde las charlas asignadas.
 - Creación protegida de eventos con subida de carteles.
 - Confirmación o cancelación de asistencia en un solo paso.
 - Gestión de avatar y permisos de creadora o administradora.
 - Estados accesibles de carga, error, éxito y contenido vacío.
-- Diseño responsive alineado con la identidad visual de KelseTS.
+- Diseño adaptable a móvil, tableta y escritorio alineado con la identidad visual de KelseTS.
 - Versiones completas de la interfaz en español e inglés con selector ES/EN y preferencia guardada.
 
 ## Tecnologías
@@ -96,13 +112,25 @@ Los cuatro perfiles ficticios se definen en `frontend/src/data/speakers.js`, con
 
 Alison Patrick forma parte del Comité de Dirección del grupo y es profesora titular de Innovación Empresarial en KelseTS School. Jude enseña Liderazgo e Innovación de Equipos; Anna, Inteligencia Artificial y Estrategia del Dato; y Travis, Resiliencia y Cambio Organizacional. Son cargos del universo ficticio del proyecto.
 
-Las ocho invitaciones ES/EN ya están generadas con las voces aprobadas de ElevenLabs y animación de HeyGen. Los retratos, audios fuente y guiones se conservan en `production/speaker-videos/`; los MP4 públicos se registran en `frontend/src/data/speakerVideos.json`. Las ocho charlas están en `speakerTalks.json`. La web muestra imágenes estáticas y transcripciones; al añadir un enlace de YouTube, la imagen abre el vídeo en otra pestaña.
+Las ocho invitaciones ES/EN ya están generadas con las voces aprobadas de ElevenLabs y animación de HeyGen. Los retratos, audios fuente y guiones se conservan en `production/speaker-videos/`; las imágenes de presentación y los enlaces opcionales a YouTube se registran en `frontend/src/data/speakerVideos.json`. Las ocho charlas están en `speakerTalks.json`. La web muestra imágenes estáticas y transcripciones; al añadir un enlace de YouTube, la imagen abre el vídeo en otra pestaña.
 
 ### Vídeos de ponentes y charlas
 
-Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. Los 16 vídeos ES/EN se conservan en `production/media/`, fuera de la compilación del frontend. La web utiliza imágenes estáticas y enlaces externos opcionales. El idioma sigue el selector global de la web.
+Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. El idioma sigue el selector global ES/EN. La web muestra imágenes estáticas y transcripciones, con enlaces opcionales a YouTube.
 
-Los catálogos son `frontend/src/data/speakerVideos.json` y `frontend/src/data/speakerTalks.json`. Los guiones y las fuentes aprobadas se conservan en `production/`; las versiones de prueba se han retirado. El vídeo público de Alison usa la charla ampliada.
+Los 16 vídeos originales aprobados (ocho charlas y ocho invitaciones) se conservan en `production/media/`. Para YouTube se han preparado montajes de las charlas con introducción y reflexión de Araceli, e invitaciones con el logo, el nombre del ponente y el aviso de recreación con IA en cada idioma. Las nuevas exportaciones, sus textos de publicación, los scripts de montaje y los informes de revisión se conservan como material local privado excluido de Git y de la compilación de la web.
+
+Los guiones, las fuentes y el procedimiento se documentan en [producción audiovisual](production/README.md) y [producción de invitaciones](production/speaker-videos/README.md).
+
+### Enlazar los vídeos de YouTube
+
+Añade la URL HTTPS de cada vídeo en el campo `youtubeUrl` del idioma correspondiente en `frontend/src/data/speakerTalks.json` (charlas) o `frontend/src/data/speakerVideos.json` (invitaciones). Mientras esté vacío, la imagen despliega la transcripción; cuando tenga un enlace válido de YouTube, abrirá el vídeo en otra pestaña. No hay reproducción ni conexión a YouTube antes de pulsar.
+
+`production/` conserva la documentación y los materiales fuente; las exportaciones y otros archivos locales excluidos mediante `.gitignore` no se publican en Git. Esta carpeta no se incluye en `frontend/dist`. Los catálogos de archivo en `production/media/` conservan las rutas públicas antiguas como referencia histórica. Los personajes y las charlas siguen siendo ficticios y se mantiene el aviso de su recreación con IA.
+
+### Conoce la experiencia de nuestros alumnos
+
+La portada incluye `LearningStories` después de las fichas originales de los ponentes, en español e inglés. Las cuatro reflexiones y los enlaces de presentación se editan en `frontend/src/data/learningStories.json`. Añadir la URL del montaje a `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl` para cada idioma; mientras falte, se muestra «Próximamente» y se permite explorar los aprendizajes. Los fragmentos y sus posibles enlaces de YouTube se obtienen de `speakerTalks.json`. No hay reproducción ni conexión externa antes de pulsar. El aviso identifica expresamente la recreación pedagógica para el máster.
 
 ## Revisión visual sin backend
 
@@ -158,88 +186,9 @@ Subida multipart de avatar: 200 y URL de Cloudinary.
 
 El Sandbox no entrega mensajes a destinatarios reales. Estas evidencias locales se complementarán con pruebas sobre las URLs públicas antes de entregar.
 
-## Universo KelseTS
-
-| Proyecto | Enfoque | Web |
-| --- | --- | --- |
-| KelseTS Lifestyle | Movimiento, cultura pop y estilo de vida | [Visitar](https://kelset-slanding.vercel.app/) |
-| KelseTS Store | Tienda de zapatillas | [Visitar](https://proyecto-landing-page-2.vercel.app/) |
-| KelseTS Business School | IA, innovación y liderazgo | [Visitar](https://kelse-ts-business-school-landing.vercel.app/) |
-| KelseTS Talks | Charlas motivacionales y eventos | Próximamente |
-
-## Redes sociales
-
-[GitHub](https://github.com/AraceliFradejas) · [LinkedIn](https://www.linkedin.com/in/araceli-fradejas-munoz-transformaciondigital/) · [X](https://x.com/AraceliFradejas) · [Medium](https://medium.com/@araceli.fradejas) · [YouTube](https://www.youtube.com/@aracelifradejasmunoz2758)
-
-## Aviso legal
-
-KelseTS es una marca ficticia creada por Araceli Fradejas Muñoz con fines exclusivamente educativos, académicos y de portfolio. Este proyecto se inspira creativamente en la cultura pop, la música y el deporte, pero no está afiliado, patrocinado, autorizado ni respaldado por Taylor Swift, Travis Kelce, los Kansas City Chiefs, la National Football League, sus representantes ni ninguna entidad relacionada. Los eventos, productos, speakers, testimonios y servicios mostrados son ficticios.
-
-Los recursos visuales son creaciones originales para este proyecto. Se han seleccionado escenas y equipaciones genéricas, sin emplear fotografías oficiales, escudos de equipos ni imágenes promocionales de celebridades.
-
-## Autora
-
-**Araceli Fradejas Muñoz**
-
----
-
-# KelseTS Talks · English
-
-> **Move the next inch. Change the whole game.**
-
-KelseTS is a fictional company connecting sport, culture, technology and professional development. **KelseTS Talks** is its platform for motivational talks and sport-inspired learning experiences.
-
-KelseTS translates resilience, leadership, preparation, teamwork and purposeful action into workplace experiences. Its programme **The Next Inch** is inspired by the team-first, incremental-progress spirit of coach Tony D'Amato's speech in *Any Given Sunday*, using entirely original brand language.
-
-The repository includes a React SPA and an Express/MongoDB REST API. Users can sign up, log in, discover talks, publish events, upload artwork and manage attendance. Every asynchronous journey provides clear feedback.
-
-Technical architecture, product decisions, accessibility and deployment are documented in [`MEMORIA.md`](./MEMORIA.md).
-
-## KelseTS universe
-
-[KelseTS Lifestyle](https://kelset-slanding.vercel.app/) · [KelseTS Store](https://proyecto-landing-page-2.vercel.app/) · [KelseTS Business School](https://kelse-ts-business-school-landing.vercel.app/)
-
-## Social profiles
-
-[GitHub](https://github.com/AraceliFradejas) · [LinkedIn](https://www.linkedin.com/in/araceli-fradejas-munoz-transformaciondigital/) · [X](https://x.com/AraceliFradejas) · [Medium](https://medium.com/@araceli.fradejas) · [YouTube](https://www.youtube.com/@aracelifradejasmunoz2758)
-
-## Legal notice
-
-KelseTS is a fictional brand created by Araceli Fradejas Muñoz solely for educational, academic and portfolio purposes. It is creatively inspired by pop culture, music and sport, but is not affiliated with, sponsored, authorised or endorsed by Taylor Swift, Travis Kelce, the Kansas City Chiefs, the National Football League, their representatives or any related organisation. All events, products, speakers, testimonials and services shown are fictional.
-
-## Author
-
-**Araceli Fradejas Muñoz**
-
-### Enlazar los vídeos de YouTube
-
-Añade la URL HTTPS de cada vídeo en el campo `youtubeUrl` del idioma correspondiente en `frontend/src/data/speakerTalks.json` (charlas) o `frontend/src/data/speakerVideos.json` (invitaciones). Mientras esté vacío, la imagen despliega la transcripción; cuando tenga un enlace válido de YouTube, abrirá el vídeo en otra pestaña. No hay reproducción ni conexión a YouTube antes de pulsar.
-
-`production/` conserva los originales y sigue formando parte del repositorio; no se incluye en `frontend/dist`. Los catálogos de archivo en `production/media/` conservan las rutas públicas antiguas como referencia histórica. Los personajes y las charlas siguen siendo ficticios y se mantiene el aviso de su recreación con IA.
-
-### Conoce la experiencia de nuestros alumnos
-
-La portada incluye `LearningStories` después de las fichas originales de los ponentes, en español e inglés. Las cuatro reflexiones y los enlaces de presentación se editan en `frontend/src/data/learningStories.json`. Añadir la URL del montaje a `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl` para cada idioma; mientras falte, se muestra «Próximamente» y se permite explorar los aprendizajes. Los fragmentos y sus posibles enlaces de YouTube se obtienen de `speakerTalks.json`. No hay reproducción ni conexión externa antes de pulsar. El aviso identifica expresamente la recreación pedagógica para el máster.
-
-## Correos de asistencia
-
-La API prepara un correo HTML y una alternativa de texto al confirmar o cancelar asistencia. Usa el idioma enviado por el frontend (ES/EN), el título traducido, el cartel y la fecha en Europe/Madrid. El botón abre la ficha; cancelar requiere iniciar sesión y pulsar el botón de asistencia. Abrir un enlace nunca modifica una reserva.
-
-Generar cuatro vistas locales sin enviar mensajes:
-
-```bash
-npm run email:preview --prefix backend
-```
-
-Los archivos se guardan en backend/.email-previews/ (ignorado por Git). Sus enlaces son de muestra.
-
-El envío está desactivado por defecto. Para activarlo, configurar SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, MAIL_FROM y PUBLIC_APP_URL en backend/.env. Utilizar un remitente autorizado por el proveedor y una URL pública de la web para que los enlaces y carteles funcionen fuera del ordenador. Activar MAIL_ENABLED=true solo después. Configuración SMTP mediante [Nodemailer](https://nodemailer.com/smtp).
-
-La respuesta de asistencia incluye email.status: disabled, unconfigured, sent o failed. sent indica aceptación del servidor SMTP, no recepción garantizada. Los errores de correo no revierten una reserva y no se reintentan automáticamente; la entrega real a destinatarios externos sigue pendiente. La conexión local a Mailtrap Sandbox ya se ha verificado: confirmación ES y cancelación EN aceptadas y visualización confirmada por la usuaria. Ver [configuración, evidencia y capturas del correo](docs/CORREO.md).
-
 ## Ocupación de demostración
 
-Las 12 charlas editoriales admiten una precarga de asistentes ficticios identificada en la interfaz ES/EN. Los banners muestran las plazas disponibles según el aforo y las reservas actuales: últimas plazas, reserva abierta o plazas disponibles. Los eventos del primer trimestre de 2027 empiezan con pocas plazas; los posteriores tienen más disponibilidad.
+Las 12 charlas editoriales admiten una precarga de asistentes ficticios identificada en la interfaz ES/EN. Los avisos muestran las plazas disponibles según el aforo y las reservas actuales: últimas plazas, reserva abierta o plazas disponibles. Los eventos del primer trimestre de 2027 empiezan con pocas plazas; los posteriores tienen más disponibilidad.
 
 ```bash
 npm run seed:attendance --prefix backend -- --dry-run # revisar distribución sin escribir
@@ -260,11 +209,27 @@ La agregación calcula la ocupación desde los arrays de asistentes. La captura 
 
 ![Agregación de ocupación en Atlas](docs/screenshots/MongoDB/MongoDBAtlas-9%20ocupacion.png)
 
-### Evidencia del cartel alojado en Cloudinary
+## Evidencia del cartel alojado en Cloudinary
 
 Cartel de la charla creada desde la web, alojado en `kelsets-talks/events`: JPG, 1122 × 1402 píxeles y 142.49 KB. Cloudinary muestra creación mediante API y acceso público.
 
 ![Cartel y propiedades del recurso en Cloudinary](docs/screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png)
+
+## Correos de asistencia
+
+La API prepara un correo HTML y una alternativa de texto al confirmar o cancelar asistencia. Usa el idioma enviado por el frontend (ES/EN), el título traducido, el cartel y la fecha en Europe/Madrid. El botón abre la ficha; cancelar requiere iniciar sesión y pulsar el botón de asistencia. Abrir un enlace nunca modifica una reserva.
+
+Generar cuatro vistas locales sin enviar mensajes:
+
+```bash
+npm run email:preview --prefix backend
+```
+
+Los archivos se guardan en `backend/.email-previews/` (ignorado por Git). Sus enlaces son de muestra.
+
+El envío está desactivado por defecto. Para activarlo, configurar SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, MAIL_FROM y PUBLIC_APP_URL en backend/.env. Utilizar un remitente autorizado por el proveedor y una URL pública de la web para que los enlaces y carteles funcionen fuera del ordenador. Activar `MAIL_ENABLED=true` solo después. Configuración SMTP mediante [Nodemailer](https://nodemailer.com/smtp).
+
+La respuesta de asistencia incluye `email.status`: `disabled`, `unconfigured`, `sent` o `failed`. `sent` indica aceptación del servidor SMTP, no recepción garantizada. Los errores de correo no revierten una reserva y no se reintentan automáticamente; la entrega real a destinatarios externos sigue pendiente. La conexión local a Mailtrap Sandbox ya se ha verificado: confirmación ES y cancelación EN aceptadas y visualización confirmada por la usuaria. Ver [configuración, evidencia y capturas del correo](docs/CORREO.md).
 
 ### Correo de confirmación en Mailtrap Sandbox
 
@@ -275,3 +240,26 @@ El logo y el cartel editorial viajan incluidos en el mensaje. Confirmación ES r
 [Vista móvil de la confirmación](docs/screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png).
 
 [Cancelación EN en Mailtrap, vista de tableta](docs/screenshots/Mailtrap/Mailtrap%20-4%20email%20responsive%20english%20version%20sandbox.png). Se ven el aviso de cancelación, el logo y el cartel; la captura muestra la parte superior del mensaje.
+
+## Universo KelseTS
+
+| Proyecto | Enfoque | Web |
+| --- | --- | --- |
+| KelseTS Lifestyle | Movimiento, cultura pop y estilo de vida | [Visitar](https://kelset-slanding.vercel.app/) |
+| KelseTS Store | Tienda de zapatillas | [Visitar](https://proyecto-landing-page-2.vercel.app/) |
+| KelseTS Business School | IA, innovación y liderazgo | [Visitar](https://kelse-ts-business-school-landing.vercel.app/) |
+| KelseTS Talks | Charlas motivacionales y eventos | [Visitar](https://kelse-ts-talks.vercel.app/) |
+
+## Redes sociales
+
+[GitHub](https://github.com/AraceliFradejas) · [LinkedIn](https://www.linkedin.com/in/araceli-fradejas-munoz-transformaciondigital/) · [X](https://x.com/AraceliFradejas) · [Medium](https://medium.com/@araceli.fradejas) · [YouTube](https://www.youtube.com/@aracelifradejasmunoz2758)
+
+## Aviso legal
+
+KelseTS es una marca ficticia creada por Araceli Fradejas Muñoz con fines exclusivamente educativos, académicos y de portfolio. Este proyecto se inspira creativamente en la cultura pop, la música y el deporte, pero no está afiliado, patrocinado, autorizado ni respaldado por Taylor Swift, Travis Kelce, los Kansas City Chiefs, la National Football League, sus representantes ni ninguna entidad relacionada. Los eventos, productos, ponentes, testimonios y servicios mostrados son ficticios.
+
+Los recursos visuales son creaciones originales para este proyecto. Se han seleccionado escenas y equipaciones genéricas, sin emplear fotografías oficiales, escudos de equipos ni imágenes promocionales de celebridades.
+
+## Autora
+
+**Araceli Fradejas Muñoz**

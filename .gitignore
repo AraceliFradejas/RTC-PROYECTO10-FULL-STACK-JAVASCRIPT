@@ -34,7 +34,7 @@ output/imagegen/alison-liderar-entornos-convulsos.*
 # Captura descartada: contiene hashes de contraseñas de cuentas
 /docs/screenshots/MongoDB/MongoDBAtlas-5 asistentes detalles.png
 
-# Originales y exportaciones locales para YouTube
-/production/synthesia/originals/
-/production/synthesia/previews/
-/production/synthesia/exports/
+# Material privado de preparación y publicación en YouTube
+/production/synthesia/
+/production/YOUTUBE-TEXTOS.md
+/production/speaker-videos/brand-invitations.mjs
