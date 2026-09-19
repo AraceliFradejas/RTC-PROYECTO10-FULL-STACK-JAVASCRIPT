@@ -1,6 +1,18 @@
 # Revisión frente al enunciado del máster
 
-Revisión de código y de las comprobaciones realizadas en local. No equivale a una validación completa de producción.
+Revisión de código, pruebas y comprobaciones de producción. Las secciones fechadas conservan el historial; el estado final siguiente prevalece sobre sus pendientes antiguos.
+
+## Estado final de la sesión — 19/09/2026
+
+- Frontend y API publicados; salud comprobada. Memoria y nueve capturas finales subidas en `0df8d7e`.
+- Recuperación de contraseña e inicio de sesión, reserva/cancelación y correos Sandbox comprobados con la titular.
+- Creación con cartel, edición de descripción/hora y persistencia de imagen tras guardado y recarga comprobadas. Botón de edición corregido en `f249d31`.
+- Avisos sustituidos por el mensaje más reciente; funcionamiento confirmado por la titular.
+- 76 pruebas ordinarias correctas, build y comprobaciones HTML correctos. Integraciones de Atlas documentadas separadamente.
+- Pendientes de entrega: confirmar si el campus acepta monorepo y adjuntar el archivo de entorno por el canal privado indicado. El envío al campus no se ha realizado.
+- Límites: sustitución de avatar no repetida en producción y colección completa de Insomnia no repetida contra la API pública; existen sus evidencias locales. Correo probado en Sandbox, no en buzones reales. No se declara certificación integral de accesibilidad.
+
+Texto y enlaces listos en [ENTREGA.md](ENTREGA.md); [capturas finales](screenshots/entrega-2026-09-19/README.md).
 
 ## Retoma y cierre de entrega — 19/09/2026
 
