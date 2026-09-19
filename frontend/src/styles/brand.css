@@ -402,17 +402,12 @@ em { font-family: inherit; font-style: normal; font-weight: inherit; }
 .learning-stories__heading { max-width: 760px; margin-bottom: 28px; }
 .learning-stories__heading h2 { font-size: clamp(2rem, 4vw, 3.3rem); margin-bottom: 14px; }
 .learning-stories__heading > p:last-child { color: #655b6b; font-size: 1.15rem; line-height: 1.6; }
-.learning-stories__intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: stretch; margin-bottom: 32px; }
+.learning-stories__intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: stretch; margin-bottom: 32px; }
 .learning-stories__presentation { padding: clamp(24px, 3vw, 38px); border-radius: 22px; color: #fff; background: linear-gradient(125deg, #211b25, #49364e); }
 .learning-stories__badge { display: inline-block; color: #ffdc76; font-size: .875rem; margin-bottom: 20px; }
 .learning-stories__presentation h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
 .learning-stories__presentation p { color: #e7dfe8; line-height: 1.7; }
 .learning-stories__presentation .text-link { color: #ffdc76; }
-.learning-stories__context { padding: 22px 0; }
-.learning-stories__context > svg { width: 30px; height: 30px; color: #713daf; margin-bottom: 12px; }
-.learning-stories__context h3 { font-size: 1.4rem; margin-bottom: 12px; }
-.learning-stories__context p { color: #655b6b; line-height: 1.65; }
-.learning-stories__context .learning-stories__notice { font-size: .85rem; border-top: 1px solid #dcd0df; padding-top: 14px; margin-top: 18px; }
 .learning-stories__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; scroll-margin-top: 100px; }
 .learning-story { overflow: hidden; background: #fff; border: 1px solid #e6dfe8; border-radius: 22px; }
 .learning-story__image { display: block; width: 100%; height: auto; }
@@ -434,5 +429,4 @@ em { font-family: inherit; font-style: normal; font-weight: inherit; }
 @media (max-width: 760px) {
   .learning-stories__intro, .learning-stories__grid { grid-template-columns: minmax(0, 1fr); }
   .learning-stories__intro { gap: 8px; }
-  .learning-stories__context { padding: 18px 0 0; }
 }

@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Play } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { speakers } from '../data/speakers.js';
@@ -24,12 +24,6 @@ export const LearningStories = ({ content = stories }) => {
           {presentationUrl ? <a className="button button--accent" href={presentationUrl} target="_blank" rel="noopener noreferrer"><Play aria-hidden="true" />{t('Ver en YouTube · Se abre en otra pestaña')}</a>
             : <a className="text-link" href="#learning-fragments">{t('Explora los aprendizajes')}<ArrowDown aria-hidden="true" /></a>}
         </div>
-        <aside className="learning-stories__context">
-          <BookOpen aria-hidden="true" />
-          <h3>{t('Aprender, compartir, poner en práctica')}</h3>
-          <p>{t('Selecciona un fragmento, descubre su idea principal y encuentra un pequeño paso que puedas probar con tu equipo.')}</p>
-          <p className="learning-stories__notice">{t('Recreación con IA para un proyecto del máster, sin fines lucrativos y con finalidad exclusivamente pedagógica.')}</p>
-        </aside>
       </div>
       <div className="learning-stories__grid" id="learning-fragments">
         {speakers.map((speaker, index) => {
