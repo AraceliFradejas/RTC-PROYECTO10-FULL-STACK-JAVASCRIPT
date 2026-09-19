@@ -24,7 +24,7 @@ Este repositorio contiene la plataforma full stack con la que KelseTS publica su
 
 **Web pública:** [KelseTS Talks](https://kelse-ts-talks.vercel.app/). **API:** [comprobación de salud](https://kelse-ts-talks-api.vercel.app/api/health). Configuración y verificaciones en [la guía de despliegue](docs/DESPLIEGUE.md).
 
-Frontend bilingüe ES/EN con 12 charlas (tres por ponente), carteles definitivos y una sección pedagógica de experiencias. Los vídeos se conservan en `production/media/`; la web utiliza imágenes estáticas con enlaces opcionales a YouTube.
+Frontend bilingüe ES/EN con 12 charlas (tres por ponente), carteles definitivos y una sección pedagógica de experiencias. La web utiliza imágenes estáticas y transcripciones, con enlaces opcionales a YouTube.
 
 La conexión local con MongoDB Atlas está configurada. La agenda se carga desde `backend/src/data/events.json`, con `speakerId`, traducciones ES/EN e identificadores estables `seedKey`. Repetir la carga actualiza el contenido editorial sin duplicar charlas ni sustituir asistentes o creador.
 
@@ -116,21 +116,13 @@ Los cuatro perfiles ficticios se definen en `frontend/src/data/speakers.js`, con
 
 Alison Patrick forma parte del Comité de Dirección del grupo y es profesora titular de Innovación Empresarial en KelseTS School. Jude enseña Liderazgo e Innovación de Equipos; Anna, Inteligencia Artificial y Estrategia del Dato; y Travis, Resiliencia y Cambio Organizacional. Son cargos del universo ficticio del proyecto.
 
-Las ocho invitaciones ES/EN ya están generadas con las voces aprobadas de ElevenLabs y animación de HeyGen. Los retratos, audios fuente y guiones se conservan en `production/speaker-videos/`; las imágenes de presentación y los enlaces opcionales a YouTube se registran en `frontend/src/data/speakerVideos.json`. Las ocho charlas están en `speakerTalks.json`. La web muestra imágenes estáticas y transcripciones; al añadir un enlace de YouTube, la imagen abre el vídeo en otra pestaña.
+Las imágenes de presentación, transcripciones y enlaces opcionales se registran en `frontend/src/data/speakerVideos.json` y `speakerTalks.json`. Los recursos visuales y audiovisuales son recreaciones con IA de personajes ficticios; su procedencia se resume en [Recursos y atribuciones](docs/RECURSOS.md).
 
 ### Vídeos de ponentes y charlas
 
-Cada biografía (`/speakers/:slug`) y cada evento con ponente asignado incluyen un selector entre la charla y la invitación breve. El idioma sigue el selector global ES/EN. La web muestra imágenes estáticas y transcripciones, con enlaces opcionales a YouTube.
+Cada biografía y evento con ponente asignado incluye un selector entre charla e invitación. El idioma sigue el selector ES/EN. Los originales de producción se conservan localmente; el repositorio de entrega contiene los recursos que necesita la web, sus transcripciones y las evidencias técnicas.
 
-Los 16 vídeos originales aprobados (ocho charlas y ocho invitaciones) se conservan en `production/media/`. Para YouTube se han preparado montajes de las charlas con introducción y reflexión de Araceli, e invitaciones con el logo, el nombre del ponente y el aviso de recreación con IA en cada idioma. Las nuevas exportaciones, sus textos de publicación, los scripts de montaje y los informes de revisión se conservan como material local privado excluido de Git y de la compilación de la web.
-
-Los guiones, las fuentes y el procedimiento se documentan en [producción audiovisual](production/README.md) y [producción de invitaciones](production/speaker-videos/README.md).
-
-### Enlazar los vídeos de YouTube
-
-Añade la URL HTTPS de cada vídeo en el campo `youtubeUrl` del idioma correspondiente en `frontend/src/data/speakerTalks.json` (charlas) o `frontend/src/data/speakerVideos.json` (invitaciones). Mientras esté vacío, la imagen despliega la transcripción; cuando tenga un enlace válido de YouTube, abrirá el vídeo en otra pestaña. No hay reproducción ni conexión a YouTube antes de pulsar.
-
-`production/` conserva la documentación y los materiales fuente; las exportaciones y otros archivos locales excluidos mediante `.gitignore` no se publican en Git. Esta carpeta no se incluye en `frontend/dist`. Los catálogos de archivo en `production/media/` conservan las rutas públicas antiguas como referencia histórica. Los personajes y las charlas siguen siendo ficticios y se mantiene el aviso de su recreación con IA.
+Para enlazar un vídeo, añade su URL HTTPS de YouTube a `youtubeUrl` en el idioma correspondiente de `speakerTalks.json` o `speakerVideos.json`. Mientras esté vacío, la imagen despliega la transcripción; con un enlace válido, abre el vídeo en otra pestaña. No hay reproducción ni conexión a YouTube antes de pulsar.
 
 ### Conoce la experiencia de nuestros alumnos
 
@@ -174,7 +166,7 @@ Creación autenticada: 201 y evento temporal con aforo 1.
 
 Permisos: el segundo usuario recibe 403 al editar un evento ajeno.
 
-![Prueba 16: Permisos: el segundo usuario recibe 403 al editar un evento ajeno.](docs/screenshots/Insomnia/Insomnia-16%20%C2%B7%20Edicio%CC%81n%20ajena%20denegada.png)
+![Prueba 16: Permisos: el segundo usuario recibe 403 al editar un evento ajeno.](docs/screenshots/Insomnia/Insomnia-16%20%C2%B7%20Edici%C3%B3n%20ajena%20denegada.png)
 
 Reserva: un asistente y correo aceptado en Mailtrap Sandbox.
 

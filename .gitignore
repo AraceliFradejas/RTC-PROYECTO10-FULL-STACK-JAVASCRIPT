@@ -38,3 +38,7 @@ output/imagegen/alison-liderar-entornos-convulsos.*
 /production/synthesia/
 /production/YOUTUBE-TEXTOS.md
 /production/speaker-videos/brand-invitations.mjs
+
+# Fuentes y borradores de producción: conservar localmente, fuera de la entrega técnica
+/production/
+/output/

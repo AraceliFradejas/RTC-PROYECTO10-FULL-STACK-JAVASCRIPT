@@ -25,6 +25,6 @@ Las dos cuentas de prueba permanecen en MongoDB: la API no dispone de borrado p�
 
 Colección importada y ejecutada en Insomnia 13.2.0 contra `http://127.0.0.1:3000/api` (Express local y MongoDB Atlas). Se revisaron 28 capturas y los 28 casos muestran el resultado esperado. La prueba 27 se repitió seleccionando un JPEG real: devuelve 200 y avatar con URL HTTPS de Cloudinary. Su script se ha reforzado para comprobar también esa URL; la captura nueva sustituye a la ejecución inicial sin archivo.
 
-Cada caso está detallado en la [memoria](../../MEMORIA.md#validación-detallada-en-insomnia--revisión-del-13-de-septiembre-de-2026), con referencia a su [captura](../screenshots/Insomnia). La usuaria ha ocultado el token de la captura 15; la versión corregida ya está revisada. Las capturas corresponden al código local revisado; las correcciones de validación y esta colección se incorporan juntas al siguiente commit.
+Cada caso está detallado en la [memoria](../../MEMORIA.md#validación-detallada-en-insomnia--revisión-del-13-de-septiembre-de-2026), con referencia a su [captura](../screenshots/Insomnia). Araceli ha ocultado el token de la captura 15; la versión corregida ya está revisada. Las capturas corresponden al código local revisado; las correcciones de validación y esta colección se incorporan juntas al siguiente commit.
 
 En 18 y 20, email.status=sent indica aceptación de Mailtrap Sandbox. No acredita entrega externa. Repetir el recorrido sobre la API desplegada con cuentas y eventos de prueba antes de entregar.

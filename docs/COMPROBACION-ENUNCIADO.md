@@ -1,6 +1,6 @@
-# Comprobación del enunciado aportado por la titular
+# Comprobación del enunciado aportado por Araceli
 
-Revisión del 19/09/2026 contra el texto completo de la actividad facilitado en la conversación. Se han leído los modelos, rutas, controladores, servicios, formularios y componentes implicados y repetido las pruebas ordinarias. No se equipara esta revisión a ausencia absoluta de errores.
+Revisión del 19/09/2026 contra el texto completo de la actividad facilitado en la conversación. La revisión contrasta cada requisito con los modelos, rutas, controladores, formularios y pruebas del proyecto. No se equipara esta revisión a ausencia absoluta de errores.
 
 ## Correspondencia de requisitos
 
@@ -32,6 +32,6 @@ La entrega se presenta en el apartado de la actividad; la corrección se comunic
 
 ## Resultado y límites
 
-76 pruebas ordinarias correctas (24 backend y 52 frontend), build y comprobación de 14 documentos HTML correctos. Las dos integraciones con Atlas se omiten en `npm test`; sus ejecuciones separadas y alcance constan en la memoria. Los recorridos de recuperación, reserva/cancelación, creación, edición y cartel se comprobaron durante esta sesión con la titular; las nueve capturas finales están enlazadas en la documentación.
+76 pruebas ordinarias correctas (24 backend y 52 frontend), build y comprobación de 14 documentos HTML correctos. Las dos integraciones con Atlas se omiten en `npm test`; sus ejecuciones separadas y alcance constan en la memoria. Los recorridos de recuperación, reserva/cancelación, creación, edición y cartel se comprobaron durante esta sesión con Araceli; las nueve capturas finales están enlazadas en la documentación.
 
 No se detectan funcionalidades obligatorias ausentes en el alcance descrito. Quedan mejoras de robustez y comprobaciones adicionales, como repetir toda la colección de Insomnia contra producción y ampliar la prueba de avatar, sin que el avatar sea necesario para cumplir la subida de ficheros ya demostrada con carteles. Mailtrap Sandbox no acredita entrega a buzones personales y la revisión visual no es una certificación integral de accesibilidad.

@@ -5,9 +5,9 @@ Revisión de código, pruebas y comprobaciones de producción. Las secciones fec
 ## Estado final de la sesión — 19/09/2026
 
 - Frontend y API publicados; salud comprobada. Memoria y nueve capturas finales subidas en `0df8d7e`.
-- Recuperación de contraseña e inicio de sesión, reserva/cancelación y correos Sandbox comprobados con la titular.
+- Recuperación de contraseña e inicio de sesión, reserva/cancelación y correos Sandbox comprobados con Araceli.
 - Creación con cartel, edición de descripción/hora y persistencia de imagen tras guardado y recarga comprobadas. Botón de edición corregido en `f249d31`.
-- Avisos sustituidos por el mensaje más reciente; funcionamiento confirmado por la titular.
+- Avisos sustituidos por el mensaje más reciente; funcionamiento confirmado por Araceli.
 - 76 pruebas ordinarias correctas, build y comprobaciones HTML correctos. Integraciones de Atlas documentadas separadamente.
 - Pendientes de entrega: enviar los enlaces en el apartado de la actividad y facilitar el archivo de entorno por el canal privado indicado. Enunciado completo revisado: se aportan ambos enlaces de carpetas del monorepo; no exige repositorios independientes. El envío al campus no se ha realizado.
 - Límites: sustitución de avatar no repetida en producción y colección completa de Insomnia no repetida contra la API pública; existen sus evidencias locales. Correo probado en Sandbox, no en buzones reales. No se declara certificación integral de accesibilidad.
@@ -43,7 +43,7 @@ El correo real y la publicación de vídeos en YouTube son extras y no bloquean 
 | Usuario con contraseña hashed | User.js usa bcrypt en pre-save; registro y login probados en navegador. Formato de email y tipos validados; caso negativo 28 revisado en Insomnia. |
 | Evento y array de IDs de asistentes | Event.js y toggleAttendance. Reserva/cancelación probadas contra Atlas. |
 | Middleware JWT y rutas privadas | auth.js y rutas auth/events. Casos 06–07 y 16–17 revisados en Insomnia con dos usuarios. |
-| Subida de ficheros | Cartel y avatar probados mediante API con Cloudinary; creación desde la web confirmada por la usuaria. |
+| Subida de ficheros | Cartel y avatar probados mediante API con Cloudinary; creación desde la web confirmada por Araceli. |
 | Controladores de ordenación | Fecha, publicación y popularidad en listEvents. Evidencias locales 08–09 revisadas. |
 | Inserción entre colecciones | Asistencia enlaza Event.attendees y User.attendingEvents en una transacción. Concurrencia, reversión ante fallos y eliminación de referencias verificadas en una base temporal de Atlas. |
 | Registro con login automático | Probado en navegador. |
@@ -87,16 +87,16 @@ El límite de imágenes pasa a 4 MB en frontend y backend, por el límite de 4,5
 
 ### Recuperación de acceso — 19/09/2026
 
-Implementados solicitud y cambio de contraseña con Mailtrap Sandbox, ES/EN, enlaces temporales de un solo uso y revocación de sesiones. Pruebas ordinarias: 73 correctas; integración real de recuperación en Atlas: correcta. [Configuración y paso a correo real](RECUPERACION-CONTRASENA.md). Despliegue y comprobaciones HTTP correctos. La titular confirma haber recuperado su contraseña mediante Mailtrap e iniciado sesión en la web publicada. Quedan separados de esta validación los recorridos de reserva/cancelación y edición de eventos.
+Implementados solicitud y cambio de contraseña con Mailtrap Sandbox, ES/EN, enlaces temporales de un solo uso y revocación de sesiones. Pruebas ordinarias: 73 correctas; integración real de recuperación en Atlas: correcta. [Configuración y paso a correo real](RECUPERACION-CONTRASENA.md). Despliegue y comprobaciones HTTP correctos. Araceli confirma haber recuperado su contraseña mediante Mailtrap e iniciado sesión en la web publicada. Quedan separados de esta validación los recorridos de reserva/cancelación y edición de eventos.
 
 
 ### Reserva y cancelación públicas — 19/09/2026
 
-Reserva observada en Chrome: titular incluida en participantes y aviso de plaza confirmada. La titular confirma los correos de reserva y cancelación en Mailtrap y, al cancelar desde la web, asistencia desmarcada, aumento de plazas disponibles y mensaje de cancelación. Recorrido cerrado con confirmación de la titular, sin nuevas capturas guardadas. Continúan pendientes la creación/edición de eventos y subida de ficheros en producción, además del paquete final de entrega.
+Reserva observada en Chrome: titular incluida en participantes y aviso de plaza confirmada. Araceli confirma los correos de reserva y cancelación en Mailtrap y, al cancelar desde la web, asistencia desmarcada, aumento de plazas disponibles y mensaje de cancelación. Recorrido cerrado con confirmación de Araceli, sin nuevas capturas guardadas. Continúan pendientes la creación/edición de eventos y subida de ficheros en producción, además del paquete final de entrega.
 
 ### Edición en la interfaz — 19/09/2026
 
-Creación de «Tu mente y la presión» para el 15/03/2027 confirmada por la titular. Se detectó y corrigió la ausencia de edición en el frontend; la API ya la permitía. Añadidos botón y formulario protegido ES/EN, conservando cartel y fecha sin modificar. 52 pruebas frontend y build correctos. Corrección publicada en `f249d31` bajo autoría de la titular. Esta confirma el cambio de texto y hora; se observa «Cambios guardados» y una consulta independiente a la API verifica descripción y fecha persistidas, Travis Wood y URL del cartel. No se ha probado sustituir el cartel durante una edición.
+Creación de «Tu mente y la presión» para el 15/03/2027 confirmada por Araceli. Se detectó y corrigió la ausencia de edición en el frontend; la API ya la permitía. Añadidos botón y formulario protegido ES/EN, conservando cartel y fecha sin modificar. 52 pruebas frontend y build correctos. Corrección publicada en `f249d31` bajo autoría de Araceli. Esta confirma el cambio de texto y hora; se observa «Cambios guardados» y una consulta independiente a la API verifica descripción y fecha persistidas, Travis Wood y URL del cartel. No se ha probado sustituir el cartel durante una edición.
 
 ## Contraste con el enunciado completo
 

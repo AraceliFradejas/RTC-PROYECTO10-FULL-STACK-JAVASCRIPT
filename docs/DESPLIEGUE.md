@@ -11,7 +11,7 @@ La API responde 200 en `/api/health` y devuelve 13 eventos en `/api/events`; COR
 
 ## Acceso de Atlas y entrega privada
 
-El primer despliegue devolvía 503 porque Atlas solo admitía la IP doméstica. Con autorización de la usuaria se añadió `0.0.0.0/0` sin caducidad para la demostración y corrección, de acuerdo con las indicaciones de entrega que aportó. La API pasó a responder 200 tras aplicar la regla. Esta configuración permite intentos de conexión desde cualquier IPv4; la autenticación de la base de datos sigue siendo obligatoria.
+El primer despliegue devolvía 503 porque Atlas solo admitía la IP doméstica. Con autorización de Araceli se añadió `0.0.0.0/0` sin caducidad para la demostración y corrección, de acuerdo con las indicaciones de entrega que aportó. La API pasó a responder 200 tras aplicar la regla. Esta configuración permite intentos de conexión desde cualquier IPv4; la autenticación de la base de datos sigue siendo obligatoria.
 
 `backend/.env.entrega` es un archivo local ignorado por Git, preparado para la corrección privada. Incluye únicamente las variables de esta aplicación, no las claves de herramientas audiovisuales. Al usarlo en local, copiarlo a `backend/.env`. No publicarlo ni adjuntarlo a un issue o README. Las variables `VITE_` del frontend son públicas y su ejemplo incluye la alternativa de producción.
 
