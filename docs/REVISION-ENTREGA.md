@@ -14,7 +14,7 @@ Comprobaciones repetidas en esta fecha:
 
 Estas comprobaciones HTTP no acreditan el recorrido visual ni autenticado. No había un navegador conectado en la sesión de revisión.
 
-Revisión adicional de accesibilidad, SEO y GEO: [hallazgos, correcciones y límites](ACCESIBILIDAD-SEO.md). Tras esta revisión el frontend tiene 45 pruebas correctas (64 ordinarias entre ambos proyectos). Las mejoras aún deben publicarse y verificarse.
+Revisión adicional de accesibilidad, SEO y GEO: [hallazgos, correcciones y límites](ACCESIBILIDAD-SEO.md). Tras esta revisión el frontend tiene 45 pruebas correctas (64 ordinarias entre ambos proyectos). Mejoras publicadas en Vercel: 18 comprobaciones HTTP correctas y login revisado visualmente en Chrome. Sigue pendiente el recorrido autenticado completo.
 
 Orden de cierre para entregar hoy o, como máximo, mañana:
 

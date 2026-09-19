@@ -1,6 +1,6 @@
 # Revisión de accesibilidad, SEO y GEO — 19/09/2026
 
-Cambios locales revisados en código, HTML compilado y Chrome. Esta revisión no certifica conformidad completa WCAG ni garantiza indexación o aparición en respuestas de IA. Todavía requiere comprobar el despliegue actualizado.
+Cambios revisados en código, HTML compilado y Chrome; publicados en Vercel desde el commit `ccdb145`. Esta revisión no certifica conformidad completa WCAG ni garantiza indexación o aparición en respuestas de IA. El despliegue actualizado se ha comprobado con 18 verificaciones HTTP y revisión visual del login en Chrome.
 
 ## Problemas detectados y correcciones
 
@@ -32,7 +32,7 @@ Cambios locales revisados en código, HTML compilado y Chrome. Esta revisión no
 
 ## Alcance y comprobaciones pendientes
 
-1. Publicar y verificar en Vercel las rutas directas, `robots.txt`, `sitemap.xml`, respuesta 404 de rutas desconocidas y cabeceras noindex. La reescritura de `/events/:id` usa `/200` porque `cleanUrls` elimina la extensión `.html`.
+1. Completado: publicación y verificación en Vercel de rutas directas, `robots.txt`, `sitemap.xml`, respuesta 404 de una ruta desconocida y cabeceras noindex. La reescritura de `/events/:id` usa `/200` porque `cleanUrls` elimina la extensión `.html`.
 2. Agenda y fichas de eventos siguen obteniendo los datos vivos mediante JavaScript. No se publican instantáneas de asistentes en HTML ni se precargan reservas en el build. Un rastreador sin JS podrá leer los contenidos editoriales prerenderizados, pero no el catálogo vivo completo ni las fichas dinámicas. Las vistas sociales de fichas dinámicas son genéricas hasta ejecutar JS.
 3. ES/EN comparten URL y guardan la preferencia en el navegador. El HTML de build es ES. No se añaden `hreflang` ficticios: una indexación independiente EN requeriría rutas de idioma y prerender propio.
 4. La página desconocida está generada en `404.html`; un ID de evento inexistente necesita consultar la API y queda con noindex en el cliente. Un estado HTTP 404 específico para cada ID exigiría resolverlo en el servidor.
@@ -46,3 +46,7 @@ Cambios locales revisados en código, HTML compilado y Chrome. Esta revisión no
 - [WCAG 2.2](https://www.w3.org/TR/WCAG22/): foco visible, teclado, reflujo, tamaño de controles y errores.
 - [Google: funciones de IA y sitios web](https://developers.google.com/search/docs/appearance/ai-features): prácticas SEO fundamentales, texto accesible y datos estructurados coherentes con lo visible.
 - [Vercel: configuración de rutas](https://vercel.com/docs/project-configuration/vercel-json): `cleanUrls`, reescrituras y cabeceras.
+
+## Publicación comprobada
+
+El commit `ccdb145` está publicado en frontend y API; ambos despliegues figuran completados en los estados de GitHub/Vercel. [Resultado de las 18 comprobaciones públicas](VERIFICACION-PRODUCCION-2026-09-19.json). Se verifican también el CSS con la corrección de contraste y una ficha dinámica mediante acceso directo. El login publicado se revisó visualmente en Chrome. No se iniciaron sesiones ni se modificaron reservas durante esta comprobación.

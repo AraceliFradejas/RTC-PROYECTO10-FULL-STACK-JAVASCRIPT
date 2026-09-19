@@ -59,7 +59,7 @@ Su narrativa toma como punto de partida el espíritu del discurso del entrenador
 
 ## Accesibilidad y descubrimiento
 
-Revisión del 19/09/2026: contraste, navegación por teclado, errores de formularios, títulos de página, metadatos para compartir y HTML prerenderizado de las páginas editoriales. El alcance, las pruebas y las limitaciones están en [la revisión de accesibilidad, SEO y GEO](docs/ACCESIBILIDAD-SEO.md). Estas mejoras locales todavía deben verificarse en el despliegue actualizado.
+Revisión del 19/09/2026: contraste, navegación por teclado, errores de formularios, títulos de página, metadatos para compartir y HTML prerenderizado de las páginas editoriales. El alcance, las pruebas y las limitaciones están en [la revisión de accesibilidad, SEO y GEO](docs/ACCESIBILIDAD-SEO.md). Mejoras publicadas en Vercel el 19/09/2026: 18 comprobaciones HTTP correctas y contraste del login revisado en Chrome.
 
 ## Tecnologías
 

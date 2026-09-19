@@ -1,0 +1,150 @@
+{
+  "fecha": "2026-09-19",
+  "commit": "ccdb145",
+  "comprobaciones": [
+    {
+      "path": "/",
+      "status": 200,
+      "h1": 1,
+      "title": "Charlas de liderazgo y trabajo en equipo | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/auth",
+      "status": 200,
+      "h1": 1,
+      "title": "Iniciar sesión o crear cuenta | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/auth"
+      ],
+      "ok": true,
+      "robots": "noindex, follow"
+    },
+    {
+      "path": "/events",
+      "status": 200,
+      "h1": 1,
+      "title": "Agenda de charlas | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/events"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "h1": 1,
+      "title": "Sobre el proyecto | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/about"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/legal",
+      "status": 200,
+      "h1": 1,
+      "title": "Aviso legal y finalidad educativa | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/legal"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/speakers",
+      "status": 200,
+      "h1": 1,
+      "title": "Ponentes | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/speakers"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/speakers/alison-patrick",
+      "status": 200,
+      "h1": 1,
+      "title": "Alison Patrick · Ponente ficticio | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/speakers/alison-patrick"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/speakers/jude-becks",
+      "status": 200,
+      "h1": 1,
+      "title": "Jude Becks · Ponente ficticio | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/speakers/jude-becks"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/speakers/anna-nasser",
+      "status": 200,
+      "h1": 1,
+      "title": "Anna Nasser · Ponente ficticio | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/speakers/anna-nasser"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/speakers/travis-wood",
+      "status": 200,
+      "h1": 1,
+      "title": "Travis Wood · Ponente ficticio | KelseTS Talks",
+      "canonical": [
+        "https://kelse-ts-talks.vercel.app/speakers/travis-wood"
+      ],
+      "ok": true
+    },
+    {
+      "path": "/events/new",
+      "status": 200,
+      "robots": "noindex, follow",
+      "ok": true
+    },
+    {
+      "path": "/revision-ruta-inexistente",
+      "status": 404,
+      "ok": true
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "urls": 9,
+      "ok": true
+    },
+    {
+      "path": "/assets/index-8HE5RJog.css",
+      "ok": true,
+      "contrast_correction": true
+    },
+    {
+      "api": "health",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "api": "events",
+      "status": 200,
+      "ok": true,
+      "events": 13
+    },
+    {
+      "path": "/events/6aa57b07d710e504d08fec97",
+      "status": 200,
+      "ok": true
+    }
+  ]
+}

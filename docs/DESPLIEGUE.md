@@ -39,3 +39,9 @@ Conservar las evidencias en `docs/screenshots/Vercel/`, siguiendo [la guía de c
 Repetir los casos de Insomnia usando la URL pública. Las imágenes se limitan a 4 MB para dejar margen al multipart dentro del límite de 4,5 MB de las funciones. La prueba adicional de transacciones se ejecuta en una base temporal, no sobre los eventos del catálogo.
 
 Los originales y montajes MP4 permanecen en las carpetas locales de producción. Las páginas HTML de revisión de vídeo no forman parte del frontend desplegado.
+
+## Actualización publicada — 19/09/2026
+
+Commit `ccdb145`: correcciones de accesibilidad y mejoras de SEO/GEO, bajo autoría de Araceli Fradejas Muñoz. Frontend y API desplegados correctamente mediante la integración de GitHub con Vercel.
+
+Las [18 comprobaciones públicas](VERIFICACION-PRODUCCION-2026-09-19.json) verifican las diez rutas prerenderizadas, la ruta protegida de creación con noindex, una ruta inexistente con HTTP 404, robots, sitemap de nueve URLs, CSS corregido, salud de API, agenda de 13 eventos y acceso directo a una ficha dinámica. Contraste del login revisado visualmente en Chrome. Esta comprobación no sustituye el recorrido autenticado pendiente.
