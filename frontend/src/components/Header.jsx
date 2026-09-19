@@ -11,7 +11,8 @@ export const Header = () => {
   } = useLanguage();
   const {
     user,
-    logout
+    logout,
+    checkingSession
   } = useAuth();
   const [open, setOpen] = useState(false);
   const menuButton = useRef(null);
@@ -28,7 +29,7 @@ export const Header = () => {
         <NavLink to="/events" onClick={close}>{t("Explorar")}</NavLink>
         <NavLink to="/speakers" onClick={close}>{t("Ponentes")}</NavLink>
         <NavLink to="/about" onClick={close}>{t("La empresa")}</NavLink>
-        {user ? <>
+        {checkingSession ? <span className="nav__user" role="status"><span className="mini-spinner" aria-hidden="true" />{t("Comprobando tu sesión…")}</span> : user ? <>
           <Link className="button button--dark button--small" to="/events/new" onClick={close}><CalendarPlus /> {t("Proponer talk")}</Link>
           <span className="nav__user"><UserRound /> {t("Hola,")} {user.name.split(' ')[0]}</span>
           <button className="icon-button" onClick={() => {

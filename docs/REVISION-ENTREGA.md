@@ -9,7 +9,7 @@ Revisión de código, pruebas y comprobaciones de producción. Las secciones fec
 - Creación con cartel, edición de descripción/hora y persistencia de imagen tras guardado y recarga comprobadas. Botón de edición corregido en `f249d31`.
 - Avisos sustituidos por el mensaje más reciente; funcionamiento confirmado por la titular.
 - 76 pruebas ordinarias correctas, build y comprobaciones HTML correctos. Integraciones de Atlas documentadas separadamente.
-- Pendientes de entrega: confirmar si el campus acepta monorepo y adjuntar el archivo de entorno por el canal privado indicado. El envío al campus no se ha realizado.
+- Pendientes de entrega: enviar los enlaces en el apartado de la actividad y facilitar el archivo de entorno por el canal privado indicado. Enunciado completo revisado: se aportan ambos enlaces de carpetas del monorepo; no exige repositorios independientes. El envío al campus no se ha realizado.
 - Límites: sustitución de avatar no repetida en producción y colección completa de Insomnia no repetida contra la API pública; existen sus evidencias locales. Correo probado en Sandbox, no en buzones reales. No se declara certificación integral de accesibilidad.
 
 Texto y enlaces listos en [ENTREGA.md](ENTREGA.md); [capturas finales](screenshots/entrega-2026-09-19/README.md).
@@ -97,3 +97,7 @@ Reserva observada en Chrome: titular incluida en participantes y aviso de plaza 
 ### Edición en la interfaz — 19/09/2026
 
 Creación de «Tu mente y la presión» para el 15/03/2027 confirmada por la titular. Se detectó y corrigió la ausencia de edición en el frontend; la API ya la permitía. Añadidos botón y formulario protegido ES/EN, conservando cartel y fecha sin modificar. 52 pruebas frontend y build correctos. Corrección publicada en `f249d31` bajo autoría de la titular. Esta confirma el cambio de texto y hora; se observa «Cambios guardados» y una consulta independiente a la API verifica descripción y fecha persistidas, Travis Wood y URL del cartel. No se ha probado sustituir el cartel durante una edición.
+
+## Contraste con el enunciado completo
+
+[Revisión final requisito a requisito](COMPROBACION-ENUNCIADO.md): requisitos funcionales cubiertos; cabecera de sesión y acción compartir con feedback de carga reforzado. No se exige pantalla de avatar ni dos repositorios separados.

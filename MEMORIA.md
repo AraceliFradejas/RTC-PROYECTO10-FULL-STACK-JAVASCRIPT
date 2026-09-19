@@ -720,3 +720,10 @@ La titular también confirma que, tras seleccionar de nuevo el cartel de «Tu me
 Se incorporan [nueve capturas reales de producción](docs/screenshots/entrega-2026-09-19/README.md): los dos despliegues Vercel Ready del commit d549df9, charla con cartel y botón de edición, descripción guardada, formulario precargado, correos de confirmación y cancelación en Mailtrap y pantalla de recuperación. Los mensajes observados corresponden a «Tu mente y la presión», con fecha 15/03/2027 a las 19:30. Se guardaron después de las comprobaciones manuales: las referencias anteriores a ausencia de capturas describen el momento de aquellas pruebas.
 
 Las vistas de correo omiten la dirección personal. No se incluyen credenciales, contraseñas ni enlaces de recuperación. La titular confirma también que la sustitución de avisos funciona correctamente y sin acumulación; no se reproduce artificialmente ese estado para una captura.
+
+
+## Contraste final con el enunciado — 19/09/2026
+
+Se revisó el texto íntegro de la actividad aportado por la titular, con [trazabilidad de cada requisito a su implementación](docs/COMPROBACION-ENUNCIADO.md). No se identifican funcionalidades obligatorias ausentes. Se refuerzan dos estados asíncronos: indicador de sesión en la cabecera y estado ocupado del botón de compartir. Pruebas ordinarias: 76 correctas; build y 14 documentos HTML correctos.
+
+Se conserva el monorepo con enlaces independientes a frontend y backend: el enunciado pide ambos enlaces de GitHub, sin imponer dos repositorios. Los carteles acreditan el requisito de subida de ficheros; una pantalla de avatar no es obligatoria. La entrega se realiza en la actividad y la corrección por mensaje privado en el foro.

@@ -1,6 +1,6 @@
 # Entrega de KelseTS Talks
 
-Texto preparado para copiar en el campus. Antes de enviarlo, confirmar el formato de repositorios exigido por el máster y adjuntar las variables únicamente por el canal privado indicado. No se ha enviado.
+Texto preparado para copiar en el campus. Se facilitan ambos enlaces de GitHub mediante las carpetas frontend y backend del monorepo. Las variables se adjuntan únicamente por el canal privado indicado. No se ha enviado.
 
 ## Texto de entrega
 
@@ -30,8 +30,8 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 - [x] Creación de «Tu mente y la presión» con cartel y edición de texto y hora: confirmadas por la titular; datos persistidos comprobados en la API pública.
 - [x] Cartel guardado y visible tras recargar, confirmado por la titular; nueve capturas finales publicadas y revisadas.
 - [x] Memoria y evidencias publicadas en GitHub; índice de capturas accesible desde el repositorio remoto.
-- [ ] Comprobación adicional pendiente: sustitución de avatar en producción (probada previamente por API en local).
-- [ ] Comprobar si el campus admite el monorepo o exige dos repositorios.
+- Comprobación adicional opcional: avatar en producción; el requisito de ficheros ya está demostrado con carteles.
+- [x] Enunciado revisado: pide ambos enlaces de GitHub sin exigir repositorios independientes. Se entregan las dos carpetas del monorepo.
 - [ ] Adjuntar `backend/.env.entrega` solo en el canal privado de corrección.
 
 Pendientes detallados en [REVISION-ENTREGA.md](REVISION-ENTREGA.md).
@@ -39,3 +39,5 @@ Pendientes detallados en [REVISION-ENTREGA.md](REVISION-ENTREGA.md).
 Corregida y verificada la pantalla de edición que faltaba, publicada bajo autoría de la titular en `f249d31`. El frontend suma ahora 52 pruebas correctas (76 ordinarias entre ambos proyectos).
 
 Capturas finales guardadas y revisadas: [índice de nueve evidencias de producción](screenshots/entrega-2026-09-19/README.md). Incluyen Vercel Ready, charla y edición, confirmación/cancelación de correo y recuperación. La titular ha confirmado además la persistencia del cartel tras volver a seleccionarlo y guardar. La sustitución de avatar en producción no se ha comprobado en esta sesión.
+
+Revisión requisito a requisito: [comprobación del enunciado](COMPROBACION-ENUNCIADO.md). La entrega se hace en el apartado de la actividad y la corrección continúa por mensaje privado en el foro.
