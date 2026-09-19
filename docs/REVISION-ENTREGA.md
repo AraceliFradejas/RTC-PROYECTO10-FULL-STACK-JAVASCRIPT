@@ -2,6 +2,29 @@
 
 Revisión de código y de las comprobaciones realizadas en local. No equivale a una validación completa de producción.
 
+## Retoma y cierre de entrega — 19/09/2026
+
+Comprobaciones repetidas en esta fecha:
+
+- `npm test`: 19 pruebas backend y 42 frontend correctas. La prueba de integración con una base temporal de Atlas se omite en la ejecución ordinaria; no se ha repetido hoy.
+- `npm run build`: compilación de producción correcta.
+- Web pública y `/api/health`: HTTP 200; salud devuelve `success: true`.
+- `/api/events`: HTTP 200 y 13 eventos. La cabecera CORS permite `https://kelse-ts-talks.vercel.app`.
+- `backend/.env.entrega` está excluido de Git. No se han mostrado ni revisado sus valores en esta comprobación.
+
+Estas comprobaciones HTTP no acreditan el recorrido visual ni autenticado. No había un navegador conectado en la sesión de revisión.
+
+Revisión adicional de accesibilidad, SEO y GEO: [hallazgos, correcciones y límites](ACCESIBILIDAD-SEO.md). Tras esta revisión el frontend tiene 45 pruebas correctas (64 ordinarias entre ambos proyectos). Las mejoras aún deben publicarse y verificarse.
+
+Orden de cierre para entregar hoy o, como máximo, mañana:
+
+1. **Recorrido público autenticado:** registro con inicio automático, cierre e inicio de sesión, persistencia al recargar, reserva y cancelación. Comprobar el contador y recoger capturas sin tokens ni contraseñas.
+2. **Formularios y ficheros:** crear una charla de prueba con cartel, editarla y comprobar avatar, errores de validación y estados de carga. Identificar los datos de prueba antes de limpiar; conservar las charlas existentes.
+3. **Evidencia final:** capturas de los dos proyectos Vercel y una revisión móvil y ES/EN. Repetir los casos pendientes de Insomnia contra la API pública y registrar resultados reales.
+4. **Paquete de entrega:** enlaces a web, API, repositorio y carpetas frontend/backend; README y memoria; archivo de entorno únicamente por el canal privado indicado por el máster. Texto preparado en [ENTREGA.md](ENTREGA.md).
+
+El correo real y la publicación de vídeos en YouTube son extras y no bloquean los requisitos funcionales recogidos en esta revisión. El correo actual se documenta como Mailtrap Sandbox. Las secciones siguientes conservan el historial; las menciones a despliegue pendiente corresponden a comprobaciones anteriores.
+
 | Requisito | Estado y evidencia |
 | --- | --- |
 | Express, JWT, Bcrypt, Mongoose, CORS, Nodemon | Implementados en backend/package.json y src. |
@@ -25,7 +48,7 @@ Revisión de código y de las comprobaciones realizadas en local. No equivale a 
 
 1. Subida de avatar comprobada en la prueba 27. Ampliar evidencia de sustitución y fallos: el helper de imágenes retira el avatar anterior después de guardar.
 2. Revisión local cerrada: 28 casos correctos, avatar con URL Cloudinary y captura 15 con token oculto. Repetir sobre producción antes de entregar.
-3. Desplegar frontend y backend y repetir el recorrido de usuario y pruebas sobre las URLs públicas. Configurar VITE_API_URL, FRONTEND_URL, MongoDB, JWT y Cloudinary por proyecto.
+3. Frontend y backend ya están desplegados. Completar el recorrido de usuario y las pruebas autenticadas sobre las URLs públicas.
 4. Documentar instalación, variables sin secretos, arquitectura, pruebas y enlaces finales.
 
 ## Correo (extra, no exigido por el enunciado)

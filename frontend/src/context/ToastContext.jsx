@@ -17,8 +17,8 @@ export const ToastProvider = ({
       message,
       type
     }]);
-    window.setTimeout(() => remove(id), 4500);
-  }, [remove]);
+    // Keep messages available until dismissed; do not impose a reading time limit.
+  }, []);
   const value = useMemo(() => ({
     notify
   }), [notify]);

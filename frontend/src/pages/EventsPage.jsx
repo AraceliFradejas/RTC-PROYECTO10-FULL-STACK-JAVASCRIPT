@@ -35,8 +35,8 @@ export const EventsPage = () => {
       <label className="search-field"><Search /><span className="sr-only">{t("Buscar eventos")}</span><input value={search} onChange={e => setSearch(e.target.value)} placeholder={t("Busca por tema, speaker o lugar")} /></label>
       <label className="select-field"><SlidersHorizontal /><span className="sr-only">{t("Ordenar eventos")}</span><select value={sort} onChange={e => setSort(e.target.value)}><option value="soonest">{t("Más próximos")}</option><option value="newest">{t("Recién publicados")}</option><option value="popular">{t("Más populares")}</option></select></label>
     </div>
-    <div className="chips" aria-label={t("Filtrar por categoría")}>{categories.map(item => <button className={category === item ? 'chip chip--active' : 'chip'} onClick={() => setCategory(item)} key={item}>{t(item)}</button>)}</div>
-    <div className="results-line"><p>{loading ? t("Actualizando agenda…") : t(events.length === 1 ? '{count} encuentro' : '{count} encuentros', { count: events.length })}</p></div>
-    {loading ? <Loader label={t("Preparando la agenda…")} /> : error ? <EmptyState title={t("La agenda no está disponible")} message={error} /> : events.length ? <div className="event-agenda">{events.map((event, index) => <EventCard horizontal key={event._id} event={event} index={index} />)}</div> : <EmptyState />}
+    <div className="chips" role="group" aria-label={t("Filtrar por categoría")}>{categories.map(item => <button aria-pressed={category === item} className={category === item ? 'chip chip--active' : 'chip'} onClick={() => setCategory(item)} key={item}>{t(item)}</button>)}</div>
+    <div className="results-line" role="status" aria-atomic="true"><p>{loading ? t("Actualizando agenda…") : t(events.length === 1 ? '{count} encuentro' : '{count} encuentros', { count: events.length })}</p></div>
+    {loading ? <Loader label={t("Preparando la agenda…")} /> : error ? <EmptyState title={t("La agenda no está disponible")} message={error} /> : events.length ? <div className="event-agenda">{events.map((event, index) => <EventCard headingLevel={2} horizontal key={event._id} event={event} index={index} />)}</div> : <EmptyState />}
   </section>;
 };

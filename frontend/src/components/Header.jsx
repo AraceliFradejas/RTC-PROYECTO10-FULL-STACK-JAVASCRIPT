@@ -1,6 +1,6 @@
 import { useLanguage } from "../context/LanguageContext.jsx";
 import { CalendarPlus, LogOut, Menu, UserRound, X } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { LanguageSelector } from './LanguageSelector.jsx';
@@ -14,13 +14,17 @@ export const Header = () => {
     logout
   } = useAuth();
   const [open, setOpen] = useState(false);
+  const menuButton = useRef(null);
   const close = () => setOpen(false);
-  return <header className="site-header">
+  const handleEscape = event => {
+    if (event.key === 'Escape' && open) { close(); menuButton.current?.focus(); }
+  };
+  return <header className="site-header" onKeyDown={handleEscape}>
     <div className="shell header-inner">
       <Logo />
       <LanguageSelector />
-      <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={t(open ? "Cerrar navegación" : "Abrir navegación")}>{open ? <X /> : <Menu />}</button>
-      <nav className={open ? 'nav nav--open' : 'nav'} aria-label={t("Navegación principal")}>
+      <button ref={menuButton} aria-controls="main-navigation" className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={t(open ? "Cerrar navegación" : "Abrir navegación")}>{open ? <X /> : <Menu />}</button>
+      <nav id="main-navigation" className={open ? 'nav nav--open' : 'nav'} aria-label={t("Navegación principal")}>
         <NavLink to="/events" onClick={close}>{t("Explorar")}</NavLink>
         <NavLink to="/speakers" onClick={close}>{t("Ponentes")}</NavLink>
         <NavLink to="/about" onClick={close}>{t("La empresa")}</NavLink>

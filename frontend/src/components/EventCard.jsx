@@ -11,7 +11,8 @@ const categoryTones = {
 };
 export { formatEventDate as formatDate } from '../i18n/translate.js';
 
-export const EventCard = ({ event, horizontal = false }) => {
+export const EventCard = ({ event, horizontal = false, headingLevel = 3 }) => {
+  const Heading = `h${headingLevel}`;
   const { t, language, locale } = useLanguage();
   const content = localizeEvent(event, language);
   const date = new Date(event.date);
@@ -36,7 +37,7 @@ export const EventCard = ({ event, horizontal = false }) => {
         <span className="event-card__category">{t(event.category)}</span>
         </div>
         <p className="event-card__location"><MapPin aria-hidden="true" /> {event.location}</p>
-        <h3>{content.title}</h3>
+        <Heading>{content.title}</Heading>
         {content.description && <p className="event-card__description">{content.description}</p>}
         <EventAvailability event={event} />
         <div className="event-card__footer">

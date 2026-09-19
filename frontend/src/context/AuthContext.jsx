@@ -5,12 +5,12 @@ const AuthContext = createContext(null);
 const STORAGE_KEY = 'kelsets_talks_session';
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(() => localStorage.getItem(STORAGE_KEY));
+  const [token, setToken] = useState(() => { try { return localStorage.getItem(STORAGE_KEY); } catch { return null; } });
   const [user, setUser] = useState(null);
   const [checkingSession, setCheckingSession] = useState(Boolean(token));
 
   const logout = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY);
+    try { localStorage.removeItem(STORAGE_KEY); } catch { /* Session also works in memory. */ }
     setToken(null);
     setUser(null);
   }, []);
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const authenticate = async (mode, values) => {
     const { data } = await apiRequest(`/auth/${mode}`, { method: 'POST', body: values });
-    localStorage.setItem(STORAGE_KEY, data.token);
+    try { localStorage.setItem(STORAGE_KEY, data.token); } catch { /* Session also works in memory. */ }
     setToken(data.token);
     setUser(data.user);
     return data.user;

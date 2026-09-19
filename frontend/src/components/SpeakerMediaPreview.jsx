@@ -16,7 +16,7 @@ export const SpeakerMediaPreview = ({ poster, youtubeUrl, title, transcript, chi
   </>;
   return <div className="speaker-media">
     {url ? <a className="speaker-preview" href={url} target="_blank" rel="noopener noreferrer" aria-label={`${title} · ${t('Ver en YouTube · Se abre en otra pestaña')}`}>{cover}</a>
-      : <button type="button" className="speaker-preview" aria-label={title} aria-expanded={expanded} aria-controls={transcriptId} onClick={() => setExpanded(value => !value)}>{cover}</button>}
+      : <button type="button" className="speaker-preview" aria-label={`${t('Pulsa para descubrir la charla')} · ${title}`} aria-expanded={expanded} aria-controls={transcriptId} onClick={() => setExpanded(value => !value)}>{cover}</button>}
     <div className="speaker-media__content">
       {children}
       <p className="speaker-media__prompt">{title}</p>

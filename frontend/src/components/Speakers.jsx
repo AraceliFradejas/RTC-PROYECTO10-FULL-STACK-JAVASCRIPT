@@ -5,6 +5,7 @@ import { speakers } from '../data/speakers.js';
 
 export const Speakers = ({ standalone = false }) => {
   const { t } = useLanguage();
+  const CardHeading = standalone ? 'h2' : 'h3';
   const Heading = standalone ? 'h1' : 'h2';
   return <section className="speakers section" id="speakers">
     <div className="shell">
@@ -14,7 +15,7 @@ export const Speakers = ({ standalone = false }) => {
           <Link className="speaker-card__link" to={`/speakers/${speaker.id}`} aria-label={t('Conoce a {name}', { name: speaker.name })}>
             <img src={speaker.image} alt={t('Retrato de {name}', { name: speaker.name })} loading="lazy" />
             <span className="speaker-card__number">0{index + 1}</span>
-            <div className="speaker-card__content"><h3>{speaker.name}</h3><p>{t(speaker.role)}</p><small className="speaker-card__faculty">KelseTS School</small><span className="speaker-card__cta">{t('Ver biografía')}<ArrowUpRight aria-hidden="true" /></span></div>
+            <div className="speaker-card__content"><CardHeading>{speaker.name}</CardHeading><p>{t(speaker.role)}</p><small className="speaker-card__faculty">KelseTS School</small><span className="speaker-card__cta">{t('Ver biografía')}<ArrowUpRight aria-hidden="true" /></span></div>
           </Link>
         </article>)}
       </div>

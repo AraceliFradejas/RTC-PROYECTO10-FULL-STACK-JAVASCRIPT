@@ -6,8 +6,6 @@ export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(readLanguage);
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = 'KelseTS Talks · The Next Inch';
-    document.querySelector('meta[name="description"]')?.setAttribute('content', translate(language, 'Charlas motivacionales y experiencias de liderazgo inspiradas en el deporte.'));
     try { localStorage.setItem(languageStorageKey, language); } catch { /* The selector still works without storage. */ }
   }, [language]);
   const value = useMemo(() => ({

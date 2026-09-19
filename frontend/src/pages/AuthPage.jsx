@@ -1,3 +1,4 @@
+import { FormErrors } from '../components/FormErrors.jsx';
 import { useLanguage } from "../context/LanguageContext.jsx";
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
@@ -59,27 +60,27 @@ export const AuthPage = () => {
   };
   return <section className="auth-page"><div className="auth-visual"><p className="kicker">{t("Mindset in motion")}</p><blockquote>{t("El resultado no cambia de golpe. Cambia decisión a decisión.")}</blockquote></div><div className="auth-panel">
     <div className="auth-box"><p className="kicker">{mode === 'login' ? t("De vuelta al equipo") : t("Tu primera jugada")}</p><h1>{mode === 'login' ? t("Entra en KelseTS") : t("Crea tu cuenta")}</h1><p>{mode === 'login' ? t("Tu próxima experiencia te está esperando.") : t("Regístrate y entrarás directamente, sin pasos de más.")}</p>
-      <div className="auth-tabs"><button className={mode === 'login' ? 'active' : ''} onClick={() => {
+      <div className="auth-tabs" role="group" aria-label={t("Entra en KelseTS")}><button disabled={loading} aria-pressed={mode === 'login'} className={mode === 'login' ? 'active' : ''} onClick={() => {
             setMode('login');
             setErrors({});
-          }}>{t("Iniciar sesión")}</button><button className={mode === 'register' ? 'active' : ''} onClick={() => {
+          }}>{t("Iniciar sesión")}</button><button disabled={loading} aria-pressed={mode === 'register'} className={mode === 'register' ? 'active' : ''} onClick={() => {
             setMode('register');
             setErrors({});
           }}>{t("Crear cuenta")}</button></div>
-      <form onSubmit={submit} noValidate>
-        {errors.form && <div className="form-alert" role="alert">{t(errors.form)}</div>}
-        {mode === 'register' && <label>{t("Nombre")}<input name="name" value={values.name} onChange={e => setValues({
+      <form onSubmit={submit} noValidate aria-busy={loading}>
+        <FormErrors errors={errors} prefix="auth" />
+        {mode === 'register' && <label>{t("Nombre")}<input name="name" id="auth-name" required aria-describedby={errors.name ? "auth-name-error" : undefined} value={values.name} onChange={e => setValues({
               ...values,
               name: e.target.value
-            })} autoComplete="name" aria-invalid={Boolean(errors.name)} />{errors.name && <small className="field-error">{t(errors.name)}</small>}</label>}
-        <label>{t("Email")}<input type="email" value={values.email} onChange={e => setValues({
+            })} autoComplete="name" aria-invalid={Boolean(errors.name)} />{errors.name && <small id="auth-name-error" className="field-error">{t(errors.name)}</small>}</label>}
+        <label>{t("Email")}<input name="email" type="email" id="auth-email" required aria-describedby={errors.email ? "auth-email-error" : undefined} value={values.email} onChange={e => setValues({
               ...values,
               email: e.target.value
-            })} autoComplete="email" aria-invalid={Boolean(errors.email)} />{errors.email && <small className="field-error">{t(errors.email)}</small>}</label>
-        <label>{t("Contraseña")}<span className="password-field"><input type={showPassword ? 'text' : 'password'} value={values.password} onChange={e => setValues({
+            })} autoComplete="email" aria-invalid={Boolean(errors.email)} />{errors.email && <small id="auth-email-error" className="field-error">{t(errors.email)}</small>}</label>
+        <div className="form-field"><label htmlFor="auth-password">{t("Contraseña")}</label><span className="password-field"><input id="auth-password" name="password" required aria-describedby={errors.password ? "auth-password-error" : undefined} type={showPassword ? 'text' : 'password'} value={values.password} onChange={e => setValues({
                 ...values,
                 password: e.target.value
-              })} autoComplete={mode === 'login' ? 'current-password' : 'new-password'} aria-invalid={Boolean(errors.password)} /><button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? t("Ocultar contraseña") : t("Mostrar contraseña")}>{showPassword ? <EyeOff /> : <Eye />}</button></span>{errors.password && <small className="field-error">{t(errors.password)}</small>}</label>
+              })} autoComplete={mode === 'login' ? 'current-password' : 'new-password'} aria-invalid={Boolean(errors.password)} /><button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? t("Ocultar contraseña") : t("Mostrar contraseña")}>{showPassword ? <EyeOff /> : <Eye />}</button></span>{errors.password && <small id="auth-password-error" className="field-error">{t(errors.password)}</small>}</div>
         <button className="button button--accent button--wide" disabled={loading}>{loading ? <><span className="mini-spinner" /> {mode === 'login' ? t("Entrando…") : t("Creando tu cuenta…")}</> : <>{mode === 'login' ? t("Entrar") : t("Crear cuenta")} <ArrowRight /></>}</button>
       </form>
     </div>

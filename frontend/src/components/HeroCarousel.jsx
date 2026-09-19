@@ -9,8 +9,8 @@ export const HeroCarousel = () => {
   const [current, setCurrent] = useState(0);
   const show = index => setCurrent((index + heroSlides.length) % heroSlides.length);
   const slide = heroSlides[current];
-  return <div className="hero-carousel" aria-roledescription={t("carrusel")} aria-label={t("Historias KelseTS")}>
-    <img key={slide.src} className="hero-carousel__image" src={slide.src} alt={t(slide.alt)} />
+  return <div className="hero-carousel" role="region" aria-roledescription={t("carrusel")} aria-label={t("Historias KelseTS")}>
+    <img key={slide.src} fetchPriority="high" className="hero-carousel__image" src={slide.src} alt={t(slide.alt)} />
     <div className="hero-carousel__shade" />
     <div className="hero-carousel__caption" aria-live="polite">
       <small>{t(slide.eyebrow)}</small>
@@ -21,7 +21,7 @@ export const HeroCarousel = () => {
       <span>{String(current + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')}</span>
       <button type="button" onClick={() => show(current + 1)} aria-label={t("Imagen siguiente")}><ArrowRight /></button>
     </div>
-    <div className="hero-carousel__dots" aria-label={t("Seleccionar imagen")}>
+    <div className="hero-carousel__dots" role="group" aria-label={t("Seleccionar imagen")}>
       {heroSlides.map((item, index) => <button key={item.src} type="button" className={index === current ? 'active' : ''} onClick={() => show(index)} aria-label={t("Mostrar imagen {number}", { number: index + 1 })} aria-current={index === current ? 'true' : undefined} />)}
     </div>
   </div>;

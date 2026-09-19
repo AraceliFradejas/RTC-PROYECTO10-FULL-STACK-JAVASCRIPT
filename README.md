@@ -57,6 +57,10 @@ Su narrativa toma como punto de partida el espíritu del discurso del entrenador
 - Diseño adaptable a móvil, tableta y escritorio alineado con la identidad visual de KelseTS.
 - Versiones completas de la interfaz en español e inglés con selector ES/EN y preferencia guardada.
 
+## Accesibilidad y descubrimiento
+
+Revisión del 19/09/2026: contraste, navegación por teclado, errores de formularios, títulos de página, metadatos para compartir y HTML prerenderizado de las páginas editoriales. El alcance, las pruebas y las limitaciones están en [la revisión de accesibilidad, SEO y GEO](docs/ACCESIBILIDAD-SEO.md). Estas mejoras locales todavía deben verificarse en el despliegue actualizado.
+
 ## Tecnologías
 
 **Frontend:** React, React Router, Vite, Vitest y CSS.  

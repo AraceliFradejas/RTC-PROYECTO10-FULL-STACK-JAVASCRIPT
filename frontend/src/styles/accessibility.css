@@ -1,0 +1,78 @@
+/* Contrast, focus and reflow shared by all routes. Keep after the brand styles. */
+.auth-visual .kicker, .about__story .kicker { color: #ffecb3; }
+/* Opaque surfaces keep captions readable independently of the photograph. */
+.hero-carousel__caption { background: #19191d; padding: 14px 18px; border-radius: 12px; }
+.speaker-card__content { background: #19191d; padding: 16px; border-radius: 12px; left: 12px; right: 12px; bottom: 12px; }
+.speaker-card__number { background: #19191d; padding: 5px 9px; border-radius: 6px; }
+.ecosystem-card--gold { background: linear-gradient(145deg, #e9b44f, #f8cd74); color: #1a1a1a; }
+.ecosystem-card--lavender { background: linear-gradient(145deg, #51279c, #6838af); }
+.ecosystem-card__description { opacity: 1; }
+.learning-story__speaker > span { color: #6f547d; }
+.hero__content { background: linear-gradient(135deg, #ad1824, #b32229 62%, #85420b); }
+.hero-carousel__controls { background: #19191d; }
+html { scroll-padding-top: 100px; }
+[id] { scroll-margin-top: 100px; }
+body { line-height: 1.5; }
+button, input, select, textarea { color: inherit; }
+button, summary, .icon-button, .menu-button { min-height: 44px; }
+.icon-button, .menu-button, .password-field button, .toast button { min-width: 44px; }
+.password-field button { top: 3px; right: 3px; }
+input::placeholder, textarea::placeholder { color: #64606a; opacity: 1; }
+form input, form textarea, form select, .search-field, .select-field { border-color: #827886; }
+form [aria-invalid="true"] { border: 2px solid #a22d1c; }
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid #1a1a1a !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #fff !important;
+}
+.search-field:focus-within, .select-field:focus-within, .upload-field:focus-within {
+  outline: 3px solid #1a1a1a; outline-offset: 3px; box-shadow: 0 0 0 3px #fff;
+}
+.event-card__link:focus-visible, .speaker-card__link:focus-visible { outline-offset: -5px; }
+main:focus { outline: none; }
+.chips { padding: 6px 6px 10px; }
+.auth-tabs button[aria-pressed="true"] { border-bottom: 3px solid var(--coral); }
+.form-error-summary { grid-column: 1 / -1; }
+.form-error-summary p { margin-bottom: 8px; font-weight: 700; }
+.form-error-summary ul { margin: 0; padding-left: 22px; }
+.form-error-summary a { text-decoration: underline; text-underline-offset: 3px; }
+.hero-carousel__dots button { min-height: 28px; }
+.hero-carousel__controls button { min-width: 44px; }
+.speaker-preview__action { background: #211b25; padding: 8px 12px; border-radius: 8px; }
+.detail-actions { flex-wrap: wrap; }
+.detail-content > *, .hero__grid > *, .footer__grid > * { min-width: 0; }
+.toast { max-width: min(390px, calc(100vw - 40px)); }
+.footer a, .detail-description, .upload-field { overflow-wrap: anywhere; }
+.attendee-list--scroll:focus-visible { outline-offset: 4px; }
+@media (max-width: 580px) {
+  .logo small { font-size: .625rem; letter-spacing: .08em; }
+  .header-inner { gap: 6px; }
+  .menu-button { padding: 6px; }
+  .hero-carousel__caption { left: 16px; right: 16px; }
+  .auth-box h1, .form-heading h1 { font-size: clamp(2rem, 9vw, 3.2rem); }
+  .detail-summary h1 { font-size: clamp(2rem, 10vw, 3rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+  .button:hover, .event-card:hover, .ecosystem-card:hover, .speaker-card:hover img { transform: none; }
+}
+@media (forced-colors: active) {
+  :focus-visible { outline-color: Highlight !important; }
+  button, input, select, textarea { border: 1px solid ButtonText; }
+  .hero-carousel__dots button::after { background: ButtonText; }
+  .hero-carousel__dots button.active::after { background: Highlight; }
+}
+
+.form-field { margin-bottom: 19px; }
+.form-field > label { margin-bottom: 8px; }
+.form-field > .field-error { display: block; margin-top: 8px; }
+.hero-carousel__dots { background: #19191d; border-radius: 999px; padding: 2px 6px; }
+.hero-carousel__dots button::after { background: #b8b8bc; }
+.speaker-card__content :is(h2, h3) { margin-bottom: 7px; }
+.about__project { line-height: 1.7; color: #54495b; max-width: 760px; }
+
+.toast-region { max-height: 60vh; overflow-y: auto; padding: 5px; }
+h1, h2, h3, .speaker-profile__appointments li { overflow-wrap: anywhere; }
+@media (max-width: 580px) {
+  .page h1, .legal-page > h1, .about > h1 { font-size: clamp(2rem, 10vw, 3.2rem); }
+}
