@@ -1,12 +1,26 @@
 # KelseTS Talks
 
+Proyecto full stack del máster **Rock The Code** de [**The Power Tech School**](https://thepower.education/thepowermba/tech).
+
+[Versión en castellano](#versión-en-castellano) · [English version](#english-version)
+
+## Versión en castellano
+
 > **Avanza un centímetro más. Cambia todo el partido.**
 
 KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y desarrollo profesional. **KelseTS Talks** es su plataforma de charlas motivacionales y experiencias de aprendizaje para ponentes, líderes, profesionales y equipos.
 
 Este repositorio contiene la plataforma full stack con la que KelseTS publica su agenda, gestiona asistentes y permite que nuevos organizadores creen experiencias.
 
+## Una historia personal
+
+KelseTS es una marca ficticia inspirada en el universo swiftie. La idea nació cuando tuve que asistir a un curso de inteligencia artificial y no pude ir al concierto de Taylor Swift en Madrid. Convertí aquella ilusión en un universo creativo con el que seguir aprendiendo y dar una identidad propia a mis proyectos.
+
+Lo he creado desde el cariño, la admiración y el respeto por Taylor Swift y su familia. Es un proyecto educativo, independiente y no oficial. Los personajes que aparecen en las imágenes de la web son ficticios: no son fotografías de la artista, de su familia ni de personas que hayan participado realmente en estos eventos. Los recursos visuales y audiovisuales son recreaciones generadas con IA; sus créditos se recogen en [Recursos y atribuciones](docs/RECURSOS.md).
+
 ## Contenido
+
+- [Una historia personal](#una-historia-personal)
 
 - [Estado actual](#estado-actual)
 - [Funcionalidades](#funcionalidades)
@@ -50,9 +64,10 @@ Su narrativa toma como punto de partida el espíritu del discurso del entrenador
 - Catálogo de charlas con búsqueda, categorías y criterios de ordenación.
 - Ficha completa de cada experiencia, aforo y listado de asistentes.
 - Directorio de ponentes y biografías bilingües enlazadas desde las charlas asignadas.
-- Creación protegida de eventos con subida de carteles.
+- Creación y edición protegidas de eventos con subida de carteles.
+- Recuperación de contraseña mediante enlaces temporales de un solo uso y Mailtrap Sandbox.
 - Confirmación o cancelación de asistencia en un solo paso.
-- Gestión de avatar y permisos de creadora o administradora.
+- Gestión de avatar mediante la API y permisos de creadora o administradora; no hay formulario de avatar en la web.
 - Estados accesibles de carga, error, éxito y contenido vacío.
 - Diseño adaptable a móvil, tableta y escritorio alineado con la identidad visual de KelseTS.
 - Versiones completas de la interfaz en español e inglés con selector ES/EN y preferencia guardada.
@@ -144,6 +159,8 @@ Los textos están centralizados en `frontend/src/i18n/messages.json`. Las 12 exp
 | --- | --- | --- | --- |
 | `POST` | `/api/auth/register` | Público | Crear cuenta y obtener sesión |
 | `POST` | `/api/auth/login` | Público | Iniciar sesión |
+| `POST` | `/api/auth/forgot-password` | Público | Solicitar enlace de recuperación |
+| `POST` | `/api/auth/reset-password` | Enlace válido | Cambiar contraseña e invalidar sesiones anteriores |
 | `GET/PATCH` | `/api/auth/me` | Privado | Consultar o actualizar perfil |
 | `GET` | `/api/events` | Público | Buscar, filtrar y ordenar eventos |
 | `GET` | `/api/events/:id` | Público | Consultar detalle y asistentes |
@@ -180,7 +197,7 @@ Subida multipart de avatar: 200 y URL de Cloudinary.
 
 ![Prueba 27: avatar subido a Cloudinary](docs/screenshots/Insomnia/insomnia-27-avatar.png)
 
-El Sandbox no entrega mensajes a destinatarios reales. Estas evidencias locales se complementarán con pruebas sobre las URLs públicas antes de entregar.
+El Sandbox no entrega mensajes a destinatarios reales. Las pruebas manuales sobre la web publicada y sus límites están documentados en las [evidencias finales de producción](docs/screenshots/entrega-2026-09-19/README.md).
 
 ## Ocupación de demostración
 
@@ -210,6 +227,10 @@ La agregación calcula la ocupación desde los arrays de asistentes. La captura 
 Cartel de la charla creada desde la web, alojado en `kelsets-talks/events`: JPG, 1122 × 1402 píxeles y 142.49 KB. Cloudinary muestra creación mediante API y acceso público.
 
 ![Cartel y propiedades del recurso en Cloudinary](docs/screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png)
+
+## Recuperación de contraseña
+
+El login permite solicitar un enlace de recuperación en ES/EN. Caduca en 30 minutos, es de un solo uso y cambiar la contraseña invalida las sesiones anteriores. Esta entrega captura los mensajes en Mailtrap Sandbox. Endpoints: `POST /api/auth/forgot-password` y `POST /api/auth/reset-password`. Véase la [guía de funcionamiento, pruebas y activación de correo real](docs/RECUPERACION-CONTRASENA.md).
 
 ## Correos de asistencia
 
@@ -260,6 +281,200 @@ Los recursos visuales son creaciones originales para este proyecto. Se han selec
 
 **Araceli Fradejas Muñoz**
 
-### Recuperación de contraseña
+Proyecto académico del máster Rock The Code de [The Power Tech School](https://thepower.education/thepowermba/tech).
 
-El login permite solicitar un enlace de recuperación en ES/EN. Caduca en 30 minutos, es de un solo uso y cambiar la contraseña invalida las sesiones anteriores. Esta entrega captura los mensajes en Mailtrap Sandbox. Endpoints: `POST /api/auth/forgot-password` y `POST /api/auth/reset-password`. Véase la [guía de funcionamiento, pruebas y activación de correo real](docs/RECUPERACION-CONTRASENA.md).
+---
+
+## English version
+
+[Volver a la versión en castellano](#versión-en-castellano)
+
+> **Move one more inch. Change the whole game.**
+
+**KelseTS Talks** is a full-stack event and attendee management application developed for the **Rock The Code** master's programme at [**The Power Tech School**](https://thepower.education/thepowermba/tech). KelseTS is a fictional brand connecting sport, culture, technology and professional development.
+
+### A personal story
+
+KelseTS is a fictional brand inspired by the swiftie universe. The idea came about when I had to attend an artificial intelligence course and could not go to Taylor Swift's concert in Madrid. I turned that excitement into a creative universe where I could keep learning and give my projects their own identity.
+
+I created it with affection, admiration and respect for Taylor Swift and her family. This is an independent, unofficial educational project. The characters shown in the website's images are fictional: they are not photographs of the artist, her family or people who actually attended these events. The visual and audiovisual resources are AI-generated recreations; their credits are documented in [Resources and attribution](docs/RECURSOS.md) (in Spanish).
+
+### Contents
+
+- [Current status](#current-status)
+- [Features and technologies](#features-and-technologies)
+- [Local setup](#local-setup)
+- [Environment variables](#environment-variables)
+- [Scripts and demonstration data](#scripts-and-demonstration-data)
+- [Speakers, media and languages](#speakers-media-and-languages)
+- [API endpoints](#api-endpoints)
+- [Password recovery and email](#password-recovery-and-email)
+- [Validation and evidence](#validation-and-evidence)
+- [Academic notice and author](#academic-notice-and-author)
+
+### Current status
+
+**Live website:** [KelseTS Talks](https://kelse-ts-talks.vercel.app/). **API:** [health check](https://kelse-ts-talks-api.vercel.app/api/health). Both applications are deployed on Vercel from this monorepo: [frontend](frontend) and [backend](backend).
+
+The initial catalogue contains 12 fictional talks, three per speaker, with Spanish and English content. Users can create additional events. The website uses the live API and MongoDB Atlas; uploaded posters are stored in Cloudinary. Static images and transcripts are available, with optional YouTube links.
+
+Production checks include password recovery and subsequent login, booking and cancellation, Sandbox email, event creation with a poster, editing the description and time, and poster persistence after saving and reloading. Automated checks and manual evidence are distinguished in the [project report](MEMORIA.md), [requirements review](docs/COMPROBACION-ENUNCIADO.md) and [deployment guide](docs/DESPLIEGUE.md), all in Spanish.
+
+KelseTS brings teamwork, resilience, trust and leadership into a fictional professional setting. Its narrative also draws on the teamwork theme of Tony D'Amato's speech in *Any Given Sunday*, using original messages rather than reproducing the film's script.
+
+### Features and technologies
+
+- Registration with automatic login, JWT authentication and password recovery.
+- Event search, categories, sorting, detail pages, capacity and attendee lists.
+- Bilingual speaker profiles linked to their talks.
+- Protected event creation and editing with poster uploads.
+- Booking and cancellation, with references in both user and event collections.
+- Creator/admin permissions and avatar management through the API; the website does not include an avatar form.
+- Responsive layouts and loading, error, success and empty states.
+- Spanish/English interface with a saved language preference.
+
+**Frontend:** React, React Router, Vite, Vitest and CSS.
+
+**Backend:** Node.js, Express, Mongoose, JSON Web Token, Bcrypt, Multer, Cloudinary, CORS and Nodemailer.
+
+**Database:** MongoDB Atlas. **Deployment:** Vercel.
+
+The accessibility, SEO and GEO review covers contrast, keyboard navigation, form errors, page titles, sharing metadata and prerendered editorial pages. Its [scope and limitations](docs/ACCESIBILIDAD-SEO.md) are documented; it is not a comprehensive accessibility certification.
+
+### Local setup
+
+Requirements: Node.js 20 or later and a MongoDB database. Cloudinary is required for uploads.
+
+```bash
+git clone https://github.com/AraceliFradejas/RTC-PROYECTO10-FULL-STACK-JAVASCRIPT.git
+cd RTC-PROYECTO10-FULL-STACK-JAVASCRIPT
+npm install
+npm run install:all
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+```
+
+Fill in the environment files before starting:
+
+```bash
+npm run dev
+```
+
+The frontend runs at `http://localhost:5173` and the API at `http://localhost:3000/api`.
+
+### Environment variables
+
+| Application | Variable | Purpose |
+| --- | --- | --- |
+| Backend | `MONGODB_URI` | MongoDB connection |
+| Backend | `JWT_SECRET` | Session token signing secret |
+| Backend | `FRONTEND_URL` | Comma-separated CORS origins |
+| Backend | `CLOUDINARY_CLOUD_NAME` | Cloudinary account |
+| Backend | `CLOUDINARY_API_KEY` | Image API identifier |
+| Backend | `CLOUDINARY_API_SECRET` | Image API secret |
+| Backend | `SEED_PASSWORD` | Initial demonstration organiser password |
+| Frontend | `VITE_API_URL` | Public API URL ending in `/api` |
+
+Email additionally uses `MAIL_ENABLED`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `MAIL_FROM` and `PUBLIC_APP_URL`. See the example files in [backend](backend/.env.example) and [frontend](frontend/.env.example).
+
+Real secrets belong in private backend environment variables or ignored local files. Any environment file required for assessment is supplied separately through the school's private channel.
+
+### Scripts and demonstration data
+
+```bash
+npm run dev                                   # frontend and backend
+npm test                                      # tests in both projects
+npm run build                                 # production frontend build
+npm run check:build --prefix frontend          # generated HTML checks
+npm run seed --prefix backend -- --dry-run     # validate the initial catalogue
+npm run seed --prefix backend                 # load the initial catalogue
+npm run seed:attendance --prefix backend -- --dry-run
+npm run seed:attendance --prefix backend
+```
+
+Configure `MONGODB_URI` and a `SEED_PASSWORD` of at least eight characters before loading the catalogue. The initial organiser is `talks@kelsets.com`; rerunning the seed does not change its password. Stable `seedKey` identifiers allow catalogue updates without duplicate events or replacement of existing attendees or creators.
+
+The optional attendance seed runs after the catalogue seed. It adds fictional attendees, preserves existing bookings and maintains both sides of the user/event relationship in a MongoDB transaction. It sends no email and never runs automatically during deployment. Demonstration attendance is labelled in both languages.
+
+For a local visual preview without the backend, set `VITE_PREVIEW_MODE=true` in `frontend/.env.local` and run `npm run dev --prefix frontend`. This mode supports browsing, filtering and sorting the sample catalogue, but cannot save bookings. It is development-only; production builds use the API.
+
+### Speakers, media and languages
+
+Four fictional profiles are defined in `frontend/src/data/speakers.js`. Each has three editorial talks in 2027. An event's `speakerId` identifies its speaker independently of its `creator`.
+
+Alison Patrick teaches Business Innovation, Jude Becks teaches Leadership and Team Innovation, Anna Nasser teaches Artificial Intelligence and Data Strategy, and Travis Wood teaches Resilience and Organisational Change. These are fictional roles.
+
+Presentation images, transcripts and optional links are configured in `frontend/src/data/speakerVideos.json` and `speakerTalks.json`. Add an HTTPS YouTube URL to the relevant language's `youtubeUrl` field to open that video in a new tab. Without a URL, the image opens the transcript. No YouTube connection or playback starts before a click. Production originals are kept locally; the repository contains the assets needed by the application.
+
+The homepage's educational reflections use `frontend/src/data/learningStories.json`. Its `presentation.es.youtubeUrl` and `presentation.en.youtubeUrl` fields support a future presentation; while absent, the section displays “Coming soon”. These stories are educational recreations, not real attendee testimonials.
+
+The ES/EN selector preserves forms, updates the document language, metadata, dates and accessible labels, and stores the preference when browser storage is available. Spanish is the default. Interface text is in `frontend/src/i18n/messages.json`; editorial event translations are in `frontend/src/i18n/events.json` and the backend seed. User-written content remains in its original language unless the record contains translations. Editing translations through the form is not implemented.
+
+### API endpoints
+
+| Method | Route | Access | Action |
+| --- | --- | --- | --- |
+| `POST` | `/api/auth/register` | Public | Register and obtain a session |
+| `POST` | `/api/auth/login` | Public | Sign in |
+| `POST` | `/api/auth/forgot-password` | Public | Request a recovery link |
+| `POST` | `/api/auth/reset-password` | Valid recovery link | Reset password and revoke previous sessions |
+| `GET/PATCH` | `/api/auth/me` | Authenticated | Read or update profile |
+| `GET` | `/api/events` | Public | Search, filter and sort events |
+| `GET` | `/api/events/:id` | Public | Read event details and attendees |
+| `POST` | `/api/events` | Authenticated | Create an event |
+| `PATCH/DELETE` | `/api/events/:id` | Creator/admin | Edit or delete an event |
+| `POST` | `/api/events/:id/attendance` | Authenticated | Toggle attendance |
+
+The shared frontend `apiRequest` function handles requests and errors. The API returns `{ success, data }` or `{ success, error }`. Attendance references connect `Event.attendees` with `User.attendingEvents` in a transaction.
+
+### Password recovery and email
+
+Recovery links expire after 30 minutes, can be used once and revoke previous sessions when the password changes. This deployment captures messages in **Mailtrap Sandbox**, which does not deliver them to personal inboxes. The [recovery guide](docs/RECUPERACION-CONTRASENA.md) documents the implementation, tests and steps required to enable real email delivery.
+
+Booking and cancellation messages include HTML and plain text, translated event information, a poster and the date in Europe/Madrid. Opening an email link never changes a booking: cancellation requires signing in and using the attendance button.
+
+```bash
+npm run email:preview --prefix backend
+```
+
+This creates four local previews in the ignored `backend/.email-previews/` directory without sending messages. Sending is disabled by default. Configure SMTP and a permitted sender before setting `MAIL_ENABLED=true`.
+
+Attendance responses expose `email.status`: `disabled`, `unconfigured`, `sent` or `failed`. `sent` means SMTP acceptance, not guaranteed delivery. Email errors do not undo bookings and are not retried automatically. See [email configuration and evidence](docs/CORREO.md).
+
+### Validation and evidence
+
+The documented baseline contains **76 passing ordinary tests**: 24 backend and 52 frontend. The two Atlas integration tests are skipped by the ordinary test command and were run separately against temporary databases. Production builds and checks of 14 generated HTML documents passed. After the footer update, the 33 language tests and the build checks also passed.
+
+The local Insomnia review covers 28 expected outcomes, including authentication, permissions, event operations, capacity limits and real Cloudinary uploads. Negative cases intentionally return errors. These local checks are separate from manual production checks.
+
+- [Insomnia collection and instructions](docs/insomnia/README.md).
+- [Detailed academic report and test interpretations](MEMORIA.md).
+- [Insomnia screenshots](docs/screenshots/Insomnia).
+- [MongoDB relationships and occupancy screenshots](docs/screenshots/MongoDB).
+- [Cloudinary poster evidence](docs/screenshots/Cloudinary).
+- [Email evidence](docs/screenshots/Mailtrap).
+- [Nine final production screenshots](docs/screenshots/entrega-2026-09-19/README.md).
+- [Delivery checklist](docs/ENTREGA.md).
+
+These linked technical documents are in Spanish. They distinguish screenshots, manual observations and automated checks. Sandbox email does not establish delivery to personal inboxes, and the complete Insomnia collection has not been repeated against production.
+
+### KelseTS universe
+
+| Project | Focus | Website |
+| --- | --- | --- |
+| KelseTS Lifestyle | Movement, pop culture and lifestyle | [Visit](https://kelset-slanding.vercel.app/) |
+| KelseTS Store | Footwear store | [Visit](https://proyecto-landing-page-2.vercel.app/) |
+| KelseTS Business School | AI, innovation and leadership | [Visit](https://kelse-ts-business-school-landing.vercel.app/) |
+| KelseTS Talks | Motivational talks and events | [Visit](https://kelse-ts-talks.vercel.app/) |
+
+### Academic notice and author
+
+KelseTS is a fictional brand created by **Araceli Fradejas Muñoz** for educational, academic and portfolio purposes. This project draws creative inspiration from pop culture, music and sport, with affection and respect for Taylor Swift and her family. It is not affiliated with, sponsored, authorised or endorsed by Taylor Swift, Travis Kelce, the Kansas City Chiefs, the National Football League, their representatives or related organisations.
+
+The depicted characters, events, speakers, testimonials, products and services are fictional. The website's character images are AI-generated recreations, not official photographs of celebrities or evidence of real events. [Resource credits](docs/RECURSOS.md) remain available.
+
+**Araceli Fradejas Muñoz** · Rock The Code, [The Power Tech School](https://thepower.education/thepowermba/tech).
+
+[GitHub](https://github.com/AraceliFradejas) · [LinkedIn](https://www.linkedin.com/in/araceli-fradejas-munoz-transformaciondigital/) · [X](https://x.com/AraceliFradejas) · [Medium](https://medium.com/@araceli.fradejas) · [YouTube](https://www.youtube.com/@aracelifradejasmunoz2758)
+
+[Volver al inicio / Back to top](#kelsets-talks)
