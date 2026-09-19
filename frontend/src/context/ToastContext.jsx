@@ -12,19 +12,19 @@ export const ToastProvider = ({
   const remove = useCallback(id => setToasts(items => items.filter(item => item.id !== id)), []);
   const notify = useCallback((message, type = 'success') => {
     const id = crypto.randomUUID();
-    setToasts(items => [...items, {
+    setToasts([{
       id,
       message,
       type
     }]);
-    // Keep messages available until dismissed; do not impose a reading time limit.
+    // Show only the latest feedback, until dismissed or replaced by a new message.
   }, []);
   const value = useMemo(() => ({
     notify
   }), [notify]);
   return <ToastContext.Provider value={value}>
     {children}
-    <div className="toast-region" aria-live="polite">
+    <div className="toast-region" aria-live="polite" aria-atomic="true">
       {toasts.map(toast => <div className={`toast toast--${toast.type}`} key={toast.id}>
         {toast.type === 'error' ? <CircleAlert /> : <CheckCircle2 />}
         <span>{t(toast.message)}</span>

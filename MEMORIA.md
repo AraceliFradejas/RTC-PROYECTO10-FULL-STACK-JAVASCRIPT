@@ -708,3 +708,9 @@ La prueba de entrega detectó que la API admitía editar eventos, pero faltaban 
 52 pruebas frontend, build y comprobación de 14 documentos HTML correctos. Corrección publicada en `f249d31`, con autoría y committer de Araceli Fradejas Muñoz y ambos despliegues Vercel correctos.
 
 La titular confirma la creación de «Tu mente y la presión» para el 15/03/2027 y el cambio satisfactorio de descripción y hora. Se observan en Chrome «Editar experiencia», «Cambios guardados» y el texto que comienza «Pedir apoyo también es avanzar». Una consulta independiente a la API pública confirma el texto persistido, el ponente Travis Wood y la URL del cartel. La fecha almacenada es `2027-03-15T18:30:00.000Z`, mostrada como 19:30 en Madrid. Queda verificado el guardado de texto y hora en producción; no se ha probado sustituir el cartel durante una edición.
+
+## Avisos sin acumulación — 19/09/2026
+
+La titular detectó que los mensajes de acciones sucesivas se acumulaban en la esquina inferior derecha. Se modifica el proveedor común para mostrar únicamente el aviso más reciente: cada nuevo mensaje sustituye al anterior, tanto en confirmaciones como en errores. El aviso puede cerrarse manualmente y no tiene temporizador de lectura. Se conserva la región accesible `aria-live=polite` y se añade `aria-atomic=true` para anunciar el mensaje completo. Compilación de producción y verificación de 14 documentos HTML correctas.
+
+La titular también confirma que, tras seleccionar de nuevo el cartel de «Tu mente y la presión», guardar y recargar, la imagen permanece visible. Queda comprobada esta operación de imagen en producción mediante su confirmación.

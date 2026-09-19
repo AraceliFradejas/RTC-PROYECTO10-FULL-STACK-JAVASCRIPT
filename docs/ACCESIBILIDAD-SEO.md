@@ -11,7 +11,7 @@ Cambios revisados en código, HTML compilado y Chrome; publicados en Vercel desd
 | Teclado | Los filtros anulaban el contorno; la subida de archivos tenía un control visualmente oculto sin foco evidente. | Foco de dos colores y contorno en el contenedor de búsqueda, selección y subida. |
 | Navegación | El menú móvil no declaraba qué controlaba ni gestionaba Escape. | `aria-controls`, cierre con Escape y devolución del foco al botón. Foco en el contenido principal al cambiar de ruta. |
 | Formularios | Errores sin asociación explícita a campos y sin resumen enfocado. | Resumen bilingüe con enlaces a campos, `aria-describedby`, `aria-invalid`, campos obligatorios y `aria-busy`. Contraseña con etiqueta separada del botón de visibilidad. |
-| Estados | Filtros sin estado seleccionado comunicado; avisos con tiempo limitado. | `aria-pressed`, resultados con `role=status` y avisos que permanecen hasta cerrarlos. |
+| Estados | Filtros sin estado seleccionado comunicado; avisos con tiempo limitado. | `aria-pressed`, resultados con `role=status` y un único aviso, que permanece hasta cerrarlo o hasta que otro nuevo lo sustituye. Región `aria-live=polite` y `aria-atomic=true`. |
 | Lectura | Salto de h1 a h3 en agenda y directorio de ponentes. | Nivel de encabezado acorde a la página; jerarquía conservada en portada y fichas. |
 | Móvil | «Remontadas» se cortaba en la página de empresa a 320 px. | Escala de títulos ajustada y división de palabras largas; botones y acciones pueden pasar a otra línea. |
 | Movimiento | El efecto de aparición estaba definido después de la preferencia de movimiento reducido. | Regla final que desactiva animaciones y transiciones, incluidos pseudoelementos. |
