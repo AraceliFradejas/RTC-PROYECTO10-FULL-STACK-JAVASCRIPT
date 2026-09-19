@@ -84,4 +84,4 @@ Reserva observada en Chrome: titular incluida en participantes y aviso de plaza 
 
 ### Edición en la interfaz — 19/09/2026
 
-Creación de «Tu mente y la presión» para el 15/03/2027 confirmada por la titular. Se detectó y corrigió la ausencia de edición en el frontend; la API ya la permitía. Añadidos botón y formulario protegido ES/EN, conservando cartel y fecha sin modificar. 52 pruebas frontend y build correctos. Pendiente: comprobar edición persistida y cartel en producción tras desplegar.
+Creación de «Tu mente y la presión» para el 15/03/2027 confirmada por la titular. Se detectó y corrigió la ausencia de edición en el frontend; la API ya la permitía. Añadidos botón y formulario protegido ES/EN, conservando cartel y fecha sin modificar. 52 pruebas frontend y build correctos. Corrección publicada en `f249d31` bajo autoría de la titular. Esta confirma el cambio de texto y hora; se observa «Cambios guardados» y una consulta independiente a la API verifica descripción y fecha persistidas, Travis Wood y URL del cartel. No se ha probado sustituir el cartel durante una edición.

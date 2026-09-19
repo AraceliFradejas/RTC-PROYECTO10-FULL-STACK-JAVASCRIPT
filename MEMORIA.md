@@ -705,4 +705,6 @@ A continuación, la titular confirmó haber cancelado desde la web: la asistenci
 
 La prueba de entrega detectó que la API admitía editar eventos, pero faltaban el botón y la pantalla en el frontend. Se añade «Editar experiencia» para creadores y administradores, con ruta protegida, datos precargados, PATCH, estados de carga y errores ES/EN. La API conserva su control de permisos. El formulario mantiene el cartel y la fecha original si no se modifican; las fechas nuevas se envían como ISO con zona horaria. Vercel admite el enlace directo y noindex.
 
-52 pruebas frontend, build y comprobación de 14 documentos HTML correctos. La titular confirma la creación de «Tu mente y la presión» para el 15/03/2027. Queda pendiente confirmar el guardado de su edición tras desplegar esta corrección.
+52 pruebas frontend, build y comprobación de 14 documentos HTML correctos. Corrección publicada en `f249d31`, con autoría y committer de Araceli Fradejas Muñoz y ambos despliegues Vercel correctos.
+
+La titular confirma la creación de «Tu mente y la presión» para el 15/03/2027 y el cambio satisfactorio de descripción y hora. Se observan en Chrome «Editar experiencia», «Cambios guardados» y el texto que comienza «Pedir apoyo también es avanzar». Una consulta independiente a la API pública confirma el texto persistido, el ponente Travis Wood y la URL del cartel. La fecha almacenada es `2027-03-15T18:30:00.000Z`, mostrada como 19:30 en Madrid. Queda verificado el guardado de texto y hora en producción; no se ha probado sustituir el cartel durante una edición.

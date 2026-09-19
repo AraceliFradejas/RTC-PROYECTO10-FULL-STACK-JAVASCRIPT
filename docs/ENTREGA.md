@@ -21,16 +21,17 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 
 ## Control previo al envío
 
-- [x] Pruebas ordinarias: 73 correctas el 19/09/2026; integración de recuperación en Atlas ejecutada separadamente y correcta.
+- [x] Pruebas ordinarias: 76 correctas (24 backend y 52 frontend); integración de recuperación en Atlas ejecutada separadamente y correcta.
 - [x] Compilación de producción correcta el 19/09/2026.
 - [x] Web, salud y agenda públicas: HTTP 200 el 19/09/2026.
 - [x] Recuperación mediante Mailtrap y posterior inicio de sesión en producción, confirmados por la titular el 19/09/2026.
 - [x] Reserva y cancelación en producción, actualización de plazas y ambos correos en Mailtrap: verificados con la titular el 19/09/2026.
-- [ ] Completar creación/edición de eventos y subida de ficheros en producción y evidencias finales.
+- [x] Creación de «Tu mente y la presión» con cartel y edición de texto y hora: confirmadas por la titular; datos persistidos comprobados en la API pública.
+- [ ] Completar evidencias finales pendientes; sustitución de cartel y avatar en producción aún no verificadas.
 - [ ] Cambios finales de documentación publicados en GitHub y enlaces revisados desde allí.
 - [ ] Comprobar si el campus admite el monorepo o exige dos repositorios.
 - [ ] Adjuntar `backend/.env.entrega` solo en el canal privado de corrección.
 
 Pendientes detallados en [REVISION-ENTREGA.md](REVISION-ENTREGA.md).
 
-Actualización: creación de «Tu mente y la presión» confirmada por la titular. Corregida la pantalla de edición que faltaba; pendiente de su comprobación pública. El frontend suma ahora 52 pruebas correctas (76 ordinarias entre ambos proyectos).
+Corregida y verificada la pantalla de edición que faltaba, publicada bajo autoría de la titular en `f249d31`. El frontend suma ahora 52 pruebas correctas (76 ordinarias entre ambos proyectos).
