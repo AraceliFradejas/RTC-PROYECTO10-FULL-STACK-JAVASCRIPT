@@ -741,3 +741,8 @@ Las vistas de correo omiten la dirección personal. No se incluyen credenciales,
 Se revisó el texto íntegro de la actividad, con [trazabilidad de cada requisito a su implementación](docs/COMPROBACION-ENUNCIADO.md). No se identifican funcionalidades obligatorias ausentes. Se refuerzan dos estados asíncronos: indicador de sesión en la cabecera y estado ocupado del botón de compartir. Pruebas ordinarias: 76 correctas; build y 14 documentos HTML correctos.
 
 Se conserva el monorepo con enlaces independientes a frontend y backend: el enunciado pide ambos enlaces de GitHub, sin imponer dos repositorios. Los carteles acreditan el requisito de subida de ficheros; una pantalla de avatar no es obligatoria. La entrega se realiza en la actividad y la corrección por mensaje privado en el foro.
+
+
+## Aviso educativo del footer — 19/09/2026
+
+El pie de página identifica KelseTS como proyecto ficticio del máster Rock The Code, enlaza a The Power Tech School y explica la aplicación de gestión de eventos y asistentes con soporte multilingüe. El aviso está disponible en castellano e inglés; se amplían el tamaño, el contraste y el interlineado para facilitar su lectura. Se conserva el aviso de ausencia de afiliación. Validación: 33 pruebas de idiomas correctas, compilación y comprobación de 14 documentos HTML correctas.

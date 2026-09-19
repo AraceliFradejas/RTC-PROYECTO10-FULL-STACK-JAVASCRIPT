@@ -75,10 +75,6 @@
     "es": "Aviso legal",
     "en": "Legal notice"
   },
-  "KelseTS · Proyecto ficticio educativo": {
-    "es": "KelseTS · Proyecto ficticio educativo",
-    "en": "KelseTS · Fictional educational project"
-  },
   "Sin afiliación con Taylor Swift, Travis Kelce, Kansas City Chiefs o la NFL.": {
     "es": "Sin afiliación con Taylor Swift, Travis Kelce, Kansas City Chiefs o la NFL.",
     "en": "Not affiliated with Taylor Swift, Travis Kelce, the Kansas City Chiefs or the NFL."
@@ -1398,5 +1394,13 @@
   "Actualiza los datos de tu charla. El cartel se conserva si no eliges otra imagen.": {
     "es": "Actualiza los datos de tu charla. El cartel se conserva si no eliges otra imagen.",
     "en": "Update your talk details. The poster is kept unless you choose another image."
+  },
+  "KelseTS es un proyecto ficticio creado para el máster Rock The Code de": {
+    "es": "KelseTS es un proyecto ficticio creado para el máster Rock The Code de",
+    "en": "KelseTS is a fictional project created for the Rock The Code master's programme at"
+  },
+  "Esta web demuestra el desarrollo de una aplicación full stack para la gestión de eventos y asistentes, con soporte multilingüe. Tiene fines exclusivamente educativos y no representa un producto o servicio real.": {
+    "es": "Esta web demuestra el desarrollo de una aplicación full stack para la gestión de eventos y asistentes, con soporte multilingüe. Tiene fines exclusivamente educativos y no representa un producto o servicio real.",
+    "en": "This website demonstrates the development of a full-stack application for managing events and attendees, with multilingual support. It is intended solely for educational purposes and does not represent a real product or service."
   }
 }

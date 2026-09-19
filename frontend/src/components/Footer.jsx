@@ -13,6 +13,9 @@ export const Footer = () => {
     <div><h2>{t("Conecta")}</h2>{socialLinks.map(social => <a href={social.url} target="_blank" rel="noopener noreferrer" key={social.name}>{social.name}</a>)}</div>
     <div><h2>KelseTS Talks</h2><Link to="/events">{t("Agenda")}</Link><Link to="/speakers">{t("Ponentes")}</Link><Link to="/about">{t("La empresa")}</Link><Link to="/legal">{t("Aviso legal")}</Link></div>
   </div>
-  <div className="shell footer__bottom"><p>© {new Date().getFullYear()} {t("KelseTS · Proyecto ficticio educativo")}</p><p>{t("Sin afiliación con Taylor Swift, Travis Kelce, Kansas City Chiefs o la NFL.")}</p></div>
+  <div className="shell footer__bottom">
+    <p>© {new Date().getFullYear()} {t("KelseTS es un proyecto ficticio creado para el máster Rock The Code de")}{" "}<a href="https://thepower.education/thepowermba/tech" target="_blank" rel="noopener noreferrer">The Power Tech School</a>. {t("Esta web demuestra el desarrollo de una aplicación full stack para la gestión de eventos y asistentes, con soporte multilingüe. Tiene fines exclusivamente educativos y no representa un producto o servicio real.")}</p>
+    <p>{t("Sin afiliación con Taylor Swift, Travis Kelce, Kansas City Chiefs o la NFL.")}</p>
+  </div>
 </footer>;
 };
