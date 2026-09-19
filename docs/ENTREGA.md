@@ -35,3 +35,5 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 Pendientes detallados en [REVISION-ENTREGA.md](REVISION-ENTREGA.md).
 
 Corregida y verificada la pantalla de edición que faltaba, publicada bajo autoría de la titular en `f249d31`. El frontend suma ahora 52 pruebas correctas (76 ordinarias entre ambos proyectos).
+
+Capturas finales guardadas y revisadas: [índice de nueve evidencias de producción](screenshots/entrega-2026-09-19/README.md). Incluyen Vercel Ready, charla y edición, confirmación/cancelación de correo y recuperación. La titular ha confirmado además la persistencia del cartel tras volver a seleccionarlo y guardar. La sustitución de avatar en producción no se ha comprobado en esta sesión.

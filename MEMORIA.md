@@ -714,3 +714,9 @@ La titular confirma la creación de «Tu mente y la presión» para el 15/03/202
 La titular detectó que los mensajes de acciones sucesivas se acumulaban en la esquina inferior derecha. Se modifica el proveedor común para mostrar únicamente el aviso más reciente: cada nuevo mensaje sustituye al anterior, tanto en confirmaciones como en errores. El aviso puede cerrarse manualmente y no tiene temporizador de lectura. Se conserva la región accesible `aria-live=polite` y se añade `aria-atomic=true` para anunciar el mensaje completo. Compilación de producción y verificación de 14 documentos HTML correctas.
 
 La titular también confirma que, tras seleccionar de nuevo el cartel de «Tu mente y la presión», guardar y recargar, la imagen permanece visible. Queda comprobada esta operación de imagen en producción mediante su confirmación.
+
+## Capturas finales guardadas — 19/09/2026
+
+Se incorporan [nueve capturas reales de producción](docs/screenshots/entrega-2026-09-19/README.md): los dos despliegues Vercel Ready del commit d549df9, charla con cartel y botón de edición, descripción guardada, formulario precargado, correos de confirmación y cancelación en Mailtrap y pantalla de recuperación. Los mensajes observados corresponden a «Tu mente y la presión», con fecha 15/03/2027 a las 19:30. Se guardaron después de las comprobaciones manuales: las referencias anteriores a ausencia de capturas describen el momento de aquellas pruebas.
+
+Las vistas de correo omiten la dirección personal. No se incluyen credenciales, contraseñas ni enlaces de recuperación. La titular confirma también que la sustitución de avisos funciona correctamente y sin acumulación; no se reproduce artificialmente ese estado para una captura.

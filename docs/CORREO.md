@@ -63,3 +63,7 @@ Añadida el 19/09/2026 con el mismo SMTP Sandbox. Consultar la [guía de recuper
 Tras recuperar el acceso, la titular reservó «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome su nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. La titular confirmó la recepción del correo de reserva en Mailtrap Sandbox.
 
 A continuación, la titular confirmó haber cancelado desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibió el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante su confirmación en la sesión de trabajo; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
+
+## Evidencias de producción del 19/09/2026
+
+Guardadas y revisadas la [confirmación de «Tu mente y la presión»](screenshots/entrega-2026-09-19/08-mailtrap-confirmacion.png), la [cancelación](screenshots/entrega-2026-09-19/06-mailtrap-cancelacion.png) y su [detalle y pie](screenshots/entrega-2026-09-19/07-mailtrap-cancelacion-detalle.png). Muestran el cartel y fecha/hora actualizados, con enlaces al frontend publicado. Se capturó la vista HTML independiente de Mailtrap para excluir la dirección personal; sigue siendo recepción en Sandbox.
