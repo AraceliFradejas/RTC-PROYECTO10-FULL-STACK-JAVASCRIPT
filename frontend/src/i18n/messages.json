@@ -1402,5 +1402,29 @@
   "Esta web demuestra el desarrollo de una aplicación full stack para la gestión de eventos y asistentes, con soporte multilingüe. Tiene fines exclusivamente educativos y no representa un producto o servicio real.": {
     "es": "Esta web demuestra el desarrollo de una aplicación full stack para la gestión de eventos y asistentes, con soporte multilingüe. Tiene fines exclusivamente educativos y no representa un producto o servicio real.",
     "en": "This website demonstrates the development of a full-stack application for managing events and attendees, with multilingual support. It is intended solely for educational purposes and does not represent a real product or service."
+  },
+  "El evento ya ha finalizado.": {
+    "es": "El evento ya ha finalizado.",
+    "en": "This event has already ended."
+  },
+  "Organización no disponible": {
+    "es": "Organización no disponible",
+    "en": "Organiser unavailable"
+  },
+  "El servidor tarda demasiado. Inténtalo de nuevo.": {
+    "es": "El servidor tarda demasiado. Inténtalo de nuevo.",
+    "en": "The server is taking too long. Please try again."
+  },
+  "Revisa lo siguiente:": {
+    "es": "Revisa lo siguiente:",
+    "en": "Please review the following:"
+  },
+  "Tu cuenta está lista. Te damos la bienvenida a KelseTS.": {
+    "es": "Tu cuenta está lista. Te damos la bienvenida a KelseTS.",
+    "en": "Your account is ready. Welcome to KelseTS."
+  },
+  "Demasiados intentos. Espera 15 minutos antes de volver a intentarlo.": {
+    "es": "Demasiados intentos. Espera 15 minutos antes de volver a intentarlo.",
+    "en": "Too many attempts. Wait 15 minutes before trying again."
   }
 }

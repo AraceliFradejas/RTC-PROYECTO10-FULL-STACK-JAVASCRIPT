@@ -49,3 +49,19 @@ test('La API permite asignar un ponente conocido y rechaza identificadores inven
   assert.deepEqual(eventPayload({ speakerId: '' }), { speakerId: '' });
   assert.throws(() => eventPayload({ speakerId: 'unknown' }), { statusCode: 400 });
 });
+
+test('Una edición conserva la fecha pasada original pero rechaza otra fecha pasada', () => {
+  const original = { date: new Date('2020-01-01T12:00:00Z') };
+  assert.equal(eventPayload({ date: '2020-01-01T12:00:00.000Z', title: 'Título actualizado' }, original).title, 'Título actualizado');
+  assert.throws(() => eventPayload({ date: '2020-01-02T12:00:00Z' }, original), { statusCode: 400 });
+  assert.throws(() => eventPayload({ date: original.date.toISOString() }), { statusCode: 400 });
+});
+
+test('Editar texto del catálogo sustituye solo ese campo en las traducciones', async () => {
+  const { synchronizeEditedTranslations } = await import('../src/utils/eventRules.js');
+  const event = { title: 'Original', description: 'Descripción original', translations: { es: { title: 'Original', description: 'Descripción original' }, en: { title: 'Original EN', description: 'English description' } } };
+  synchronizeEditedTranslations(event, { title: 'Título nuevo' });
+  assert.equal(event.translations.es.title, 'Título nuevo');
+  assert.equal(event.translations.en.title, 'Título nuevo');
+  assert.equal(event.translations.en.description, 'English description');
+});

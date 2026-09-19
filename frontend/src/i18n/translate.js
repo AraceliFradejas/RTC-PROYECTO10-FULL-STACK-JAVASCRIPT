@@ -20,5 +20,7 @@ export const readLanguage = () => {
 };
 
 export const formatEventDate = (date, language = 'es') => new Intl.DateTimeFormat(locales[language], {
-  day: 'numeric', month: 'short', year: 'numeric',
+  day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Europe/Madrid',
 }).format(new Date(date));
+
+export const formatEventTime = (date, language = 'es') => new Intl.DateTimeFormat(locales[language], { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' }).format(new Date(date));

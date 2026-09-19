@@ -6,6 +6,8 @@ export const localDateTime = value => {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
 };
 
+export const validEventDate = (value, original, now = Date.now()) => Boolean(value && Number.isFinite(Date.parse(value)) && (original && value === localDateTime(original.date) || Date.parse(value) > now));
+
 export const eventFormData = (values, poster, original) => {
   const form = new FormData();
   Object.entries(values).forEach(([key, value]) => form.append(key, key === 'date'

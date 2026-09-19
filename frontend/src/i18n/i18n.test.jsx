@@ -240,7 +240,9 @@ describe('password recovery screens', () => {
     const html = render('es', '/reset-password');
     expect(html.match(/autoComplete="new-password"/g)).toHaveLength(2);
     expect(html).toContain('for="recovery-confirmation"');
-    expect(html).toContain('aria-describedby="recovery-hint"');
+    expect(html).toContain('aria-describedby="recovery-password-hint"');
+    expect(html).toContain('id="recovery-password-hint"');
+    expect(html).toContain('aria-describedby="recovery-confirmation-hint"');
     expect(html).not.toContain(token);
   });
 });

@@ -76,6 +76,25 @@ Su narrativa toma como punto de partida el espíritu del discurso del entrenador
 
 Revisión del 19/09/2026: contraste, navegación por teclado, errores de formularios, títulos de página, metadatos para compartir y HTML prerenderizado de las páginas editoriales. El alcance, las pruebas y las limitaciones están en [la revisión de accesibilidad, SEO y GEO](docs/ACCESIBILIDAD-SEO.md). Mejoras publicadas en Vercel el 19/09/2026: 18 comprobaciones HTTP correctas y contraste del login revisado en Chrome.
 
+## Estructura
+
+```text
+frontend/src/
+  components/   # Componentes reutilizables y campos de formulario
+  pages/        # Pantallas y recorridos
+  context/      # Sesión, idioma y avisos
+  services/     # Cliente HTTP único y consultas de eventos
+  hooks/        # Carga de agenda y espera del buscador
+  utils/        # Validaciones y reglas de presentación
+backend/src/
+  routes/       # Endpoints y protección de acceso
+  controllers/  # Operaciones de usuarios, eventos y recuperación
+  models/       # Esquemas Mongoose
+  middlewares/  # JWT, límites de acceso, archivos y errores
+  services/     # Correo y recuperación
+backend/test/   # Pruebas unitarias e integraciones opcionales
+```
+
 ## Tecnologías
 
 **Frontend:** React, React Router, Vite, Vitest y CSS.  
@@ -152,6 +171,12 @@ Para revisar la agenda y sus 12 fichas en local, crea `frontend/.env.local` con 
 El selector ES/EN cambia el idioma sin recargar la página ni borrar los formularios. Español es el idioma inicial; la selección se guarda en el navegador cuando su almacenamiento está disponible. También se actualizan el atributo `lang`, la descripción de la página, las fechas, los textos accesibles y los avisos.
 
 Los textos están centralizados en `frontend/src/i18n/messages.json`. Las 12 experiencias editoriales tienen versiones en `frontend/src/i18n/events.json` y el catálogo inicial del backend conserva esas mismas traducciones. Los nombres propios se conservan. El contenido nuevo escrito por organizadores se muestra en su idioma original, salvo que el registro aporte `translations.es` o `translations.en`; la agenda inicial ya persiste esas traducciones en MongoDB; su edición desde formularios queda pendiente.
+
+## Sesión y límites de acceso
+
+El JWT se conserva en `localStorage` para recuperar la sesión al recargar. Un rechazo 401 autenticado limpia la sesión y muestra el acceso de nuevo; un error de red no borra el token. Este almacenamiento es accesible a JavaScript y requiere prevenir XSS. Una evolución posible es usar cookies `HttpOnly` junto con la configuración de CORS y protección CSRF correspondiente.
+
+Login y registro tienen límites persistentes por correo (10 y 5 intentos respectivamente por cada ventana de 15 minutos). No sustituyen límites globales de infraestructura. `JWT_SECRET` debe tener al menos 32 caracteres. El borrado de eventos y la gestión de avatar están disponibles mediante la API; no tienen botones de gestión en la web.
 
 ## API
 
@@ -411,6 +436,14 @@ The homepage's educational reflections use `frontend/src/data/learningStories.js
 
 The ES/EN selector preserves forms, updates the document language, metadata, dates and accessible labels, and stores the preference when browser storage is available. Spanish is the default. Interface text is in `frontend/src/i18n/messages.json`; editorial event translations are in `frontend/src/i18n/events.json` and the backend seed. User-written content remains in its original language unless the record contains translations. Editing translations through the form is not implemented.
 
+### Session and access limits
+
+The JWT is stored in `localStorage` to restore the session after a reload. An authenticated 401 response clears that session and returns to sign-in; network errors do not delete the token. JavaScript can access this storage, so XSS prevention is necessary. A future alternative is an `HttpOnly` cookie with suitable CORS and CSRF protection.
+
+Login and registration use persistent per-email limits of 10 and 5 attempts respectively per 15-minute window. These are not global infrastructure limits. `JWT_SECRET` must contain at least 32 characters. Event deletion and avatar management are API features without management buttons in the website.
+
+Editing an editorial title or description replaces that field's existing translations with the newly entered text; untouched fields retain their translations. No automatic translation is performed. Past events can be edited without changing their date, but cannot accept new bookings; existing bookings can still be cancelled.
+
 ### API endpoints
 
 | Method | Route | Access | Action |
@@ -444,7 +477,7 @@ Attendance responses expose `email.status`: `disabled`, `unconfigured`, `sent` o
 
 ### Validation and evidence
 
-The documented baseline contains **76 passing ordinary tests**: 24 backend and 52 frontend. The two Atlas integration tests are skipped by the ordinary test command and were run separately against temporary databases. Production builds and checks of 14 generated HTML documents passed. After the footer update, the 33 language tests and the build checks also passed.
+The documented baseline contains **84 passing ordinary tests**: 28 backend and 56 frontend. The two Atlas integration tests are skipped by the ordinary test command and were run separately against temporary databases. Production builds and checks of 14 generated HTML documents passed. After the footer update, the 33 language tests and the build checks also passed.
 
 The local Insomnia review covers 28 expected outcomes, including authentication, permissions, event operations, capacity limits and real Cloudinary uploads. Negative cases intentionally return errors. These local checks are separate from manual production checks.
 

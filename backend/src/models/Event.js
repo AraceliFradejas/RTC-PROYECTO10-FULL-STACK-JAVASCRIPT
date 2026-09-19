@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { eventCategories, speakerIds } from '../utils/eventRules.js';
 
 const translationSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true, minlength: 3, maxlength: 100 },
@@ -8,7 +9,7 @@ const translationSchema = new mongoose.Schema({
 const eventSchema = new mongoose.Schema(
   {
     seedKey: { type: String, unique: true, sparse: true, immutable: true },
-    speakerId: { type: String, enum: ['alison-patrick', 'jude-becks', 'anna-nasser', 'travis-wood'], set: value => value === '' ? undefined : value },
+    speakerId: { type: String, enum: speakerIds, set: value => value === '' ? undefined : value },
     translations: { es: translationSchema, en: translationSchema },
     title: { type: String, required: true, trim: true, minlength: 3, maxlength: 100 },
     date: { type: Date, required: true, index: true },
@@ -16,7 +17,7 @@ const eventSchema = new mongoose.Schema(
     description: { type: String, required: true, trim: true, minlength: 20, maxlength: 1200 },
     category: {
       type: String,
-      enum: ['Liderazgo', 'Resiliencia', 'Equipo', 'Rendimiento', 'Innovación', 'Bienestar', 'Otros'],
+      enum: eventCategories,
       default: 'Otros',
     },
     poster: { type: String, default: '' },

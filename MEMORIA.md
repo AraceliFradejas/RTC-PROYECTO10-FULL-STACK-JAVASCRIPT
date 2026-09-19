@@ -4,7 +4,7 @@
 
 El proyecto está desplegado y permite registrar usuarios, publicar y editar charlas, subir carteles y gestionar asistentes. En la prueba manual he recuperado mi contraseña, iniciado sesión, reservado y cancelado una plaza, y comprobado los correos en Mailtrap. También he creado «Tu mente y la presión», cambiado su texto y hora y comprobado que el cartel se mantiene al recargar.
 
-Las comprobaciones automatizadas se documentan por separado: 76 pruebas ordinarias correctas, compilación y revisión de los documentos HTML, además de las integraciones de Atlas descritas más adelante. Las capturas y los límites de cada comprobación están enlazados en la memoria. El correo funciona en Sandbox; no se presenta como envío a buzones personales.
+Las comprobaciones automatizadas se documentan por separado: 84 pruebas ordinarias correctas (28 backend y 56 frontend), compilación y revisión de los documentos HTML, además de las integraciones de Atlas descritas más adelante. Las capturas y los límites de cada comprobación están enlazados en la memoria. El correo funciona en Sandbox; no se presenta como envío a buzones personales.
 
 El repositorio reúne el código, los recursos utilizados y las evidencias de la entrega. Los borradores de imagen y vídeo se conservan como material local. Su procedencia está resumida en [Recursos y atribuciones](docs/RECURSOS.md).
 
@@ -746,3 +746,20 @@ Se conserva el monorepo con enlaces independientes a frontend y backend: el enun
 ## Aviso educativo del footer — 19/09/2026
 
 El pie de página identifica KelseTS como proyecto ficticio del máster Rock The Code, enlaza a The Power Tech School y explica la aplicación de gestión de eventos y asistentes con soporte multilingüe. El aviso está disponible en castellano e inglés; se amplían el tamaño, el contraste y el interlineado para facilitar su lectura. Se conserva el aviso de ausencia de afiliación. Validación: 33 pruebas de idiomas correctas, compilación y comprobación de 14 documentos HTML correctas.
+
+
+## Correcciones de la revisión final — 19/09/2026
+
+Se permite editar un evento pasado conservando su fecha original. Las nuevas fechas deben ser futuras. La API rechaza nuevas reservas una vez alcanzada la fecha de inicio y permite cancelar las existentes; el botón de la ficha refleja esa restricción. La transacción comprueba también la fecha al escribir.
+
+Los campos normales y las contraseñas comparten `FormField` y `PasswordField`, con etiquetas, ayuda, errores y atributos accesibles. Las categorías y los identificadores de ponentes se centralizan dentro de cada aplicación; las validaciones de correo y contraseña se reutilizan en el frontend. Los estados propios de cada flujo se mantienen en sus páginas. El JSX de los componentes modificados queda formateado para facilitar su lectura.
+
+Un 401 en una petición autenticada cierra la sesión correspondiente y dirige al acceso con un aviso, conservando el destino de regreso. Los errores de red no eliminan el token. Las peticiones tienen un límite de 20 segundos, incluida la lectura de la respuesta, y conservan la cancelación al abandonar una página. El buscador espera 300 ms tras la última pulsación. Las tarjetas y las fichas muestran fechas de Madrid. La ficha admite que el perfil creador ya no exista.
+
+`title` y `description` son el texto base de un evento; `translations` contiene versiones editoriales opcionales. Al editar un campo del catálogo, ese texto sustituye también las versiones antiguas de ese campo en ambos idiomas; los campos no modificados conservan su traducción. No se genera una traducción automática. Los eventos creados por usuarios siguen mostrando el texto original.
+
+El acceso permite 10 intentos por correo cada 15 minutos y el registro 5, mediante contadores compartidos en MongoDB. Son límites por cuenta, no una protección global contra ataques distribuidos. Un correo inexistente también realiza una comparación bcrypt para reducir diferencias evidentes de tiempo; no se afirma tiempo constante. El arranque exige un `JWT_SECRET` de al menos 32 caracteres. Se conserva la temporización protectora de recuperación y la configuración de Mailtrap Sandbox.
+
+Validación: 84 pruebas ordinarias correctas, compilación y comprobación de 14 documentos HTML correctas. La integración de asistencia se ejecutó contra una base temporal de Atlas y comprobó concurrencia, reversión, edición de descripción con fecha pasada, rechazo de nuevas reservas y cancelación de una reserva existente después de finalizar. La base temporal se eliminó al terminar. En Chrome se revisaron el formulario de acceso, los errores vacíos, el foco en su resumen y el cambio ES/EN. Esto no equivale a repetir todo el recorrido manual de producción.
+
+Revisión acotada de secretos: 623 versiones históricas de archivos de texto menores de 2 MB, buscando coincidencias exactas con credenciales privadas actuales y URLs MongoDB con usuario/contraseña. Sin coincidencias con las credenciales actuales; las cinco URLs candidatas eran marcadores de `.env.example`. No cubre credenciales antiguas desconocidas ni secretos incrustados en binarios. No se imprimieron valores privados ni se reescribió el historial.

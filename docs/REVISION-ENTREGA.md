@@ -8,7 +8,7 @@ Revisión de código, pruebas y comprobaciones de producción. Las secciones fec
 - Recuperación de contraseña e inicio de sesión, reserva/cancelación y correos Sandbox comprobados.
 - Creación con cartel, edición de descripción/hora y persistencia de imagen tras guardado y recarga comprobadas. Botón de edición corregido en `f249d31`.
 - Avisos sustituidos por el mensaje más reciente; funcionamiento confirmado.
-- 76 pruebas ordinarias correctas, build y comprobaciones HTML correctos. Integraciones de Atlas documentadas separadamente.
+- 84 pruebas ordinarias correctas (28 backend y 56 frontend), build y comprobaciones HTML correctos. Integraciones de Atlas documentadas separadamente.
 - Pendientes de entrega: enviar los enlaces en el apartado de la actividad y facilitar el archivo de entorno por el canal privado indicado. Enunciado completo revisado: se aportan ambos enlaces de carpetas del monorepo; no exige repositorios independientes. El envío al campus no se ha realizado.
 - Límites: sustitución de avatar no repetida en producción y colección completa de Insomnia no repetida contra la API pública; existen sus evidencias locales. Correo probado en Sandbox, no en buzones reales. No se declara certificación integral de accesibilidad.
 
@@ -101,3 +101,6 @@ Creación de «Tu mente y la presión» para el 15/03/2027 confirmada. Se detect
 ## Contraste con el enunciado completo
 
 [Revisión final requisito a requisito](COMPROBACION-ENUNCIADO.md): requisitos funcionales cubiertos; cabecera de sesión y acción compartir con feedback de carga reforzado. No se exige pantalla de avatar ni dos repositorios separados.
+
+
+La revisión final corrige reservas y edición de eventos pasados, caducidad de sesión, tiempos de espera, traducciones de eventos editados y reutilización de campos. Véase el apartado «Correcciones de la revisión final» de la [memoria](../MEMORIA.md). Las cifras de las secciones anteriores corresponden a sus respectivas etapas.

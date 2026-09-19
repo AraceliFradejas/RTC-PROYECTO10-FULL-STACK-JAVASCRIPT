@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { speakerIds, unchangedEventDate, eventHasEnded, synchronizeEditedTranslations } from '../utils/eventRules.js';
 import { Event } from '../models/Event.js';
 import { User } from '../models/User.js';
 import { deleteImage } from '../config/cloudinary.js';
@@ -11,8 +12,8 @@ const assertId = (id) => {
 };
 
 const editableFields = ['title', 'date', 'location', 'description', 'category', 'capacity', 'speakerId'];
-export const eventPayload = (body = {}) => editableFields.reduce((result, field) => {
-  if (field === 'speakerId' && body[field] !== undefined && !['', 'alison-patrick', 'jude-becks', 'anna-nasser', 'travis-wood'].includes(body[field])) {
+export const eventPayload = (body = {}, original = null) => editableFields.reduce((result, field) => {
+  if (field === 'speakerId' && body[field] !== undefined && !['', ...speakerIds].includes(body[field])) {
     throw new AppError('Elige un ponente válido.', 400);
   }
   if (body[field] !== undefined) {
@@ -20,7 +21,7 @@ export const eventPayload = (body = {}) => editableFields.reduce((result, field)
     if (field === 'capacity') {
       if (!['number', 'string'].includes(typeof value) || !String(value).trim() || !Number.isInteger(Number(value)) || Number(value) < 1 || Number(value) > 10000) throw new AppError('El aforo debe ser un número entero entre 1 y 10000.', 400);
     } else if (typeof value !== 'string') throw new AppError('Revisa los datos del formulario.', 400);
-    if (field === 'date' && (!Number.isFinite(Date.parse(value)) || new Date(value) <= new Date())) throw new AppError('Elige una fecha futura.', 400);
+    if (field === 'date' && !unchangedEventDate(value, original) && (!Number.isFinite(Date.parse(value)) || new Date(value) <= new Date())) throw new AppError('Elige una fecha futura.', 400);
     result[field] = value;
   }
   return result;
@@ -78,7 +79,8 @@ export const createEvent = async (req, res) => {
 
 export const updateEvent = async (req, res) => {
   const event = await getOwnedEvent(req.params.id, req.user);
-  const payload = eventPayload(req.body);
+  const payload = eventPayload(req.body, event);
+  synchronizeEditedTranslations(event, payload);
   editableFields.forEach((key) => {
     if (payload[key] !== undefined) event[key] = payload[key];
   });
@@ -108,8 +110,9 @@ export const toggleAttendance = async (req, res) => {
     if (attends) {
       await Event.updateOne({ _id: event.id }, { $pull: { attendees: req.user.id }, $inc: { __v: 1 } }, { session });
     } else {
+      if (eventHasEnded(event)) throw new AppError('El evento ya ha finalizado.', 409);
       const result = await Event.updateOne(
-        { _id: event.id, attendees: { $ne: req.user._id }, $expr: { $lt: [{ $size: '$attendees' }, '$capacity'] } },
+        { _id: event.id, date: { $gt: new Date() }, attendees: { $ne: req.user._id }, $expr: { $lt: [{ $size: '$attendees' }, '$capacity'] } },
         { $addToSet: { attendees: req.user.id }, $inc: { __v: 1 } },
         { session }
       );

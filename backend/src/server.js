@@ -1,6 +1,9 @@
 import 'dotenv/config';
+import { assertAuthConfiguration } from './config/auth.js';
 import { app } from './app.js';
 import { connectDatabase } from './config/db.js';
+
+assertAuthConfiguration();
 
 const port = process.env.PORT || 3000;
 

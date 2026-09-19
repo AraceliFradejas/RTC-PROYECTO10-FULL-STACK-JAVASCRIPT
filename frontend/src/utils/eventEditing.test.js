@@ -26,3 +26,14 @@ describe('event editing', () => {
     expect(form.get('poster').size).toBe(4);
   });
 });
+
+describe('fechas al editar', () => {
+  it('permite conservar la fecha pasada pero no crear ni mover a otra fecha pasada', async () => {
+    const { validEventDate } = await import('./eventEditing.js');
+    const original = { date: '2020-01-01T12:00:00Z' };
+    expect(validEventDate(localDateTime(original.date), original)).toBe(true);
+    expect(validEventDate('2020-01-02T12:00', original)).toBe(false);
+    expect(validEventDate(localDateTime(original.date))).toBe(false);
+    expect(validEventDate('invalid', original)).toBe(false);
+  });
+});

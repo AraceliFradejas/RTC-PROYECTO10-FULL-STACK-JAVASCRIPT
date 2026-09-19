@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import { randomUUID } from 'node:crypto';
 import { Event } from '../src/models/Event.js';
 import { User } from '../src/models/User.js';
-import { toggleAttendance, deleteEvent } from '../src/controllers/eventController.js';
+import { toggleAttendance, deleteEvent, updateEvent } from '../src/controllers/eventController.js';
 
 // Opt-in: uses a new isolated database, never the application database.
 test('Real transactions enforce capacity, roll back failures and protect concurrent edits', { skip: process.env.RUN_DB_INTEGRATION !== 'true' }, async (t) => {
@@ -45,6 +45,13 @@ test('Real transactions enforce capacity, roll back failures and protect concurr
   assert.equal((await Event.findById(event.id)).attendees.length, 0);
   assert.equal(await User.countDocuments({ attendingEvents: event.id }), 0);
   await toggleAttendance(request(users[1]), response());
+  await Event.updateOne({ _id: event.id }, { $set: { date: new Date('2020-01-01') } });
+  await updateEvent({ ...request(users[0]), body: { date: '2020-01-01T00:00:00.000Z', description: 'Descripción corregida después de finalizar el evento.' } }, response());
+  assert.equal((await Event.findById(event.id)).description, 'Descripción corregida después de finalizar el evento.');
+  await assert.rejects(toggleAttendance(request(users[0]), response()), { statusCode: 409, message: 'El evento ya ha finalizado.' });
+  await toggleAttendance(request(users[1]), response());
+  assert.equal((await Event.findById(event.id)).attendees.length, 0);
+  assert.equal(await User.countDocuments({ attendingEvents: event.id }), 0);
   await deleteEvent(request(users[0]), response());
   assert.equal(await Event.findById(event.id), null);
   assert.equal(await User.countDocuments({ attendingEvents: event.id }), 0);

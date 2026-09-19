@@ -22,7 +22,7 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 
 ## Control previo al envío
 
-- [x] Pruebas ordinarias: 76 correctas (24 backend y 52 frontend); integración de recuperación en Atlas ejecutada separadamente y correcta.
+- [x] Pruebas ordinarias: 84 correctas (28 backend y 56 frontend); integración de recuperación en Atlas ejecutada separadamente y correcta.
 - [x] Compilación de producción correcta el 19/09/2026.
 - [x] Web, salud y agenda públicas: HTTP 200 el 19/09/2026.
 - [x] Recuperación mediante Mailtrap y posterior inicio de sesión en producción, confirmados el 19/09/2026.

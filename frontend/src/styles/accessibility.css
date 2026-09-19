@@ -80,3 +80,6 @@ h1, h2, h3, .speaker-profile__appointments li { overflow-wrap: anywhere; }
 .recovery-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
 .recovery-notice { padding: 18px; border: 1px solid #467953; border-radius: 12px; background: #eef5f0; color: #244f38; }
 .recovery-notice p:last-child { margin-bottom: 0; }
+
+.form-field > input, .form-field > select, .form-field > textarea { width: 100%; }
+.form-field > small { display: block; margin-top: 8px; }

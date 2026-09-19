@@ -38,3 +38,35 @@ describe('errores de conexión traducibles', () => {
     await expect(apiRequest('/events')).rejects.toBe(abort);
   });
 });
+
+describe('caducidad de sesión y tiempo de espera', () => {
+  it('notifica solo un 401 autenticado y permite retirar el observador', async () => {
+    const { onUnauthorized } = await import('./api.js');
+    const listener = vi.fn();
+    const unsubscribe = onUnauthorized(listener);
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ status: 401, ok: false, json: async () => ({}) }));
+    try {
+      await apiRequest('/auth/login').catch(() => {});
+      expect(listener).not.toHaveBeenCalled();
+      await apiRequest('/events/1', { token: 'expired' }).catch(() => {});
+      expect(listener).toHaveBeenCalledWith('expired');
+    } finally { unsubscribe(); }
+    await apiRequest('/events/1', { token: 'expired' }).catch(() => {});
+    expect(listener).toHaveBeenCalledTimes(1);
+  });
+  it('cancela una petición bloqueada y devuelve un error comprensible', async () => {
+    vi.stubGlobal('fetch', vi.fn((_url, { signal }) => new Promise((_resolve, reject) => {
+      signal.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')));
+    })));
+    await expect(apiRequest('/events', { timeoutMs: 5 })).rejects.toMatchObject({ message: 'El servidor tarda demasiado. Inténtalo de nuevo.', status: 0 });
+  });
+  it('conserva la cancelación al abandonar una página', async () => {
+    const controller = new AbortController();
+    vi.stubGlobal('fetch', vi.fn((_url, { signal }) => new Promise((_resolve, reject) => {
+      signal.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')));
+    })));
+    const request = apiRequest('/events', { signal: controller.signal });
+    controller.abort();
+    await expect(request).rejects.toMatchObject({ name: 'AbortError' });
+  });
+});

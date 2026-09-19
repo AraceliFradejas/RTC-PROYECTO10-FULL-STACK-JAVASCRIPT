@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { languages, languageStorageKey, locales, readLanguage, translate } from '../i18n/translate.js';
 
 const LanguageContext = createContext(null);
@@ -8,12 +8,13 @@ export const LanguageProvider = ({ children }) => {
     document.documentElement.lang = language;
     try { localStorage.setItem(languageStorageKey, language); } catch { /* The selector still works without storage. */ }
   }, [language]);
+  const changeLanguage = useCallback(next => { if (languages.includes(next)) setLanguage(next); }, []);
   const value = useMemo(() => ({
     language,
     locale: locales[language],
-    setLanguage: (next) => { if (languages.includes(next)) setLanguage(next); },
+    setLanguage: changeLanguage,
     t: (key, values) => translate(language, key, values),
-  }), [language]);
+  }), [language, changeLanguage]);
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 export const useLanguage = () => useContext(LanguageContext);
