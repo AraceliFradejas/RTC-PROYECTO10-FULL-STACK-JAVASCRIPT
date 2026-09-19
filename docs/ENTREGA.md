@@ -25,7 +25,8 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 - [x] Compilación de producción correcta el 19/09/2026.
 - [x] Web, salud y agenda públicas: HTTP 200 el 19/09/2026.
 - [x] Recuperación mediante Mailtrap y posterior inicio de sesión en producción, confirmados por la titular el 19/09/2026.
-- [ ] Completar el recorrido autenticado restante en producción (reservas, cancelaciones y edición) y evidencias finales.
+- [x] Reserva y cancelación en producción, actualización de plazas y ambos correos en Mailtrap: verificados con la titular el 19/09/2026.
+- [ ] Completar creación/edición de eventos y subida de ficheros en producción y evidencias finales.
 - [ ] Cambios finales de documentación publicados en GitHub y enlaces revisados desde allí.
 - [ ] Comprobar si el campus admite el monorepo o exige dos repositorios.
 - [ ] Adjuntar `backend/.env.entrega` solo en el canal privado de corrección.

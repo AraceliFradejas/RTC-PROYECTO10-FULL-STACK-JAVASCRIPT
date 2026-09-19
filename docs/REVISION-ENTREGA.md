@@ -76,3 +76,8 @@ El límite de imágenes pasa a 4 MB en frontend y backend, por el límite de 4,5
 ### Recuperación de acceso — 19/09/2026
 
 Implementados solicitud y cambio de contraseña con Mailtrap Sandbox, ES/EN, enlaces temporales de un solo uso y revocación de sesiones. Pruebas ordinarias: 73 correctas; integración real de recuperación en Atlas: correcta. [Configuración y paso a correo real](RECUPERACION-CONTRASENA.md). Despliegue y comprobaciones HTTP correctos. La titular confirma haber recuperado su contraseña mediante Mailtrap e iniciado sesión en la web publicada. Quedan separados de esta validación los recorridos de reserva/cancelación y edición de eventos.
+
+
+### Reserva y cancelación públicas — 19/09/2026
+
+Reserva observada en Chrome: titular incluida en participantes y aviso de plaza confirmada. La titular confirma los correos de reserva y cancelación en Mailtrap y, al cancelar desde la web, asistencia desmarcada, aumento de plazas disponibles y mensaje de cancelación. Recorrido cerrado con confirmación de la titular, sin nuevas capturas guardadas. Continúan pendientes la creación/edición de eventos y subida de ficheros en producción, además del paquete final de entrega.

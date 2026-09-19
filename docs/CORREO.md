@@ -56,3 +56,10 @@ Revisadas la [confirmación ES en escritorio](screenshots/Mailtrap/Mailtrap%20-2
 ## Recuperación de contraseña
 
 Añadida el 19/09/2026 con el mismo SMTP Sandbox. Consultar la [guía de recuperación y migración a envío real](RECUPERACION-CONTRASENA.md): configuración exacta en Vercel, seguridad, pruebas y límites. El cambio futuro de estas variables afecta también a los correos de asistencia.
+
+
+## Reserva y cancelación en producción — 19/09/2026
+
+Tras recuperar el acceso, la titular reservó «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome su nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. La titular confirmó la recepción del correo de reserva en Mailtrap Sandbox.
+
+A continuación, la titular confirmó haber cancelado desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibió el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante su confirmación en la sesión de trabajo; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
