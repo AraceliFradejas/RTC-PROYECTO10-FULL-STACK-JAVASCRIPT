@@ -12,12 +12,6 @@ KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y desa
 
 Este repositorio contiene la plataforma full stack con la que KelseTS publica su agenda, gestiona asistentes y permite que nuevos organizadores creen experiencias.
 
-## Una historia personal
-
-KelseTS es una marca ficticia inspirada en el universo swiftie. La idea nació cuando tuve que asistir a un curso de inteligencia artificial y no pude ir al concierto de Taylor Swift en Madrid. Convertí aquella ilusión en un universo creativo con el que seguir aprendiendo y dar una identidad propia a mis proyectos.
-
-Lo he creado desde el cariño, la admiración y el respeto por Taylor Swift y su familia. Es un proyecto educativo, independiente y no oficial. Los personajes que aparecen en las imágenes de la web son ficticios: no son fotografías de la artista, de su familia ni de personas que hayan participado realmente en estos eventos. Los recursos visuales y audiovisuales son recreaciones generadas con IA; sus créditos se recogen en [Recursos y atribuciones](docs/RECURSOS.md).
-
 ## Contenido
 
 - [Una historia personal](#una-historia-personal)
@@ -33,6 +27,12 @@ Lo he creado desde el cariño, la admiración y el respeto por Taylor Swift y su
 - [Ocupación de demostración](#ocupación-de-demostración)
 - [Correos de asistencia](#correos-de-asistencia)
 - [Aviso legal](#aviso-legal)
+
+## Una historia personal
+
+KelseTS es una marca ficticia inspirada en el universo swiftie. La idea nació cuando tuve que asistir a un curso de inteligencia artificial y no pude ir al concierto de Taylor Swift en Madrid. Convertí aquella ilusión en un universo creativo con el que seguir aprendiendo y dar una identidad propia a mis proyectos.
+
+Lo he creado desde el cariño, la admiración y el respeto por Taylor Swift y su familia. Es un proyecto educativo, independiente y no oficial. Los personajes que aparecen en las imágenes de la web son ficticios: no son fotografías de la artista, de su familia ni de personas que hayan participado realmente en estos eventos. Los recursos visuales y audiovisuales son recreaciones generadas con IA; sus créditos se recogen en [Recursos y atribuciones](docs/RECURSOS.md).
 
 ## Estado actual
 
@@ -293,14 +293,9 @@ Proyecto académico del máster Rock The Code de [The Power Tech School](https:/
 
 **KelseTS Talks** is a full-stack event and attendee management application developed for the **Rock The Code** master's programme at [**The Power Tech School**](https://thepower.education/thepowermba/tech). KelseTS is a fictional brand connecting sport, culture, technology and professional development.
 
-### A personal story
-
-KelseTS is a fictional brand inspired by the swiftie universe. The idea came about when I had to attend an artificial intelligence course and could not go to Taylor Swift's concert in Madrid. I turned that excitement into a creative universe where I could keep learning and give my projects their own identity.
-
-I created it with affection, admiration and respect for Taylor Swift and her family. This is an independent, unofficial educational project. The characters shown in the website's images are fictional: they are not photographs of the artist, her family or people who actually attended these events. The visual and audiovisual resources are AI-generated recreations; their credits are documented in [Resources and attribution](docs/RECURSOS.md) (in Spanish).
-
 ### Contents
 
+- [A personal story](#a-personal-story)
 - [Current status](#current-status)
 - [Features and technologies](#features-and-technologies)
 - [Local setup](#local-setup)
@@ -311,6 +306,12 @@ I created it with affection, admiration and respect for Taylor Swift and her fam
 - [Password recovery and email](#password-recovery-and-email)
 - [Validation and evidence](#validation-and-evidence)
 - [Academic notice and author](#academic-notice-and-author)
+
+### A personal story
+
+KelseTS is a fictional brand inspired by the swiftie universe. The idea came about when I had to attend an artificial intelligence course and could not go to Taylor Swift's concert in Madrid. I turned that excitement into a creative universe where I could keep learning and give my projects their own identity.
+
+I created it with affection, admiration and respect for Taylor Swift and her family. This is an independent, unofficial educational project. The characters shown in the website's images are fictional: they are not photographs of the artist, her family or people who actually attended these events. The visual and audiovisual resources are AI-generated recreations; their credits are documented in [Resources and attribution](docs/RECURSOS.md) (in Spanish).
 
 ### Current status
 
