@@ -19,14 +19,14 @@ export const register = async (req, res) => {
   if (exists) throw new AppError('Ya existe una cuenta con ese correo electrónico.', 409);
 
   const user = await User.create({ name, email, password });
-  res.status(201).json({ success: true, data: { token: createToken(user.id), user: publicUser(user) } });
+  res.status(201).json({ success: true, data: { token: createToken(user.id, user.sessionVersion || 0), user: publicUser(user) } });
 };
 
 export const login = async (req, res) => {
   const { email, password } = validateCredentials(req.body);
-  const user = await User.findOne({ email: email.trim().toLowerCase() }).select('+password');
+  const user = await User.findOne({ email: email.trim().toLowerCase() }).select('+password +sessionVersion');
   if (!user || !(await user.comparePassword(password))) throw new AppError('El email o la contraseña no son correctos.', 401);
-  res.json({ success: true, data: { token: createToken(user.id), user: publicUser(user) } });
+  res.json({ success: true, data: { token: createToken(user.id, user.sessionVersion || 0), user: publicUser(user) } });
 };
 
 export const getMe = async (req, res) => res.json({ success: true, data: publicUser(req.user) });

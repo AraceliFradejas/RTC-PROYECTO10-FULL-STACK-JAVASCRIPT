@@ -267,3 +267,7 @@ Los recursos visuales son creaciones originales para este proyecto. Se han selec
 ## Autora
 
 **Araceli Fradejas Muñoz**
+
+### Recuperación de contraseña
+
+El login permite solicitar un enlace de recuperación en ES/EN. Caduca en 30 minutos, es de un solo uso y cambiar la contraseña invalida las sesiones anteriores. Esta entrega captura los mensajes en Mailtrap Sandbox. Endpoints: `POST /api/auth/forgot-password` y `POST /api/auth/reset-password`. Véase la [guía de funcionamiento, pruebas y activación de correo real](docs/RECUPERACION-CONTRASENA.md).

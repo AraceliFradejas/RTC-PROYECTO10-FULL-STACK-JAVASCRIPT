@@ -1,0 +1,55 @@
+import 'dotenv/config';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import mongoose from 'mongoose';
+import { randomUUID } from 'node:crypto';
+import { User } from '../src/models/User.js';
+import { RecoveryLimit } from '../src/models/RecoveryLimit.js';
+import { createRecoveryHandlers } from '../src/controllers/recoveryController.js';
+import { requireAuth } from '../src/middlewares/auth.js';
+import { createToken } from '../src/utils/token.js';
+import { allowRecoveryRequest, hashRecoveryToken } from '../src/services/passwordRecovery.js';
+
+const response = () => ({ set() { return this; }, json(body) { this.body = body; } });
+const authorize = token => new Promise((resolve, reject) => requireAuth({ headers: { authorization: `Bearer ${token}` } }, {}, error => error ? reject(error) : resolve()));
+
+test('Real MongoDB recovery: one-use concurrency, expiration, throttling, hashing and revoked JWT', { skip: process.env.RUN_DB_INTEGRATION !== 'true' }, async t => {
+  const database = `kelsets_recovery_test_${randomUUID().replaceAll('-', '').slice(0, 16)}`;
+  await mongoose.connect(process.env.MONGODB_URI, { dbName: database, serverSelectionTimeoutMS: 10000 });
+  t.after(async () => { try { assert.equal(mongoose.connection.name, database); await mongoose.connection.dropDatabase(); } finally { await mongoose.disconnect(); } });
+  await Promise.all([User.init(), RecoveryLimit.init()]);
+  const user = await User.create({ name: 'Recovery Test', email: 'recovery@example.invalid', password: 'original-password' });
+  const oldToken = createToken(user.id);
+  await authorize(oldToken);
+  let mail;
+  const handlers = createRecoveryHandlers({ configured: () => true, sendMail: async message => { mail = message; return true; }, responseDelay: 0 });
+  const forgot = () => handlers.forgotPassword({ body: { email: user.email, language: 'es' } }, response());
+  await forgot();
+  const firstToken = mail.token;
+  const privateUser = await User.findById(user.id).select('+passwordResetTokenHash');
+  assert.equal(privateUser.passwordResetTokenHash, hashRecoveryToken(firstToken));
+  assert.equal((await User.findById(user.id)).passwordResetTokenHash, undefined);
+  await forgot();
+  assert.notEqual(mail.token, firstToken);
+  const reset = token => handlers.resetPassword({ body: { token, password: 'replacement-password' } }, response());
+  await assert.rejects(reset(firstToken), { statusCode: 400 });
+  const outcomes = await Promise.allSettled([reset(mail.token), reset(mail.token)]);
+  assert.equal(outcomes.filter(result => result.status === 'fulfilled').length, 1);
+  assert.equal(outcomes.find(result => result.status === 'rejected').reason.statusCode, 400);
+  const changed = await User.findById(user.id).select('+password +sessionVersion +passwordResetTokenHash');
+  assert.ok(await changed.comparePassword('replacement-password'));
+  assert.equal(await changed.comparePassword('original-password'), false);
+  assert.equal(changed.passwordResetTokenHash, undefined);
+  assert.equal(changed.sessionVersion, 1);
+  await assert.rejects(authorize(oldToken), { statusCode: 401 });
+  await authorize(createToken(user.id, changed.sessionVersion));
+  await assert.rejects(reset(mail.token), { statusCode: 400 });
+  await forgot();
+  await User.updateOne({ _id: user.id }, { $set: { passwordResetExpiresAt: new Date(Date.now() - 1) } });
+  await assert.rejects(reset(mail.token), { statusCode: 400 });
+  const sentToken = mail.token;
+  await forgot(); // Fourth request is silently rate limited, same public response.
+  assert.equal(mail.token, sentToken);
+  const limits = await Promise.all(Array.from({ length: 8 }, () => allowRecoveryRequest('concurrent-test', 'test@example.invalid', 3)));
+  assert.equal(limits.filter(Boolean).length, 3);
+});

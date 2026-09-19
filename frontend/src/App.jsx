@@ -1,3 +1,4 @@
+import { PasswordRecoveryPage } from './pages/PasswordRecoveryPage.jsx';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout.jsx';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
@@ -20,6 +21,8 @@ export const App = () => <Routes>
     <Route path="events/new" element={<ProtectedRoute><EventFormPage /></ProtectedRoute>} />
     <Route path="speakers" element={<Speakers standalone />} />
     <Route path="speakers/:slug" element={<SpeakerPage />} />
+    <Route path="forgot-password" element={<PasswordRecoveryPage key="forgot" />} />
+    <Route path="reset-password" element={<PasswordRecoveryPage key="reset" reset />} />
     <Route path="auth" element={<AuthPage />} />
     <Route path="about" element={<AboutPage />} />
     <Route path="legal" element={<LegalPage />} />

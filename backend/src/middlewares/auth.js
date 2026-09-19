@@ -1,3 +1,4 @@
+import { sessionIsCurrent } from '../services/passwordRecovery.js';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/User.js';
 import { AppError } from '../utils/AppError.js';
@@ -14,8 +15,9 @@ export const requireAuth = asyncHandler(async (req, _res, next) => {
     throw new AppError('Tu sesión ha caducado. Vuelve a iniciar sesión.', 401);
   }
 
-  const user = await User.findById(payload.sub);
+  const user = await User.findById(payload.sub).select('+sessionVersion');
   if (!user) throw new AppError('La persona asociada a esta sesión ya no existe.', 401);
+  if (!sessionIsCurrent(payload, user)) throw new AppError('Tu sesión ha caducado. Vuelve a iniciar sesión.', 401);
   req.user = user;
   next();
 });

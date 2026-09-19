@@ -42,6 +42,8 @@ describe('complete language versions', () => {
     ['/about', 'From the locker room to the workplace', 'Del vestuario a la empresa'],
     ['/events', 'Coming up soon', 'Más próximos'],
     ['/auth', 'Password', 'Contraseña'],
+    ['/forgot-password', 'Recover your account', 'Recupera tu acceso'],
+    ['/reset-password', 'Request a new link', 'Solicitar un enlace nuevo'],
     ['/legal', 'solely for educational', 'con fines exclusivamente educativos'],
     ['/missing', 'Back to home', 'Volver al inicio'],
   ])('localizes the %s route', (route, en, es) => {
@@ -222,4 +224,23 @@ it('offers the four speakers and an unassigned option in the event form in both 
     }
     expect(html).toContain(language === 'es' ? 'Ponente por confirmar' : 'Speaker to be announced');
   }
+});
+
+
+describe('password recovery screens', () => {
+  it('offers recovery from login and rejects a missing token without a password form', () => {
+    expect(render('es', '/auth')).toContain('href="/forgot-password"');
+    const html = render('es', '/reset-password');
+    expect(html).toContain('role="alert"');
+    expect(html).not.toContain('autoComplete="new-password"');
+  });
+  it('renders accessible new-password fields without exposing the token in markup', () => {
+    const token = 'a'.repeat(64);
+    vi.stubGlobal('window', { location: { hash: `#token=${token}` } });
+    const html = render('es', '/reset-password');
+    expect(html.match(/autoComplete="new-password"/g)).toHaveLength(2);
+    expect(html).toContain('for="recovery-confirmation"');
+    expect(html).toContain('aria-describedby="recovery-hint"');
+    expect(html).not.toContain(token);
+  });
 });

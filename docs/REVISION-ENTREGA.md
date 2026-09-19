@@ -72,3 +72,7 @@ Mailtrap Sandbox ya acepta confirmación ES y cancelación EN, con capturas enla
 La API espera la conexión con MongoDB antes de atender peticiones y reutiliza una conexión compartida durante el arranque. Un fallo devuelve 503 sin exponer detalles internos. Las reservas, cancelaciones y eliminaciones usan transacciones; las ediciones detectan cambios concurrentes y devuelven 409. El correo se envía después de confirmar la transacción.
 
 El límite de imágenes pasa a 4 MB en frontend y backend, por el límite de 4,5 MB por petición de Vercel. Las pruebas ordinarias pasan (19 backend y 42 frontend), además de una prueba de integración real en Atlas: aforo con dos reservas simultáneas, cancelación, edición obsoleta, reversión de una escritura fallida y borrado de referencias. La base temporal se elimina al terminar y no se envían correos. Compilación de producción correcta. El despliegue público aún no está verificado.
+
+### Recuperación de acceso — 19/09/2026
+
+Implementados solicitud y cambio de contraseña con Mailtrap Sandbox, ES/EN, enlaces temporales de un solo uso y revocación de sesiones. Pruebas ordinarias: 73 correctas; integración real de recuperación en Atlas: correcta. [Configuración y paso a correo real](RECUPERACION-CONTRASENA.md). Pendiente de la comprobación manual de la titular después del despliegue: recibir el enlace en Mailtrap, cambiar personalmente su contraseña e iniciar sesión.

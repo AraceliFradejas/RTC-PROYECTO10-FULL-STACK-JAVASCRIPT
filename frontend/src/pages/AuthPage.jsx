@@ -2,7 +2,7 @@ import { FormErrors } from '../components/FormErrors.jsx';
 import { useLanguage } from "../context/LanguageContext.jsx";
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useToast } from '../context/ToastContext.jsx';
 export const AuthPage = () => {
@@ -83,6 +83,7 @@ export const AuthPage = () => {
               })} autoComplete={mode === 'login' ? 'current-password' : 'new-password'} aria-invalid={Boolean(errors.password)} /><button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? t("Ocultar contraseña") : t("Mostrar contraseña")}>{showPassword ? <EyeOff /> : <Eye />}</button></span>{errors.password && <small id="auth-password-error" className="field-error">{t(errors.password)}</small>}</div>
         <button className="button button--accent button--wide" disabled={loading}>{loading ? <><span className="mini-spinner" /> {mode === 'login' ? t("Entrando…") : t("Creando tu cuenta…")}</> : <>{mode === 'login' ? t("Entrar") : t("Crear cuenta")} <ArrowRight /></>}</button>
       </form>
+      {mode === 'login' && <p className="recovery-links"><Link className="text-link" to="/forgot-password" state={{ email: values.email }}>{t("¿Has olvidado tu contraseña?")}</Link></p>}
     </div>
   </div></section>;
 };

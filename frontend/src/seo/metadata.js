@@ -2,6 +2,7 @@ import { speakers, getSpeaker } from '../data/speakers.js';
 import { localizeEvent } from '../i18n/events.js';
 
 export const siteUrl = 'https://kelse-ts-talks.vercel.app';
+export const utilityRoutes = ['/auth', '/forgot-password', '/reset-password'];
 export const publicRoutes = ['/', '/events', '/speakers', '/about', '/legal', ...speakers.map(speaker => `/speakers/${speaker.id}`)];
 const pages = {
   '/': {
@@ -25,6 +26,8 @@ const pages = {
     en: ['Legal notice and educational purpose', 'Read about the fictional, educational nature of KelseTS Talks and its non-affiliation with real people and organisations.'],
   },
   '/auth': { es: ['Iniciar sesión o crear cuenta', 'Accede a tu cuenta de KelseTS Talks para gestionar tu asistencia a las experiencias.'], en: ['Sign in or create an account', 'Sign in to KelseTS Talks to manage your attendance at learning experiences.'] },
+  '/forgot-password': { es: ['Recuperar contraseña', 'Solicita un enlace temporal para recuperar el acceso a tu cuenta de KelseTS Talks.'], en: ['Forgot password', 'Request a temporary link to recover access to your KelseTS Talks account.'] },
+  '/reset-password': { es: ['Restablecer contraseña', 'Elige una nueva contraseña para tu cuenta de KelseTS Talks mediante tu enlace de recuperación.'], en: ['Reset password', 'Choose a new password for your KelseTS Talks account using your recovery link.'] },
   '/events/new': { es: ['Crear una experiencia', 'Crea una charla en KelseTS Talks.'], en: ['Create an experience', 'Create a talk on KelseTS Talks.'] },
 };
 
@@ -46,7 +49,7 @@ export function getMetadata(pathname, language = 'es', event, unavailable = fals
   if (!pair && /^\/events\/[^/]+$/.test(path) && !unavailable) pair = lang === 'es' ? ['Detalle de la experiencia', 'Consulta esta experiencia del proyecto académico KelseTS Talks.'] : ['Experience details', 'Explore this experience from the KelseTS Talks educational project.'];
   const known = Boolean(pair) && !unavailable;
   if (!known) pair = lang === 'es' ? ['Contenido no disponible', 'Explora la agenda y los ponentes de KelseTS Talks.'] : ['Content unavailable', 'Explore the KelseTS Talks agenda and speakers.'];
-  const noindex = !known || ['/auth', '/events/new'].includes(path);
+  const noindex = !known || [...utilityRoutes, '/events/new'].includes(path);
   const url = `${siteUrl}${path === '/' ? '/' : path}`;
   const title = `${pair[0]} | KelseTS Talks`;
   const description = pair[1].replace(/\s+/g, ' ').slice(0, 180).trim();

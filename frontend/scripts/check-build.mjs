@@ -28,7 +28,7 @@ for (const file of files) {
     for (const id of reference[1].split(' ')) assert(ids.includes(id), `${file}: missing ${id}`);
   }
   for (const [image] of html.matchAll(/<img\b[^>]*>/g)) assert(/\salt=/.test(image), `${file}: image without alt`);
-  const privatePage = ['auth/index.html', '404.html'].includes(file);
+  const privatePage = ['auth/index.html', 'forgot-password/index.html', 'reset-password/index.html', '404.html'].includes(file);
   assert(html.includes(privatePage ? 'noindex, follow' : 'index, follow'), `${file}: robots`);
   const json = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/s);
   if (!privatePage) assert.equal(JSON.parse(json[1])['@type'], 'WebPage');

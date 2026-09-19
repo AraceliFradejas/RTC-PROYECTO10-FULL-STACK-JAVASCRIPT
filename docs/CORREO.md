@@ -52,3 +52,7 @@ Las vistas HTML locales generadas con `email:preview` conservan URLs normales pa
 Revisadas la [confirmación ES en escritorio](screenshots/Mailtrap/Mailtrap%20-2%20email%20confirmacion%20sandbox.png) y su [vista móvil](screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png): logo y cartel visibles. La imagen móvil solo muestra la parte superior. La captura 01 de bandeja es anterior a la corrección y muestra imágenes rotas; no se usa como evidencia del resultado final. Cancelación EN revisada en la captura siguiente.
 
 [Cancelación EN en vista de tableta](screenshots/Mailtrap/Mailtrap%20-4%20email%20responsive%20english%20version%20sandbox.png): logo, encabezado de cancelación, texto inglés y cartel visibles. La imagen no incluye el botón inferior ni el pie. Confirmación ES y cancelación EN cuentan ya con evidencia visual en Sandbox; quedan pendientes la revisión de avisos HTML Check y la comprobación tras desplegar.
+
+## Recuperación de contraseña
+
+Añadida el 19/09/2026 con el mismo SMTP Sandbox. Consultar la [guía de recuperación y migración a envío real](RECUPERACION-CONTRASENA.md): configuración exacta en Vercel, seguridad, pruebas y límites. El cambio futuro de estas variables afecta también a los correos de asistencia.

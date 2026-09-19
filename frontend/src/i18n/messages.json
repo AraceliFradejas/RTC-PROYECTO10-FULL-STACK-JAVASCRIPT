@@ -1241,7 +1241,7 @@
   },
   "La contraseña debe tener al menos 8 caracteres y ocupar como máximo 72 bytes.": {
     "es": "La contraseña debe tener al menos 8 caracteres y ocupar como máximo 72 bytes.",
-    "en": "The password must contain at least 8 characters and use at most 72 bytes."
+    "en": "Your password must contain at least 8 characters and use no more than 72 bytes."
   },
   "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.": {
     "es": "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.",
@@ -1282,5 +1282,89 @@
   "Proyecto académico de Araceli Fradejas Muñoz. KelseTS, sus ponentes y sus eventos son ficticios; las biografías y transcripciones forman parte de una recreación educativa.": {
     "es": "Proyecto académico de Araceli Fradejas Muñoz. KelseTS, sus ponentes y sus eventos son ficticios; las biografías y transcripciones forman parte de una recreación educativa.",
     "en": "An educational project by Araceli Fradejas Muñoz. KelseTS, its speakers and its events are fictional; the biographies and transcripts are part of an educational recreation."
+  },
+  "¿Has olvidado tu contraseña?": {
+    "es": "¿Has olvidado tu contraseña?",
+    "en": "Forgot your password?"
+  },
+  "Recupera tu acceso": {
+    "es": "Recupera tu acceso",
+    "en": "Recover your account"
+  },
+  "Elige una nueva contraseña": {
+    "es": "Elige una nueva contraseña",
+    "en": "Choose a new password"
+  },
+  "Nueva contraseña": {
+    "es": "Nueva contraseña",
+    "en": "New password"
+  },
+  "Repite la contraseña": {
+    "es": "Repite la contraseña",
+    "en": "Confirm your password"
+  },
+  "Las contraseñas no coinciden.": {
+    "es": "Las contraseñas no coinciden.",
+    "en": "The passwords do not match."
+  },
+  "Introduce el correo con el que te registraste. Te enviaremos un enlace para elegir otra contraseña.": {
+    "es": "Introduce el correo con el que te registraste. Te enviaremos un enlace para elegir otra contraseña.",
+    "en": "Enter the email you registered with. We will send you a link to choose a new password."
+  },
+  "Escribe y confirma la nueva contraseña. Después tendrás que iniciar sesión de nuevo.": {
+    "es": "Escribe y confirma la nueva contraseña. Después tendrás que iniciar sesión de nuevo.",
+    "en": "Enter and confirm your new password. You will then need to sign in again."
+  },
+  "Enviar enlace de recuperación": {
+    "es": "Enviar enlace de recuperación",
+    "en": "Send recovery link"
+  },
+  "Guardar nueva contraseña": {
+    "es": "Guardar nueva contraseña",
+    "en": "Save new password"
+  },
+  "Procesando…": {
+    "es": "Procesando…",
+    "en": "Processing…"
+  },
+  "Volver a iniciar sesión": {
+    "es": "Volver a iniciar sesión",
+    "en": "Back to sign in"
+  },
+  "Solicitar un enlace nuevo": {
+    "es": "Solicitar un enlace nuevo",
+    "en": "Request a new link"
+  },
+  "El enlace no es válido o ha caducado. Solicita uno nuevo.": {
+    "es": "El enlace no es válido o ha caducado. Solicita uno nuevo.",
+    "en": "This link is invalid or has expired. Request a new one."
+  },
+  "Contraseña actualizada. Inicia sesión con tu nueva contraseña.": {
+    "es": "Contraseña actualizada. Inicia sesión con tu nueva contraseña.",
+    "en": "Password updated. Sign in with your new password."
+  },
+  "Si existe una cuenta con ese correo y se puede enviar el mensaje, recibirás un enlace. Revisa también spam. Si ya lo has pedido, espera unos minutos.": {
+    "es": "Si existe una cuenta con ese correo y se puede enviar el mensaje, recibirás un enlace. Revisa también spam. Si ya lo has pedido, espera unos minutos.",
+    "en": "If an account exists with this email and the message can be sent, you will receive a link. Check your spam folder too. If you have already requested one, wait a few minutes."
+  },
+  "El enlace caduca en 30 minutos. Solo funciona el último enlace solicitado.": {
+    "es": "El enlace caduca en 30 minutos. Solo funciona el último enlace solicitado.",
+    "en": "The link expires in 30 minutes. Only the most recently requested link works."
+  },
+  "La recuperación por correo no está disponible temporalmente. Inténtalo más tarde.": {
+    "es": "La recuperación por correo no está disponible temporalmente. Inténtalo más tarde.",
+    "en": "Email recovery is temporarily unavailable. Please try again later."
+  },
+  "Demasiados intentos. Espera unos minutos y vuelve a intentarlo.": {
+    "es": "Demasiados intentos. Espera unos minutos y vuelve a intentarlo.",
+    "en": "Too many attempts. Wait a few minutes and try again."
+  },
+  "Usa al menos 8 caracteres. Se permiten hasta 72 bytes; las tildes y los emojis pueden ocupar más de un byte.": {
+    "es": "Usa al menos 8 caracteres. Se permiten hasta 72 bytes; las tildes y los emojis pueden ocupar más de un byte.",
+    "en": "Use at least 8 characters. Up to 72 bytes are allowed; accented characters and emojis may use more than one byte."
+  },
+  "Demo educativa: el correo se recibe en Mailtrap Sandbox, no en tu bandeja personal.": {
+    "es": "Demo educativa: el correo se recibe en Mailtrap Sandbox, no en tu bandeja personal.",
+    "en": "Educational demo: the email is captured in Mailtrap Sandbox, not delivered to your personal inbox."
   }
 }

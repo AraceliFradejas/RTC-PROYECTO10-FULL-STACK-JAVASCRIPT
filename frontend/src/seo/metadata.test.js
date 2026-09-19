@@ -15,7 +15,7 @@ describe('metadata for public and private routes', () => {
     }
   });
   it('excludes login, event creation and missing resources without declaring fictional people/events as real', () => {
-    for (const path of ['/auth', '/events/new', '/missing', '/speakers/missing']) {
+    for (const path of ['/auth', '/forgot-password', '/reset-password', '/events/new', '/missing', '/speakers/missing']) {
       expect(getMetadata(path).robots).toBe('noindex, follow');
       expect(getMetadata(path).structured).toBeNull();
     }
