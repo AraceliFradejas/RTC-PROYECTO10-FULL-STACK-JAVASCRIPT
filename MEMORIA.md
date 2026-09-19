@@ -700,3 +700,9 @@ Validación: 73 pruebas ordinarias correctas y una integración adicional de rec
 Tras recuperar el acceso, la titular reservó «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome su nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. La titular confirmó la recepción del correo de reserva en Mailtrap Sandbox.
 
 A continuación, la titular confirmó haber cancelado desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibió el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante su confirmación en la sesión de trabajo; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
+
+## Edición desde la web — 19/09/2026
+
+La prueba de entrega detectó que la API admitía editar eventos, pero faltaban el botón y la pantalla en el frontend. Se añade «Editar experiencia» para creadores y administradores, con ruta protegida, datos precargados, PATCH, estados de carga y errores ES/EN. La API conserva su control de permisos. El formulario mantiene el cartel y la fecha original si no se modifican; las fechas nuevas se envían como ISO con zona horaria. Vercel admite el enlace directo y noindex.
+
+52 pruebas frontend, build y comprobación de 14 documentos HTML correctos. La titular confirma la creación de «Tu mente y la presión» para el 15/03/2027. Queda pendiente confirmar el guardado de su edición tras desplegar esta corrección.

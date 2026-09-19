@@ -32,3 +32,5 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 - [ ] Adjuntar `backend/.env.entrega` solo en el canal privado de corrección.
 
 Pendientes detallados en [REVISION-ENTREGA.md](REVISION-ENTREGA.md).
+
+Actualización: creación de «Tu mente y la presión» confirmada por la titular. Corregida la pantalla de edición que faltaba; pendiente de su comprobación pública. El frontend suma ahora 52 pruebas correctas (76 ordinarias entre ambos proyectos).

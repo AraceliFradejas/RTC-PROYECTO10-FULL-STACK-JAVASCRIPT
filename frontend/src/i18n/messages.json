@@ -917,7 +917,7 @@
   },
   "Solo la persona creadora puede modificar este evento.": {
     "es": "Solo la persona creadora puede modificar este evento.",
-    "en": "Only the creator can edit this event."
+    "en": "Only the creator can modify this event."
   },
   "El evento ya está completo.": {
     "es": "El evento ya está completo.",
@@ -1366,5 +1366,37 @@
   "Demo educativa: el correo se recibe en Mailtrap Sandbox, no en tu bandeja personal.": {
     "es": "Demo educativa: el correo se recibe en Mailtrap Sandbox, no en tu bandeja personal.",
     "en": "Educational demo: the email is captured in Mailtrap Sandbox, not delivered to your personal inbox."
+  },
+  "Editar experiencia": {
+    "es": "Editar experiencia",
+    "en": "Edit experience"
+  },
+  "Guardar cambios": {
+    "es": "Guardar cambios",
+    "en": "Save changes"
+  },
+  "Guardando…": {
+    "es": "Guardando…",
+    "en": "Saving…"
+  },
+  "Cambios guardados.": {
+    "es": "Cambios guardados.",
+    "en": "Changes saved."
+  },
+  "No se puede editar esta charla": {
+    "es": "No se puede editar esta charla",
+    "en": "This talk cannot be edited"
+  },
+  "Volver a la charla": {
+    "es": "Volver a la charla",
+    "en": "Back to the talk"
+  },
+  "Cartel actual": {
+    "es": "Cartel actual",
+    "en": "Current poster"
+  },
+  "Actualiza los datos de tu charla. El cartel se conserva si no eliges otra imagen.": {
+    "es": "Actualiza los datos de tu charla. El cartel se conserva si no eliges otra imagen.",
+    "en": "Update your talk details. The poster is kept unless you choose another image."
   }
 }

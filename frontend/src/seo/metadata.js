@@ -47,9 +47,11 @@ export function getMetadata(pathname, language = 'es', event, unavailable = fals
     if (event.poster) image = event.poster;
   }
   if (!pair && /^\/events\/[^/]+$/.test(path) && !unavailable) pair = lang === 'es' ? ['Detalle de la experiencia', 'Consulta esta experiencia del proyecto académico KelseTS Talks.'] : ['Experience details', 'Explore this experience from the KelseTS Talks educational project.'];
+  const editing = /^\/events\/[^/]+\/edit$/.test(path);
+  if (editing) pair = lang === 'es' ? ['Editar experiencia', 'Actualiza tu charla en KelseTS Talks.'] : ['Edit experience', 'Update your talk on KelseTS Talks.'];
   const known = Boolean(pair) && !unavailable;
   if (!known) pair = lang === 'es' ? ['Contenido no disponible', 'Explora la agenda y los ponentes de KelseTS Talks.'] : ['Content unavailable', 'Explore the KelseTS Talks agenda and speakers.'];
-  const noindex = !known || [...utilityRoutes, '/events/new'].includes(path);
+  const noindex = editing || !known || [...utilityRoutes, '/events/new'].includes(path);
   const url = `${siteUrl}${path === '/' ? '/' : path}`;
   const title = `${pair[0]} | KelseTS Talks`;
   const description = pair[1].replace(/\s+/g, ' ').slice(0, 180).trim();

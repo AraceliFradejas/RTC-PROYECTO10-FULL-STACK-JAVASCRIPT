@@ -81,3 +81,7 @@ Implementados solicitud y cambio de contraseña con Mailtrap Sandbox, ES/EN, enl
 ### Reserva y cancelación públicas — 19/09/2026
 
 Reserva observada en Chrome: titular incluida en participantes y aviso de plaza confirmada. La titular confirma los correos de reserva y cancelación en Mailtrap y, al cancelar desde la web, asistencia desmarcada, aumento de plazas disponibles y mensaje de cancelación. Recorrido cerrado con confirmación de la titular, sin nuevas capturas guardadas. Continúan pendientes la creación/edición de eventos y subida de ficheros en producción, además del paquete final de entrega.
+
+### Edición en la interfaz — 19/09/2026
+
+Creación de «Tu mente y la presión» para el 15/03/2027 confirmada por la titular. Se detectó y corrigió la ausencia de edición en el frontend; la API ya la permitía. Añadidos botón y formulario protegido ES/EN, conservando cartel y fecha sin modificar. 52 pruebas frontend y build correctos. Pendiente: comprobar edición persistida y cartel en producción tras desplegar.

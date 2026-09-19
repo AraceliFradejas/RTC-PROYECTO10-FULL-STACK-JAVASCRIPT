@@ -2,6 +2,10 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/events/:id/edit",
+      "destination": "/200"
+    },
+    {
       "source": "/events/:id",
       "destination": "/200"
     }
@@ -56,6 +60,15 @@
         {
           "key": "Cache-Control",
           "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/events/:id/edit",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
         }
       ]
     }

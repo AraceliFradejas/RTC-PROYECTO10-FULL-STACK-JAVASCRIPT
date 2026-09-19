@@ -18,7 +18,8 @@ export const App = () => <Routes>
     <Route index element={<HomePage />} />
     <Route path="events" element={<EventsPage />} />
     <Route path="events/:id" element={<EventDetailPage />} />
-    <Route path="events/new" element={<ProtectedRoute><EventFormPage /></ProtectedRoute>} />
+    <Route path="events/:id/edit" element={<ProtectedRoute><EventFormPage key="edit" /></ProtectedRoute>} />
+    <Route path="events/new" element={<ProtectedRoute><EventFormPage key="create" /></ProtectedRoute>} />
     <Route path="speakers" element={<Speakers standalone />} />
     <Route path="speakers/:slug" element={<SpeakerPage />} />
     <Route path="forgot-password" element={<PasswordRecoveryPage key="forgot" />} />
