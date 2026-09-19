@@ -21,10 +21,11 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 
 ## Control previo al envío
 
-- [x] Pruebas ordinarias: 61 correctas el 19/09/2026; integración Atlas omitida en esta ejecución.
+- [x] Pruebas ordinarias: 73 correctas el 19/09/2026; integración de recuperación en Atlas ejecutada separadamente y correcta.
 - [x] Compilación de producción correcta el 19/09/2026.
 - [x] Web, salud y agenda públicas: HTTP 200 el 19/09/2026.
-- [ ] Recorrido autenticado completo en producción y evidencias finales.
+- [x] Recuperación mediante Mailtrap y posterior inicio de sesión en producción, confirmados por la titular el 19/09/2026.
+- [ ] Completar el recorrido autenticado restante en producción (reservas, cancelaciones y edición) y evidencias finales.
 - [ ] Cambios finales de documentación publicados en GitHub y enlaces revisados desde allí.
 - [ ] Comprobar si el campus admite el monorepo o exige dos repositorios.
 - [ ] Adjuntar `backend/.env.entrega` solo en el canal privado de corrección.
