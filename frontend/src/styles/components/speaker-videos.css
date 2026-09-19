@@ -1,0 +1,126 @@
+.speaker-profile__invitation {
+  margin-top: 40px;
+}
+
+.speaker-invitation {
+  padding: clamp(20px, 2.5vw, 30px);
+  background: #211b25;
+  color: white;
+  border-radius: 24px;
+}
+
+.speaker-invitation .kicker {
+  color: #ffdc76;
+}
+
+.speaker-invitation h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.speaker-invitation__text {
+  max-width: 850px;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.75;
+  margin-bottom: 0;
+  color: #f0e6ed;
+}
+
+.speaker-invitation video {
+  display: block;
+  width: 100%;
+  max-height: 560px;
+  border-radius: 16px;
+  background: #111;
+}
+
+.speaker-invitation details {
+  margin-top: 20px;
+}
+
+.speaker-invitation summary {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.speaker-invitation details p {
+  max-width: 850px;
+  line-height: 1.75;
+  color: #e7dfe8;
+  margin-top: 16px;
+}
+
+.speaker-videos__selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.speaker-videos__selector button {
+  border: 1px solid #d8c8da;
+  border-radius: 999px;
+  padding: 12px 20px;
+  background: #fff;
+  color: #54405b;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.speaker-videos__selector button[aria-pressed="true"] {
+  background: #211b25;
+  border-color: #211b25;
+  color: #ffdc76;
+}
+
+.speaker-videos__selector button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+.speaker-talk__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.speaker-talk__heading h2 {
+  margin-bottom: 12px;
+}
+
+.speaker-talk__heading > span {
+  flex: none;
+  color: #ffdc76;
+  font-size: 0.875rem;
+}
+
+.speaker-talk__note {
+  color: #cdbed1;
+  font-size: 0.875rem;
+  margin: 0 0 24px;
+}
+
+.speaker-talk video {
+  aspect-ratio: 16 / 9;
+  max-height: none;
+}
+
+.detail-videos {
+  margin-top: 45px;
+  margin-bottom: 70px;
+}
+
+@media (max-width: 620px) {
+  .speaker-talk__heading {
+    display: block;
+  }
+  .speaker-talk__heading > span {
+    display: block;
+    margin-bottom: 14px;
+  }
+  .speaker-videos__selector button {
+    padding: 10px 15px;
+    font-size: 0.875rem;
+  }
+}

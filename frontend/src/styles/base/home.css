@@ -1,0 +1,137 @@
+.hero {
+  min-height: 680px;
+  padding: 80px 0 70px;
+  overflow: hidden;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero h1 {
+  max-width: 750px;
+}
+
+.hero__copy {
+  font-size: 1.24rem;
+  line-height: 1.7;
+  max-width: 600px;
+  color: var(--muted);
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-top: 34px;
+}
+
+.hero-art {
+  position: relative;
+  height: 480px;
+  background: var(--violet);
+  border-radius: 48% 52% 42% 58%/54% 41% 59% 46%;
+  transform: rotate(3deg);
+}
+
+.hero-art__orb {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: var(--lime);
+  border-radius: 50%;
+  right: -25px;
+  top: -35px;
+}
+
+.hero-art__card {
+  position: absolute;
+  left: -35px;
+  bottom: 70px;
+  width: 285px;
+  padding: 27px;
+  background: var(--cream);
+  box-shadow: var(--shadow);
+  transform: rotate(-7deg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-art__card small {
+  letter-spacing: 0.14em;
+}
+
+.hero-art__card strong {
+  font-size: 1.6rem;
+}
+
+.hero-art__word {
+  position: absolute;
+  right: 30px;
+  bottom: 25px;
+  font: italic 600 4.5rem "Poppins";
+  color: white;
+  transform: rotate(-9deg);
+}
+
+.section {
+  padding: 90px 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 38px;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.9);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.manifesto {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 100px 0;
+}
+
+.manifesto__grid {
+  display: grid;
+  grid-template-columns: 0.5fr 1.2fr 0.8fr;
+  gap: 50px;
+}
+
+.manifesto__points p {
+  display: flex;
+  gap: 12px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.manifesto__points svg {
+  color: var(--coral);
+  flex: none;
+}

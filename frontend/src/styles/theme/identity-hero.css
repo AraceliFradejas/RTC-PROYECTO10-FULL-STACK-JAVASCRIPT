@@ -1,0 +1,185 @@
+/* Shared identity from KelceTS Lifestyle: Outfit/Poppins, red, gold and lavender. */
+
+:root {
+  --paper: #fff;
+  --coral: #c9252c;
+  --radius: 20px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.kicker,
+.eyebrow {
+  font-size: 0.875rem;
+}
+
+.site-header {
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.logo {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.logo__image {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.logo small {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+}
+
+.nav .button--dark {
+  background: var(--coral);
+}
+
+.hero {
+  min-height: 0;
+  padding: 0;
+}
+
+.hero__grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.hero__content {
+  padding: clamp(40px, 5vw, 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #ad1824 0%, #d82d30 62%, #a65712 100%);
+  color: white;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 4.3vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1.13;
+}
+
+.hero h1 em {
+  color: #ffdc76;
+}
+
+.hero .kicker {
+  color: #ffe4b2;
+  letter-spacing: 0.12em;
+}
+
+.hero__copy {
+  font-size: 1.15rem;
+  color: white;
+  line-height: 1.75;
+}
+
+.hero__actions {
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.hero .button--accent {
+  background: white;
+  color: #a61924;
+}
+
+.button--outline {
+  border: 2px solid white;
+  color: white;
+  background: transparent;
+}
+
+.button--outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.hero__signature {
+  font-size: 0.9rem;
+  margin: 32px 0 0;
+  color: #fff0d8;
+}
+
+.hero .hero-carousel {
+  height: auto;
+  min-height: 650px;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+}
+
+.hero-carousel__image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-carousel__caption small {
+  font-size: 0.875rem;
+  color: #ffdc76;
+}
+
+.hero-carousel__caption strong {
+  font-family: "Poppins", sans-serif;
+}
+
+.hero-carousel__controls span {
+  font-size: 0.875rem;
+}
+
+.hero-carousel__dots {
+  bottom: 18px;
+  right: 22px;
+  gap: 0;
+}
+
+.hero-carousel__dots button {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border-radius: 0;
+}
+
+.hero-carousel__dots button::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff80;
+  top: 10px;
+  left: 10px;
+}
+
+.hero-carousel__dots button.active {
+  width: 28px;
+  background: transparent;
+}
+
+.hero-carousel__dots button.active::after {
+  background: #ffdc76;
+}
+
+.hero-carousel__caption {
+  right: 30px;
+  bottom: 62px;
+}

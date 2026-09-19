@@ -1,0 +1,176 @@
+.auth-page {
+  min-height: calc(100vh - 78px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-visual {
+  padding: 90px 10%;
+  background: var(--violet);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.auth-visual blockquote {
+  font: italic 600 clamp(2.5rem, 5vw, 5.2rem)/1.08 "Poppins";
+  margin: 0;
+  color: white;
+}
+
+.auth-panel {
+  display: grid;
+  place-items: center;
+  padding: 60px 30px;
+  background: var(--cream);
+}
+
+.auth-box {
+  width: min(460px, 100%);
+}
+
+.auth-box h1 {
+  font-size: 3.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.auth-box > p {
+  color: var(--muted);
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 35px 0 25px;
+  border-bottom: 1px solid var(--line);
+}
+
+.auth-tabs button {
+  border: 0;
+  background: none;
+  padding: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.auth-tabs .active {
+  color: var(--ink);
+  border-bottom: 3px solid var(--coral);
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+  margin-bottom: 19px;
+}
+
+form input,
+form textarea,
+form select {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 12px;
+  padding: 14px;
+  outline: 0;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(154, 122, 245, 0.18);
+}
+
+.password-field {
+  display: flex;
+  position: relative;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 50px;
+}
+
+.password-field button {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  border: 0;
+  background: none;
+  padding: 6px;
+}
+
+.password-field svg {
+  width: 19px;
+}
+
+.field-error {
+  color: #a22d1c;
+  font-weight: 500;
+}
+
+.form-alert {
+  padding: 13px;
+  background: #ffe3dc;
+  color: #812313;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.event-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+  background: var(--cream);
+  padding: 35px;
+  border-radius: var(--radius);
+}
+
+.field--full {
+  grid-column: 1/-1;
+}
+
+.form-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-heading h1 {
+  font-size: 4.2rem;
+  margin-bottom: 1rem;
+}
+
+.upload-field {
+  border: 1px dashed var(--muted);
+  padding: 20px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center;
+}
+
+.upload-field svg {
+  color: var(--coral);
+}
+
+.upload-field input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+}
+
+.upload-field span {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-field > span:last-of-type {
+  background: var(--ink);
+  color: white;
+  padding: 9px 13px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}

@@ -4,7 +4,7 @@
 
 El proyecto está desplegado y permite registrar usuarios, publicar y editar charlas, subir carteles y gestionar asistentes. En la prueba manual he recuperado mi contraseña, iniciado sesión, reservado y cancelado una plaza, y comprobado los correos en Mailtrap. También he creado «Tu mente y la presión», cambiado su texto y hora y comprobado que el cartel se mantiene al recargar.
 
-Las comprobaciones automatizadas se documentan por separado: 84 pruebas ordinarias correctas (28 backend y 56 frontend), compilación y revisión de los documentos HTML, además de las integraciones de Atlas descritas más adelante. Las capturas y los límites de cada comprobación están enlazados en la memoria. El correo funciona en Sandbox; no se presenta como envío a buzones personales.
+Las comprobaciones automatizadas se documentan por separado: 92 pruebas ordinarias correctas (28 backend y 64 frontend), compilación y revisión de los documentos HTML, además de las integraciones de Atlas descritas más adelante. Las capturas y los límites de cada comprobación están enlazados en la memoria. El correo funciona en Sandbox; no se presenta como envío a buzones personales.
 
 El repositorio reúne el código, los recursos utilizados y las evidencias de la entrega. Los borradores de imagen y vídeo se conservan como material local. Su procedencia está resumida en [Recursos y atribuciones](docs/RECURSOS.md).
 
@@ -763,3 +763,14 @@ El acceso permite 10 intentos por correo cada 15 minutos y el registro 5, median
 Validación: 84 pruebas ordinarias correctas, compilación y comprobación de 14 documentos HTML correctas. La integración de asistencia se ejecutó contra una base temporal de Atlas y comprobó concurrencia, reversión, edición de descripción con fecha pasada, rechazo de nuevas reservas y cancelación de una reserva existente después de finalizar. La base temporal se eliminó al terminar. En Chrome se revisaron el formulario de acceso, los errores vacíos, el foco en su resumen y el cambio ES/EN. Esto no equivale a repetir todo el recorrido manual de producción.
 
 Revisión acotada de secretos: 623 versiones históricas de archivos de texto menores de 2 MB, buscando coincidencias exactas con credenciales privadas actuales y URLs MongoDB con usuario/contraseña. Sin coincidencias con las credenciales actuales; las cinco URLs candidatas eran marcadores de `.env.example`. No cubre credenciales antiguas desconocidas ni secretos incrustados en binarios. No se imprimieron valores privados ni se reescribió el historial.
+
+
+### Componentización y optimización final · 19/09/2026
+
+Las páginas de acceso, recuperación, detalle y edición de eventos componen piezas más pequeñas de interfaz. Los hooks específicos conservan la lógica de cada flujo; `useAsyncResource` reutiliza la carga, cancelación y reintento de recursos. Los campos de programación, descripción y cartel se separan sin cambiar los formularios ni sus mensajes.
+
+Los estilos se distribuyen en módulos de base, componentes, tema y accesibilidad, importados desde `styles/index.css` en el orden original. La comparación del CSS minificado, normalizando únicamente espacios de valores de variables CSS, conserva las reglas y la cascada. Los 14 documentos HTML generados coinciden con la compilación anterior al excluir los nombres con hash de los bundles. Esta comparación verifica la estructura generada, no sustituye una prueba visual de todas las interacciones.
+
+El mismo logo de la web y de los correos pasa de 1024 × 1024 a 224 × 224 píxeles, de 1.431.387 a 59.942 bytes por archivo (95,8 % menos). El original permanece en el material local de producción, fuera de Git.
+
+Validación conjunta: 92 pruebas ordinarias correctas (28 backend y 64 frontend). Las ocho nuevas pruebas montan los hooks con React y comprueban respuestas y errores obsoletos, cancelación, recarga, precarga de edición con fecha pasada, permisos y conservación del formulario ante errores. Compilación y comprobaciones de los 14 documentos HTML correctas. Las dos integraciones de Atlas siguen siendo pruebas separadas; no se han repetido para esta reorganización.

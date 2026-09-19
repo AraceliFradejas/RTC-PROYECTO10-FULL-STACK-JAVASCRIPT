@@ -477,7 +477,9 @@ Attendance responses expose `email.status`: `disabled`, `unconfigured`, `sent` o
 
 ### Validation and evidence
 
-The documented baseline contains **84 passing ordinary tests**: 28 backend and 56 frontend. The two Atlas integration tests are skipped by the ordinary test command and were run separately against temporary databases. Production builds and checks of 14 generated HTML documents passed. After the footer update, the 33 language tests and the build checks also passed.
+Authentication and event pages compose smaller UI components and dedicated hooks. A shared asynchronous resource hook handles loading, cancellation and retries. Styles are split into base, component, theme and accessibility files, preserving their cascade. The existing logo is optimized for both the website and email.
+
+The documented baseline contains **92 passing ordinary tests**: 28 backend and 64 frontend. The two Atlas integration tests are skipped by the ordinary test command and were run separately against temporary databases. Production builds and checks of 14 generated HTML documents passed. After the footer update, the 33 language tests and the build checks also passed.
 
 The local Insomnia review covers 28 expected outcomes, including authentication, permissions, event operations, capacity limits and real Cloudinary uploads. Negative cases intentionally return errors. These local checks are separate from manual production checks.
 

@@ -5,9 +5,7 @@ import { App } from './App.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { ToastProvider } from './context/ToastContext.jsx';
 import { LanguageProvider } from './context/LanguageContext.jsx';
-import './styles/global.css';
-import './styles/brand.css';
-import './styles/accessibility.css';
+import './styles/index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

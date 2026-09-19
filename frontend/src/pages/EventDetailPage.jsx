@@ -1,62 +1,20 @@
-import { canEditEvent } from "../utils/eventEditing.js";
+import { ArrowLeft } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
 import { PageMetadata } from "../seo/PageMetadata.jsx";
-import { EventAvailability } from "../components/EventAvailability.jsx";
-import { EventSpeaker } from "../components/EventSpeaker.jsx";
-import { SpeakerVideos } from "../components/SpeakerVideos.jsx";
-import { getEventSpeaker } from "../data/speakers.js";
-import { getEvent, previewMode } from "../services/events.js";
 import { PreviewNotice } from "../components/PreviewNotice.jsx";
+import { Loader } from "../components/Loader.jsx";
+import { SpeakerVideos } from "../components/SpeakerVideos.jsx";
+import { EventHero } from "../components/events/EventHero.jsx";
+import { EventContent } from "../components/events/EventContent.jsx";
+import { getEventSpeaker } from "../data/speakers.js";
 import { localizeEvent } from "../i18n/events.js";
 import { useLanguage } from "../context/LanguageContext.jsx";
-import {
-  ArrowLeft,
-  CalendarDays,
-  Check,
-  MapPin,
-  Share2,
-  UserRound,
-  Users,
-} from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  formatEventDate as formatDate,
-  formatEventTime,
-} from "../i18n/translate.js";
-import { Loader } from "../components/Loader.jsx";
-import { useAuth } from "../context/AuthContext.jsx";
-import { useToast } from "../context/ToastContext.jsx";
-import { apiRequest } from "../services/api.js";
+import { useEvent } from "../hooks/useEvent.js";
+
 export const EventDetailPage = () => {
-  const { t, language } = useLanguage();
   const { id } = useParams();
-  const { user, token } = useAuth();
-  const { notify } = useToast();
-  const navigate = useNavigate();
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [actionLoading, setActionLoading] = useState(false);
-  const [sharing, setSharing] = useState(false);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    const controller = new AbortController();
-    setLoading(true);
-    setError("");
-    getEvent(id, {
-      signal: controller.signal,
-    })
-      .then(({ data }) => {
-        if (!controller.signal.aborted) setEvent(data);
-      })
-      .catch((err) => {
-        if (!controller.signal.aborted && err.name !== "AbortError")
-          setError(err.message);
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) setLoading(false);
-      });
-    return () => controller.abort();
-  }, [id]);
+  const { t, language } = useLanguage();
+  const { event, setEvent, loading, error } = useEvent(id);
   if (loading)
     return (
       <>
@@ -76,57 +34,7 @@ export const EventDetailPage = () => {
       </section>
     );
   const content = localizeEvent(event, language);
-  const ended = new Date(event.date).getTime() <= Date.now();
   const speaker = getEventSpeaker(event);
-  const attending = event.attendees.some(
-    (attendee) => (attendee._id || attendee) === user?.id,
-  );
-  const toggle = async () => {
-    if (previewMode || actionLoading || (ended && !attending)) return;
-    if (!user)
-      return navigate("/auth", {
-        state: {
-          from: `/events/${id}`,
-        },
-      });
-    setActionLoading(true);
-    try {
-      const response = await apiRequest(`/events/${id}/attendance`, {
-        method: "POST",
-        body: { language },
-        token,
-      });
-      setEvent({
-        ...event,
-        attendees: response.data.attendees,
-      });
-      notify(response.message);
-    } catch (err) {
-      notify(err.message, "error");
-    } finally {
-      setActionLoading(false);
-    }
-  };
-  const share = async () => {
-    if (sharing) return;
-    setSharing(true);
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: content.title,
-          url: location.href,
-        });
-      } else {
-        await navigator.clipboard.writeText(location.href);
-        notify("Enlace copiado para compartir.");
-      }
-    } catch (shareError) {
-      if (shareError.name !== "AbortError")
-        notify("No hemos podido compartir el enlace.", "error");
-    } finally {
-      setSharing(false);
-    }
-  };
   return (
     <article className="detail-page">
       <PageMetadata event={event} />
@@ -138,141 +46,8 @@ export const EventDetailPage = () => {
       <div className="shell">
         <PreviewNotice />
       </div>
-      <div className="shell detail-hero">
-        <div
-          className={`detail-visual ${event.poster ? "" : "detail-visual--empty"}`}
-        >
-          {event.poster ? (
-            <img
-              src={event.poster}
-              alt={t("Cartel de {title}", { title: content.title })}
-            />
-          ) : (
-            <span>{t(event.category)}</span>
-          )}
-        </div>
-        <div className="detail-summary">
-          <span className="tag">{t(event.category)}</span>
-          <h1>{content.title}</h1>
-          <EventSpeaker event={event} />
-          <p className="detail-meta">
-            <CalendarDays />{" "}
-            <span>
-              {formatDate(event.date, language)} ·{" "}
-              {formatEventTime(event.date, language)}
-            </span>
-          </p>
-          <p className="detail-meta">
-            <MapPin /> <span>{event.location}</span>
-          </p>
-          <p className="detail-meta">
-            <Users />{" "}
-            <span>
-              {t("{count} de {capacity} plazas confirmadas", {
-                count: event.attendees.length,
-                capacity: event.capacity,
-              })}
-            </span>
-          </p>
-          <EventAvailability event={event} />
-          <div className="detail-actions">
-            {!previewMode && canEditEvent(event, user) && (
-              <Link className="button button--dark" to={`/events/${id}/edit`}>
-                {t("Editar experiencia")}
-              </Link>
-            )}
-            <button
-              aria-pressed={attending}
-              aria-busy={actionLoading}
-              className={
-                attending ? "button button--confirmed" : "button button--accent"
-              }
-              onClick={toggle}
-              disabled={actionLoading || previewMode || (ended && !attending)}
-            >
-              {previewMode ? (
-                t("Reservas próximamente")
-              ) : actionLoading ? (
-                <>
-                  <span className="mini-spinner" /> {t("Actualizando…")}
-                </>
-              ) : attending ? (
-                <>
-                  <Check /> {t("Plaza confirmada")}
-                </>
-              ) : ended ? (
-                t("Evento finalizado")
-              ) : (
-                t("Confirmar asistencia")
-              )}
-            </button>
-            <button
-              className="icon-button icon-button--border"
-              onClick={share}
-              disabled={sharing}
-              aria-busy={sharing}
-              aria-label={t("Compartir evento")}
-            >
-              {sharing ? <span className="mini-spinner" /> : <Share2 />}
-            </button>
-          </div>
-          {attending && (
-            <p className="confirmation-note">
-              {t("Ya estás en la lista. Puedes cancelar pulsando de nuevo.")}
-            </p>
-          )}
-        </div>
-      </div>
-      <div className="shell detail-content">
-        <section>
-          <p className="kicker">{t("Inside the talk")}</p>
-          <h2>{t("Lo que te llevarás")}</h2>
-          <p className="detail-description">{content.description}</p>
-          <div className="creator">
-            <div className="avatar">
-              {event.creator?.avatar ? (
-                <img src={event.creator?.avatar} alt="" />
-              ) : (
-                <UserRound />
-              )}
-            </div>
-            <div>
-              <small>{t("Experiencia creada por")}</small>
-              <strong>
-                {event.creator?.name || t("Organización no disponible")}
-              </strong>
-            </div>
-          </div>
-        </section>
-        <aside>
-          <p className="kicker">{t("The roster")}</p>
-          <h2>{t("El equipo")}</h2>
-          {event.attendees.length ? (
-            <ul
-              className="attendee-list attendee-list--scroll"
-              tabIndex={0}
-              aria-label={t("El equipo")}
-            >
-              {event.attendees.map((attendee) => (
-                <li key={attendee._id}>
-                  <span className="avatar avatar--small">
-                    {attendee.avatar ? (
-                      <img src={attendee.avatar} alt="" />
-                    ) : (
-                      attendee.name.slice(0, 1)
-                    )}
-                  </span>
-                  {attendee.name}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="muted">
-              {t("Sé la primera persona en entrar al campo.")}
-            </p>
-          )}
-        </aside>
-      </div>
+      <EventHero event={event} content={content} setEvent={setEvent} />
+      <EventContent event={event} content={content} />
       {speaker && (
         <div className="shell detail-videos">
           <SpeakerVideos key={speaker.id} speaker={speaker} />

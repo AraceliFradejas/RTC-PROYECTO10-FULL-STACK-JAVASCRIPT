@@ -1,0 +1,155 @@
+/* Compact media cards shared by speaker profiles and event details. */
+
+.speaker-media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(22px, 3vw, 38px);
+}
+
+.speaker-media__content {
+  min-width: 0;
+}
+
+.speaker-media__content .kicker {
+  margin-top: 0;
+}
+
+.speaker-media__content h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+.speaker-talk__heading {
+  display: block;
+}
+
+.speaker-talk__heading > span {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.speaker-talk__intro {
+  color: #f0e6ed;
+  margin: 0 0 16px;
+  line-height: 1.65;
+}
+
+.speaker-talk__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+}
+
+.speaker-talk__topics li {
+  border: 1px solid #62536b;
+  border-radius: 999px;
+  padding: 6px 11px;
+  color: #f0e6ed;
+  font-size: 0.8rem;
+}
+
+.speaker-talk__note {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.speaker-media__prompt {
+  font-weight: 600;
+  color: #ffdc76;
+  margin: 0;
+}
+
+.speaker-media__content details {
+  margin-top: 12px;
+}
+
+.speaker-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  isolation: isolate;
+  font: inherit;
+  text-align: left;
+  background: #17121b;
+}
+
+.speaker-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.speaker-preview__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 18px;
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    rgba(18, 12, 22, 0.85) 100%
+  );
+}
+
+.speaker-preview__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffdc76;
+  color: #211b25;
+  font-size: 22px;
+}
+
+.speaker-preview__action {
+  align-self: flex-end;
+  padding-bottom: 8px;
+  color: #ffdc76;
+  font-size: 0.8rem;
+}
+
+.speaker-preview:hover .speaker-preview__action {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.speaker-preview:focus-visible {
+  outline: 3px solid #ffdc76;
+  outline-offset: 5px;
+}
+
+.speaker-profile__events.section {
+  padding-top: 48px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 760px) {
+  .speaker-media {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+  .speaker-profile__invitation {
+    margin-top: 30px;
+  }
+  .speaker-profile__events.section {
+    padding-top: 36px;
+  }
+}

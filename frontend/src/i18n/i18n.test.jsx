@@ -179,7 +179,7 @@ describe('faculty appointments and video invitations', () => {
 
 
 describe('bilingual learning stories', () => {
-  it.each(['es', 'en'])('shows four reflections, excerpts and the educational notice in %s', language => {
+  it.each(['es', 'en'])('shows four reflections and excerpts without the removed context panel in %s', language => {
     const html = render(language, '/', <LearningStories />);
     expect(html.match(/class="learning-story"/g)).toHaveLength(4);
     for (const speaker of speakers) {
@@ -188,7 +188,7 @@ describe('bilingual learning stories', () => {
       expect(html).toContain(`href="/speakers/${speaker.id}"`);
       expect(html).not.toContain(learningStories.reflections[speaker.id][language === 'es' ? 'en' : 'es'].title);
     }
-    expect(html).toContain(language === 'es' ? 'finalidad exclusivamente pedagógica' : 'solely for educational use');
+    expect(html).not.toContain('learning-stories__context');
     expect(html).toContain(language === 'es' ? 'Próximamente' : 'Coming soon');
     expect(html).toContain('href="#learning-fragments"');
     expect(html).not.toContain('<video');

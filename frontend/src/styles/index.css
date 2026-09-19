@@ -1,0 +1,23 @@
+/* Base, componentes, identidad y ajustes finales: conservar este orden de cascada. */
+@import "./base/foundation.css";
+@import "./base/navigation-controls.css";
+@import "./base/home.css";
+@import "./base/agenda-feedback.css";
+@import "./base/forms.css";
+@import "./base/event-detail.css";
+@import "./base/editorial-footer.css";
+@import "./base/responsive-availability.css";
+@import "./components/carousel.css";
+@import "./components/editorial.css";
+@import "./components/ecosystem-legal.css";
+@import "./components/footer-responsive.css";
+@import "./theme/identity-hero.css";
+@import "./theme/sections-responsive.css";
+@import "./theme/navigation.css";
+@import "./components/event-card.css";
+@import "./components/speaker-profile.css";
+@import "./components/speaker-videos.css";
+@import "./components/media-preview.css";
+@import "./components/agenda-posters.css";
+@import "./components/learning-stories.css";
+@import "./accessibility.css";

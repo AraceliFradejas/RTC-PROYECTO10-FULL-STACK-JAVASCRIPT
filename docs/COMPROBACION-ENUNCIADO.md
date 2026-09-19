@@ -32,6 +32,6 @@ La entrega se presenta en el apartado de la actividad; la corrección se comunic
 
 ## Resultado y límites
 
-84 pruebas ordinarias correctas (28 backend y 56 frontend), build y comprobación de 14 documentos HTML correctos. Las dos integraciones con Atlas se omiten en `npm test`; sus ejecuciones separadas y alcance constan en la memoria. Los recorridos de recuperación, reserva/cancelación, creación, edición y cartel se comprobaron en las pruebas manuales del 19/09/2026; las nueve capturas finales están enlazadas en la documentación.
+92 pruebas ordinarias correctas (28 backend y 64 frontend), build y comprobación de 14 documentos HTML correctos. Las dos integraciones con Atlas se omiten en `npm test`; sus ejecuciones separadas y alcance constan en la memoria. Los recorridos de recuperación, reserva/cancelación, creación, edición y cartel se comprobaron en las pruebas manuales del 19/09/2026; las nueve capturas finales están enlazadas en la documentación.
 
 No se detectan funcionalidades obligatorias ausentes en el alcance descrito. Quedan mejoras de robustez y comprobaciones adicionales, como repetir toda la colección de Insomnia contra producción y ampliar la prueba de avatar, sin que el avatar sea necesario para cumplir la subida de ficheros ya demostrada con carteles. Mailtrap Sandbox no acredita entrega a buzones personales y la revisión visual no es una certificación integral de accesibilidad.

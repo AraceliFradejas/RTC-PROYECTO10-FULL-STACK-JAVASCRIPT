@@ -8,7 +8,7 @@ Revisión de código, pruebas y comprobaciones de producción. Las secciones fec
 - Recuperación de contraseña e inicio de sesión, reserva/cancelación y correos Sandbox comprobados.
 - Creación con cartel, edición de descripción/hora y persistencia de imagen tras guardado y recarga comprobadas. Botón de edición corregido en `f249d31`.
 - Avisos sustituidos por el mensaje más reciente; funcionamiento confirmado.
-- 84 pruebas ordinarias correctas (28 backend y 56 frontend), build y comprobaciones HTML correctos. Integraciones de Atlas documentadas separadamente.
+- 92 pruebas ordinarias correctas (28 backend y 64 frontend), build y comprobaciones HTML correctos. Integraciones de Atlas documentadas separadamente.
 - Pendientes de entrega: enviar los enlaces en el apartado de la actividad y facilitar el archivo de entorno por el canal privado indicado. Enunciado completo revisado: se aportan ambos enlaces de carpetas del monorepo; no exige repositorios independientes. El envío al campus no se ha realizado.
 - Límites: sustitución de avatar no repetida en producción y colección completa de Insomnia no repetida contra la API pública; existen sus evidencias locales. Correo probado en Sandbox, no en buzones reales. No se declara certificación integral de accesibilidad.
 

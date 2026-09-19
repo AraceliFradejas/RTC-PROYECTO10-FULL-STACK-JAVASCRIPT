@@ -1,0 +1,148 @@
+.manifesto {
+  scroll-margin-top: 100px;
+  background: #19191d;
+  padding: 85px 0;
+}
+
+.manifesto > .shell > .kicker {
+  color: #ffdc76;
+  margin-bottom: 36px;
+}
+
+.manifesto__grid {
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px 65px;
+}
+
+.manifesto h2 {
+  font-size: clamp(2.3rem, 4vw, 3.7rem);
+}
+
+.manifesto h2 em {
+  color: #ffdc76;
+}
+
+.manifesto__story {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #e0dfe4;
+}
+
+.manifesto__story strong {
+  color: white;
+}
+
+.manifesto__points {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  border-top: 1px solid #ffffff30;
+  padding-top: 32px;
+}
+
+.manifesto__points p {
+  margin: 0;
+  color: #d8d6df;
+}
+
+.manifesto__points strong {
+  display: block;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.manifesto__points svg {
+  color: #ffdc76;
+}
+
+.speakers {
+  background: linear-gradient(120deg, #fbf1f2, #f1eafb);
+}
+
+.speaker-card,
+.ecosystem-card {
+  border-radius: 20px;
+}
+
+.speaker-card p {
+  font-size: 1rem;
+}
+
+.speakers__note {
+  font-size: 0.875rem;
+}
+
+.ecosystem-card > p {
+  font-size: 0.875rem;
+}
+
+.auth-visual {
+  background: linear-gradient(145deg, #b91c2b, #7036b6);
+}
+
+.auth-visual blockquote {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.about__story {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+:focus-visible {
+  outline: 3px solid #9563ff;
+  outline-offset: 5px;
+}
+
+@media (max-width: 1000px) {
+  .hero__content {
+    padding: 40px 28px;
+  }
+  .hero .hero-carousel {
+    min-height: 610px;
+  }
+}
+
+@media (max-width: 850px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__content {
+    grid-row: 1;
+    padding: 48px 28px;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+  .hero .hero-carousel {
+    min-height: 480px;
+  }
+  .manifesto__grid {
+    grid-template-columns: 1fr;
+  }
+  .manifesto__points {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .hero__content {
+    padding: 40px 22px;
+  }
+  .hero .hero-carousel {
+    min-height: 400px;
+  }
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-carousel__dots {
+    display: flex;
+  }
+  .manifesto {
+    padding: 60px 0;
+  }
+}
