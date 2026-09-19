@@ -225,7 +225,7 @@ Los archivos se guardan en `backend/.email-previews/` (ignorado por Git). Sus en
 
 El envío está desactivado por defecto. Para activarlo, configurar SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASSWORD, MAIL_FROM y PUBLIC_APP_URL en backend/.env. Utilizar un remitente autorizado por el proveedor y una URL pública de la web para que los enlaces y carteles funcionen fuera del ordenador. Activar `MAIL_ENABLED=true` solo después. Configuración SMTP mediante [Nodemailer](https://nodemailer.com/smtp).
 
-La respuesta de asistencia incluye `email.status`: `disabled`, `unconfigured`, `sent` o `failed`. `sent` indica aceptación del servidor SMTP, no recepción garantizada. Los errores de correo no revierten una reserva y no se reintentan automáticamente; la entrega real a destinatarios externos sigue pendiente. La conexión local a Mailtrap Sandbox ya se ha verificado: confirmación ES y cancelación EN aceptadas y visualización confirmada por la usuaria. Ver [configuración, evidencia y capturas del correo](docs/CORREO.md).
+La respuesta de asistencia incluye `email.status`: `disabled`, `unconfigured`, `sent` o `failed`. `sent` indica aceptación del servidor SMTP, no recepción garantizada. Los errores de correo no revierten una reserva y no se reintentan automáticamente; la entrega real a destinatarios externos sigue pendiente. La conexión local a Mailtrap Sandbox ya se ha verificado: confirmación ES y cancelación EN aceptadas y visualización confirmada. Ver [configuración, evidencia y capturas del correo](docs/CORREO.md).
 
 ### Correo de confirmación en Mailtrap Sandbox
 

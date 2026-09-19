@@ -6,4 +6,4 @@ Fecha: 2026-09-12T16:47:15.000Z.
 
 Esta ejecución mediante Node es independiente de Insomnia. Sus cuentas/eventos temporales se eliminaron al terminar.
 
-Actualización del 13 de septiembre: Araceli ejecutó posteriormente la colección en Insomnia 13.2.0. Se revisaron sus 28 capturas: 28 resultados esperados, incluida la repetición del avatar con archivo real y URL Cloudinary. Ver la [memoria detallada](../../MEMORIA.md#validación-detallada-en-insomnia--revisión-del-13-de-septiembre-de-2026). Los datos temporales de esta segunda ejecución son distintos; las dos cuentas permanecen y su evento fue eliminado.
+Actualización del 13 de septiembre: Ejecuté posteriormente la colección en Insomnia 13.2.0. Se revisaron las 28 capturas: 28 resultados esperados, incluida la repetición del avatar con archivo real y URL Cloudinary. Ver la [memoria detallada](../../MEMORIA.md#validación-detallada-en-insomnia--revisión-del-13-de-septiembre-de-2026). Los datos temporales de esta segunda ejecución son distintos; las dos cuentas permanecen y su evento fue eliminado.

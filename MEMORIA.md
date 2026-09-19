@@ -145,7 +145,7 @@ Las entradas siguientes conservan los resultados y decisiones de cada fecha. Los
 
 El selector de las charlas ahora dice «Así aprendemos» y la llamada a la acción «Descubre cómo aprendieron nuestros alumnos con nuestros ponentes», con traducción inglesa. Se mantiene el aviso de ficción. Propuesta para una fase posterior: combinar las charlas existentes con su propio avatar de Synthesia comentando los aprendizajes de los cuatro ponentes y publicar el resultado en YouTube. Pendientes guion, montaje y enlaces; no se han generado ni publicado esos vídeos. Presentar el montaje como recreación del proyecto y la opinión como valoración personal, sin atribuir asistencia o grabación presencial que no haya ocurrido.
 
-Araceli confirma que se destacará expresamente que los vídeos son una recreación para un proyecto del máster, sin fines lucrativos y exclusivamente pedagógica. Aviso aplicado a las cuatro charlas, en español e inglés; mantenerlo también en el futuro montaje y su descripción de YouTube.
+Me aseguraré de destacar expresamente que los vídeos son una recreación para un proyecto del máster, sin fines lucrativos y exclusivamente pedagógica. Aviso aplicado a las cuatro charlas, en español e inglés; mantenerlo también en el futuro montaje y su descripción de YouTube.
 
 Sección «Así lo vivimos en KelseTS» implementada en la portada entre ponentes y agenda, en ES/EN. Incluye cuatro reflexiones editoriales con acciones prácticas, fragmentos desplegables de los textos existentes y un bloque de presentación con aviso «Próximamente». Configuración: `frontend/src/data/learningStories.json`, campos `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl`. Pendiente recibir/publicar el montaje con el avatar; no se presenta como un testimonio real ya grabado. Se mantiene visible el aviso de recreación pedagógica sin fines lucrativos.
 
@@ -187,13 +187,13 @@ Credenciales locales verificadas sin mostrarlas. Prueba real con API temporal y 
 
 ## Selección de ponente al crear charlas
 
-Formulario ES/EN con los cuatro ponentes y opción por confirmar. La API acepta y valida speakerId y MongoDB conserva la asignación, separada del creador. Imagen solicitada para la charla nueva pendiente de conocer su título/tema; no se ha podido acceder al formulario del navegador del usuario.
+Formulario ES/EN con los cuatro ponentes y opción por confirmar. La API acepta y valida speakerId y MongoDB conserva la asignación, separada del creador. En esta etapa quedaban pendientes el tema y el cartel de la nueva charla.
 
-Cartel generado para «Liderar en entornos convulsos», dirigido a CEOs de entidades financieras. Alison con identidad y vestuario de su perfil en reunión corporativa natural. Se preparó una primera propuesta visual corporativa, después descartada. Pendiente que Araceli lo seleccione en su formulario y elija a Alison; no se ha publicado la charla.
+Cartel generado para «Liderar en entornos convulsos», dirigido a CEOs de entidades financieras. Alison con identidad y vestuario de su perfil en reunión corporativa natural. Se preparó una primera propuesta visual corporativa, después descartada. Pendiente seleccionar el cartel y a Alison en el formulario; no se ha publicado la charla.
 
 ## Cierre: primera charla creada desde la web
 
-Araceli confirma que ha publicado «Liderar en entornos convulsos» desde el formulario. El cartel final muestra un equipo femenino durante un tiempo muerto. Las versiones corporativas de Alison quedan excluidas de Git. La charla nueva reside en MongoDB y no se incorpora al catálogo inicial de 12 eventos. El envío de correos sigue desactivado; siguiente paso propuesto: probarlo con Mailtrap y después preparar el despliegue.
+He publicado «Liderar en entornos convulsos» desde el formulario. El cartel final muestra un equipo femenino durante un tiempo muerto. Las versiones corporativas de Alison quedan excluidas de Git. La charla nueva reside en MongoDB y no se incorpora al catálogo inicial de 12 eventos. El envío de correos sigue desactivado; siguiente paso propuesto: probarlo con Mailtrap y después preparar el despliegue.
 
 ## Auditoría frente al enunciado
 
@@ -201,7 +201,7 @@ Revisión documentada en docs/REVISION-ENTREGA.md. Colección Insomnia con 28 pe
 
 ## Mailtrap Sandbox verificado
 
-Autenticación SMTP con TLS correcta. Confirmación ES y cancelación EN aceptadas por Mailtrap; la cancelación requirió reintento. Son muestras enviadas sin modificar reservas reales. MAIL_ENABLED=true únicamente en configuración local con host sandbox.smtp.mailtrap.io. Pendiente confirmación visual de los mensajes por Araceli y prueba del recorrido completo desde la web. No es entrega real a Gmail; PUBLIC_APP_URL sigue siendo local.
+Autenticación SMTP con TLS correcta. Confirmación ES y cancelación EN aceptadas por Mailtrap; la cancelación requirió reintento. Son muestras enviadas sin modificar reservas reales. MAIL_ENABLED=true únicamente en configuración local con host sandbox.smtp.mailtrap.io. Pendiente mi confirmación visual de los mensajes y prueba del recorrido completo desde la web. No es entrega real a Gmail; PUBLIC_APP_URL sigue siendo local.
 
 ## Guía de evidencias para la entrega (importante)
 
@@ -209,11 +209,11 @@ El plan de evidencias de esta etapa se recoge en [la guía de capturas](docs/GUI
 
 Validaciones reforzadas: email y tipos en credenciales, contraseña bcrypt de hasta 72 bytes en registro, aforo entero, fechas futuras al escribirlas y mensajes de errores JSON/ficheros. Guardado reutilizable de imágenes valida antes de subir y retira recursos sustituidos después de guardar. Frontend valida aforo y longitudes. Pruebas unitarias: 15 backend + 41 frontend y build correctos.
 
-Comprobación adicional: 29 casos HTTP correctos contra Express y Atlas, reutilizando peticiones/aserciones de la colección exportada y añadiendo JSON malformado y archivo >5 MB. Datos temporales eliminados. Evidencia en docs/insomnia/RESULTADO-HTTP.md. Todavía hay que importar la colección y ejecutarla en Insomnia con Araceli; no confundir ambas ejecuciones.
+Comprobación adicional: 29 casos HTTP correctos contra Express y Atlas, reutilizando peticiones/aserciones de la colección exportada y añadiendo JSON malformado y archivo >5 MB. Datos temporales eliminados. Evidencia en docs/insomnia/RESULTADO-HTTP.md. Todavía tengo que importar la colección y ejecutarla en Insomnia; no confundir ambas ejecuciones.
 
 ### Evidencia real en Insomnia: registro
 
-Araceli ha ejecutado «02 · Registro organizador e inicio automático» en Insomnia. Captura guardada en [insomnia-02-registro.png](docs/screenshots/Insomnia/insomnia-02%20-%20registro.png): HTTP 201 Created, success=true, usuario con role=user y Tests 1/1. El token está oculto en la captura. La respuesta de «01 · Salud» también fue confirmada por texto; su captura y estado HTTP quedan pendientes de aportar. Siguiente prueba guiada: registro duplicado, que debe devolver 409.
+He ejecutado «02 · Registro organizador e inicio automático» en Insomnia. Captura guardada en [insomnia-02-registro.png](docs/screenshots/Insomnia/insomnia-02%20-%20registro.png): HTTP 201 Created, success=true, usuario con role=user y Tests 1/1. El token está oculto en la captura. La respuesta de «01 · Salud» también fue confirmada por texto; su captura y estado HTTP quedan pendientes de aportar. Siguiente prueba guiada: registro duplicado, que debe devolver 409.
 
 
 ## Validación detallada en Insomnia · revisión del 13 de septiembre de 2026
@@ -398,9 +398,9 @@ La [colección importable](docs/insomnia/kelsets-talks.json) conserva los cuerpo
 
 **Resultado observado frente al esperado.** 201; segundo usuario con identificador distinto, role=user y token.
 
-**Interpretación.** El script guarda other_token. La captura se revisó de nuevo después de que Araceli ocultase el token.
+**Interpretación.** El script guarda other_token. La captura se revisó de nuevo después de ocultar el token.
 
-**Evidencia.** [Ver captura 15](docs/screenshots/Insomnia/Imsomnia-15%20%C2%B7%20Registro%20segundo%20usuario.png). Token oculto por Araceli antes de incorporarla al repositorio.
+**Evidencia.** [Ver captura 15](docs/screenshots/Insomnia/Imsomnia-15%20%C2%B7%20Registro%20segundo%20usuario.png). Oculté el token antes de incorporarla al repositorio.
 
 ### Prueba 16 · Edición ajena denegada
 
@@ -570,7 +570,7 @@ La agenda editorial de 2027 incorpora asistentes ficticios para mostrar el recor
 
 `npm run seed:attendance --prefix backend -- --dry-run` muestra la distribución sin conectar a MongoDB. Sin `--dry-run`, el script utiliza la conexión local configurada y modifica exclusivamente los eventos con `seedKey` del catálogo editorial. Debe ejecutarse después de cargar las 12 charlas. No se ejecuta durante el arranque de la API ni durante la compilación de Vercel.
 
-Los usuarios de muestra tienen `isDemo: true`, nombres inventados y emails del dominio reservado `demo.kelsets.invalid`. Su contraseña se almacena con bcrypt a partir de un secreto aleatorio que no se guarda ni se publica. La carga no inicia sesión con esas cuentas y no envía correos. Las cuentas normales y los eventos creados por Araceli se conservan.
+Los usuarios de muestra tienen `isDemo: true`, nombres inventados y emails del dominio reservado `demo.kelsets.invalid`. Su contraseña se almacena con bcrypt a partir de un secreto aleatorio que no se guarda ni se publica. La carga no inicia sesión con esas cuentas y no envía correos. Las cuentas normales y los eventos creados desde la web se conservan.
 
 Cada asistencia persiste como ObjectId en `Event.attendees` y su referencia inversa en `User.attendingEvents`. Se utiliza una transacción de MongoDB para confirmar conjuntamente la carga. `$addToSet` evita duplicados; se añaden únicamente las plazas necesarias para alcanzar el objetivo, contando también las reservas existentes. Repetir la carga no elimina asistentes ni reduce el aforo. Si nuevas reservas superan el objetivo, se conservan. El indicador `demoAttendance` permite informar en la interfaz sobre el origen ficticio de parte de los datos.
 
@@ -662,7 +662,7 @@ La plantilla construía las URLs del logo y de los carteles locales a partir de 
 
 Los recursos finales se empaquetan en el backend para independizar el correo del servidor del frontend. Solo se admite la lista de carteles del catálogo, sin permitir que una ruta enviada por el usuario seleccione archivos arbitrarios. Pruebas backend: 18 correctas, incluida la comprobación de buffers, correspondencia CID, ausencia de localhost en src y conservación de URLs Cloudinary. La inclusión de archivos se ha declarado en Vercel; falta comprobar el despliegue. Los mensajes anteriores no se actualizan; la evidencia visual debe tomarse de mensajes nuevos.
 
-Mailtrap Sandbox aceptó las nuevas muestras de confirmación ES y cancelación EN con logo y cartel incluidos. La cancelación necesitó un reintento. Se enviaron a una dirección ficticia del Sandbox sin modificar reservas. La aceptación SMTP no sustituye la revisión visual del HTML por Araceli.
+Mailtrap Sandbox aceptó las nuevas muestras de confirmación ES y cancelación EN con logo y cartel incluidos. La cancelación necesitó un reintento. Se enviaron a una dirección ficticia del Sandbox sin modificar reservas. La aceptación SMTP no sustituye mi revisión visual del HTML.
 
 ### Confirmación ES revisada visualmente en Mailtrap
 
@@ -684,9 +684,9 @@ Validación final antes del commit de correo y evidencias: 18 pruebas backend y 
 
 Se han creado dos proyectos desde el mismo repositorio y el commit `da840d2`: frontend en https://kelse-ts-talks.vercel.app y backend en https://kelse-ts-talks-api.vercel.app/api. El frontend usa Vite, raíz `frontend`, `VITE_API_URL` apuntando a la API publicada y `VITE_PREVIEW_MODE=false`. El backend usa Express, raíz `backend`, con credenciales y configuración SMTP en variables privadas de Vercel. Los enlaces de correo y CORS apuntan al dominio público de la web.
 
-El primer acceso a la API devolvió 503: Atlas solo admitía la IP doméstica. Tras autorización expresa de Araceli, se añadió la regla `0.0.0.0/0` sin caducidad para la demostración y corrección. Esta regla admite intentos de conexión desde cualquier IPv4 y mantiene la autenticación obligatoria. Una vez aplicada, `/api/health` respondió 200; `/api/events` devolvió las 13 charlas con CORS correcto. La home pública muestra la agenda de Atlas y la ruta directa `/events` responde 200.
+El primer acceso a la API devolvió 503: Atlas solo admitía la IP doméstica. Se configuró la regla `0.0.0.0/0` sin caducidad para la demostración y corrección. Esta regla admite intentos de conexión desde cualquier IPv4 y mantiene la autenticación obligatoria. Una vez aplicada, `/api/health` respondió 200; `/api/events` devolvió las 13 charlas con CORS correcto. La home pública muestra la agenda de Atlas y la ruta directa `/events` responde 200.
 
-Se ha preparado `backend/.env.entrega`, ignorado por Git, para enviarlo por el canal privado de corrección solicitado en las indicaciones aportadas por Araceli. El repositorio conserva `.env.example` con marcadores y referencias a las URLs públicas. El archivo privado no contiene claves de HeyGen ni ElevenLabs. Pendientes: repetir el recorrido autenticado completo sobre producción, comprobar el correo desde ese flujo y recoger capturas de Vercel. Ver [guía de despliegue](docs/DESPLIEGUE.md).
+Se ha preparado `backend/.env.entrega`, ignorado por Git, para enviarlo por el canal privado de corrección solicitado en las indicaciones de entrega del máster. El repositorio conserva `.env.example` con marcadores y referencias a las URLs públicas. El archivo privado no contiene claves de HeyGen ni ElevenLabs. Pendientes: repetir el recorrido autenticado completo sobre producción, comprobar el correo desde ese flujo y recoger capturas de Vercel. Ver [guía de despliegue](docs/DESPLIEGUE.md).
 
 ## Preparación de Vercel y consistencia de reservas — 13/09/2026
 
@@ -706,38 +706,38 @@ El enlace caduca en 30 minutos, se almacena como hash SHA-256 y se consume media
 
 La [guía de recuperación de contraseña](docs/RECUPERACION-CONTRASENA.md) recoge el flujo completo, los límites y las pruebas, además del procedimiento exacto para pasar a correo real: dominio y DNS, aprobación en Mailtrap, credenciales SMTP transaccionales, variables privadas de Vercel, redepliegue, retirada del aviso de Sandbox y validación de entrega. También identifica las mejoras pendientes (notificación de cambio, supervisión, límites globales y cola/reintentos). No se declara implementada ni probada la entrega a buzones reales.
 
-Validación: 73 pruebas ordinarias correctas y una integración adicional de recuperación en una base temporal real de Atlas, con dos cambios concurrentes y revocación de sesión. Build y verificación de 14 documentos HTML correctos. La prueba automatizada de integración no envía correo. Tras el despliegue del commit `547235b` en ambos proyectos Vercel, se verificaron por HTTP las páginas y los endpoints de recuperación. Araceli confirmó haber recuperado su contraseña mediante Mailtrap y haber iniciado sesión correctamente en la web publicada. Esta evidencia es su confirmación en la sesión del 19/09/2026, sin captura; no se incluyen enlaces de recuperación, contraseñas ni secretos. La caducidad, el uso único y la revocación de sesiones se acreditan mediante la integración automatizada, no mediante esa confirmación manual.
+Validación: 73 pruebas ordinarias correctas y una integración adicional de recuperación en una base temporal real de Atlas, con dos cambios concurrentes y revocación de sesión. Build y verificación de 14 documentos HTML correctos. La prueba automatizada de integración no envía correo. Tras el despliegue del commit `547235b` en ambos proyectos Vercel, se verificaron por HTTP las páginas y los endpoints de recuperación. Confirmé haber recuperado mi contraseña mediante Mailtrap y haber iniciado sesión correctamente en la web publicada. Esta prueba manual se realizó el 19/09/2026, sin captura; no se incluyen enlaces de recuperación, contraseñas ni secretos. La caducidad, el uso único y la revocación de sesiones se acreditan mediante la integración automatizada, no mediante esa confirmación manual.
 
 
 ## Reserva y cancelación en producción — 19/09/2026
 
-Tras recuperar el acceso, Araceli reservó «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome su nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. Araceli confirmó la recepción del correo de reserva en Mailtrap Sandbox.
+Tras recuperar el acceso, reservé «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome mi nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. Confirmé la recepción del correo de reserva en Mailtrap Sandbox.
 
-A continuación, Araceli confirmó haber cancelado desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibió el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante su confirmación en la sesión de trabajo; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
+A continuación, confirmé haber cancelado desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibí el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante mi comprobación manual; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
 
 ## Edición desde la web — 19/09/2026
 
 La prueba de entrega detectó que la API admitía editar eventos, pero faltaban el botón y la pantalla en el frontend. Se añade «Editar experiencia» para creadores y administradores, con ruta protegida, datos precargados, PATCH, estados de carga y errores ES/EN. La API conserva su control de permisos. El formulario mantiene el cartel y la fecha original si no se modifican; las fechas nuevas se envían como ISO con zona horaria. Vercel admite el enlace directo y noindex.
 
-52 pruebas frontend, build y comprobación de 14 documentos HTML correctos. Corrección publicada en `f249d31`, con autoría y committer de Araceli Fradejas Muñoz y ambos despliegues Vercel correctos.
+52 pruebas frontend, build y comprobación de 14 documentos HTML correctos. Corrección publicada en `f249d31`, con ambos despliegues Vercel correctos.
 
-Araceli confirma la creación de «Tu mente y la presión» para el 15/03/2027 y el cambio satisfactorio de descripción y hora. Se observan en Chrome «Editar experiencia», «Cambios guardados» y el texto que comienza «Pedir apoyo también es avanzar». Una consulta independiente a la API pública confirma el texto persistido, el ponente Travis Wood y la URL del cartel. La fecha almacenada es `2027-03-15T18:30:00.000Z`, mostrada como 19:30 en Madrid. Queda verificado el guardado de texto y hora en producción; no se ha probado sustituir el cartel durante una edición.
+Confirmo la creación de «Tu mente y la presión» para el 15/03/2027 y el cambio satisfactorio de descripción y hora. Se observan en Chrome «Editar experiencia», «Cambios guardados» y el texto que comienza «Pedir apoyo también es avanzar». Una consulta independiente a la API pública confirma el texto persistido, el ponente Travis Wood y la URL del cartel. La fecha almacenada es `2027-03-15T18:30:00.000Z`, mostrada como 19:30 en Madrid. Queda verificado el guardado de texto y hora en producción; no se ha probado sustituir el cartel durante una edición.
 
 ## Avisos sin acumulación — 19/09/2026
 
-Araceli detectó que los mensajes de acciones sucesivas se acumulaban en la esquina inferior derecha. Se modifica el proveedor común para mostrar únicamente el aviso más reciente: cada nuevo mensaje sustituye al anterior, tanto en confirmaciones como en errores. El aviso puede cerrarse manualmente y no tiene temporizador de lectura. Se conserva la región accesible `aria-live=polite` y se añade `aria-atomic=true` para anunciar el mensaje completo. Compilación de producción y verificación de 14 documentos HTML correctas.
+Detecté que los mensajes de acciones sucesivas se acumulaban en la esquina inferior derecha. Se modifica el proveedor común para mostrar únicamente el aviso más reciente: cada nuevo mensaje sustituye al anterior, tanto en confirmaciones como en errores. El aviso puede cerrarse manualmente y no tiene temporizador de lectura. Se conserva la región accesible `aria-live=polite` y se añade `aria-atomic=true` para anunciar el mensaje completo. Compilación de producción y verificación de 14 documentos HTML correctas.
 
-Araceli también confirma que, tras seleccionar de nuevo el cartel de «Tu mente y la presión», guardar y recargar, la imagen permanece visible. Queda comprobada esta operación de imagen en producción mediante su confirmación.
+También confirmo que, tras seleccionar de nuevo el cartel de «Tu mente y la presión», guardar y recargar, la imagen permanece visible. Queda comprobada esta operación de imagen en producción mediante esta prueba manual.
 
 ## Capturas finales guardadas — 19/09/2026
 
 Se incorporan [nueve capturas reales de producción](docs/screenshots/entrega-2026-09-19/README.md): los dos despliegues Vercel Ready del commit d549df9, charla con cartel y botón de edición, descripción guardada, formulario precargado, correos de confirmación y cancelación en Mailtrap y pantalla de recuperación. Los mensajes observados corresponden a «Tu mente y la presión», con fecha 15/03/2027 a las 19:30. Se guardaron después de las comprobaciones manuales: las referencias anteriores a ausencia de capturas describen el momento de aquellas pruebas.
 
-Las vistas de correo omiten la dirección personal. No se incluyen credenciales, contraseñas ni enlaces de recuperación. Araceli confirma también que la sustitución de avisos funciona correctamente y sin acumulación; no se reproduce artificialmente ese estado para una captura.
+Las vistas de correo omiten la dirección personal. No se incluyen credenciales, contraseñas ni enlaces de recuperación. Confirmo también que la sustitución de avisos funciona correctamente y sin acumulación; no se reproduce artificialmente ese estado para una captura.
 
 
 ## Contraste final con el enunciado — 19/09/2026
 
-Se revisó el texto íntegro de la actividad aportado por Araceli, con [trazabilidad de cada requisito a su implementación](docs/COMPROBACION-ENUNCIADO.md). No se identifican funcionalidades obligatorias ausentes. Se refuerzan dos estados asíncronos: indicador de sesión en la cabecera y estado ocupado del botón de compartir. Pruebas ordinarias: 76 correctas; build y 14 documentos HTML correctos.
+Se revisó el texto íntegro de la actividad, con [trazabilidad de cada requisito a su implementación](docs/COMPROBACION-ENUNCIADO.md). No se identifican funcionalidades obligatorias ausentes. Se refuerzan dos estados asíncronos: indicador de sesión en la cabecera y estado ocupado del botón de compartir. Pruebas ordinarias: 76 correctas; build y 14 documentos HTML correctos.
 
 Se conserva el monorepo con enlaces independientes a frontend y backend: el enunciado pide ambos enlaces de GitHub, sin imponer dos repositorios. Los carteles acreditan el requisito de subida de ficheros; una pantalla de avatar no es obligatoria. La entrega se realiza en la actividad y la corrección por mensaje privado en el foro.

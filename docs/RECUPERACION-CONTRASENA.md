@@ -27,7 +27,7 @@ El transporte exige TLS, limita los tiempos de conexión y no carga ficheros ni 
 2. Introducir el correo de una cuenta registrada y solicitar un enlace una sola vez.
 3. En Mailtrap, abrir **My Sandbox** y el mensaje nuevo de recuperación. Comprobar destinatario y hora; utilizar únicamente el más reciente.
 4. Abrir el botón del mensaje. Debe llevar al frontend público por HTTPS.
-5. Araceli introduce personalmente la nueva contraseña, la confirma y envía el formulario.
+5. La persona que recupera el acceso introduce la nueva contraseña, la confirma y envía el formulario.
 6. Iniciar sesión con ella. El enlace utilizado debe quedar rechazado; la contraseña anterior ya no permite entrar.
 
 Para las capturas de la memoria, ocultar dirección personal y barra de direcciones si contiene el token. No capturar credenciales SMTP ni guardar el enlace en el repositorio.
@@ -62,5 +62,5 @@ PUBLIC_APP_URL=https://kelse-ts-talks.vercel.app
 - Comando desde `backend`: `RUN_DB_INTEGRATION=true node --test test/recovery.integration.test.js`. Requiere las credenciales locales de Atlas y permiso para crear/eliminar la base temporal.
 - Compilación y comprobación de 14 documentos HTML, incluyendo las nuevas rutas privadas. Comprobación visual del formulario de solicitud y del resumen de errores con foco.
 - Despliegue del commit `547235b` completado en los dos proyectos Vercel. Verificadas las páginas públicas (200, noindex, no-store y no-referrer), el rechazo de entradas inválidas (400) y la respuesta neutra para una dirección inexistente (200).
-- Araceli confirma el recorrido manual en la web publicada: recuperación mediante el mensaje de Mailtrap, cambio de contraseña e inicio de sesión posterior satisfactorio. Confirmación comunicada en la sesión de trabajo del 19/09/2026; no se han guardado contraseña, token ni captura de ese recorrido.
+- He comprobado el recorrido manual en la web publicada: recuperación mediante el mensaje de Mailtrap, cambio de contraseña e inicio de sesión posterior satisfactorio. Prueba manual del 19/09/2026; no se han guardado contraseña, token ni captura de ese recorrido.
 - Caducidad, reutilización y revocación de sesiones cuentan con la prueba de integración; no se atribuyen a esta comprobación manual. La recepción en Sandbox no acredita entrega a buzones reales.

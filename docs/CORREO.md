@@ -6,7 +6,7 @@ Las plantillas HTML y texto de confirmación/cancelación en ES/EN y la integrac
 
 - Autenticación SMTP con TLS correcta.
 - Confirmación en castellano y cancelación en inglés aceptadas por Mailtrap. La cancelación necesitó un reintento.
-- Araceli confirma que ambas plantillas se ven correctamente en la bandeja de Mailtrap.
+- He comprobado que ambas plantillas se ven correctamente en la bandeja de Mailtrap.
 - Los mensajes se generaron como muestras, sin modificar reservas reales.
 - Queda pendiente probar el recorrido completo de reserva/cancelación desde la web con SMTP activo y documentarlo con capturas.
 
@@ -60,9 +60,9 @@ Añadida el 19/09/2026 con el mismo SMTP Sandbox. Consultar la [guía de recuper
 
 ## Reserva y cancelación en producción — 19/09/2026
 
-Tras recuperar el acceso, Araceli reservó «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome su nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. Araceli confirmó la recepción del correo de reserva en Mailtrap Sandbox.
+Tras recuperar el acceso, reservé «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome mi nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. Confirmé la recepción del correo de reserva en Mailtrap Sandbox.
 
-A continuación, Araceli confirmó haber cancelado desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibió el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante su confirmación en la sesión de trabajo; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
+A continuación, cancelé desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibí el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante mi comprobación manual; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
 
 ## Evidencias de producción del 19/09/2026
 

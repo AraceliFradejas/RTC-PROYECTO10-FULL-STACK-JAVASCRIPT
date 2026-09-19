@@ -11,7 +11,7 @@ La API responde 200 en `/api/health` y devuelve 13 eventos en `/api/events`; COR
 
 ## Acceso de Atlas y entrega privada
 
-El primer despliegue devolvía 503 porque Atlas solo admitía la IP doméstica. Con autorización de Araceli se añadió `0.0.0.0/0` sin caducidad para la demostración y corrección, de acuerdo con las indicaciones de entrega que aportó. La API pasó a responder 200 tras aplicar la regla. Esta configuración permite intentos de conexión desde cualquier IPv4; la autenticación de la base de datos sigue siendo obligatoria.
+El primer despliegue devolvía 503 porque Atlas solo admitía la IP doméstica. Se configuró `0.0.0.0/0` sin caducidad para la demostración y corrección, de acuerdo con las indicaciones de entrega del máster. La API pasó a responder 200 tras aplicar la regla. Esta configuración permite intentos de conexión desde cualquier IPv4; la autenticación de la base de datos sigue siendo obligatoria.
 
 `backend/.env.entrega` es un archivo local ignorado por Git, preparado para la corrección privada. Incluye únicamente las variables de esta aplicación, no las claves de herramientas audiovisuales. Al usarlo en local, copiarlo a `backend/.env`. No publicarlo ni adjuntarlo a un issue o README. Las variables `VITE_` del frontend son públicas y su ejemplo incluye la alternativa de producción.
 
@@ -42,6 +42,6 @@ Los originales y montajes MP4 permanecen en las carpetas locales de producción.
 
 ## Actualización publicada — 19/09/2026
 
-Commit `ccdb145`: correcciones de accesibilidad y mejoras de SEO/GEO, bajo autoría de Araceli Fradejas Muñoz. Frontend y API desplegados correctamente mediante la integración de GitHub con Vercel.
+Commit `ccdb145`: correcciones de accesibilidad y mejoras de SEO/GEO. Frontend y API desplegados correctamente mediante la integración de GitHub con Vercel.
 
 Las [18 comprobaciones públicas](VERIFICACION-PRODUCCION-2026-09-19.json) verifican las diez rutas prerenderizadas, la ruta protegida de creación con noindex, una ruta inexistente con HTTP 404, robots, sitemap de nueve URLs, CSS corregido, salud de API, agenda de 13 eventos y acceso directo a una ficha dinámica. Contraste del login revisado visualmente en Chrome. Esta comprobación no sustituye el recorrido autenticado pendiente.

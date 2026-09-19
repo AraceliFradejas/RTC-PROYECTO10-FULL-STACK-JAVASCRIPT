@@ -25,10 +25,10 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 - [x] Pruebas ordinarias: 76 correctas (24 backend y 52 frontend); integración de recuperación en Atlas ejecutada separadamente y correcta.
 - [x] Compilación de producción correcta el 19/09/2026.
 - [x] Web, salud y agenda públicas: HTTP 200 el 19/09/2026.
-- [x] Recuperación mediante Mailtrap y posterior inicio de sesión en producción, confirmados por Araceli el 19/09/2026.
-- [x] Reserva y cancelación en producción, actualización de plazas y ambos correos en Mailtrap: verificados con Araceli el 19/09/2026.
-- [x] Creación de «Tu mente y la presión» con cartel y edición de texto y hora: confirmadas por Araceli; datos persistidos comprobados en la API pública.
-- [x] Cartel guardado y visible tras recargar, confirmado por Araceli; nueve capturas finales publicadas y revisadas.
+- [x] Recuperación mediante Mailtrap y posterior inicio de sesión en producción, confirmados el 19/09/2026.
+- [x] Reserva y cancelación en producción, actualización de plazas y ambos correos en Mailtrap: verificados el 19/09/2026.
+- [x] Creación de «Tu mente y la presión» con cartel y edición de texto y hora: confirmadas; datos persistidos comprobados en la API pública.
+- [x] Cartel guardado y visible tras recargar, confirmado; nueve capturas finales publicadas y revisadas.
 - [x] Memoria y evidencias publicadas en GitHub; índice de capturas accesible desde el repositorio remoto.
 - Comprobación adicional opcional: avatar en producción; el requisito de ficheros ya está demostrado con carteles.
 - [x] Enunciado revisado: pide ambos enlaces de GitHub sin exigir repositorios independientes. Se entregan las dos carpetas del monorepo.
@@ -36,8 +36,8 @@ Los ponentes, eventos y asistentes de demostración son ficticios y tienen final
 
 Pendientes detallados en [REVISION-ENTREGA.md](REVISION-ENTREGA.md).
 
-Corregida y verificada la pantalla de edición que faltaba, publicada bajo autoría de Araceli en `f249d31`. El frontend suma ahora 52 pruebas correctas (76 ordinarias entre ambos proyectos).
+Corregida y verificada la pantalla de edición que faltaba, publicada en `f249d31`. El frontend suma ahora 52 pruebas correctas (76 ordinarias entre ambos proyectos).
 
-Capturas finales guardadas y revisadas: [índice de nueve evidencias de producción](screenshots/entrega-2026-09-19/README.md). Incluyen Vercel Ready, charla y edición, confirmación/cancelación de correo y recuperación. Araceli ha confirmado además la persistencia del cartel tras volver a seleccionarlo y guardar. La sustitución de avatar en producción no se ha comprobado en esta sesión.
+Capturas finales guardadas y revisadas: [índice de nueve evidencias de producción](screenshots/entrega-2026-09-19/README.md). Incluyen Vercel Ready, charla y edición, confirmación/cancelación de correo y recuperación. He confirmado además la persistencia del cartel tras volver a seleccionarlo y guardar. La sustitución de avatar en producción no se ha comprobado en esta sesión.
 
 Revisión requisito a requisito: [comprobación del enunciado](COMPROBACION-ENUNCIADO.md). La entrega se hace en el apartado de la actividad y la corrección continúa por mensaje privado en el foro.
