@@ -1,776 +1,573 @@
-# Memoria del proyecto · KelseTS Talks
+# Memoria técnica · KelseTS Talks
 
-## Estado de la entrega
+## Datos del proyecto
 
-El proyecto está desplegado y permite registrar usuarios, publicar y editar charlas, subir carteles y gestionar asistentes. En la prueba manual he recuperado mi contraseña, iniciado sesión, reservado y cancelado una plaza, y comprobado los correos en Mailtrap. También he creado «Tu mente y la presión», cambiado su texto y hora y comprobado que el cartel se mantiene al recargar.
+| Dato | Información |
+| --- | --- |
+| Proyecto | Aplicación de gestión de eventos y asistentes |
+| Módulo | Del desarrollo del servidor al diseño de interfaces web |
+| Formación | Máster Rock The Code · The Power Tech School |
+| Autora | Araceli Fradejas Muñoz |
+| Tecnologías principales | JavaScript, Node.js, Express, React y MongoDB |
+| Web | [KelseTS Talks](https://kelse-ts-talks.vercel.app/) |
+| API | [Comprobación de disponibilidad](https://kelse-ts-talks-api.vercel.app/api/health) |
+| Repositorio | [RTC-PROYECTO10-FULL-STACK-JAVASCRIPT](https://github.com/AraceliFradejas/RTC-PROYECTO10-FULL-STACK-JAVASCRIPT) |
+| Código de la interfaz | [frontend](frontend) |
+| Código del servidor | [backend](backend) |
+| Evidencias de desarrollo y entrega | 13 y 19 de septiembre de 2026 |
 
-Las comprobaciones automatizadas se documentan por separado: 92 pruebas ordinarias correctas (28 backend y 64 frontend), compilación y revisión de los documentos HTML, además de las integraciones de Atlas descritas más adelante. Las capturas y los límites de cada comprobación están enlazados en la memoria. El correo funciona en Sandbox; no se presenta como envío a buzones personales.
+> Esta memoria recoge el desarrollo real del proyecto. Las cifras se vinculan a las comprobaciones documentadas y las imágenes son capturas reales de la aplicación y de las herramientas utilizadas. Las pruebas locales, las integraciones con MongoDB Atlas y las comprobaciones manuales en producción se identifican por separado.
 
-El repositorio reúne el código, los recursos utilizados y las evidencias de la entrega. Los borradores de imagen y vídeo se conservan como material local. Su procedencia está resumida en [Recursos y atribuciones](docs/RECURSOS.md).
+## 1. Contexto y motivación
 
-## 1. Resumen ejecutivo
+Este proyecto continúa mi aprendizaje con Node.js, MongoDB y las API REST. En el proyecto anterior trabajé con la extracción de un catálogo de libros y su persistencia. En este trabajo he conectado una API con una interfaz completa para que una persona pueda registrarse, descubrir una charla, reservar una plaza y gestionar sus propios eventos desde el navegador.
 
-KelseTS es una empresa ficticia que conecta deporte, cultura, tecnología y formación. KelseTS Talks es su línea de charlas motivacionales y experiencias de desarrollo profesional inspiradas en el deporte. La plataforma permite publicar, descubrir y gestionar eventos, además de relacionar usuarios y asistentes.
+He situado la aplicación dentro de KelseTS, una marca ficticia que une deporte, cultura, tecnología y formación. Su origen está en mi interés por el universo de Taylor Swift y en la idea de transformar una ilusión personal en una identidad creativa para mis proyectos del máster. KelseTS Talks amplía las propuestas anteriores de KelseTS Lifestyle, KelseTS Store y KelseTS Business School.
 
-La propuesta amplía el universo empresarial iniciado en los proyectos KelseTS y KelseTS Business School. Esta nueva línea se centra en liderazgo, resiliencia, rendimiento y trabajo en equipo.
+Las charlas tratan liderazgo, resiliencia, rendimiento, innovación, bienestar y trabajo en equipo. La idea de avanzar paso a paso y del esfuerzo colectivo también toma inspiración temática de la película *Un domingo cualquiera*, sin reproducir su guion ni utilizar imágenes de la película.
 
-## 2. Identidad de empresa
+Los ponentes, encuentros y testimonios son ficticios. Los recursos gráficos y audiovisuales son recreaciones del proyecto, con su procedencia documentada en [Recursos y atribuciones](docs/RECURSOS.md). La web incluye un aviso educativo y de ausencia de afiliación con las personas y entidades que sirven de inspiración cultural.
 
-**Propósito:** ayudar a personas y organizaciones a transformar la inspiración en una siguiente acción concreta.
+## 2. Objetivos
 
-**Posicionamiento:** KelseTS Talks no es una agenda genérica ni una consultora tradicional. Produce encuentros que utilizan historias y aprendizajes del deporte para abordar desafíos profesionales.
+Mi objetivo principal ha sido desarrollar una aplicación que permita:
 
-**Programa insignia:** *The Next Inch — Move the next inch. Change the whole game.*
+- registrarse e iniciar sesión automáticamente después del alta;
+- acceder con correo y contraseña y mantener la sesión al recargar;
+- consultar, buscar, filtrar y ordenar una agenda pública;
+- abrir el detalle de una charla y consultar sus asistentes;
+- crear y editar eventos propios con un cartel;
+- subir las imágenes a Cloudinary;
+- reservar y cancelar una plaza con control de aforo;
+- relacionar los usuarios y los eventos en MongoDB;
+- proteger las operaciones privadas mediante autenticación y permisos;
+- comunicar los estados de carga, los errores y las confirmaciones;
+- desplegar la interfaz y la API para utilizar la aplicación fuera del entorno local.
 
-La inspiración conceptual nace de la arenga de Tony D'Amato, personaje interpretado por Al Pacino en *Any Given Sunday* (Oliver Stone, 1999). De ella se extraen tres temas generales: progreso incremental, responsabilidad personal y esfuerzo colectivo. No se utiliza texto literal del guion ni material visual de la película.
+Como objetivos de calidad me propuse separar responsabilidades, reutilizar componentes y peticiones, validar las entradas en cliente y servidor y acompañar la entrega de pruebas y evidencias. Como ampliaciones incorporé recuperación de contraseña, correos de asistencia y una interfaz con selector de idioma.
 
-## 3. Público y experiencias
+## 3. Requisitos y cumplimiento
 
-La plataforma se dirige a profesionales, responsables de equipos, departamentos de personas, comunidades empresariales y speakers. La agenda agrupa los encuentros en Liderazgo, Resiliencia, Equipo, Rendimiento, Innovación, Bienestar y Otros.
+| Requisito | Implementación | Estado |
+| --- | --- | :---: |
+| Servidor con Express y MongoDB | Aplicación Express y modelos Mongoose | Cumplido |
+| Usuario con nombre, correo y contraseña protegida | Modelo `User` y resumen criptográfico con bcrypt | Cumplido |
+| Autenticación y rutas protegidas | JWT y comprobación de usuario y versión de sesión | Cumplido |
+| Eventos con asistentes referenciados | Modelo `Event` con referencias a `User` | Cumplido |
+| Registro con acceso automático | La respuesta de registro establece la sesión | Cumplido |
+| Listado y ordenación | Agenda por fecha, publicación o popularidad | Cumplido |
+| Creación autenticada de eventos | Formulario protegido y validación en la API | Cumplido |
+| Detalle y lista de asistentes | Ficha con cartel, ponente, aforo y participantes | Cumplido |
+| Confirmación de asistencia | Relación en ambas colecciones mediante transacción | Cumplido |
+| Subida de archivos | Multer y Cloudinary para los carteles | Cumplido |
+| Gestión de errores y carga | Mensajes, validación y estados de operación | Cumplido |
+| Componentes y lógica reutilizables | Campos, tarjetas, contextos y funciones compartidas | Cumplido |
+| Peticiones centralizadas | `apiRequest` en `frontend/src/services/api.js` | Cumplido |
+| Publicación de ambas aplicaciones | Dos proyectos independientes en Vercel | Cumplido |
 
-Cada experiencia explica su propuesta, fecha, ubicación, aforo, persona organizadora y asistentes confirmados.
+La [comprobación del enunciado](docs/COMPROBACION-ENUNCIADO.md) desarrolla esta correspondencia. La API también permite eliminar eventos y actualizar el avatar; esas operaciones no tienen una pantalla de gestión en la web. La subida exigida se demuestra mediante los carteles.
 
-## 4. Alcance funcional
+## 4. Tecnologías
 
-- Registro e inicio de sesión con acceso inmediato después del alta.
-- Datos de usuario y soporte de avatar en la API; la web no incluye una pantalla de edición de perfil.
-- Agenda pública ordenable y filtrable.
-- Detalle del talk y listado de asistentes.
-- Creación y edición segura de eventos con cartel.
-- Confirmación y cancelación de asistencia.
-- Estados de carga, vacío, confirmación y error.
+### Node.js y Express
+
+He utilizado Node.js 20 o posterior y módulos de JavaScript con `import` y `export`. Express organiza las rutas, recibe las peticiones y devuelve respuestas JSON. Nodemon reinicia el servidor durante el desarrollo.
+
+### MongoDB Atlas y Mongoose
+
+MongoDB Atlas almacena usuarios y eventos. Mongoose define los modelos, valida su estructura y permite trabajar con referencias y transacciones para mantener coherentes las reservas.
+
+### React, React Router y Vite
+
+React compone las pantallas con componentes reutilizables. React Router gestiona la navegación y Vite prepara el entorno de desarrollo y la compilación. Los estilos se organizan en archivos CSS de base, componentes, tema y accesibilidad.
+
+### Autenticación y archivos
+
+JWT identifica la sesión y bcrypt protege las contraseñas. CORS configura los orígenes admitidos. Multer recibe imágenes y Cloudinary conserva los archivos subidos fuera del sistema de archivos del servidor.
+
+### Correo, pruebas y despliegue
+
+Nodemailer prepara el envío de correos y Mailtrap Sandbox permite inspeccionarlos en un entorno de pruebas. Utilizo `node:test` en el servidor, Vitest en la interfaz e Insomnia para comprobar peticiones HTTP. Vercel aloja las dos aplicaciones. Las versiones de las dependencias quedan registradas en los archivos de bloqueo del repositorio.
 
 ## 5. Arquitectura
 
-El monorepo contiene dos aplicaciones independientes:
-
-- `backend`: API REST organizada en configuración, modelos, controladores, rutas, middlewares y utilidades.
-- `frontend`: SPA organizada mediante componentes compartidos, contextos, hooks, servicios y páginas.
-
-Todas las peticiones pasan por `apiRequest`, que centraliza serialización, autorización y errores. La API devuelve `{ success, data }` o `{ success, error }`. Los controladores asíncronos comparten una utilidad para delegar excepciones al middleware central.
-
-## 6. Modelo de datos
-
-**Usuario:** nombre, email único, contraseña almacenada como hash, avatar, rol y referencias a eventos confirmados.
-
-**Evento:** título, fecha, ubicación, descripción, categoría, cartel, aforo, persona creadora y asistentes referenciados.
-
-La asistencia utiliza `$addToSet` y `$pull` para evitar duplicados y mantener sincronizadas ambas colecciones. Al eliminar un evento también se limpian sus referencias en los usuarios.
-
-## 7. Seguridad y archivos
-
-- Bcrypt genera hashes de contraseñas con factor de coste 12.
-- Los JWT caducan a los siete días.
-- Las rutas privadas verifican presencia y validez del token.
-- La edición y eliminación comprueban propiedad o rol administrador.
-- La creación utiliza una lista blanca de campos para impedir la inyección de asistentes, autoría o metadatos de archivos.
-- La reserva de la última plaza se realiza mediante una actualización atómica para evitar superar el aforo.
-- Multer limita imágenes a 4 MB y acepta JPG, PNG o WebP.
-- Cloudinary almacena carteles y avatares fuera del entorno serverless.
-
-## 8. UX, UI y accesibilidad
-
-La dirección visual continúa el lenguaje de las webs anteriores de KelseTS: rojo `#DC2626`, dorado `#F59E0B`, negro `#1A1A1A`, blanco y lavanda `#9563FF` como acento cultural. Utiliza tipografía contundente y una colección visual propia formada por escenas deportivas, doce carteles iniciales y cuatro retratos ficticios. Los recursos publicados se han revisado y retocado para eliminar logotipos, emblemas de equipos y marcas reconocibles.
-
-El carrusel es deliberadamente manual e incluye controles, contador y selectores para que el contenido nunca se mueva sin intervención. La navegación es responsive y operable mediante teclado. Incluye enlace para saltar al contenido, textos alternativos, etiquetas visibles, foco perceptible, avisos `aria-live` y respeto por `prefers-reduced-motion`. Cada operación asíncrona comunica inmediatamente su estado.
-
-### Referencias creativas de los ponentes
-
-Por decisión editorial, las biografías ficticias toman temas generales de cuatro referencias públicas. Los episodios narrados, proyectos, entornos y aprendizajes de los personajes son creaciones originales; no describen la vida de esas personas ni una relación con KelseTS. Los perfiles públicos mantienen su identificación como ficción y las versiones española e inglesa cuentan la misma historia.
-
-| Personaje | Referencia consultada | Eje de inspiración |
-| --- | --- | --- |
-| Alison Patrick | [Patricia Ayuela · Línea Directa](https://www.lineadirectaaseguradora.com/documents/1712153/1897558/NP%2BL%C3%8DNEA%2BDIRECTA%2BASEGURADORA%2B-%2BNombramiento%2BNuevo%2BCEO_DEF.pdf/feda6d34-7dbb-ed03-bb35-61810dda65f1?t=1645120415956) | Gestión, conocimiento operativo y transformación digital. |
-| Jude Becks | [David Beckham · Biografía oficial](https://www.davidbeckham.com/about) | Fútbol, adaptación a distintos equipos y una segunda etapa más allá de la competición. |
-| Anna Nasser | [Álex Rayón · Universidad de Deusto](https://www.deusto.es/es/inicio/vive/actualidad/noticias/alex-rayon-ha-participado-como-experto-en-la-comision-de-asuntos-economicos-y-transformacion-digital-del-senado/noticia) | Formación, datos, inteligencia artificial y transformación. |
-| Travis Wood | [Travis Kelce · 87 & Running](https://87running.org/about/) | Deporte de equipo y oportunidades para jóvenes en la comunidad. |
-
-## 9. Ecosistema KelseTS
-
-KelseTS Talks se relaciona desde la página de inicio, la presentación corporativa y el footer con tres proyectos activos: KelseTS Lifestyle, como expresión motivacional y cultural; KelseTS Store, como tienda de zapatillas; y KelseTS Business School, como espacio de formación en IA y liderazgo. Los enlaces externos se identifican como tales y se abren de forma segura.
-
-## 10. Aviso legal
-
-La web muestra un disclaimer bilingüe completo y un resumen permanente en el footer. Declara el carácter ficticio, educativo y de portfolio del proyecto, así como la ausencia de afiliación o respaldo por parte de Taylor Swift, Travis Kelce, Kansas City Chiefs, NFL o entidades relacionadas. La inspiración cultural y deportiva no se presenta como colaboración comercial.
-
-La procedencia de los recursos gráficos y audiovisuales se resume en [Recursos y atribuciones](docs/RECURSOS.md). Los borradores y archivos de producción se conservan localmente, fuera del código de entrega.
-
-## 11. Pruebas y calidad
-
-Los tests comprueban errores, firma y caducidad de tokens, serialización del cliente HTTP, autorización, respuestas fallidas y filtrado de campos editables.
-
-```bash
-npm test
-npm run build
+```text
+backend/
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── data/
+│   ├── emails/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── utils/
+│   ├── app.js
+│   └── server.js
+└── test/
+frontend/
+├── public/
+├── scripts/
+└── src/
+    ├── components/
+    ├── context/
+    ├── data/
+    ├── hooks/
+    ├── i18n/
+    ├── pages/
+    ├── services/
+    ├── seo/
+    └── styles/
+docs/
+├── insomnia/
+└── screenshots/
 ```
 
-## 12. Despliegue
+### Aplicación y arranque
 
-Frontend y backend están desplegados en dos proyectos Vercel, con directorios raíz `frontend` y `backend`. `VITE_API_URL` apunta a la API y `FRONTEND_URL` autoriza el origen de la web. Ambos incluyen `.env.example`. La API utiliza MongoDB Atlas, JWT, Cloudinary y Mailtrap Sandbox; los secretos se configuran fuera de Git.
+`backend/src/app.js` configura Express. `server.js` se encarga del arranque local. En Vercel se exporta la aplicación sin iniciar un servidor con `listen`. Las peticiones esperan la conexión a MongoDB y reutilizan la conexión disponible.
 
-La orden `npm run seed --prefix backend` carga de forma idempotente las doce experiencias iniciales y enlaza sus carteles locales. Requiere `MONGODB_URI` y `SEED_PASSWORD`.
+### Modelos, rutas y controladores
 
-## 13. Próximas mejoras
+Los modelos describen usuarios y eventos. Las rutas aplican autenticación y carga de archivos cuando corresponde. Los controladores resuelven las operaciones y las utilidades comparten validaciones, errores y tratamiento de imágenes.
 
-Posibles ampliaciones: eventos privados para empresas, agenda por ciudades y valoraciones posteriores. La relación de ponentes, la recuperación de contraseña y las pruebas de integración con bases temporales ya están implementadas.
+### Páginas y componentes
 
----
+Las páginas componen la agenda, el acceso, la recuperación, el detalle y el formulario de eventos. Los campos y mensajes se reutilizan; la creación y la edición comparten formulario. Los contextos gestionan sesión, idioma y avisos.
 
-# Project report · KelseTS Talks
+### Peticiones y carga de recursos
 
-KelseTS is a fictional company connecting sport, culture, technology and learning. KelseTS Talks is its motivational events platform for speakers, professionals and teams, with experiences about leadership, resilience, performance, innovation and wellbeing.
+`apiRequest` centraliza autorización, serialización, cancelación y errores. `useAsyncResource` comparte la carga, el reintento y la cancelación de recursos. La API responde con `{ success, data }` o `{ success, error }`.
 
-The product combines a React SPA with an Express/MongoDB REST API. It supports JWT authentication, automatic login after registration, protected event creation, Cloudinary uploads, reusable requests and two-way attendance relationships.
+## 6. Flujo de la aplicación
 
-The brand draws on the broad themes of incremental progress and collective effort found in the coach's speech from *Any Given Sunday*. All copy, visual identity and product content are original.
+```text
+Abrir la web
+  ↓
+Consultar, buscar u ordenar la agenda
+  ↓
+Abrir una charla y consultar sus plazas
+  ↓
+¿Hay una sesión válida?
+  ├─ No → registrarse o iniciar sesión → volver a la charla
+  └─ Sí → solicitar reserva o cancelación
+                    ↓
+          Validar sesión, fecha y aforo
+                    ↓
+          Actualizar evento y usuario
+          dentro de una transacción
+                    ↓
+          Confirmar la operación
+                    ↓
+          Actualizar la ficha y preparar el correo
+```
 
-**Author: Araceli Fradejas Muñoz**
+La consulta pública no requiere cuenta. La creación, edición y asistencia sí requieren autenticación. La edición comprueba además que la persona sea creadora del evento o administradora.
 
+La confirmación de la reserva depende de la escritura en la base de datos. El correo se prepara después de confirmar la transacción; un fallo de correo no deshace la plaza. Abrir el enlace de un mensaje lleva a la ficha, pero no modifica la asistencia.
 
-## Historial de desarrollo y validación
+## 7. Datos y normalización
 
-Las entradas siguientes conservan los resultados y decisiones de cada fecha. Los pendientes antiguos se resuelven en las entradas posteriores; el contraste vigente de requisitos está en la [comprobación del enunciado](docs/COMPROBACION-ENUNCIADO.md).
+### Usuario
 
-### Frontend y agenda — 12 de septiembre de 2026
-
-- Agenda de muestra: 12 charlas en 2027, tres por ponente, en `frontend/src/data/previewEvents.json`; traducciones en `frontend/src/i18n/events.json`.
-- Tarjetas horizontales con fecha y categoría junto al texto. Los 12 carteles tienen 1200 × 1500 píxeles (4:5) y se muestran completos.
-- Alison: baloncesto, remo y atletismo; imágenes variadas, mujeres y equipos protagonistas.
-- Charlas e invitaciones: imágenes propias, naturales y diferentes de la ficha principal. Invitaciones con el mismo vestuario del perfil, proporción original y controles debajo.
-- Enlaces `youtubeUrl` pendientes en esta etapa. Vídeos fuente conservados como material local, fuera de la compilación pública.
-- Se retiraron las imágenes públicas descartadas y se conservaron localmente las fuentes de los vídeos.
-- Pendientes en esa etapa: conectar la agenda al backend, trasladar las 12 charlas y sus asociaciones con los ponentes, y habilitar reservas. El seed actual sigue teniendo ocho eventos; solo se actualizó la ruta de la portada sustituida. No ejecutar el seed ni modificar una base de datos como parte de esta limpieza.
-
-### Enfoque de los vídeos · aprendizaje
-
-El selector de las charlas ahora dice «Así aprendemos» y la llamada a la acción «Descubre cómo aprendieron nuestros alumnos con nuestros ponentes», con traducción inglesa. Se mantiene el aviso de ficción. Propuesta para una fase posterior: combinar las charlas existentes con su propio avatar de Synthesia comentando los aprendizajes de los cuatro ponentes y publicar el resultado en YouTube. Pendientes guion, montaje y enlaces; no se han generado ni publicado esos vídeos. Presentar el montaje como recreación del proyecto y la opinión como valoración personal, sin atribuir asistencia o grabación presencial que no haya ocurrido.
-
-Me aseguraré de destacar expresamente que los vídeos son una recreación para un proyecto del máster, sin fines lucrativos y exclusivamente pedagógica. Aviso aplicado a las cuatro charlas, en español e inglés; mantenerlo también en el futuro montaje y su descripción de YouTube.
-
-Sección «Así lo vivimos en KelseTS» implementada en la portada entre ponentes y agenda, en ES/EN. Incluye cuatro reflexiones editoriales con acciones prácticas, fragmentos desplegables de los textos existentes y un bloque de presentación con aviso «Próximamente». Configuración: `frontend/src/data/learningStories.json`, campos `presentation.es.youtubeUrl` y `presentation.en.youtubeUrl`. Pendiente recibir/publicar el montaje con el avatar; no se presenta como un testimonio real ya grabado. Se mantiene visible el aviso de recreación pedagógica sin fines lucrativos.
-
-Decisión de diseño: la nueva sección debe titularse «Conoce la experiencia de nuestros alumnos» / «Discover our students’ experience». Se conserva el orden original de la home: agenda, fichas de ponentes con los retratos originales; a continuación la nueva sección de alumnos y el ecosistema. Verificadas visualmente las cuatro fotografías originales en Chrome.
-
-## Backend: agenda inicial en MongoDB Atlas
-
-- Conexión local a la base kelsets_talks; secretos excluidos de Git.
-- Catálogo backend con las 12 charlas aprobadas, tres por ponente, carteles finales y traducciones ES/EN.
-- Modelo Event ampliado con speakerId, translations y seedKey único y opcional.
-- Carga repetible por seedKey: conserva IDs, asistentes y creador. Valida el catálogo antes de escribir y admite --dry-run.
-- Cuenta organizadora inicial talks@kelsets.com; contraseña aleatoria solo en backend/.env, almacenada con hash en MongoDB.
-- Seis pruebas backend correctas. Frontend continúa en modo de muestra; siguiente paso: conectar la web y comprobar autenticación y reservas. Cloudinary pendiente.
-
-## Conexión del frontend y prueba de autenticación
-
-- Frontend local conectado a http://127.0.0.1:3000/api con VITE_PREVIEW_MODE=false; API local en ejecución.
-- Búsqueda backend ampliada a descripciones, categoría y traducciones ES/EN; búsqueda literal con equivalencia de acentos.
-- Navegador: registro con inicio automático, sesión tras recargar, cierre de sesión, contraseña incorrecta y login correcto comprobados. Reserva, recarga y cancelación comprobadas en una charla real.
-- Búsquedas en castellano e inglés y carga de los 12 carteles verificadas. Cuenta temporal retirada; quedan 12 charlas y la cuenta organizadora.
-- Validación: 7 pruebas backend, 40 frontend y compilación correctas.
-- Siguiente paso: configurar Cloudinary para subir carteles y avatares; después probar creación de eventos. Credenciales locales excluidas de Git.
-
-## Correos HTML de confirmación y cancelación
-
-- Plantillas ES/EN con cartel completo, fecha de Madrid, ubicación, texto alternativo y botón para gestionar la reserva autenticándose en la ficha.
-- Integración SMTP con Nodemailer, desactivada hasta configurar proveedor y remitente. El usuario necesita guía para esa configuración. No se ha enviado ningún correo real.
-- El frontend transmite el idioma al confirmar/cancelar. Un fallo de envío no revierte la asistencia.
-- Vistas HTML locales generables con npm run email:preview --prefix backend; revisión móvil sin desbordamiento y cartel cargado.
-- Validación: 10 tests backend, 40 frontend y build correctos. Pendiente: proveedor SMTP, remitente, URL pública y prueba real de entrega.
-
-### Identidad visual del correo
-
-Plantillas de confirmación/cancelación ES/EN ajustadas al sitio: logo original y cabecera blanca, franja roja con degradado, tarjeta con cartel completo a la izquierda y datos a la derecha en escritorio, botón rojo y pie oscuro. En móvil se apilan las columnas. Revisadas en navegador a 390 y 1000 px sin desbordamientos. Diez pruebas backend correctas; pendiente verificar clientes de correo reales al configurar SMTP.
-
-## Cloudinary conectado
-
-Credenciales locales verificadas sin mostrarlas. Prueba real con API temporal y Atlas: registro de usuario de prueba, creación de evento multipart con cartel, descarga pública, subida de avatar y eliminación de evento. Imágenes y usuario temporales retirados al terminar. La API de desarrollo se reinicia para cargar el .env actualizado.
-
-## Selección de ponente al crear charlas
-
-Formulario ES/EN con los cuatro ponentes y opción por confirmar. La API acepta y valida speakerId y MongoDB conserva la asignación, separada del creador. En esta etapa quedaban pendientes el tema y el cartel de la nueva charla.
-
-Cartel generado para «Liderar en entornos convulsos», dirigido a CEOs de entidades financieras. Alison con identidad y vestuario de su perfil en reunión corporativa natural. Se preparó una primera propuesta visual corporativa, después descartada. Pendiente seleccionar el cartel y a Alison en el formulario; no se ha publicado la charla.
-
-## Cierre: primera charla creada desde la web
-
-He publicado «Liderar en entornos convulsos» desde el formulario. El cartel final muestra un equipo femenino durante un tiempo muerto. Las versiones corporativas de Alison quedan excluidas de Git. La charla nueva reside en MongoDB y no se incorpora al catálogo inicial de 12 eventos. El envío de correos sigue desactivado; siguiente paso propuesto: probarlo con Mailtrap y después preparar el despliegue.
-
-## Auditoría frente al enunciado
-
-Revisión documentada en docs/REVISION-ENTREGA.md. Colección Insomnia con 28 peticiones y aserciones en docs/insomnia/kelsets-talks.json; importación y ejecución en Insomnia pendientes. Detectadas mejoras de validación de email/tipos, errores de ficheros y coherencia de escrituras. Despliegue pendiente; correo extra pendiente de proveedor, sin credenciales Mailtrap configuradas.
-
-## Mailtrap Sandbox verificado
-
-Autenticación SMTP con TLS correcta. Confirmación ES y cancelación EN aceptadas por Mailtrap; la cancelación requirió reintento. Son muestras enviadas sin modificar reservas reales. MAIL_ENABLED=true únicamente en configuración local con host sandbox.smtp.mailtrap.io. Pendiente mi confirmación visual de los mensajes y prueba del recorrido completo desde la web. No es entrega real a Gmail; PUBLIC_APP_URL sigue siendo local.
-
-## Guía de evidencias para la entrega (importante)
-
-El plan de evidencias de esta etapa se recoge en [la guía de capturas](docs/GUIA-CAPTURAS.md): web ES/EN, registro, creación y reserva, MongoDB (users/events y relaciones), Cloudinary (cartel alojado), Mailtrap (confirmación/cancelación), Insomnia (200/400/401/403/409), tests, build y Vercel. Archivos previstos en docs/capturas/. Solo se considera guardada una captura cuando se comprueba su archivo. Ocultar secretos, tokens, hashes completos y datos personales.
-
-Validaciones reforzadas: email y tipos en credenciales, contraseña bcrypt de hasta 72 bytes en registro, aforo entero, fechas futuras al escribirlas y mensajes de errores JSON/ficheros. Guardado reutilizable de imágenes valida antes de subir y retira recursos sustituidos después de guardar. Frontend valida aforo y longitudes. Pruebas unitarias: 15 backend + 41 frontend y build correctos.
-
-Comprobación adicional: 29 casos HTTP correctos contra Express y Atlas, reutilizando peticiones/aserciones de la colección exportada y añadiendo JSON malformado y archivo >5 MB. Datos temporales eliminados. Evidencia en docs/insomnia/RESULTADO-HTTP.md. Todavía tengo que importar la colección y ejecutarla en Insomnia; no confundir ambas ejecuciones.
-
-### Evidencia real en Insomnia: registro
-
-He ejecutado «02 · Registro organizador e inicio automático» en Insomnia. Captura guardada en [insomnia-02-registro.png](docs/screenshots/Insomnia/insomnia-02%20-%20registro.png): HTTP 201 Created, success=true, usuario con role=user y Tests 1/1. El token está oculto en la captura. La respuesta de «01 · Salud» también fue confirmada por texto; su captura y estado HTTP quedan pendientes de aportar. Siguiente prueba guiada: registro duplicado, que debe devolver 409.
-
-
-## Validación detallada en Insomnia · revisión del 13 de septiembre de 2026
-
-Se revisaron las 28 capturas aportadas de Insomnia 13.2.0, tomadas durante el recorrido local del 12–13 de septiembre, contra `http://127.0.0.1:3000/api` y MongoDB Atlas. **Los 28 casos muestran el resultado esperado, tras repetir la prueba 27 con un archivo real y verificar la URL de Cloudinary.** Los códigos 400, 401, 403, 404 y 409 de los casos negativos son resultados esperados. Todas las capturas muestran Tests 1/1, pero ese indicador corresponde a la aserción HTTP y no basta para validar una subida de archivo.
-
-La [colección importable](docs/insomnia/kelsets-talks.json) conserva los cuerpos y scripts para reproducir las peticiones. Las rutas siguientes son relativas a `/api`. `token` identifica al organizador, `other_token` al asistente y `event_id` al evento temporal creado en 12. Usar emails nuevos en cada ejecución completa; los registros anteriores causarían 409. La comprobación HTTP previa mediante Node se documenta por separado en [RESULTADO-HTTP.md](docs/insomnia/RESULTADO-HTTP.md).
-
-### Prueba 01 · Salud
-
-**Objetivo.** Comprobar que Express responde antes de empezar el recorrido.
-
-**Petición y preparación.** `GET /health`. Sin cuerpo ni autenticación.
-
-**Resultado observado frente al esperado.** 200; success=true y «KelseTS Talks API está lista.».
-
-**Interpretación.** Permite distinguir una API accesible de un error de conexión; no prueba por sí sola todas las integraciones.
-
-**Evidencia.** [Ver captura 01](docs/screenshots/Insomnia/insomnia-01-inicio.png).
-
-### Prueba 02 · Registro organizador e inicio automático
-
-**Objetivo.** Crear la cuenta organizadora y obtener la sesión en la misma operación.
-
-**Petición y preparación.** `POST /auth/register`. name=Organizador Insomnia, email de prueba y password del entorno; acceso público.
-
-**Resultado observado frente al esperado.** 201; data contiene token y user con nombre, email y role=user, sin contraseña.
-
-**Interpretación.** El registro devuelve los datos necesarios para iniciar sesión automáticamente. El script guarda token para las siguientes peticiones.
-
-**Evidencia.** [Ver captura 02](docs/screenshots/Insomnia/insomnia-02%20-%20registro.png).
-
-### Prueba 03 · Registro duplicado
-
-**Objetivo.** Impedir cuentas duplicadas.
-
-**Petición y preparación.** `POST /auth/register`. Repetir exactamente el email de la prueba 02.
-
-**Resultado observado frente al esperado.** 409; success=false y mensaje de email ya registrado.
-
-**Interpretación.** El conflicto se comunica al cliente sin crear otra cuenta con el mismo correo.
-
-**Evidencia.** [Ver captura 03](docs/screenshots/Insomnia/Insomnia-03%20%C2%B7%20Registro%20duplicado.png).
-
-### Prueba 04 · Login incorrecto
-
-**Objetivo.** Rechazar credenciales incorrectas.
-
-**Petición y preparación.** `POST /auth/login`. Email registrado y contraseña deliberadamente incorrecta; sin sesión.
-
-**Resultado observado frente al esperado.** 401; «El email o la contraseña no son correctos.».
-
-**Interpretación.** El backend no autentica al usuario con una contraseña errónea y devuelve un mensaje comprensible.
-
-**Evidencia.** [Ver captura 04](docs/screenshots/Insomnia/Insomnia-04-login-incorrecto.png).
-
-### Prueba 05 · Login correcto
-
-**Objetivo.** Autenticar una cuenta existente.
-
-**Petición y preparación.** `POST /auth/login`. Email y password del entorno usados en el registro.
-
-**Resultado observado frente al esperado.** 200; token y datos del mismo organizador.
-
-**Interpretación.** El script actualiza token; las peticiones protegidas posteriores utilizan esa sesión.
-
-**Evidencia.** [Ver captura 05](docs/screenshots/Insomnia/Insomnia-05%20%C2%B7%20Login%20correcto.png).
-
-### Prueba 06 · Perfil privado
-
-**Objetivo.** Consultar el perfil con una sesión válida.
-
-**Petición y preparación.** `GET /auth/me`. Bearer token del organizador; sin cuerpo.
-
-**Resultado observado frente al esperado.** 200; identificador, nombre, email, avatar y role del organizador.
-
-**Interpretación.** La respuesta pública del perfil no incluye contraseña ni hash.
-
-**Evidencia.** [Ver captura 06](docs/screenshots/Insomnia/insomnia-06-perfil-privado.png).
-
-### Prueba 07 · Perfil sin token
-
-**Objetivo.** Verificar la protección del perfil.
-
-**Petición y preparación.** `GET /auth/me`. La misma consulta que en 06, eliminando la autenticación.
-
-**Resultado observado frente al esperado.** 401; success=false y mensaje que requiere iniciar sesión.
-
-**Interpretación.** Distingue acceso autenticado y acceso anónimo a la misma ruta.
-
-**Evidencia.** [Ver captura 07](docs/screenshots/Insomnia/insomnia-07-sin-token.png).
-
-### Prueba 08 · Agenda por fecha
-
-**Objetivo.** Consultar la agenda ordenada por fecha.
-
-**Petición y preparación.** `GET /events?sort=soonest`. Query sort=soonest; consulta pública.
-
-**Resultado observado frente al esperado.** 200; lista de eventos y Tests 1/1.
-
-**Interpretación.** La captura muestra el inicio de la lista. El script adicional recorre las fechas y exige orden ascendente; la imagen no muestra todos los elementos.
-
-**Evidencia.** [Ver captura 08](docs/screenshots/Insomnia/insomnia-08-agenda-fecha.png).
-
-### Prueba 09 · Agenda por popularidad
-
-**Objetivo.** Consultar la agenda por popularidad.
-
-**Petición y preparación.** `GET /events?sort=popular`. Query sort=popular; consulta pública.
-
-**Resultado observado frente al esperado.** 200; lista de eventos con attendees y Tests 1/1.
-
-**Interpretación.** El criterio es el número de asistentes descendente. La comprobación adicional de la colección recorre la lista completa; la captura muestra solo parte.
-
-**Evidencia.** [Ver captura 09](docs/screenshots/Insomnia/Insomnia%20-09%20%C2%B7%20Agenda%20por%20popularidad.png).
-
-### Prueba 10 · Búsqueda traducida y categoría
-
-**Objetivo.** Combinar búsqueda de contenido traducido y categoría.
-
-**Petición y preparación.** `GET /events?search=remontada&category=Resiliencia`. search=remontada y category=Resiliencia; sin token.
-
-**Resultado observado frente al esperado.** 200; aparece «La mentalidad de la remontada», con traducciones ES/EN y categoría Resiliencia.
-
-**Interpretación.** La búsqueda encuentra contenido editorial traducido y respeta el filtro de categoría. Este caso no cubre todas las combinaciones ni todos los idiomas.
-
-**Evidencia.** [Ver captura 10](docs/screenshots/Insomnia/insomnia-10-busqueda.png).
-
-### Prueba 11 · Crear evento sin sesión
-
-**Objetivo.** Impedir la creación de eventos sin sesión.
-
-**Petición y preparación.** `POST /events`. JSON de una charla válida, sin Bearer token.
-
-**Resultado observado frente al esperado.** 401; mensaje que requiere iniciar sesión.
-
-**Interpretación.** Un cuerpo válido no sustituye la autenticación necesaria para escribir.
-
-**Evidencia.** [Ver captura 11](docs/screenshots/Insomnia/Insomnia-11%20%C2%B7%20Crear%20evento%20sin%20sesi%C3%B3n.png).
-
-### Prueba 12 · Crear evento de prueba
-
-**Objetivo.** Crear un evento temporal con el organizador.
-
-**Petición y preparación.** `POST /events`. Bearer token; título Charla temporal Insomnia, fecha 2030-06-15T18:00:00Z, Madrid · Pruebas, categoría Liderazgo, speakerId=alison-patrick y capacity=1.
-
-**Resultado observado frente al esperado.** 201; evento con _id, creador, ponente, aforo 1 y attendees vacío.
-
-**Interpretación.** El script guarda event_id para aislar las pruebas. Se usa JSON sin cartel: esta prueba no demuestra subida de ficheros.
-
-**Evidencia.** [Ver captura 12](docs/screenshots/Insomnia/Insomnia-12%20%C2%B7%20Crear%20evento%20de%20prueba%C2%BB.png).
-
-### Prueba 13 · Detalle y asistentes
-
-**Objetivo.** Consultar el evento y su estructura de asistentes.
-
-**Petición y preparación.** `GET /events/{{ _.event_id }}`. event_id obtenido en 12; lectura pública.
-
-**Resultado observado frente al esperado.** 200; mismo evento, información del creador y attendees=[].
-
-**Interpretación.** El detalle permite explorar los datos y la lista de asistentes antes de reservar.
-
-**Evidencia.** [Ver captura 13](docs/screenshots/Insomnia/insomnia-13-detalle.png).
-
-### Prueba 14 · Editar evento propio
-
-**Objetivo.** Permitir al creador editar su evento.
-
-**Petición y preparación.** `PATCH /events/{{ _.event_id }}`. Bearer token del organizador; title=Charla temporal Insomnia editada.
-
-**Resultado observado frente al esperado.** 200; título actualizado conservando el identificador del evento.
-
-**Interpretación.** Demuestra edición autorizada del recurso creado en 12.
-
-**Evidencia.** [Ver captura 14](docs/screenshots/Insomnia/Insomnia-14%20%C2%B7%20Editar%20evento%20propio.png).
-
-### Prueba 15 · Registro segundo usuario
-
-**Objetivo.** Crear una identidad distinta para comprobar autorización.
-
-**Petición y preparación.** `POST /auth/register`. name=Asistente Insomnia, other_email y password del entorno; registro público.
-
-**Resultado observado frente al esperado.** 201; segundo usuario con identificador distinto, role=user y token.
-
-**Interpretación.** El script guarda other_token. La captura se revisó de nuevo después de ocultar el token.
-
-**Evidencia.** [Ver captura 15](docs/screenshots/Insomnia/Imsomnia-15%20%C2%B7%20Registro%20segundo%20usuario.png). Oculté el token antes de incorporarla al repositorio.
-
-### Prueba 16 · Edición ajena denegada
-
-**Objetivo.** Impedir que otro usuario edite el evento.
-
-**Petición y preparación.** `PATCH /events/{{ _.event_id }}`. Bearer other_token; title=Cambio no autorizado sobre event_id.
-
-**Resultado observado frente al esperado.** 403; «Solo la persona creadora puede modificar este evento.».
-
-**Interpretación.** La sesión es válida, pero no tiene permiso sobre ese recurso. No debe confundirse con el 401 de ausencia de sesión.
-
-**Evidencia.** [Ver captura 16](docs/screenshots/Insomnia/Insomnia-16%20%C2%B7%20Edici%C3%B3n%20ajena%20denegada.png).
-
-### Prueba 17 · Borrado ajeno denegado
-
-**Objetivo.** Impedir el borrado por un usuario ajeno.
-
-**Petición y preparación.** `DELETE /events/{{ _.event_id }}`. Bearer other_token sobre el evento del organizador.
-
-**Resultado observado frente al esperado.** 403; mismo mensaje de restricción por creador.
-
-**Interpretación.** El evento sigue disponible para la reserva posterior; la autenticación por sí sola no autoriza el borrado.
-
-**Evidencia.** [Ver captura 17](docs/screenshots/Insomnia/Insomnia-17%20%C2%B7%20Borrado%20ajeno%20denegado.png).
-
-### Prueba 18 · Reservar única plaza
-
-**Objetivo.** Insertar al asistente en la única plaza disponible.
-
-**Petición y preparación.** `POST /events/{{ _.event_id }}/attendance`. Bearer other_token; language=es; evento con capacity=1 y sin asistentes.
-
-**Resultado observado frente al esperado.** 200; attendees contiene a Asistente Insomnia, mensaje de plaza confirmada y email.status=sent.
-
-**Interpretación.** Demuestra la relación de asistencia en la respuesta del evento. sent indica aceptación SMTP de Mailtrap Sandbox, no entrega a Gmail ni prueba visual del email.
-
-**Evidencia.** [Ver captura 18](docs/screenshots/Insomnia/insomnia-18-reserva.png).
-
-### Prueba 19 · Aforo completo
-
-**Objetivo.** Evitar superar el aforo.
-
-**Petición y preparación.** `POST /events/{{ _.event_id }}/attendance`. Bearer token del organizador; intentar reservar después de 18.
-
-**Resultado observado frente al esperado.** 409; «El evento ya está completo.».
-
-**Interpretación.** El límite de una plaza impide incorporar al segundo usuario. Es una prueba secuencial; no demuestra comportamiento bajo solicitudes concurrentes.
-
-**Evidencia.** [Ver captura 19](docs/screenshots/Insomnia/insomnia-19-aforo-completo.png).
-
-### Prueba 20 · Cancelar reserva
-
-**Objetivo.** Cancelar la asistencia y liberar la plaza.
-
-**Petición y preparación.** `POST /events/{{ _.event_id }}/attendance`. Bearer other_token; repetir la operación de asistencia con language=es.
-
-**Resultado observado frente al esperado.** 200; attendees=[], «Tu asistencia se ha cancelado.» y email.status=sent.
-
-**Interpretación.** La ruta alterna reserva/cancelación. La aceptación del correo corresponde al Sandbox. La relación inversa en users requiere evidencia de MongoDB aparte.
-
-**Evidencia.** [Ver captura 20](docs/screenshots/Insomnia/insomnia-20-cancelacion.png).
-
-### Prueba 21 · ID malformado
-
-**Objetivo.** Rechazar un identificador malformado.
-
-**Petición y preparación.** `GET /events/no-es-un-id`. ID literal no-es-un-id; consulta pública.
-
-**Resultado observado frente al esperado.** 400; «El identificador del evento no es válido.».
-
-**Interpretación.** El formato inválido se trata como error del cliente con mensaje legible, sin exponer un error interno.
-
-**Evidencia.** [Ver captura 21](docs/screenshots/Insomnia/insomnia-21-id-malformado.png).
-
-### Prueba 22 · ID inexistente
-
-**Objetivo.** Distinguir un ID válido que no existe.
-
-**Petición y preparación.** `GET /events/000000000000000000000000`. ID 000000000000000000000000; consulta pública.
-
-**Resultado observado frente al esperado.** 404; «No hemos encontrado ese evento.».
-
-**Interpretación.** El recurso inexistente devuelve 404, a diferencia del formato inválido de 21.
-
-**Evidencia.** [Ver captura 22](docs/screenshots/Insomnia/Insomnia-22%20%C2%B7%20ID%20inexistente.png).
-
-### Prueba 23 · Ponente inválido
-
-**Objetivo.** Validar el catálogo de ponentes desde el backend.
-
-**Petición y preparación.** `PATCH /events/{{ _.event_id }}`. Bearer token del creador; speakerId=inventado.
-
-**Resultado observado frente al esperado.** 400; «Elige un ponente válido.».
-
-**Interpretación.** La API rechaza un valor fuera del catálogo aunque se envíe sin pasar por el formulario.
-
-**Evidencia.** [Ver captura 23](docs/screenshots/Insomnia/insomnia-23-ponente-invalido.png).
-
-### Prueba 24 · Aforo inválido
-
-**Objetivo.** Validar el límite mínimo del aforo.
-
-**Petición y preparación.** `PATCH /events/{{ _.event_id }}`. Bearer token del creador; capacity=0.
-
-**Resultado observado frente al esperado.** 400; «El aforo debe ser un número entero entre 1 y 10000.».
-
-**Interpretación.** La validación del servidor complementa la del frontend. Esta captura verifica el cero, no todos los valores límite.
-
-**Evidencia.** [Ver captura 24](docs/screenshots/Insomnia/insomnia-24-aforo-invalido..png).
-
-### Prueba 25 · Eliminar evento temporal
-
-**Objetivo.** Eliminar el evento temporal con autorización.
-
-**Petición y preparación.** `DELETE /events/{{ _.event_id }}`. Bearer token de su creador y event_id de esta ejecución.
-
-**Resultado observado frente al esperado.** 204 No Content; cuerpo vacío, 0 B.
-
-**Interpretación.** La ausencia de JSON es correcta para 204. Se elimina solo el evento de pruebas y se verifica su ausencia en 26.
-
-**Evidencia.** [Ver captura 25](docs/screenshots/Insomnia/Insomnia-25%20%C2%B7%20Eliminar%20evento%20temporal.png).
-
-### Prueba 26 · Confirmar eliminación
-
-**Objetivo.** Comprobar que el borrado se ha aplicado.
-
-**Petición y preparación.** `GET /events/{{ _.event_id }}`. Consultar event_id después de 25; sin autenticación.
-
-**Resultado observado frente al esperado.** 404; «No hemos encontrado ese evento.».
-
-**Interpretación.** La secuencia 25–26 demuestra que el recurso eliminado deja de estar disponible. Las dos cuentas de prueba permanecen.
-
-**Evidencia.** [Ver captura 26](docs/screenshots/Insomnia/insomnia-26-evento-eliminado.png).
-
-### Prueba 27 · Subir avatar (manual)
-
-**Objetivo.** Comprobar la subida multipart de un avatar a Cloudinary.
-
-**Petición y preparación.** `PATCH /auth/me`. Bearer token; campo avatar de tipo File. Debe seleccionarse una imagen real JPG/PNG/WebP, de hasta 4 MB (límite ajustado al preparar Vercel).
-
-**Resultado observado frente al esperado.** La nueva ejecución devuelve 200, success=true y data.avatar con URL HTTPS de res.cloudinary.com, dentro de kelsets-talks/avatars. En el formulario multipart se ve un archivo JPEG seleccionado. Coincide con el resultado esperado.
-
-**Interpretación.** La primera ejecución devolvió avatar vacío: un 200 por sí solo no acreditaba la subida. Se repitió seleccionando un JPEG real y la nueva captura demuestra que la API devuelve el recurso alojado en Cloudinary. La colección versionada exige también una URL válida para evitar ese falso positivo. Esta captura no acredita sustitución de un avatar previo ni limpieza tras un fallo.
-
-**Evidencia.** [Ver captura 27](docs/screenshots/Insomnia/insomnia-27-avatar.png).
-
-### Prueba 28 · Email inválido
-
-**Objetivo.** Rechazar un correo con formato inválido.
-
-**Petición y preparación.** `POST /auth/register`. Registro con name=Validación, email=correo-sin-formato y contraseña del entorno.
-
-**Resultado observado frente al esperado.** 400; «Escribe un email válido.».
-
-**Interpretación.** La API aplica validación de email independientemente de los controles del navegador.
-
-**Evidencia.** [Ver captura 28](docs/screenshots/Insomnia/insomnia-28-email-invalido.png).
-
-### Alcance y siguientes evidencias
-
-Estas pruebas cubren el recorrido local de autenticación, CRUD, permisos, ordenación, asistencia y validación de entrada. No sustituyen las pruebas de concurrencia, la revisión de todos los estados del frontend ni la repetición sobre las URLs desplegadas. Para la entrega hay que añadir las capturas de MongoDB (referencias de usuario/evento sin secretos), Cloudinary, Mailtrap HTML ES/EN y Vercel siguiendo la [guía de capturas](docs/GUIA-CAPTURAS.md). Las dos cuentas de demostración permanecen en Atlas; el evento temporal se eliminó en 25.
-
-## MongoDB: asistentes y ocupación de demostración
-
-La agenda editorial de 2027 incorpora asistentes ficticios para mostrar el recorrido completo de reservas, la ordenación por popularidad y los distintos estados de disponibilidad. No son registros de clientes ni testimonios de asistencia real. La interfaz ES/EN identifica los eventos precargados con «Incluye asistentes ficticios · Proyecto académico».
-
-### Carga reproducible y relaciones
-
-`npm run seed:attendance --prefix backend -- --dry-run` muestra la distribución sin conectar a MongoDB. Sin `--dry-run`, el script utiliza la conexión local configurada y modifica exclusivamente los eventos con `seedKey` del catálogo editorial. Debe ejecutarse después de cargar las 12 charlas. No se ejecuta durante el arranque de la API ni durante la compilación de Vercel.
-
-Los usuarios de muestra tienen `isDemo: true`, nombres inventados y emails del dominio reservado `demo.kelsets.invalid`. Su contraseña se almacena con bcrypt a partir de un secreto aleatorio que no se guarda ni se publica. La carga no inicia sesión con esas cuentas y no envía correos. Las cuentas normales y los eventos creados desde la web se conservan.
-
-Cada asistencia persiste como ObjectId en `Event.attendees` y su referencia inversa en `User.attendingEvents`. Se utiliza una transacción de MongoDB para confirmar conjuntamente la carga. `$addToSet` evita duplicados; se añaden únicamente las plazas necesarias para alcanzar el objetivo, contando también las reservas existentes. Repetir la carga no elimina asistentes ni reduce el aforo. Si nuevas reservas superan el objetivo, se conservan. El indicador `demoAttendance` permite informar en la interfaz sobre el origen ficticio de parte de los datos.
-
-### Distribución y mensajes
-
-| Periodo editorial | Ocupación inicial buscada | Mensaje ES / EN |
+| Campo | Tipo | Tratamiento |
 | --- | --- | --- |
-| Hasta el 31/03/2027 | Quedan 5, 7 o 9 plazas según la charla | Últimas plazas · ¡No te quedes sin la tuya! / Last few places · Book yours! |
-| Abril–junio de 2027 | Aproximadamente 63–74 % ocupado | No te quedes sin tu plaza / Secure your place |
-| Julio–diciembre de 2027 | Aproximadamente 19–31 % ocupado | Plazas disponibles / Places available |
+| `name` | Texto | Nombre obligatorio, con espacios exteriores eliminados |
+| `email` | Texto | Correo único, validado y convertido a minúsculas |
+| `password` | Texto protegido | Se guarda con bcrypt y se excluye de las consultas ordinarias |
+| `avatar` | Texto | URL de imagen, si existe |
+| `role` | Texto | Permisos de usuario o administrador |
+| `attendingEvents` | Lista de identificadores | Referencias a eventos confirmados |
+| `isDemo` | Booleano | Identifica perfiles ficticios de demostración |
 
-Las fechas determinan la distribución inicial, pero el banner se calcula a partir del aforo y los asistentes actuales. Así no promete escasez si realmente quedan muchas plazas. Muestra la cantidad exacta disponible; al alcanzar el aforo indica «Aforo completo» y, pasada la fecha, «Evento finalizado». La reserva y cancelación actualizan los datos que utiliza el mismo componente, reutilizado en tarjetas y fichas. El banner está en el bloque de texto, sin superponerse a los carteles. La lista extensa de asistentes tiene desplazamiento propio.
+### Evento
 
-### Evidencia que recoger en MongoDB y en la web
+| Campo | Tipo | Tratamiento |
+| --- | --- | --- |
+| `title` y `description` | Texto | Longitud y contenido obligatorio validados |
+| `date` | Fecha | Almacenamiento como fecha y presentación en horario de Madrid |
+| `location` | Texto | Lugar de celebración |
+| `category` | Texto | Valor de un catálogo compartido dentro de cada aplicación |
+| `poster` | Texto | Ruta editorial o URL del cartel subido |
+| `capacity` | Número | Aforo entero positivo |
+| `creator` | Identificador | Referencia a la persona creadora |
+| `attendees` | Lista de identificadores | Referencias a usuarios asistentes |
+| `speakerId` | Texto | Ponente, independiente de la persona creadora |
+| `translations` | Objeto | Versiones editoriales opcionales del título y la descripción |
+| `seedKey` | Texto | Clave estable para repetir la carga sin duplicar eventos |
 
-Plan de capturas en `docs/screenshots/MongoDB/`. Las evidencias revisadas y sus nombres definitivos se enumeran al final de este bloque; siguen pendientes la versión EN y la reserva posterior a la precarga:
+### Relaciones y datos de demostración
 
-1. **mongodb-01-demo-events.png**: Atlas → Browse Collections → events. Filtrar `{ "seedKey": "leadership" }` y mostrar `seedKey`, `capacity`, `demoAttendance` y el array `attendees`. No mostrar credenciales ni URI.
-2. **mongodb-02-demo-user.png**: users, filtrar `{ "email": "attendee-001@demo.kelsets.invalid" }`. Mostrar `_id`, `name`, `isDemo` y `attendingEvents`; ocultar el hash de `password`. El ObjectId del usuario debe estar en los asistentes del evento y el del evento en su lista inversa.
-3. **mongodb-03-occupancy.png**: en Aggregations sobre events, usar el pipeline de abajo. Mostrar aforo, confirmadas y libres de las 12 charlas; comprobar que no hay valores negativos ni aforo superado.
-4. **web-ocupacion-es.png / web-ocupacion-en.png**: mostrar las tarjetas de distintos periodos y sus banners en ambos idiomas. Los números deben coincidir con la agregación de MongoDB.
-5. **mongodb-04-reserva-real.png**: con una cuenta de prueba normal, reservar una charla y comprobar ambas referencias y el incremento de asistentes. Cancelar después y verificar que se libera una plaza sin borrar los asistentes ficticios.
+La asistencia vincula `Event.attendees` con `User.attendingEvents`. La reserva añade ambas referencias; la cancelación las retira. La eliminación de un evento limpia también las referencias de los usuarios. Estas operaciones utilizan transacciones.
+
+El catálogo inicial contiene doce charlas, tres por ponente. La carga de demostración documentada el 13/09/2026 añadió 240 perfiles ficticios y 1.049 relaciones de asistencia. Esas cifras describen aquella carga, no un recuento permanente de la base de datos. La web identifica expresamente los asistentes de demostración.
+
+La carga puede repetirse sin reemplazar las reservas existentes ni la autoría. No envía correos ni se ejecuta automáticamente al desplegar. Para contrastar la ocupación en Atlas se utiliza esta agregación:
 
 ```json
 [
   { "$match": { "demoAttendance": true } },
-  { "$project": { "_id": 0, "seedKey": 1, "date": 1, "capacity": 1,
+  { "$sort": { "date": 1 } },
+  { "$project": {
+    "_id": 0,
+    "charla": "$seedKey",
+    "aforo": "$capacity",
     "confirmadas": { "$size": "$attendees" },
-    "libres": { "$subtract": ["$capacity", { "$size": "$attendees" }] } } },
-  { "$sort": { "date": 1 } }
+    "libres": { "$subtract": ["$capacity", { "$size": "$attendees" }] }
+  } }
 ]
 ```
 
-Validación de código: 17 pruebas backend y 42 frontend correctas, más build de producción. Se comprueban distribución trimestral, planificación repetible sin duplicados, conservación de reservas existentes y cambios de estado al llenarse o finalizar un evento. Las transacciones de esta carga no sustituyen la revisión pendiente de concurrencia del controlador público de reservas.
+## 8. Gestión de errores y comportamiento responsable
 
-### Resultado de la carga local · 13/09/2026
+He aplicado las siguientes medidas:
 
-Carga realizada en Atlas: 240 perfiles ficticios disponibles y 1.049 relaciones de asistencia distribuidas entre las 12 charlas editoriales. La comprobación posterior en lectura verifica que ningún evento supera el aforo, que no hay asistentes duplicados y que cada asistente ficticio de un evento conserva la referencia inversa. La API devuelve los recuentos y la marca de demostración. La charla creada manualmente se conserva con su reserva existente.
+- validación de correo, contraseña, fechas, aforo, categorías y ponentes;
+- contraseñas protegidas mediante bcrypt con factor de coste 12;
+- verificación del JWT, del usuario y de la versión de sesión;
+- control de propiedad al editar o eliminar un evento;
+- selección explícita de campos admitidos para impedir cambios de autoría o asistentes desde el formulario;
+- reserva atómica con control de aforo y transacción entre colecciones;
+- rechazo de ediciones basadas en una versión obsoleta del evento;
+- imágenes JPG, PNG o WebP con un máximo de 4 MB;
+- límite de veinte segundos para las peticiones del cliente y cancelación al abandonar la página;
+- cierre de sesión ante un error de autenticación, conservándola ante un fallo de red;
+- mensajes de carga, error y confirmación accesibles.
 
-| Charla (`seedKey`) | Confirmadas | Libres |
-| --- | ---: | ---: |
-| leadership | 173 | 7 |
-| data-questions | 131 | 9 |
-| comeback | 135 | 5 |
-| teamwork | 126 | 74 |
-| pressure | 81 | 39 |
-| last-quarter | 177 | 63 |
-| small-experiments | 33 | 107 |
-| trust | 30 | 130 |
-| shared-decisions | 43 | 97 |
-| innovation | 36 | 114 |
-| resilience | 58 | 132 |
-| team-agreements | 26 | 114 |
+Los errores usan códigos diferenciados: `400` para datos inválidos, `401` para falta de autenticación, `403` para permisos insuficientes, `404` para recursos inexistentes y `409` para conflictos. Los errores de conexión a la base de datos se comunican con `503`.
 
-[Vista real de la agenda en castellano](docs/screenshots/MongoDB/web-ocupacion-es.png), revisada en navegador a 1440 px: los banners aparecen junto al texto, sin tapar las imágenes. Esta captura corresponde a la web, no a la consola de Atlas. Las capturas de Atlas revisadas se describen a continuación. La versión inglesa y el recorrido de reserva posterior a la precarga quedan pendientes de captura.
+Las credenciales se configuran fuera de Git. Los archivos `.env.example` contienen referencias de configuración. El acceso limita intentos por correo mediante contadores en MongoDB; esto no constituye una protección global contra ataques distribuidos.
 
-Se repitió la carga contra Atlas y las 12 charlas conservaron exactamente los mismos recuentos: no se añadieron reservas duplicadas. La creación de usuarios consulta los emails estables antes de insertar.
+La interfaz incluye etiquetas visibles, foco perceptible, navegación por teclado, enlace para saltar al contenido y avisos accesibles. El carrusel es manual y respeta la preferencia de movimiento reducido. El alcance de la revisión está explicado en [Accesibilidad y posicionamiento](docs/ACCESIBILIDAD-SEO.md).
 
-### Capturas de Atlas revisadas · 13/09/2026
+## 9. Pruebas
 
-| Evidencia | Qué demuestra |
+Los comandos de comprobación son:
+
+```bash
+npm test
+npm run build
+npm run check:build --prefix frontend
+```
+
+### Pruebas automáticas ordinarias
+
+La validación final documentada el 19/09/2026 registra **92 pruebas superadas: 28 del servidor y 64 de la interfaz**, además de la compilación y la comprobación de catorce documentos HTML.
+
+Las pruebas cubren validaciones, autenticación, errores, peticiones, traducciones y carga de recursos. Las pruebas de los formularios y sus funciones de estado comprueban, entre otros casos, permisos, precarga de edición, cancelación de peticiones, respuestas obsoletas y conservación de datos ante errores.
+
+### Integraciones con MongoDB Atlas
+
+Las dos integraciones se ejecutaron por separado sobre bases temporales y se omiten en el comando ordinario. La de asistencia comprobó la competencia por la última plaza, la cancelación, la reversión de una escritura fallida, las referencias al eliminar y las reglas de eventos pasados. La de recuperación comprobó cambios de contraseña concurrentes y revocación de sesiones. Las bases temporales se eliminaron al terminar y estas pruebas no enviaron correo.
+
+### Peticiones con Insomnia
+
+La revisión local del 13/09/2026 documenta 28 resultados esperados: registro, acceso, duplicados, consultas, permisos, creación, edición, asistencia, aforo, identificadores, validaciones, eliminación y avatar. Los errores deliberados forman parte de los resultados correctos.
+
+La [validación detallada](docs/insomnia/VALIDACION-DETALLADA.md) conserva el objetivo, la petición, el resultado y la interpretación de cada caso. La [colección y sus instrucciones](docs/insomnia/README.md) permiten repetir el recorrido. No se presenta esta ejecución local como una repetición completa sobre producción.
+
+### Comprobaciones manuales en producción
+
+El 19/09/2026 comprobé recuperación de contraseña e inicio de sesión posterior, reserva y cancelación, correos en Mailtrap, creación de «Tu mente y la presión», edición de descripción y hora y persistencia del cartel tras guardar y recargar.
+
+La recuperación completa y algunos avisos transitorios se documentaron mediante observación manual, sin captura de cada paso. Las imágenes siguientes muestran los estados concretos que quedaron guardados. Mailtrap Sandbox acredita recepción en el entorno de pruebas, no entrega a buzones personales.
+
+## 10. Resultados
+
+| Métrica o resultado | Comprobación documentada |
 | --- | --- |
-| [01 · Proyecto y clúster](docs/screenshots/MongoDB/MongoDBAtlas-1.png) | Proyecto del máster y clúster kelsets-talks configurado. No acredita por sí sola las relaciones. |
-| [02 · Colecciones](docs/screenshots/MongoDB/MongoDBAtlas-2%20kelsets%20talks.png) | Data Explorer muestra 13 eventos y 244 usuarios: 12 charlas editoriales más la creada en la web; 240 perfiles ficticios más cuatro cuentas existentes. |
-| [03 · Filtro del evento](docs/screenshots/MongoDB/MongoDBAtlas-3%20events%20filter.png) | leadership: aforo 180, 173 asistentes, demoAttendance=true, fecha y ponente. Quedan 7 plazas, como en la web. |
-| [04 · Asistentes desplegados](docs/screenshots/MongoDB/MongoDBAtlas-4%20asistentes.png) | Array de 173 referencias ObjectId, con las primeras 25 visibles y acceso a las 148 restantes. |
-| [06 · Usuario ficticio](docs/screenshots/MongoDB/MongoDBAtlas-6%20usuario.png) | Lucía Vega, email de demostración, isDemo=true y 12 eventos; hash oculto en la versión publicada. |
-| [07 · Referencias del usuario](docs/screenshots/MongoDB/MongoDBAtlas-7%20usuario%20detalles.png) | Los 12 ObjectId de attendingEvents desplegados, con hash oculto. |
-| [08 · Editor de agregaciones](docs/screenshots/MongoDB/MongoDBAtlas-8%20events%20agregations.png) | Preparación de la consulta en events. El pipeline está vacío: esta captura es de contexto, no de resultados calculados. |
-| [09 · Resultado de la agregación](docs/screenshots/MongoDB/MongoDBAtlas-9%20ocupacion.png) | Pipeline y vista previa de aforo, confirmadas y libres calculados desde los documentos. |
+| Catálogo editorial inicial | 12 charlas |
+| Ponentes ficticios | 4, con 3 charlas por ponente |
+| Perfiles de demostración | 240 en la carga del 13/09/2026 |
+| Relaciones de asistencia de demostración | 1.049 en aquella carga |
+| Pruebas ordinarias | 92 superadas el 19/09/2026 |
+| Integraciones con Atlas | 2 ejecutadas por separado |
+| Casos revisados en Insomnia | 28 resultados esperados en entorno local |
+| Compilación y documentos HTML | Compilación correcta y 14 documentos comprobados |
+| Publicación | Interfaz y API desplegadas en Vercel |
+| Creación y edición desde la web | Comprobadas en producción |
+| Cartel después de guardar y recargar | Conservado en la prueba manual |
+| Correo de reserva y cancelación | Recibido y revisado en Mailtrap Sandbox |
 
-**Relación en ambos sentidos.** El identificador de Lucía Vega en la captura 07 coincide con el primer ObjectId de attendees del evento leadership (04). El primer identificador de attendingEvents de Lucía coincide con el _id de leadership (03–04). La evidencia acredita referencias persistidas entre las colecciones, no un contador independiente de la interfaz.
+El número total de eventos puede aumentar cuando se crean charlas desde la web. Por ese motivo, las capturas históricas pueden mostrar trece encuentros aunque el catálogo editorial inicial sea de doce.
 
-**Interpretación de la agregación.** La captura 09 filtra demoAttendance=true, ordena por fecha y proyecta charla, aforo, confirmadas y libres. Se ven completos leadership (180/173/7), data-questions (140/131/9), comeback (140/135/5), teamwork (200/126/74) y pressure (120/81/39). Los tres números expresan aforo/confirmadas/libres. Atlas muestra «Sample of 10 documents» y el panel tiene desplazamiento: la captura es una vista previa parcial, no una imagen de las 12 filas completas. La tabla completa anterior procede de la comprobación directa en Atlas mediante el script, que revisó las 12 charlas, duplicados, aforo y referencias inversas.
+## 11. Evolución del desarrollo
 
-La consulta es de lectura y no modifica datos. Los totales reflejan el momento de la revisión y pueden cambiar con nuevas reservas. La captura 05 se descartó porque mostraba hashes de varias cuentas; no se publica. Las versiones iniciales sin ocultar el hash fueron sustituidas antes de añadir las capturas a Git.
+He organizado el trabajo en los siguientes hitos:
 
-Bloque de evidencia inicial de MongoDB completado. Siguen pendientes las capturas de Cloudinary, Mailtrap, la vista de banners EN, la reserva posterior a la precarga y el recorrido sobre las URLs desplegadas; no se consideran verificadas por estas imágenes.
+1. definición de la identidad de KelseTS Talks, categorías y cuatro ponentes ficticios;
+2. diseño de la interfaz y del catálogo inicial de doce charlas;
+3. creación de modelos, autenticación y rutas de la API;
+4. conexión de la agenda a MongoDB Atlas;
+5. incorporación de reservas, cancelación y referencias entre colecciones;
+6. subida de carteles a Cloudinary y creación de la primera charla desde la web;
+7. comprobación de peticiones con Insomnia y carga de asistencia de demostración;
+8. integración de correos y revisión de sus imágenes en Mailtrap;
+9. despliegue de la interfaz y del servidor en Vercel;
+10. incorporación de recuperación de contraseña y edición desde la web;
+11. refuerzo de concurrencia, validaciones, sesiones y avisos;
+12. separación de componentes y estilos, comprobaciones finales y memoria de entrega.
 
-## Evidencia visual de Cloudinary · 13/09/2026
+Este orden permitió verificar primero la API y después los recorridos completos desde el navegador. Las comprobaciones del 19 de septiembre resolvieron tareas que todavía figuraban como pendientes durante las etapas iniciales.
 
-La [captura del cartel en Cloudinary](docs/screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png) muestra el recurso deportivo utilizado para la charla «Liderazgo en entornos convulsos», dentro de `kelsets-talks/events`. En el panel Summary se observan formato JPG, tamaño 142.49 KB y dimensiones 1122 × 1402 píxeles. El recurso figura con acceso Public y creación mediante API el 12 de septiembre de 2026.
+## 12. Evidencias
 
-Esta evidencia acredita que el cartel está alojado en Cloudinary y permite reconocer el mismo recurso mostrado en la agenda. El Public ID identifica la imagen y no es una credencial. La captura no muestra API Key, API Secret ni tokens, por lo que es apta para el repositorio. Complementa la creación desde el formulario y la prueba 27 de Insomnia, que acredita por separado la respuesta de subida de un avatar con URL de Cloudinary. No demuestra por sí sola los casos de eliminación o sustitución de archivos ni el funcionamiento del despliegue.
+He conservado las capturas en [docs/screenshots](docs/screenshots). Se muestran a continuación dentro de la memoria, con su explicación. Las imágenes de la web y de los mensajes seleccionados presentan el contenido en castellano; las herramientas externas conservan los textos propios de su interfaz y los identificadores técnicos originales.
 
-## Corrección de imágenes en los correos de prueba
+| N.º | Evidencia | Archivo | Estado |
+| ---: | --- | --- | :---: |
+| 1 | Agenda y plazas disponibles | [web-ocupacion-es.png](docs/screenshots/MongoDB/web-ocupacion-es.png) | Incorporada |
+| 2 | Charla publicada | [03-charla-publicada.png](docs/screenshots/entrega-2026-09-19/03-charla-publicada.png) | Incorporada |
+| 3 | Formulario de edición | [05-formulario-edicion.png](docs/screenshots/entrega-2026-09-19/05-formulario-edicion.png) | Incorporada |
+| 4 | Descripción guardada | [04-descripcion-editada.png](docs/screenshots/entrega-2026-09-19/04-descripcion-editada.png) | Incorporada |
+| 5 | Protección del perfil | [insomnia-07-sin-token.png](docs/screenshots/Insomnia/insomnia-07-sin-token.png) | Incorporada |
+| 6 | Consulta ordenada de eventos | [insomnia-08-agenda-fecha.png](docs/screenshots/Insomnia/insomnia-08-agenda-fecha.png) | Incorporada |
+| 7 | Creación de un evento temporal | [Insomnia-12 · Crear evento de prueba».png](docs/screenshots/Insomnia/Insomnia-12%20%C2%B7%20Crear%20evento%20de%20prueba%C2%BB.png) | Incorporada |
+| 8 | Edición del evento propio | [Insomnia-14 · Editar evento propio.png](docs/screenshots/Insomnia/Insomnia-14%20%C2%B7%20Editar%20evento%20propio.png) | Incorporada |
+| 9 | Edición ajena denegada | [Insomnia-16 · Edición ajena denegada.png](docs/screenshots/Insomnia/Insomnia-16%20%C2%B7%20Edicio%CC%81n%20ajena%20denegada.png) | Incorporada |
+| 10 | Reserva de la única plaza | [insomnia-18-reserva.png](docs/screenshots/Insomnia/insomnia-18-reserva.png) | Incorporada |
+| 11 | Rechazo por aforo completo | [insomnia-19-aforo-completo.png](docs/screenshots/Insomnia/insomnia-19-aforo-completo.png) | Incorporada |
+| 12 | Cancelación de asistencia | [insomnia-20-cancelacion.png](docs/screenshots/Insomnia/insomnia-20-cancelacion.png) | Incorporada |
+| 13 | Consulta después de eliminar | [insomnia-26-evento-eliminado.png](docs/screenshots/Insomnia/insomnia-26-evento-eliminado.png) | Incorporada |
+| 14 | Evento almacenado en Atlas | [MongoDBAtlas-3 events filter.png](docs/screenshots/MongoDB/MongoDBAtlas-3%20events%20filter.png) | Incorporada |
+| 15 | Referencias del usuario ficticio | [MongoDBAtlas-7 usuario detalles.png](docs/screenshots/MongoDB/MongoDBAtlas-7%20usuario%20detalles.png) | Incorporada |
+| 16 | Agregación de ocupación | [MongoDBAtlas-9 ocupacion.png](docs/screenshots/MongoDB/MongoDBAtlas-9%20ocupacion.png) | Incorporada |
+| 17 | Cartel alojado en Cloudinary | [Cloudinary -1cartel charla.png](docs/screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png) | Incorporada |
+| 18 | Correo de confirmación | [08-mailtrap-confirmacion.png](docs/screenshots/entrega-2026-09-19/08-mailtrap-confirmacion.png) | Incorporada |
+| 19 | Correo de cancelación | [06-mailtrap-cancelacion.png](docs/screenshots/entrega-2026-09-19/06-mailtrap-cancelacion.png) | Incorporada |
+| 20 | Enlace y pie del correo | [07-mailtrap-cancelacion-detalle.png](docs/screenshots/entrega-2026-09-19/07-mailtrap-cancelacion-detalle.png) | Incorporada |
+| 21 | Adaptación del correo a móvil | [Mailtrap -3 email confirmacion responsive sandbox.png](docs/screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png) | Incorporada |
+| 22 | Recuperación de acceso | [09-recuperacion-acceso.png](docs/screenshots/entrega-2026-09-19/09-recuperacion-acceso.png) | Incorporada |
+| 23 | Despliegue de la API | [01-vercel-api-ready.png](docs/screenshots/entrega-2026-09-19/01-vercel-api-ready.png) | Incorporada |
+| 24 | Despliegue de la interfaz | [02-vercel-frontend-ready.png](docs/screenshots/entrega-2026-09-19/02-vercel-frontend-ready.png) | Incorporada |
 
-La plantilla construía las URLs del logo y de los carteles locales a partir de PUBLIC_APP_URL. Con una dirección localhost esas imágenes dependen del servidor del ordenador y no son accesibles desde servicios externos. El envío SMTP ahora adjunta el logo y el cartel editorial como buffers inline y los referencia mediante CID; los carteles públicos de Cloudinary mantienen su URL. Se conserva el diseño ES/EN y los enlaces autenticados para gestionar la reserva.
+### 12.1. Agenda y plazas disponibles
 
-Los recursos finales se empaquetan en el backend para independizar el correo del servidor del frontend. Solo se admite la lista de carteles del catálogo, sin permitir que una ruta enviada por el usuario seleccione archivos arbitrarios. Pruebas backend: 18 correctas, incluida la comprobación de buffers, correspondencia CID, ausencia de localhost en src y conservación de URLs Cloudinary. La inclusión de archivos se ha declarado en Vercel; falta comprobar el despliegue. Los mensajes anteriores no se actualizan; la evidencia visual debe tomarse de mensajes nuevos.
+La agenda en castellano muestra búsqueda, categorías, ordenación y plazas disponibles. La imagen histórica contiene trece encuentros: los doce del catálogo inicial y una charla creada desde la web. Las tarjetas identifican la asistencia ficticia.
 
-Mailtrap Sandbox aceptó las nuevas muestras de confirmación ES y cancelación EN con logo y cartel incluidos. La cancelación necesitó un reintento. Se enviaron a una dirección ficticia del Sandbox sin modificar reservas. La aceptación SMTP no sustituye mi revisión visual del HTML.
+![Agenda y plazas disponibles](docs/screenshots/MongoDB/web-ocupacion-es.png)
 
-### Confirmación ES revisada visualmente en Mailtrap
+### 12.2. Charla publicada
 
-- [Confirmación en escritorio](docs/screenshots/Mailtrap/Mailtrap%20-2%20email%20confirmacion%20sandbox.png): se ven el logo, el cartel completo, el título, fecha del 18/02/2027 a las 19:00 Europe/Madrid, ubicación y botón para gestionar la reserva. Confirma que las imágenes incluidas en el nuevo mensaje se visualizan en Mailtrap.
-- [Confirmación en vista móvil](docs/screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png): cabecera, texto e imagen se adaptan al ancho del dispositivo simulado. La captura muestra la parte superior; no acredita por sí sola el pie y el botón inferior ni todos los clientes de correo.
-- La captura 01 de la bandeja corresponde a un mensaje anterior con imágenes sin cargar. Se conserva como evidencia del problema inicial, no como resultado de la corrección.
+La ficha pública de «Tu mente y la presión» muestra el cartel cargado, Travis Wood, fecha y hora, ubicación y aforo. La sesión de la creadora permite ver el enlace para editar la experiencia.
 
-Las muestras se identifican como «Araceli · muestra del proyecto» y se reciben en Sandbox, sin representar una reserva nueva ni entrega a un destinatario externo. La captura HTML de cancelación EN se revisó posteriormente y se describe a continuación.
+![Charla publicada](docs/screenshots/entrega-2026-09-19/03-charla-publicada.png)
 
-### Cancelación EN revisada visualmente en Mailtrap
+### 12.3. Formulario de edición
 
-La [captura de cancelación en inglés](docs/screenshots/Mailtrap/Mailtrap%20-4%20email%20responsive%20english%20version%20sandbox.png) muestra el mensaje nuevo seleccionado en My Sandbox y su vista HTML con simulación de tableta. Se ven el logo, el encabezado «Your booking has been cancelled», el texto explicativo en inglés, la etiqueta BOOKING CANCELLED, el título traducido y la parte superior del cartel cargado. El destinatario es una dirección ficticia del Sandbox. El nombre de muestra conserva el texto en castellano porque es un dato del usuario, no una etiqueta de la plantilla.
+El formulario aparece precargado con el título, fecha, hora, lugar, categoría, aforo y ponente. El aviso explica que el cartel se conserva si no se elige otra imagen.
 
-La captura cubre la parte superior del mensaje; no muestra el botón inferior ni el pie. Junto a la confirmación ES en escritorio y móvil, completa la evidencia visual básica de ambos estados e idiomas. El indicador HTML Check visible contiene avisos que no se han analizado; no se presenta esta revisión como compatibilidad universal con todos los clientes de correo. No hay credenciales visibles.
+![Formulario de edición](docs/screenshots/entrega-2026-09-19/05-formulario-edicion.png)
 
-Validación final antes del commit de correo y evidencias: 18 pruebas backend y 42 frontend correctas (60 en total), compilación de producción correcta y enlaces locales de documentación comprobados. Las copias del logo y los 12 carteles incluidas en el backend coinciden byte a byte con los recursos finales del frontend.
+### 12.4. Descripción guardada
 
-## Publicación en Vercel — 13/09/2026
+La ficha muestra la descripción que comienza «Pedir apoyo también es avanzar», la autoría y el contenido del ponente. Es el estado guardado tras la edición; la captura no muestra el instante del envío del formulario.
 
-Se han creado dos proyectos desde el mismo repositorio y el commit `da840d2`: frontend en https://kelse-ts-talks.vercel.app y backend en https://kelse-ts-talks-api.vercel.app/api. El frontend usa Vite, raíz `frontend`, `VITE_API_URL` apuntando a la API publicada y `VITE_PREVIEW_MODE=false`. El backend usa Express, raíz `backend`, con credenciales y configuración SMTP en variables privadas de Vercel. Los enlaces de correo y CORS apuntan al dominio público de la web.
+![Descripción guardada](docs/screenshots/entrega-2026-09-19/04-descripcion-editada.png)
 
-El primer acceso a la API devolvió 503: Atlas solo admitía la IP doméstica. Se configuró la regla `0.0.0.0/0` sin caducidad para la demostración y corrección. Esta regla admite intentos de conexión desde cualquier IPv4 y mantiene la autenticación obligatoria. Una vez aplicada, `/api/health` respondió 200; `/api/events` devolvió las 13 charlas con CORS correcto. La home pública muestra la agenda de Atlas y la ruta directa `/events` responde 200.
+### 12.5. Protección del perfil
 
-Se ha preparado `backend/.env.entrega`, ignorado por Git, para enviarlo por el canal privado de corrección solicitado en las indicaciones de entrega del máster. El repositorio conserva `.env.example` con marcadores y referencias a las URLs públicas. El archivo privado no contiene claves de HeyGen ni ElevenLabs. Pendientes: repetir el recorrido autenticado completo sobre producción, comprobar el correo desde ese flujo y recoger capturas de Vercel. Ver [guía de despliegue](docs/DESPLIEGUE.md).
+La consulta del perfil sin credencial de sesión devuelve 401 y solicita iniciar sesión. La comprobación de Insomnia aparece superada: el rechazo es el resultado esperado.
 
-## Preparación de Vercel y consistencia de reservas — 13/09/2026
+![Protección del perfil](docs/screenshots/Insomnia/insomnia-07-sin-token.png)
 
-Cada petición de la API espera a MongoDB. Las peticiones concurrentes reutilizan una única promesa de conexión; si falla, se permite un nuevo intento y se devuelve un error 503 comprensible. En Vercel se exporta Express sin arrancar un servidor con `listen`; el arranque local sigue esperando a MongoDB.
+### 12.6. Consulta ordenada de eventos
 
-La reserva y la cancelación escriben `Event.attendees` y `User.attendingEvents` dentro de una transacción. Así, un fallo en la segunda colección no deja una plaza ocupada sin su referencia inversa. La eliminación también retira conjuntamente el evento y las referencias de usuarios. Los correos se envían después del commit, para no duplicarlos durante los reintentos de MongoDB. La retirada de Cloudinary ocurre después del borrado confirmado; un fallo de ese servicio puede dejar una imagen pendiente de limpieza.
+La petición de agenda con orden por fecha devuelve 200. Se observa el comienzo de la lista y la comprobación superada; la captura no contiene todos los registros de la respuesta.
 
-El control de versiones del evento evita guardar una edición basada en un aforo o una lista de asistentes obsoletos: se devuelve 409 y se solicita recargar la ficha. El límite de carteles y avatares se reduce a 4 MB, dejando margen al multipart dentro del [límite de 4,5 MB de Vercel](https://vercel.com/docs/functions/limitations). Los mensajes nuevos se ofrecen en castellano e inglés.
+![Consulta ordenada de eventos](docs/screenshots/Insomnia/insomnia-08-agenda-fecha.png)
 
-Validación: 19 pruebas backend y 42 frontend, más una prueba de integración real contra una base temporal de Atlas. Esta última comprueba dos usuarios compitiendo por una plaza, cancelación, rechazo de edición obsoleta, reversión ante un fallo simulado de escritura y eliminación de referencias. No envía correos y elimina su base temporal al terminar. Se ejecuta desde `backend` con `RUN_DB_INTEGRATION=true node --test test/attendance.integration.test.js`; requiere `MONGODB_URI` y permiso para crear y eliminar esa base de pruebas. En `npm test` se omite para no depender de la red. Compilación de producción correcta. Queda por verificar el despliegue público y añadir sus capturas.
+### 12.7. Creación de un evento temporal
 
-## Recuperación de contraseña con Mailtrap — 19/09/2026
+La API local devuelve 201 al crear la charla temporal de Insomnia. La respuesta incluye identificador, persona creadora, aforo de una plaza y lista de asistentes vacía.
 
-Se incorpora «¿Has olvidado tu contraseña?» al acceso, con solicitud de enlace y formulario de nueva contraseña en castellano e inglés. El montaje de entrega utiliza Mailtrap Sandbox: el mensaje se consulta allí y no llega a la bandeja personal. El aviso está visible en la pantalla de recuperación.
+![Creación de un evento temporal](docs/screenshots/Insomnia/Insomnia-12%20%C2%B7%20Crear%20evento%20de%20prueba%C2%BB.png)
 
-El enlace caduca en 30 minutos, se almacena como hash SHA-256 y se consume mediante una actualización atómica. Solicitar otro sustituye el anterior. La contraseña se guarda con bcrypt y el cambio invalida las sesiones previas mediante una versión de sesión. La API no revela si el correo existe. Los límites se persisten en MongoDB para funcionar entre instancias de Vercel. Las páginas no se indexan y el token se transporta en el fragmento del enlace y después mediante POST HTTPS.
+### 12.8. Edición del evento propio
 
-La [guía de recuperación de contraseña](docs/RECUPERACION-CONTRASENA.md) recoge el flujo completo, los límites y las pruebas, además del procedimiento exacto para pasar a correo real: dominio y DNS, aprobación en Mailtrap, credenciales SMTP transaccionales, variables privadas de Vercel, redepliegue, retirada del aviso de Sandbox y validación de entrega. También identifica las mejoras pendientes (notificación de cambio, supervisión, límites globales y cola/reintentos). No se declara implementada ni probada la entrega a buzones reales.
+La modificación devuelve 200 y el título actualizado de la charla temporal. Se conserva el identificador del evento.
 
-Validación: 73 pruebas ordinarias correctas y una integración adicional de recuperación en una base temporal real de Atlas, con dos cambios concurrentes y revocación de sesión. Build y verificación de 14 documentos HTML correctos. La prueba automatizada de integración no envía correo. Tras el despliegue del commit `547235b` en ambos proyectos Vercel, se verificaron por HTTP las páginas y los endpoints de recuperación. Confirmé haber recuperado mi contraseña mediante Mailtrap y haber iniciado sesión correctamente en la web publicada. Esta prueba manual se realizó el 19/09/2026, sin captura; no se incluyen enlaces de recuperación, contraseñas ni secretos. La caducidad, el uso único y la revocación de sesiones se acreditan mediante la integración automatizada, no mediante esa confirmación manual.
+![Edición del evento propio](docs/screenshots/Insomnia/Insomnia-14%20%C2%B7%20Editar%20evento%20propio.png)
 
+### 12.9. Edición ajena denegada
 
-## Reserva y cancelación en producción — 19/09/2026
+Una segunda cuenta intenta cambiar el evento y recibe 403. La respuesta comunica que solo la persona creadora puede modificarlo en este caso.
 
-Tras recuperar el acceso, reservé «The Next Inch: liderazgo» en la web publicada. Se comprobó directamente en Chrome mi nombre en la lista de participantes y el aviso «¡Tu plaza está confirmada!». La ficha mostraba 174 de 180 plazas confirmadas y seis disponibles. Confirmé la recepción del correo de reserva en Mailtrap Sandbox.
+![Edición ajena denegada](docs/screenshots/Insomnia/Insomnia-16%20%C2%B7%20Edicio%CC%81n%20ajena%20denegada.png)
 
-A continuación, confirmé haber cancelado desde la web: la asistencia quedó desmarcada, aumentó el contador de plazas disponibles, apareció el mensaje de cancelación y recibí el correo correspondiente en Mailtrap. La cancelación y la recepción de los dos correos se acreditan mediante mi comprobación manual; no se guardaron capturas nuevas de estos pasos. Esta comprobación corresponde a Sandbox, no a entrega en un buzón personal. No acredita todavía la creación/edición de eventos ni la subida de ficheros en producción.
+### 12.10. Reserva de la única plaza
 
-## Edición desde la web — 19/09/2026
+La reserva devuelve 200 y muestra un asistente para un aforo de una plaza. El estado del correo indica aceptación SMTP en el entorno de pruebas, sin acreditar entrega externa.
 
-La prueba de entrega detectó que la API admitía editar eventos, pero faltaban el botón y la pantalla en el frontend. Se añade «Editar experiencia» para creadores y administradores, con ruta protegida, datos precargados, PATCH, estados de carga y errores ES/EN. La API conserva su control de permisos. El formulario mantiene el cartel y la fecha original si no se modifican; las fechas nuevas se envían como ISO con zona horaria. Vercel admite el enlace directo y noindex.
+![Reserva de la única plaza](docs/screenshots/Insomnia/insomnia-18-reserva.png)
 
-52 pruebas frontend, build y comprobación de 14 documentos HTML correctos. Corrección publicada en `f249d31`, con ambos despliegues Vercel correctos.
+### 12.11. Rechazo por aforo completo
 
-Confirmo la creación de «Tu mente y la presión» para el 15/03/2027 y el cambio satisfactorio de descripción y hora. Se observan en Chrome «Editar experiencia», «Cambios guardados» y el texto que comienza «Pedir apoyo también es avanzar». Una consulta independiente a la API pública confirma el texto persistido, el ponente Travis Wood y la URL del cartel. La fecha almacenada es `2027-03-15T18:30:00.000Z`, mostrada como 19:30 en Madrid. Queda verificado el guardado de texto y hora en producción; no se ha probado sustituir el cartel durante una edición.
+La siguiente petición de reserva recibe 409 y el mensaje «El evento ya está completo». La comprobación de ese código aparece superada.
 
-## Avisos sin acumulación — 19/09/2026
+![Rechazo por aforo completo](docs/screenshots/Insomnia/insomnia-19-aforo-completo.png)
 
-Detecté que los mensajes de acciones sucesivas se acumulaban en la esquina inferior derecha. Se modifica el proveedor común para mostrar únicamente el aviso más reciente: cada nuevo mensaje sustituye al anterior, tanto en confirmaciones como en errores. El aviso puede cerrarse manualmente y no tiene temporizador de lectura. Se conserva la región accesible `aria-live=polite` y se añade `aria-atomic=true` para anunciar el mensaje completo. Compilación de producción y verificación de 14 documentos HTML correctas.
+### 12.12. Cancelación de asistencia
 
-También confirmo que, tras seleccionar de nuevo el cartel de «Tu mente y la presión», guardar y recargar, la imagen permanece visible. Queda comprobada esta operación de imagen en producción mediante esta prueba manual.
+La cancelación devuelve 200, el mensaje correspondiente y la lista de asistentes vacía. La plaza del evento temporal queda liberada.
 
-## Capturas finales guardadas — 19/09/2026
+![Cancelación de asistencia](docs/screenshots/Insomnia/insomnia-20-cancelacion.png)
 
-Se incorporan [nueve capturas reales de producción](docs/screenshots/entrega-2026-09-19/README.md): los dos despliegues Vercel Ready del commit d549df9, charla con cartel y botón de edición, descripción guardada, formulario precargado, correos de confirmación y cancelación en Mailtrap y pantalla de recuperación. Los mensajes observados corresponden a «Tu mente y la presión», con fecha 15/03/2027 a las 19:30. Se guardaron después de las comprobaciones manuales: las referencias anteriores a ausencia de capturas describen el momento de aquellas pruebas.
+### 12.13. Consulta después de eliminar
 
-Las vistas de correo omiten la dirección personal. No se incluyen credenciales, contraseñas ni enlaces de recuperación. Confirmo también que la sustitución de avisos funciona correctamente y sin acumulación; no se reproduce artificialmente ese estado para una captura.
+La consulta del evento temporal después de su eliminación devuelve 404. Este es el resultado esperado para confirmar que el recurso ya no se encuentra.
 
+![Consulta después de eliminar](docs/screenshots/Insomnia/insomnia-26-evento-eliminado.png)
 
-## Contraste final con el enunciado — 19/09/2026
+### 12.14. Evento almacenado en Atlas
 
-Se revisó el texto íntegro de la actividad, con [trazabilidad de cada requisito a su implementación](docs/COMPROBACION-ENUNCIADO.md). No se identifican funcionalidades obligatorias ausentes. Se refuerzan dos estados asíncronos: indicador de sesión en la cabecera y estado ocupado del botón de compartir. Pruebas ordinarias: 76 correctas; build y 14 documentos HTML correctos.
+El filtro por la clave editorial del evento de liderazgo muestra aforo de 180, 173 asistentes y la marca de demostración. La captura permite contrastar estos datos con la agenda de aquella fecha.
 
-Se conserva el monorepo con enlaces independientes a frontend y backend: el enunciado pide ambos enlaces de GitHub, sin imponer dos repositorios. Los carteles acreditan el requisito de subida de ficheros; una pantalla de avatar no es obligatoria. La entrega se realiza en la actividad y la corrección por mensaje privado en el foro.
+![Evento almacenado en Atlas](docs/screenshots/MongoDB/MongoDBAtlas-3%20events%20filter.png)
 
+### 12.15. Referencias del usuario ficticio
 
-## Aviso educativo del footer — 19/09/2026
+El perfil de demostración muestra su identificador, la marca de usuario ficticio y la lista de referencias a eventos. La contraseña está ocultada en la captura conservada.
 
-El pie de página identifica KelseTS como proyecto ficticio del máster Rock The Code, enlaza a The Power Tech School y explica la aplicación de gestión de eventos y asistentes con soporte multilingüe. El aviso está disponible en castellano e inglés; se amplían el tamaño, el contraste y el interlineado para facilitar su lectura. Se conserva el aviso de ausencia de afiliación. Validación: 33 pruebas de idiomas correctas, compilación y comprobación de 14 documentos HTML correctas.
+![Referencias del usuario ficticio](docs/screenshots/MongoDB/MongoDBAtlas-7%20usuario%20detalles.png)
 
+### 12.16. Agregación de ocupación
 
-## Correcciones de la revisión final — 19/09/2026
+La agregación calcula aforo, confirmadas y libres. Se ven, por ejemplo, 173 plazas confirmadas y siete libres en liderazgo. Es una vista parcial de los resultados, no la lista completa de las doce charlas.
 
-Se permite editar un evento pasado conservando su fecha original. Las nuevas fechas deben ser futuras. La API rechaza nuevas reservas una vez alcanzada la fecha de inicio y permite cancelar las existentes; el botón de la ficha refleja esa restricción. La transacción comprueba también la fecha al escribir.
+![Agregación de ocupación](docs/screenshots/MongoDB/MongoDBAtlas-9%20ocupacion.png)
 
-Los campos normales y las contraseñas comparten `FormField` y `PasswordField`, con etiquetas, ayuda, errores y atributos accesibles. Las categorías y los identificadores de ponentes se centralizan dentro de cada aplicación; las validaciones de correo y contraseña se reutilizan en el frontend. Los estados propios de cada flujo se mantienen en sus páginas. El JSX de los componentes modificados queda formateado para facilitar su lectura.
+### 12.17. Cartel alojado en Cloudinary
 
-Un 401 en una petición autenticada cierra la sesión correspondiente y dirige al acceso con un aviso, conservando el destino de regreso. Los errores de red no eliminan el token. Las peticiones tienen un límite de 20 segundos, incluida la lectura de la respuesta, y conservan la cancelación al abandonar una página. El buscador espera 300 ms tras la última pulsación. Las tarjetas y las fichas muestran fechas de Madrid. La ficha admite que el perfil creador ya no exista.
+El panel de Cloudinary muestra el cartel de la primera charla creada desde la web, su ubicación, formato JPG, dimensiones y acceso público. El recurso se conserva en el servicio de imágenes.
 
-`title` y `description` son el texto base de un evento; `translations` contiene versiones editoriales opcionales. Al editar un campo del catálogo, ese texto sustituye también las versiones antiguas de ese campo en ambos idiomas; los campos no modificados conservan su traducción. No se genera una traducción automática. Los eventos creados por usuarios siguen mostrando el texto original.
+![Cartel alojado en Cloudinary](docs/screenshots/Cloudinary/Cloudinary%20-1cartel%20charla.png)
 
-El acceso permite 10 intentos por correo cada 15 minutos y el registro 5, mediante contadores compartidos en MongoDB. Son límites por cuenta, no una protección global contra ataques distribuidos. Un correo inexistente también realiza una comparación bcrypt para reducir diferencias evidentes de tiempo; no se afirma tiempo constante. El arranque exige un `JWT_SECRET` de al menos 32 caracteres. Se conserva la temporización protectora de recuperación y la configuración de Mailtrap Sandbox.
+### 12.18. Correo de confirmación
 
-Validación: 84 pruebas ordinarias correctas, compilación y comprobación de 14 documentos HTML correctas. La integración de asistencia se ejecutó contra una base temporal de Atlas y comprobó concurrencia, reversión, edición de descripción con fecha pasada, rechazo de nuevas reservas y cancelación de una reserva existente después de finalizar. La base temporal se eliminó al terminar. En Chrome se revisaron el formulario de acceso, los errores vacíos, el foco en su resumen y el cambio ES/EN. Esto no equivale a repetir todo el recorrido manual de producción.
+Mailtrap muestra el mensaje en castellano de «Tu mente y la presión», con el cartel, la fecha, el lugar y el botón de gestión. Es un mensaje recibido en Sandbox.
 
-Revisión acotada de secretos: 623 versiones históricas de archivos de texto menores de 2 MB, buscando coincidencias exactas con credenciales privadas actuales y URLs MongoDB con usuario/contraseña. Sin coincidencias con las credenciales actuales; las cinco URLs candidatas eran marcadores de `.env.example`. No cubre credenciales antiguas desconocidas ni secretos incrustados en binarios. No se imprimieron valores privados ni se reescribió el historial.
+![Correo de confirmación](docs/screenshots/entrega-2026-09-19/08-mailtrap-confirmacion.png)
 
+### 12.19. Correo de cancelación
 
-### Componentización y optimización final · 19/09/2026
+El mensaje de cancelación presenta el estado de la reserva, los datos de la charla y el enlace para volver a su ficha. Corresponde al entorno de pruebas de correo.
 
-Las páginas de acceso, recuperación, detalle y edición de eventos componen piezas más pequeñas de interfaz. Los hooks específicos conservan la lógica de cada flujo; `useAsyncResource` reutiliza la carga, cancelación y reintento de recursos. Los campos de programación, descripción y cartel se separan sin cambiar los formularios ni sus mensajes.
+![Correo de cancelación](docs/screenshots/entrega-2026-09-19/06-mailtrap-cancelacion.png)
 
-Los estilos se distribuyen en módulos de base, componentes, tema y accesibilidad, importados desde `styles/index.css` en el orden original. La comparación del CSS minificado, normalizando únicamente espacios de valores de variables CSS, conserva las reglas y la cascada. Los 14 documentos HTML generados coinciden con la compilación anterior al excluir los nombres con hash de los bundles. Esta comparación verifica la estructura generada, no sustituye una prueba visual de todas las interacciones.
+### 12.20. Enlace y pie del correo
 
-El mismo logo de la web y de los correos pasa de 1024 × 1024 a 224 × 224 píxeles, de 1.431.387 a 59.942 bytes por archivo (95,8 % menos). El original permanece en el material local de producción, fuera de Git.
+La parte inferior del mismo correo muestra el enlace al dominio público y el aviso de plataforma ficticia, pedagógica y sin fines lucrativos.
 
-Validación conjunta: 92 pruebas ordinarias correctas (28 backend y 64 frontend). Las ocho nuevas pruebas montan los hooks con React y comprueban respuestas y errores obsoletos, cancelación, recarga, precarga de edición con fecha pasada, permisos y conservación del formulario ante errores. Compilación y comprobaciones de los 14 documentos HTML correctas. Las dos integraciones de Atlas siguen siendo pruebas separadas; no se han repetido para esta reorganización.
+![Enlace y pie del correo](docs/screenshots/entrega-2026-09-19/07-mailtrap-cancelacion-detalle.png)
+
+### 12.21. Adaptación del correo a móvil
+
+La vista móvil de una muestra de confirmación presenta cabecera, texto y parte del cartel adaptados al ancho disponible. No muestra el mensaje completo ni acredita compatibilidad con todos los clientes de correo.
+
+![Adaptación del correo a móvil](docs/screenshots/Mailtrap/Mailtrap%20-3%20email%20confirmacion%20responsive%20sandbox.png)
+
+### 12.22. Recuperación de acceso
+
+La pantalla publicada ofrece el formulario de recuperación y avisa de que el correo se recibe en Mailtrap Sandbox. No se incluye una imagen del enlace de recuperación porque contiene una credencial temporal.
+
+![Recuperación de acceso](docs/screenshots/entrega-2026-09-19/09-recuperacion-acceso.png)
+
+### 12.23. Despliegue de la API
+
+Vercel muestra el servidor en producción con estado preparado, dominio y revisión d549df9. La imagen documenta aquel despliegue; la comprobación funcional de la API corresponde a la ruta /api/health.
+
+![Despliegue de la API](docs/screenshots/entrega-2026-09-19/01-vercel-api-ready.png)
+
+### 12.24. Despliegue de la interfaz
+
+Vercel muestra la interfaz en producción con estado preparado y la misma revisión que la API. La miniatura presenta la portada de la aplicación.
+
+![Despliegue de la interfaz](docs/screenshots/entrega-2026-09-19/02-vercel-frontend-ready.png)
+
+## 13. Dificultades y decisiones
+
+### Mantener coherentes las reservas
+
+Actualizar únicamente la lista de asistentes podía dejar incompleta la relación con el usuario si fallaba la segunda escritura. He utilizado una transacción y control de aforo para que ambas colecciones reflejen la misma operación. El envío de correo queda después de confirmar la reserva.
+
+### Conservar datos durante la edición
+
+El formulario debe mantener el cartel y la fecha si no se cambian. Separé los datos existentes de los campos modificados y añadí comprobación de versión para evitar sobrescribir una edición más reciente. Los eventos pasados pueden conservar su fecha al editarse, pero no admiten nuevas reservas.
+
+### Conexión en el despliegue
+
+La primera publicación devolvió un error de conexión porque Atlas solo admitía la dirección de desarrollo. La configuración de red se adaptó al despliegue de demostración. La aplicación espera ahora a MongoDB antes de procesar las peticiones y comparte la conexión entre solicitudes. La configuración de entrega y sus límites se describen en [Despliegue](docs/DESPLIEGUE.md).
+
+### Imágenes en los correos
+
+Los primeros mensajes mostraban problemas de carga de imágenes. Incorporé el logo y los carteles editoriales al mensaje y comprobé nuevas muestras en Mailtrap. Las evidencias seleccionadas muestran las imágenes cargadas; la vista móvil acredita únicamente la parte visible de ese mensaje.
+
+### Idioma y contenido editorial
+
+La aplicación ofrece castellano e inglés, pero esta memoria está redactada en castellano. El contenido escrito por una persona se conserva en su idioma original; no hay traducción automática. Al editar un título o descripción editorial, el campo modificado sustituye sus versiones antiguas para evitar mostrar información desactualizada.
+
+### Presentación y avisos
+
+Los avisos de acciones sucesivas se acumulaban. El proveedor compartido pasó a mostrar el más reciente, con cierre manual y anuncio accesible. También organicé los estilos conservando su orden y optimicé el logo utilizado en la web y en el correo.
+
+## 14. Qué he aprendido
+
+He aprendido a seguir una operación desde el formulario hasta su persistencia: recoger los datos, validarlos, enviar una petición autenticada, aplicar permisos, escribir en MongoDB y devolver un resultado comprensible a la interfaz.
+
+La relación entre eventos y usuarios me ha permitido practicar referencias y transacciones. La comprobación de la última plaza muestra por qué no basta con leer el aforo y escribir después sin proteger la operación frente a peticiones concurrentes.
+
+También he comprendido que la experiencia de uso depende de los estados intermedios. Indicar que una petición está en curso, conservar el formulario cuando falla y evitar respuestas obsoletas son parte del funcionamiento de la aplicación.
+
+La publicación me ha ayudado a distinguir la configuración local de la del servidor desplegado: conexión a Atlas, variables privadas, CORS, almacenamiento de imágenes y enlaces públicos en los correos.
+
+Finalmente, he aprendido a relacionar cada afirmación con su evidencia. Una respuesta HTTP, una prueba automática, una captura y una comprobación manual aportan información diferente. Documentar su alcance permite revisar el proyecto con mayor precisión.
+
+## 15. Posibles mejoras
+
+- configurar un servicio de correo transaccional y verificar la entrega a buzones reales;
+- repetir la colección completa de Insomnia contra la API publicada;
+- incorporar gestión de perfil y eliminación de eventos desde la interfaz;
+- añadir reintentos y supervisión para los envíos de correo;
+- ampliar las comprobaciones en dispositivos y clientes de correo;
+- incorporar eventos privados, búsqueda por ciudad y valoraciones posteriores;
+- completar los materiales audiovisuales que todavía figuran como próximos;
+- estudiar sesiones mediante cookies inaccesibles a JavaScript, con la protección correspondiente.
+
+## 16. Ampliación del proyecto: recuperación de acceso y comunicaciones
+
+Tras completar la gestión de eventos y asistentes, incorporé funciones que permiten practicar procesos habituales de una aplicación con usuarios.
+
+### Objetivos de la ampliación
+
+- solicitar un enlace de recuperación sin revelar si una cuenta existe;
+- cambiar la contraseña mediante un enlace temporal de un solo uso;
+- invalidar las sesiones anteriores después del cambio;
+- comunicar por correo la confirmación y la cancelación de asistencia;
+- adaptar la presentación de los mensajes a escritorio y móvil;
+- conservar la identidad visual de la web en las comunicaciones.
+
+### Integración con la aplicación
+
+La recuperación utiliza un enlace que caduca a los treinta minutos y cuyo valor se almacena como resumen SHA-256. El cambio guarda la nueva contraseña mediante bcrypt y actualiza la versión de sesión. Los límites de solicitudes se conservan en MongoDB.
+
+Los correos de asistencia incluyen cartel, título, fecha de Madrid, ubicación y enlace público a la ficha. Disponen de HTML y texto alternativo. La reserva se mantiene aunque falle el correo y el enlace nunca cancela una plaza por sí solo.
+
+### Estado
+
+La recuperación y el acceso posterior se comprobaron manualmente en la web publicada el 19/09/2026. Las pruebas de integración cubren uso único y revocación de sesiones. Los mensajes de confirmación y cancelación se recibieron y revisaron en Mailtrap Sandbox.
+
+El envío a buzones personales sigue fuera del alcance verificado. La [guía de recuperación](docs/RECUPERACION-CONTRASENA.md) y la [documentación del correo](docs/CORREO.md) explican el funcionamiento y la configuración necesaria para ampliar ese alcance.
+
+## 17. Conclusión
+
+He completado una aplicación que conecta una interfaz React con una API Express y MongoDB Atlas. Permite descubrir eventos, registrarse, publicar charlas con cartel, editar eventos propios y gestionar la asistencia con control de permisos y aforo.
+
+El proyecto reúne separación de responsabilidades, validación, transacciones, pruebas automáticas y evidencias del uso de la web y de sus servicios. La entrega distingue las funcionalidades comprobadas de las ampliaciones pendientes, especialmente el envío de correo a destinatarios externos.
+
+---
+
+**Araceli Fradejas Muñoz**
+
+Proyecto académico del máster Rock The Code · The Power Tech School.

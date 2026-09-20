@@ -198,7 +198,7 @@ Login y registro tienen límites persistentes por correo (10 y 5 intentos respec
 Revisión de 28 capturas reales en local (12–13 de septiembre de 2026): **28 casos con resultado esperado**. La prueba 27 se repitió con una imagen real y devuelve 200 con la URL del avatar en Cloudinary. Su aserción se ha reforzado para exigir esa URL. Los errores de los casos negativos son respuestas esperadas.
 
 - [Colección importable e instrucciones](docs/insomnia/README.md).
-- [Memoria: objetivo, petición, resultado e interpretación de cada prueba](MEMORIA.md#validación-detallada-en-insomnia--revisión-del-13-de-septiembre-de-2026).
+- [Anexo: objetivo, petición, resultado e interpretación de cada prueba](docs/insomnia/VALIDACION-DETALLADA.md).
 - [Capturas de Insomnia](docs/screenshots/Insomnia).
 - [Guía para completar evidencias de MongoDB, Cloudinary, correo y despliegue](docs/GUIA-CAPTURAS.md).
 
@@ -233,7 +233,7 @@ npm run seed:attendance --prefix backend -- --dry-run # revisar distribución si
 npm run seed:attendance --prefix backend             # tras cargar la agenda y configurar MongoDB
 ```
 
-La carga es repetible, conserva reservas existentes, mantiene las referencias usuario–evento en una transacción y no envía correos. No se ejecuta automáticamente al desplegar. La [memoria documenta el modelo y las evidencias de MongoDB](MEMORIA.md#mongodb-asistentes-y-ocupación-de-demostración).
+La carga es repetible, conserva reservas existentes, mantiene las referencias usuario–evento en una transacción y no envía correos. No se ejecuta automáticamente al desplegar. La [memoria documenta el modelo y las evidencias de MongoDB](MEMORIA.md#7-datos-y-normalización).
 
 ### Evidencias de las relaciones en MongoDB Atlas
 
