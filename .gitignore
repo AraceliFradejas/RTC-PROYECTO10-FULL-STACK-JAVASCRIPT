@@ -42,3 +42,6 @@ output/imagegen/alison-liderar-entornos-convulsos.*
 # Fuentes y borradores de producción: conservar localmente, fuera de la entrega técnica
 /production/
 /output/
+
+# Guía local para preparar el envío al campus
+/docs/ENTREGA.md

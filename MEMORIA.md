@@ -129,7 +129,7 @@ The brand draws on the broad themes of incremental progress and collective effor
 
 ## Historial de desarrollo y validación
 
-Las entradas siguientes conservan los resultados y decisiones de cada fecha. Los pendientes antiguos se resuelven en las entradas posteriores; el estado de entrega vigente está en [ENTREGA.md](docs/ENTREGA.md).
+Las entradas siguientes conservan los resultados y decisiones de cada fecha. Los pendientes antiguos se resuelven en las entradas posteriores; el contraste vigente de requisitos está en la [comprobación del enunciado](docs/COMPROBACION-ENUNCIADO.md).
 
 ### Frontend y agenda — 12 de septiembre de 2026
 

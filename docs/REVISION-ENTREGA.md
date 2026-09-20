@@ -12,7 +12,7 @@ Revisión de código, pruebas y comprobaciones de producción. Las secciones fec
 - Pendientes de entrega: enviar los enlaces en el apartado de la actividad y facilitar el archivo de entorno por el canal privado indicado. Enunciado completo revisado: se aportan ambos enlaces de carpetas del monorepo; no exige repositorios independientes. El envío al campus no se ha realizado.
 - Límites: sustitución de avatar no repetida en producción y colección completa de Insomnia no repetida contra la API pública; existen sus evidencias locales. Correo probado en Sandbox, no en buzones reales. No se declara certificación integral de accesibilidad.
 
-Texto y enlaces listos en [ENTREGA.md](ENTREGA.md); [capturas finales](screenshots/entrega-2026-09-19/README.md).
+Evidencias disponibles en las [capturas finales](screenshots/entrega-2026-09-19/README.md).
 
 ## Retoma y cierre de entrega — 19/09/2026
 
@@ -33,7 +33,7 @@ Orden de cierre para entregar hoy o, como máximo, mañana:
 1. **Recorrido público autenticado:** registro con inicio automático, cierre e inicio de sesión, persistencia al recargar, reserva y cancelación. Comprobar el contador y recoger capturas sin tokens ni contraseñas.
 2. **Formularios y ficheros:** crear una charla de prueba con cartel, editarla y comprobar avatar, errores de validación y estados de carga. Identificar los datos de prueba antes de limpiar; conservar las charlas existentes.
 3. **Evidencia final:** capturas de los dos proyectos Vercel y una revisión móvil y ES/EN. Repetir los casos pendientes de Insomnia contra la API pública y registrar resultados reales.
-4. **Paquete de entrega:** enlaces a web, API, repositorio y carpetas frontend/backend; README y memoria; archivo de entorno únicamente por el canal privado indicado por el máster. Texto preparado en [ENTREGA.md](ENTREGA.md).
+4. **Paquete de entrega:** enlaces a web, API, repositorio y carpetas frontend/backend; README y memoria; archivo de entorno únicamente por el canal privado indicado por el máster.
 
 El correo real y la publicación de vídeos en YouTube son extras y no bloquean los requisitos funcionales recogidos en esta revisión. El correo actual se documenta como Mailtrap Sandbox. Las secciones siguientes conservan el historial; las menciones a despliegue pendiente corresponden a comprobaciones anteriores.
 

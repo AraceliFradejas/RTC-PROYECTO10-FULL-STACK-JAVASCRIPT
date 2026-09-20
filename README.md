@@ -490,7 +490,6 @@ The local Insomnia review covers 28 expected outcomes, including authentication,
 - [Cloudinary poster evidence](docs/screenshots/Cloudinary).
 - [Email evidence](docs/screenshots/Mailtrap).
 - [Nine final production screenshots](docs/screenshots/entrega-2026-09-19/README.md).
-- [Delivery checklist](docs/ENTREGA.md).
 
 These linked technical documents are in Spanish. They distinguish screenshots, manual observations and automated checks. Sandbox email does not establish delivery to personal inboxes, and the complete Insomnia collection has not been repeated against production.
 
